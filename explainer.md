@@ -641,6 +641,91 @@ xrSession.requestFrameOfReference("stage", { stageEmulationHeight: 1.2 })
     });
 ```
 
+### WebGL 2.0 texture arrays
+
+While the `XRWebGLLayer` type is compatible with WebGL 2.0 contexts, applications can take advantage or more advanced rendering techniques when using a WebGL 2.0 context by using a `XRWebGLArrayLayer` instead.
+
+Instead of a framebuffer, the `XRWebGLArrayLayer` provides a `colorTextureArray` and, if requested, a `depthStencilTextureArray`, both of which are `WebGLTexture`s of type `TEXTURE_2D_ARRAY`. Each layer of the texture array corresponds to the `XRView` of the same index provided by a `XRPresentationFrame` which should be rendered into it. (So `xrFrame.views[0]` must be rendered into texture layer 0, etc.) Unlike `XRWebGLLayer`, the `XRWebGLArrayLayer` does not provide framebuffer objects. Those must be created and bound by the application.
+
+All layers of the texture array share a single viewport, queried by `getViewport()`. As with a `XRWebGLLayer` the viewport may change from frame to frame and so must be queried within every `requestAnimationFrame` to ensure accurate rendering. Changes to the viewport size for purposes of controlling rendering quality dynamically can be made using the `requestViewportScaling()` function.
+
+```js
+// NOTE: Yeah, this is a bit handwavy.
+
+function setupWebGLLayer() {
+  return gl.setCompatibleXRDevice(xrDevice).then(() => {
+    xrSession.baseLayer = new XRWebGLArrayLayer(xrSession, gl);
+    layerFramebuffer = gl.createFramebuffer();
+  });
+}
+
+function onDrawFrame(t, xrFrame) {
+  let pose = xrFrame.getDevicePose(xrFrameOfRef);
+
+  let viewport = xrSession.baseLayer.getViewport();
+  gl.viewport(viewport.x, viewport.y, viewport.width, viewport.height);
+
+  gl.bindFramebuffer(gl.FRAMEBUFFER, layerFramebuffer);
+
+  for (let i = 0; i < xrFrame.views.length; ++i) {
+    gl.framebufferTextureLayer(
+        gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, 
+        xrSession.baseLayer.arrayTexture, 0, i);
+
+    gl.framebufferTextureLayer(
+        gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, 
+        xrSession.baseLayer.depthStencilTextureArray, 0, i);
+
+    drawScene(xrFrame.views[i], pose);
+  }
+
+  // Request the next animation callback
+  xrSession.requestAnimationFrame(onDrawFrame);
+}
+```
+
+### Multiview rendering
+
+One method for rendering optimization is to take advantage of what's known as "multiview" rendering to submit draw commands for all views in a single call. To do this developers must use a `XRWebGLArrayLayer` and render to it using the the [WEBGL_multiview extension](https://www.khronos.org/registry/webgl/extensions/WEBGL_multiview/) extension.
+
+```js
+let ext = gl.getExtension('WEBGL_multiview');
+
+function onDrawFrame(t, xrFrame) {
+  let pose = xrFrame.getDevicePose(xrFrameOfRef);
+
+  let viewport = xrSession.baseLayer.getViewport();
+  gl.viewport(viewport.x, viewport.y, viewport.width, viewport.height);
+
+  gl.bindFramebuffer(gl.FRAMEBUFFER, layerFramebuffer);
+  ext.framebufferTextureMultiviewWEBGL(
+      gl.DRAW_FRAMEBUFFER, gl.COLOR_ATTACHMENT0,
+      xrSession.baseLayer.colorTextureArray, 0, 0,
+      xrFrame.views.length);
+
+  ext.framebufferTextureMultiviewWEBGL(
+      gl.DRAW_FRAMEBUFFER, gl.DEPTH_ATTACHMENT,
+      xrSession.baseLayer.depthStencilTextureArray, 0, 0,
+      xrFrame.views.length);
+
+  drawMultiviewScene(xrFrame.views, pose);
+
+  // Request the next animation callback
+  xrSession.requestAnimationFrame(onDrawFrame);
+}
+
+function drawMultiviewScene(views, pose) {
+  for (let view of views) {
+    let viewMatrix = pose.getViewMatrix(view);
+    let projectionMatrix = view.projectionMatrix;
+
+    // Set uniforms as appropriate for shaders being used
+  }
+
+  // Draw Scene (Yeah, this is all pretty handwavy)
+}
+```
+
 ### Controlling rendering quality
 
 While in exclusive sessions, the UA is responsible for providing a framebuffer that is correctly optimized for presentation to the `XRSession` in each `XRPresentationFrame`. Developers can optionally request either the buffer size or viewport size be scaled, though the UA may not respect the request. Even when the UA honors the scaling requests, the result is not guaranteed to be the exact percentage requested.
@@ -870,6 +955,31 @@ interface XRWebGLLayer : XRLayer {
   void requestViewportScaling(double viewportScaleFactor);
 
   static double getNativeFramebufferScaleFactor(XRSession session);
+};
+
+dictionary XRWebGLArrayLayerInit {
+  boolean depth = true;
+  boolean stencil = false;
+  boolean alpha = true;
+  double textureScaleFactor; // Same as the framebufferScaleFactor
+};
+
+[SecureContext, Exposed=Window,
+ Constructor(XRSession session,
+             WebGL2RenderingContext context,
+             optional XRWebGLArrayLayerInit layerInit)]
+interface XRWebGLArrayLayer : XRLayer {
+  readonly attribute WebGL2RenderingContext context;
+  readonly attribute boolean alpha;
+
+  readonly attribute unsigned long textureWidth;
+  readonly attribute unsigned long textureHeight;
+  readonly attribute unsigned long textureDepth;
+  readonly attribute WebGLTexture colorTextureArray;
+  readonly attribute WebGLTexture depthStencilTextureArray;
+
+  XRViewport getViewport();
+  void requestViewportScaling(double viewportScaleFactor);
 };
 
 //
