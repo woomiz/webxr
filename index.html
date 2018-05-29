@@ -2077,23 +2077,24 @@ xrDevice<span class="p">.</span>requestSession<span class="p">({</span> exclusiv
   <dfn class="s idl-code" data-dfn-for="XRHandedness" data-dfn-type="enum-value" data-export="" id="dom-xrhandedness-right"><code>"right"</code><a class="self-link" href="#dom-xrhandedness-right"></a></dfn>
 };
 
-<span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-xrpointerorigin"><code>XRPointerOrigin</code></dfn> {
-  <dfn class="s idl-code" data-dfn-for="XRPointerOrigin" data-dfn-type="enum-value" data-export="" id="dom-xrpointerorigin-head"><code>"head"</code><a class="self-link" href="#dom-xrpointerorigin-head"></a></dfn>,
-  <dfn class="s idl-code" data-dfn-for="XRPointerOrigin" data-dfn-type="enum-value" data-export="" id="dom-xrpointerorigin-hand"><code>"hand"</code><a class="self-link" href="#dom-xrpointerorigin-hand"></a></dfn>,
-  <dfn class="s idl-code" data-dfn-for="XRPointerOrigin" data-dfn-type="enum-value" data-export="" id="dom-xrpointerorigin-screen"><code>"screen"</code><a class="self-link" href="#dom-xrpointerorigin-screen"></a></dfn>
+<span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-xrtargetraymode"><code>XRTargetRayMode</code></dfn> {
+  <dfn class="s idl-code" data-dfn-for="XRTargetRayMode" data-dfn-type="enum-value" data-export="" id="dom-xrtargetraymode-gazing"><code>"gazing"</code><a class="self-link" href="#dom-xrtargetraymode-gazing"></a></dfn>,
+  <dfn class="s idl-code" data-dfn-for="XRTargetRayMode" data-dfn-type="enum-value" data-export="" id="dom-xrtargetraymode-pointing"><code>"pointing"</code><a class="self-link" href="#dom-xrtargetraymode-pointing"></a></dfn>,
+  <dfn class="s idl-code" data-dfn-for="XRTargetRayMode" data-dfn-type="enum-value" data-export="" id="dom-xrtargetraymode-tapping"><code>"tapping"</code><a class="self-link" href="#dom-xrtargetraymode-tapping"></a></dfn>
 };
 
 <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="xrinputsource"><code>XRInputSource</code></dfn> {
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-xrhandedness" id="ref-for-enumdef-xrhandedness">XRHandedness</a> <dfn class="nv idl-code" data-dfn-for="XRInputSource" data-dfn-type="attribute" data-export="" data-readonly="" data-type="XRHandedness" id="dom-xrinputsource-handedness"><code>handedness</code><a class="self-link" href="#dom-xrinputsource-handedness"></a></dfn>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-xrpointerorigin" id="ref-for-enumdef-xrpointerorigin">XRPointerOrigin</a> <dfn class="nv idl-code" data-dfn-for="XRInputSource" data-dfn-type="attribute" data-export="" data-readonly="" data-type="XRPointerOrigin" id="dom-xrinputsource-pointerorigin"><code>pointerOrigin</code><a class="self-link" href="#dom-xrinputsource-pointerorigin"></a></dfn>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-xrtargetraymode" id="ref-for-enumdef-xrtargetraymode">XRTargetRayMode</a> <dfn class="nv idl-code" data-dfn-for="XRInputSource" data-dfn-type="attribute" data-export="" data-readonly="" data-type="XRTargetRayMode" id="dom-xrinputsource-targetraymode"><code>targetRayMode</code><a class="self-link" href="#dom-xrinputsource-targetraymode"></a></dfn>;
 };
 </pre>
     <p>Each <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource②">XRInputSource</a></code> SHOULD define a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="primary-action">primary action</dfn>. The <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action">primary action</a> is a platform-specific action that, when engaged, produces <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-selectstart" id="ref-for-eventdef-xrsession-selectstart①">selectstart</a></code>, <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-selectend" id="ref-for-eventdef-xrsession-selectend①">selectend</a></code>, and <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-select" id="ref-for-eventdef-xrsession-select①">select</a></code> events. Examples of possible <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action①">primary action</a>s are pressing a trigger, touchpad, or button, speaking a command, or making a hand gesture. If the platform guidelines define a recommended primary input then it should be used as the <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action②">primary action</a>, otherwise the user agent is free to select one.</p>
     <h3 class="heading settled" data-level="10.2" id="xrinputpose-interface"><span class="secno">10.2. </span><span class="content">XRInputPose</span><a class="self-link" href="#xrinputpose-interface"></a></h3>
 <pre class="idl highlight def"><span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="xrinputpose"><code>XRInputPose</code></dfn> {
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean③"><span class="kt">boolean</span></a> <dfn class="nv idl-code" data-dfn-for="XRInputPose" data-dfn-type="attribute" data-export="" data-readonly="" data-type="boolean" id="dom-xrinputpose-emulatedposition"><code>emulatedPosition</code><a class="self-link" href="#dom-xrinputpose-emulatedposition"></a></dfn>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑤"><span class="kt">Float32Array</span></a> <dfn class="nv idl-code" data-dfn-for="XRInputPose" data-dfn-type="attribute" data-export="" data-readonly="" data-type="Float32Array" id="dom-xrinputpose-pointermatrix"><code>pointerMatrix</code><a class="self-link" href="#dom-xrinputpose-pointermatrix"></a></dfn>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑥"><span class="kt">Float32Array</span></a>? <dfn class="nv idl-code" data-dfn-for="XRInputPose" data-dfn-type="attribute" data-export="" data-readonly="" data-type="Float32Array?" id="dom-xrinputpose-gripmatrix"><code>gripMatrix</code><a class="self-link" href="#dom-xrinputpose-gripmatrix"></a></dfn>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑤"><span class="kt">Float32Array</span></a> <dfn class="nv idl-code" data-dfn-for="XRInputPose" data-dfn-type="attribute" data-export="" data-readonly="" data-type="Float32Array" id="dom-xrinputpose-targetrayorigin"><code>targetRayOrigin</code><a class="self-link" href="#dom-xrinputpose-targetrayorigin"></a></dfn>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑥"><span class="kt">Float32Array</span></a> <dfn class="nv idl-code" data-dfn-for="XRInputPose" data-dfn-type="attribute" data-export="" data-readonly="" data-type="Float32Array" id="dom-xrinputpose-targetraydirection"><code>targetRayDirection</code><a class="self-link" href="#dom-xrinputpose-targetraydirection"></a></dfn>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑦"><span class="kt">Float32Array</span></a>? <dfn class="nv idl-code" data-dfn-for="XRInputPose" data-dfn-type="attribute" data-export="" data-readonly="" data-type="Float32Array?" id="dom-xrinputpose-gripmatrix"><code>gripMatrix</code><a class="self-link" href="#dom-xrinputpose-gripmatrix"></a></dfn>;
 };
 </pre>
     <h2 class="heading settled" data-level="11" id="layers"><span class="secno">11. </span><span class="content">Layers</span><a class="self-link" href="#layers"></a></h2>
@@ -2623,6 +2624,7 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
    <li><a href="#dom-xrwebgllayer-framebufferheight">framebufferHeight</a><span>, in §11.2</span>
    <li><a href="#dom-xrwebgllayerinit-framebufferscalefactor">framebufferScaleFactor</a><span>, in §11.2</span>
    <li><a href="#dom-xrwebgllayer-framebufferwidth">framebufferWidth</a><span>, in §11.2</span>
+   <li><a href="#dom-xrtargetraymode-gazing">"gazing"</a><span>, in §10.1</span>
    <li><a href="#dom-xrstagebounds-geometry">geometry</a><span>, in §7.3</span>
    <li><a href="#dom-xrpresentationframe-getdevicepose">getDevicePose(coordinateSystem)</a><span>, in §6.1</span>
    <li><a href="#dom-xrpresentationframe-getinputpose">getInputPose(inputSource, coordinateSystem)</a><span>, in §6.1</span>
@@ -2632,9 +2634,7 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
    <li><a href="#dom-xrdevicepose-getviewmatrix">getViewMatrix(view)</a><span>, in §9.2</span>
    <li><a href="#dom-xrwebgllayer-getviewport">getViewport(view)</a><span>, in §11.2</span>
    <li><a href="#dom-xrinputpose-gripmatrix">gripMatrix</a><span>, in §10.2</span>
-   <li><a href="#dom-xrpointerorigin-hand">"hand"</a><span>, in §10.1</span>
    <li><a href="#dom-xrinputsource-handedness">handedness</a><span>, in §10.1</span>
-   <li><a href="#dom-xrpointerorigin-head">"head"</a><span>, in §10.1</span>
    <li><a href="#dom-xrframeofreferencetype-headmodel">"headModel"</a><span>, in §7.2</span>
    <li><a href="#dom-xrviewport-height">height</a><span>, in §8.2</span>
    <li><a href="#initialize-the-session">initialize the session</a><span>, in §5.2</span>
@@ -2680,8 +2680,7 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
      <li><a href="#dom-xrsessioncreationoptions-outputcontext">dict-member for XRSessionCreationOptions</a><span>, in §5.1</span>
     </ul>
    <li><a href="#outside-in-tracking">outside-in tracking</a><span>, in §2</span>
-   <li><a href="#dom-xrinputpose-pointermatrix">pointerMatrix</a><span>, in §10.2</span>
-   <li><a href="#dom-xrinputsource-pointerorigin">pointerOrigin</a><span>, in §10.1</span>
+   <li><a href="#dom-xrtargetraymode-pointing">"pointing"</a><span>, in §10.1</span>
    <li><a href="#poll-the-device-pose">poll the device pose</a><span>, in §5.2</span>
    <li><a href="#dom-xrdevicepose-posemodelmatrix">poseModelMatrix</a><span>, in §9.2</span>
    <li><a href="#primary-action">primary action</a><span>, in §10.1</span>
@@ -2704,7 +2703,6 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
      <li><a href="#dom-xrhandedness-right">enum-value for XRHandedness</a><span>, in §10.1</span>
     </ul>
    <li><a href="#run-the-animation-frame-callbacks">run the animation frame callbacks</a><span>, in §5.3</span>
-   <li><a href="#dom-xrpointerorigin-screen">"screen"</a><span>, in §10.1</span>
    <li><a href="#eventdef-xrsession-select">select</a><span>, in §13.4</span>
    <li><a href="#select-a-default-xr-device">select a default XR device</a><span>, in §4.1</span>
    <li><a href="#eventdef-xrsession-selectend">selectend</a><span>, in §13.4</span>
@@ -2737,6 +2735,10 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
    <li><a href="#dom-xrdevice-supportssession">supportsSession()</a><span>, in §4.2</span>
    <li><a href="#dom-xrdevice-supportssession">supportsSession(options)</a><span>, in §4.2</span>
    <li><a href="#swap-chain">swap chain</a><span>, in §11.2</span>
+   <li><a href="#dom-xrtargetraymode-tapping">"tapping"</a><span>, in §10.1</span>
+   <li><a href="#dom-xrinputpose-targetraydirection">targetRayDirection</a><span>, in §10.2</span>
+   <li><a href="#dom-xrinputsource-targetraymode">targetRayMode</a><span>, in §10.1</span>
+   <li><a href="#dom-xrinputpose-targetrayorigin">targetRayOrigin</a><span>, in §10.2</span>
    <li><a href="#view">view</a><span>, in §8.1</span>
    <li><a href="#viewport">viewport</a><span>, in §8.2</span>
    <li><a href="#dom-xrpresentationframe-views">views</a><span>, in §6.1</span>
@@ -2768,7 +2770,6 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
    <li><a href="#dictdef-xrinputsourceeventinit">XRInputSourceEventInit</a><span>, in §13.2</span>
    <li><a href="#dom-xrinputsourceevent-xrinputsourceevent">XRInputSourceEvent(type, eventInitDict)</a><span>, in §13.2</span>
    <li><a href="#xrlayer">XRLayer</a><span>, in §11.1</span>
-   <li><a href="#enumdef-xrpointerorigin">XRPointerOrigin</a><span>, in §10.1</span>
    <li><a href="#xrpresentationcontext">XRPresentationContext</a><span>, in §12.1</span>
    <li><a href="#xrpresentationframe">XRPresentationFrame</a><span>, in §6.1</span>
    <li><a href="#xrsession">XRSession</a><span>, in §5.2</span>
@@ -2778,6 +2779,7 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
    <li><a href="#dom-xrsessionevent-xrsessionevent">XRSessionEvent(type, eventInitDict)</a><span>, in §13.1</span>
    <li><a href="#xrstagebounds">XRStageBounds</a><span>, in §7.3</span>
    <li><a href="#xrstageboundspoint">XRStageBoundsPoint</a><span>, in §7.3</span>
+   <li><a href="#enumdef-xrtargetraymode">XRTargetRayMode</a><span>, in §10.1</span>
    <li><a href="#xrview">XRView</a><span>, in §8.1</span>
    <li><a href="#xrviewport">XRViewport</a><span>, in §8.2</span>
    <li><a href="#xrwebgllayer">XRWebGLLayer</a><span>, in §11.2</span>
@@ -2967,7 +2969,7 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
     <li><a href="#ref-for-idl-Float32Array①">8.1. XRView</a>
     <li><a href="#ref-for-idl-Float32Array②">9.1. Matrices</a>
     <li><a href="#ref-for-idl-Float32Array③">9.2. XRDevicePose</a> <a href="#ref-for-idl-Float32Array④">(2)</a>
-    <li><a href="#ref-for-idl-Float32Array⑤">10.2. XRInputPose</a> <a href="#ref-for-idl-Float32Array⑥">(2)</a>
+    <li><a href="#ref-for-idl-Float32Array⑤">10.2. XRInputPose</a> <a href="#ref-for-idl-Float32Array⑥">(2)</a> <a href="#ref-for-idl-Float32Array⑦">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-invalidstateerror">
@@ -3214,7 +3216,7 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
 };
 
 [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑤①">SecureContext</a>, <a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed④①">Exposed</a>=<span class="n">Window</span>] <span class="kt">interface</span> <a class="nv" href="#xrcoordinatesystem"><code>XRCoordinateSystem</code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget③①">EventTarget</a> {
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑦"><span class="kt">Float32Array</span></a>? <a class="nv idl-code" data-link-type="method" href="#dom-xrcoordinatesystem-gettransformto" id="ref-for-dom-xrcoordinatesystem-gettransformto①">getTransformTo</a>(<a class="n" data-link-type="idl-name" href="#xrcoordinatesystem" id="ref-for-xrcoordinatesystem②①">XRCoordinateSystem</a> <a class="nv" href="#dom-xrcoordinatesystem-gettransformto-other-other"><code>other</code></a>);
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑧"><span class="kt">Float32Array</span></a>? <a class="nv idl-code" data-link-type="method" href="#dom-xrcoordinatesystem-gettransformto" id="ref-for-dom-xrcoordinatesystem-gettransformto①">getTransformTo</a>(<a class="n" data-link-type="idl-name" href="#xrcoordinatesystem" id="ref-for-xrcoordinatesystem②①">XRCoordinateSystem</a> <a class="nv" href="#dom-xrcoordinatesystem-gettransformto-other-other"><code>other</code></a>);
 };
 
 <span class="kt">enum</span> <a class="nv" href="#enumdef-xrframeofreferencetype"><code>XRFrameOfReferenceType</code></a> {
@@ -3273,21 +3275,22 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
   <a class="s" href="#dom-xrhandedness-right"><code>"right"</code></a>
 };
 
-<span class="kt">enum</span> <a class="nv" href="#enumdef-xrpointerorigin"><code>XRPointerOrigin</code></a> {
-  <a class="s" href="#dom-xrpointerorigin-head"><code>"head"</code></a>,
-  <a class="s" href="#dom-xrpointerorigin-hand"><code>"hand"</code></a>,
-  <a class="s" href="#dom-xrpointerorigin-screen"><code>"screen"</code></a>
+<span class="kt">enum</span> <a class="nv" href="#enumdef-xrtargetraymode"><code>XRTargetRayMode</code></a> {
+  <a class="s" href="#dom-xrtargetraymode-gazing"><code>"gazing"</code></a>,
+  <a class="s" href="#dom-xrtargetraymode-pointing"><code>"pointing"</code></a>,
+  <a class="s" href="#dom-xrtargetraymode-tapping"><code>"tapping"</code></a>
 };
 
 <span class="kt">interface</span> <a class="nv" href="#xrinputsource"><code>XRInputSource</code></a> {
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-xrhandedness" id="ref-for-enumdef-xrhandedness①">XRHandedness</a> <a class="nv" data-readonly="" data-type="XRHandedness" href="#dom-xrinputsource-handedness"><code>handedness</code></a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-xrpointerorigin" id="ref-for-enumdef-xrpointerorigin①">XRPointerOrigin</a> <a class="nv" data-readonly="" data-type="XRPointerOrigin" href="#dom-xrinputsource-pointerorigin"><code>pointerOrigin</code></a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-xrtargetraymode" id="ref-for-enumdef-xrtargetraymode①">XRTargetRayMode</a> <a class="nv" data-readonly="" data-type="XRTargetRayMode" href="#dom-xrinputsource-targetraymode"><code>targetRayMode</code></a>;
 };
 
 <span class="kt">interface</span> <a class="nv" href="#xrinputpose"><code>XRInputPose</code></a> {
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean③①"><span class="kt">boolean</span></a> <a class="nv" data-readonly="" data-type="boolean" href="#dom-xrinputpose-emulatedposition"><code>emulatedPosition</code></a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑤①"><span class="kt">Float32Array</span></a> <a class="nv" data-readonly="" data-type="Float32Array" href="#dom-xrinputpose-pointermatrix"><code>pointerMatrix</code></a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑥①"><span class="kt">Float32Array</span></a>? <a class="nv" data-readonly="" data-type="Float32Array?" href="#dom-xrinputpose-gripmatrix"><code>gripMatrix</code></a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑤①"><span class="kt">Float32Array</span></a> <a class="nv" data-readonly="" data-type="Float32Array" href="#dom-xrinputpose-targetrayorigin"><code>targetRayOrigin</code></a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑥①"><span class="kt">Float32Array</span></a> <a class="nv" data-readonly="" data-type="Float32Array" href="#dom-xrinputpose-targetraydirection"><code>targetRayDirection</code></a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑦①"><span class="kt">Float32Array</span></a>? <a class="nv" data-readonly="" data-type="Float32Array?" href="#dom-xrinputpose-gripmatrix"><code>gripMatrix</code></a>;
 };
 
 [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①②①">SecureContext</a>, <a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①①">Exposed</a>=<span class="n">Window</span>] <span class="kt">interface</span> <a class="nv" href="#xrlayer"><code>XRLayer</code></a> {};
@@ -3971,10 +3974,10 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
     <li><a href="#ref-for-enumdef-xrhandedness">10.1. XRInputSource</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="enumdef-xrpointerorigin">
-   <b><a href="#enumdef-xrpointerorigin">#enumdef-xrpointerorigin</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="enumdef-xrtargetraymode">
+   <b><a href="#enumdef-xrtargetraymode">#enumdef-xrtargetraymode</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-enumdef-xrpointerorigin">10.1. XRInputSource</a>
+    <li><a href="#ref-for-enumdef-xrtargetraymode">10.1. XRInputSource</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrinputsource">
