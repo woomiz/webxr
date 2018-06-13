@@ -1211,7 +1211,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version df6f00ec561f1e8fff7063158d3e7f9805a1d338" name="generator">
+  <meta content="Bikeshed version 6d3a750812441328ea98d66fac577c3ced988303" name="generator">
   <link href="https://immersive-web.github.io/webxr/" rel="canonical">
 <style>
   /* Re-add this once there are actually stable sections of the spec */
@@ -1487,7 +1487,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-06-11">11 June 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-06-13">13 June 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1509,7 +1509,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 11 June 2018,
+In addition, as of 13 June 2018,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1973,8 +1973,8 @@ xrDevice<span class="p">.</span>requestSession<span class="p">({</span> exclusiv
     <p><dfn class="dfn-paneled idl-code" data-dfn-for="XRCoordinateSystem" data-dfn-type="method" data-export="" id="dom-xrcoordinatesystem-gettransformto"><code>getTransformTo(other)</code></dfn></p>
     <h3 class="heading settled" data-level="7.2" id="xrframeofreference-interface"><span class="secno">7.2. </span><span class="content">XRFrameOfReference</span><a class="self-link" href="#xrframeofreference-interface"></a></h3>
 <pre class="idl highlight def"><span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-xrframeofreferencetype"><code>XRFrameOfReferenceType</code></dfn> {
-  <dfn class="s idl-code" data-dfn-for="XRFrameOfReferenceType" data-dfn-type="enum-value" data-export="" id="dom-xrframeofreferencetype-headmodel"><code>"headModel"</code><a class="self-link" href="#dom-xrframeofreferencetype-headmodel"></a></dfn>,
-  <dfn class="s idl-code" data-dfn-for="XRFrameOfReferenceType" data-dfn-type="enum-value" data-export="" id="dom-xrframeofreferencetype-eyelevel"><code>"eyeLevel"</code><a class="self-link" href="#dom-xrframeofreferencetype-eyelevel"></a></dfn>,
+  <dfn class="s idl-code" data-dfn-for="XRFrameOfReferenceType" data-dfn-type="enum-value" data-export="" id="dom-xrframeofreferencetype-head-model"><code>"head-model"</code><a class="self-link" href="#dom-xrframeofreferencetype-head-model"></a></dfn>,
+  <dfn class="s idl-code" data-dfn-for="XRFrameOfReferenceType" data-dfn-type="enum-value" data-export="" id="dom-xrframeofreferencetype-eye-level"><code>"eye-level"</code><a class="self-link" href="#dom-xrframeofreferencetype-eye-level"></a></dfn>,
   <dfn class="s idl-code" data-dfn-for="XRFrameOfReferenceType" data-dfn-type="enum-value" data-export="" id="dom-xrframeofreferencetype-stage"><code>"stage"</code><a class="self-link" href="#dom-xrframeofreferencetype-stage"></a></dfn>,
 };
 
@@ -2611,7 +2611,7 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
     </ul>
    <li><a href="#exclusive-session">exclusive session</a><span>, in §4.2</span>
    <li><a href="#dom-xrview-eye">eye</a><span>, in §8.1</span>
-   <li><a href="#dom-xrframeofreferencetype-eyelevel">"eyeLevel"</a><span>, in §7.2</span>
+   <li><a href="#dom-xrframeofreferencetype-eye-level">"eye-level"</a><span>, in §7.2</span>
    <li><a href="#eventdef-xrsession-focus">focus</a><span>, in §13.4</span>
    <li>
     frame
@@ -2634,7 +2634,7 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
    <li><a href="#dom-xrwebgllayer-getviewport">getViewport(view)</a><span>, in §11.2</span>
    <li><a href="#dom-xrinputpose-gripmatrix">gripMatrix</a><span>, in §10.2</span>
    <li><a href="#dom-xrinputsource-handedness">handedness</a><span>, in §10.1</span>
-   <li><a href="#dom-xrframeofreferencetype-headmodel">"headModel"</a><span>, in §7.2</span>
+   <li><a href="#dom-xrframeofreferencetype-head-model">"head-model"</a><span>, in §7.2</span>
    <li><a href="#dom-xrviewport-height">height</a><span>, in §8.2</span>
    <li><a href="#initialize-the-session">initialize the session</a><span>, in §5.2</span>
    <li>
@@ -3217,8 +3217,8 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
 };
 
 <span class="kt">enum</span> <a class="nv" href="#enumdef-xrframeofreferencetype"><code>XRFrameOfReferenceType</code></a> {
-  <a class="s" href="#dom-xrframeofreferencetype-headmodel"><code>"headModel"</code></a>,
-  <a class="s" href="#dom-xrframeofreferencetype-eyelevel"><code>"eyeLevel"</code></a>,
+  <a class="s" href="#dom-xrframeofreferencetype-head-model"><code>"head-model"</code></a>,
+  <a class="s" href="#dom-xrframeofreferencetype-eye-level"><code>"eye-level"</code></a>,
   <a class="s" href="#dom-xrframeofreferencetype-stage"><code>"stage"</code></a>,
 };
 
