@@ -1487,7 +1487,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-06-14">14 June 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-06-15">15 June 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1509,7 +1509,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 14 June 2018,
+In addition, as of 15 June 2018,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1729,8 +1729,8 @@ Parts of this work may be from another specification document.  If so, those par
 };
 </pre>
     <p>An <code class="idl"><a data-link-type="idl" href="#xrdevice" id="ref-for-xrdevice④">XRDevice</a></code> represents a physical unit of XR hardware that can present imagery to the user somehow. On desktop devices this may take the form of a headset peripheral; on mobile devices it may represent the device itself in conjunction with a viewer harness. It may also represent devices without the ability to present content in stereo but with advanced (6DoF) tracking capabilities.</p>
-    <p>Each <code class="idl"><a data-link-type="idl" href="#xrdevice" id="ref-for-xrdevice⑤">XRDevice</a></code> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="supports-exclusive">supports exclusive</dfn> value, which is a boolean which MUST be set to <code>true</code> if the device can support exclusive sessions and <code>false</code> if it cannot.</p>
-    <p>Each <code class="idl"><a data-link-type="idl" href="#xrdevice" id="ref-for-xrdevice⑥">XRDevice</a></code> has an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="exclusive-session">exclusive session</dfn>, which MUST be initially <code>null</code>, and a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="list-of-non-exclusive-sessions">list of non-exclusive sessions</dfn>, which MUST be initially empty.</p>
+    <p>Each <code class="idl"><a data-link-type="idl" href="#xrdevice" id="ref-for-xrdevice⑤">XRDevice</a></code> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="supports-immersive">supports immersive</dfn> value, which is a boolean which MUST be set to <code>true</code> if the device can support immersive sessions and <code>false</code> if it cannot.</p>
+    <p>Each <code class="idl"><a data-link-type="idl" href="#xrdevice" id="ref-for-xrdevice⑥">XRDevice</a></code> has an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="immersive-session">immersive session</dfn>, which MUST be initially <code>null</code>, and a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="list-of-non-immersive-sessions">list of non-immersive sessions</dfn>, which MUST be initially empty.</p>
     <div class="algorithm" data-algorithm="supports-session">
      <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XRDevice" data-dfn-type="method" data-export="" data-lt="supportsSession(options)|supportsSession()" id="dom-xrdevice-supportssession"><code>supportsSession(<var>options</var>)</code></dfn> method is invoked, it MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise①">a new Promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">in parallel</a>:</p>
      <ol>
@@ -1750,28 +1750,28 @@ Parts of this work may be from another specification document.  If so, those par
       <li data-md="">
        <p>If the <var>options</var> are not <a data-link-type="dfn" href="#supported-by-the-device" id="ref-for-supported-by-the-device①">supported by the device</a> <var>device</var>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise②">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror">NotSupportedError</a></code> and abort these steps.</p>
       <li data-md="">
-       <p>Let <var>exclusive</var> be the <code class="idl"><a data-link-type="idl" href="#dom-xrsessioncreationoptions-exclusive" id="ref-for-dom-xrsessioncreationoptions-exclusive">exclusive</a></code> attribute of the <var>options</var> argument.</p>
+       <p>Let <var>immersive</var> be the <code class="idl"><a data-link-type="idl" href="#dom-xrsessioncreationoptions-immersive" id="ref-for-dom-xrsessioncreationoptions-immersive">immersive</a></code> attribute of the <var>options</var> argument.</p>
       <li data-md="">
-       <p>If <var>exclusive</var> is <code>true</code> and <var>device</var>’s <a data-link-type="dfn" href="#exclusive-session" id="ref-for-exclusive-session">exclusive session</a> is not <code>null</code>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise③">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code> and abort these steps.</p>
+       <p>If <var>immersive</var> is <code>true</code> and <var>device</var>’s <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session">immersive session</a> is not <code>null</code>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise③">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code> and abort these steps.</p>
       <li data-md="">
-       <p>If <var>exclusive</var> is <code>true</code> and the algorithm is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation">triggered by user activation</a>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise④">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror">SecurityError</a></code> and abort these steps.</p>
+       <p>If <var>immersive</var> is <code>true</code> and the algorithm is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation">triggered by user activation</a>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise④">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror">SecurityError</a></code> and abort these steps.</p>
       <li data-md="">
        <p>Let <var>session</var> be a new <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②">XRSession</a></code>.</p>
       <li data-md="">
        <p><a data-link-type="dfn" href="#initialize-the-session" id="ref-for-initialize-the-session">Initialize the session</a> <var>session</var> with the <a data-link-type="dfn" href="#session-description" id="ref-for-session-description">session description</a> given by <var>options</var>.</p>
       <li data-md="">
-       <p>If <var>exclusive</var> is <code>true</code> set the <var>device</var>’s <a data-link-type="dfn" href="#exclusive-session" id="ref-for-exclusive-session①">exclusive session</a> to <var>session</var>.</p>
+       <p>If <var>immersive</var> is <code>true</code> set the <var>device</var>’s <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session①">immersive session</a> to <var>session</var>.</p>
       <li data-md="">
-       <p>Else append <var>session</var> to <var>device</var>’s <a data-link-type="dfn" href="#list-of-non-exclusive-sessions" id="ref-for-list-of-non-exclusive-sessions">list of non-exclusive sessions</a>.</p>
+       <p>Else append <var>session</var> to <var>device</var>’s <a data-link-type="dfn" href="#list-of-non-immersive-sessions" id="ref-for-list-of-non-immersive-sessions">list of non-immersive sessions</a>.</p>
       <li data-md="">
        <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise②">Resolve</a> <var>promise</var> with <var>session</var>.</p>
      </ol>
     </div>
-    <div class="example" id="example-5f3094f5">
-     <a class="self-link" href="#example-5f3094f5"></a> The following code attempts to retrieve an exclusive <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession③">XRSession</a></code>. 
+    <div class="example" id="example-a459300b">
+     <a class="self-link" href="#example-a459300b"></a> The following code attempts to retrieve an immersive <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession③">XRSession</a></code>. 
 <pre class="highlight"><span class="kd">let</span> xrSession<span class="p">;</span>
 
-xrDevice<span class="p">.</span>requestSession<span class="p">({</span> exclusive<span class="o">:</span> <span class="kc">true</span> <span class="p">}).</span>then<span class="p">((</span>session<span class="p">)</span> <span class="p">=></span> <span class="p">{</span>
+xrDevice<span class="p">.</span>requestSession<span class="p">({</span> immersive<span class="o">:</span> <span class="kc">true</span> <span class="p">}).</span>then<span class="p">((</span>session<span class="p">)</span> <span class="p">=></span> <span class="p">{</span>
   xrSession <span class="o">=</span> session<span class="p">;</span>
 <span class="p">});</span>
 </pre>
@@ -1779,7 +1779,7 @@ xrDevice<span class="p">.</span>requestSession<span class="p">({</span> exclusiv
     <h2 class="heading settled" data-level="5" id="session"><span class="secno">5. </span><span class="content">Session</span><a class="self-link" href="#session"></a></h2>
     <h3 class="heading settled" data-level="5.1" id="xrsessioncreationoptions-interface"><span class="secno">5.1. </span><span class="content">XRSessionCreationOptions</span><a class="self-link" href="#xrsessioncreationoptions-interface"></a></h3>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-xrsessioncreationoptions"><code>XRSessionCreationOptions</code></dfn> {
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><span class="kt">boolean</span></a> <dfn class="nv dfn-paneled idl-code" data-default="false" data-dfn-for="XRSessionCreationOptions" data-dfn-type="dict-member" data-export="" data-type="boolean " id="dom-xrsessioncreationoptions-exclusive"><code>exclusive</code></dfn> = <span class="kt">false</span>;
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><span class="kt">boolean</span></a> <dfn class="nv dfn-paneled idl-code" data-default="false" data-dfn-for="XRSessionCreationOptions" data-dfn-type="dict-member" data-export="" data-type="boolean " id="dom-xrsessioncreationoptions-immersive"><code>immersive</code></dfn> = <span class="kt">false</span>;
   <a class="n" data-link-type="idl-name" href="#xrpresentationcontext" id="ref-for-xrpresentationcontext">XRPresentationContext</a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="XRSessionCreationOptions" data-dfn-type="dict-member" data-export="" data-type="XRPresentationContext " id="dom-xrsessioncreationoptions-outputcontext"><code>outputContext</code></dfn>;
 };
 </pre>
@@ -1788,19 +1788,19 @@ xrDevice<span class="p">.</span>requestSession<span class="p">({</span> exclusiv
      <p>To determine if an <code class="idl"><a data-link-type="idl" href="#dictdef-xrsessioncreationoptions" id="ref-for-dictdef-xrsessioncreationoptions③">XRSessionCreationOptions</a></code> <var>options</var> is <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="supported-by-the-device">supported by the device</dfn> <var>device</var> run the following steps:</p>
      <ol>
       <li data-md="">
-       <p>Let <var>exclusive</var> be <var>options</var>.<code class="idl"><a data-link-type="idl" href="#dom-xrsessioncreationoptions-exclusive" id="ref-for-dom-xrsessioncreationoptions-exclusive①">exclusive</a></code>.</p>
+       <p>Let <var>immersive</var> be <var>options</var>.<code class="idl"><a data-link-type="idl" href="#dom-xrsessioncreationoptions-immersive" id="ref-for-dom-xrsessioncreationoptions-immersive①">immersive</a></code>.</p>
       <li data-md="">
-       <p>If <var>exclusive</var> is <code>true</code> and <var>device</var>’s <a data-link-type="dfn" href="#supports-exclusive" id="ref-for-supports-exclusive">supports exclusive</a> boolean is <code>false</code> return <code>false</code>.</p>
+       <p>If <var>immersive</var> is <code>true</code> and <var>device</var>’s <a data-link-type="dfn" href="#supports-immersive" id="ref-for-supports-immersive">supports immersive</a> boolean is <code>false</code> return <code>false</code>.</p>
       <li data-md="">
-       <p>If <var>exclusive</var> is <code>false</code> and <var>options</var>.<code class="idl"><a data-link-type="idl" href="#dom-xrsessioncreationoptions-outputcontext" id="ref-for-dom-xrsessioncreationoptions-outputcontext">outputContext</a></code> is <code>null</code>, return <code>false</code></p>
+       <p>If <var>immersive</var> is <code>false</code> and <var>options</var>.<code class="idl"><a data-link-type="idl" href="#dom-xrsessioncreationoptions-outputcontext" id="ref-for-dom-xrsessioncreationoptions-outputcontext">outputContext</a></code> is <code>null</code>, return <code>false</code></p>
      </ol>
     </div>
-    <p class="issue" id="issue-71eaf0cc"><a class="self-link" href="#issue-71eaf0cc"></a> Document restrictions and capabilities of an <a data-link-type="dfn" href="#exclusive-session" id="ref-for-exclusive-session②">exclusive session</a></p>
+    <p class="issue" id="issue-3f3ef2e4"><a class="self-link" href="#issue-3f3ef2e4"></a> Document restrictions and capabilities of an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session②">immersive session</a></p>
     <h3 class="heading settled" data-level="5.2" id="xrsession-interface"><span class="secno">5.2. </span><span class="content">XRSession</span><a class="self-link" href="#xrsession-interface"></a></h3>
 <pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext③">SecureContext</a>, <a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed②">Exposed</a>=<span class="n">Window</span>] <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="xrsession"><code>XRSession</code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget①">EventTarget</a> {
   // Attributes
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#xrdevice" id="ref-for-xrdevice⑨">XRDevice</a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="attribute" data-export="" data-readonly="" data-type="XRDevice" id="dom-xrsession-device"><code>device</code></dfn>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><span class="kt">boolean</span></a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="attribute" data-export="" data-readonly="" data-type="boolean" id="dom-xrsession-exclusive"><code>exclusive</code></dfn>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><span class="kt">boolean</span></a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="attribute" data-export="" data-readonly="" data-type="boolean" id="dom-xrsession-immersive"><code>immersive</code></dfn>;
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#xrpresentationcontext" id="ref-for-xrpresentationcontext①">XRPresentationContext</a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="attribute" data-export="" data-readonly="" data-type="XRPresentationContext" id="dom-xrsession-outputcontext"><code>outputContext</code></dfn>;
 
   <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double"><span class="kt">double</span></a> <dfn class="nv dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="attribute" data-export="" data-type="double" id="dom-xrsession-depthnear"><code>depthNear</code></dfn>;
@@ -1841,7 +1841,7 @@ xrDevice<span class="p">.</span>requestSession<span class="p">({</span> exclusiv
       <li data-md="">
        <p>Initialize <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-device" id="ref-for-dom-xrsession-device">device</a></code> to <var>device</var>.</p>
       <li data-md="">
-       <p>Initialize <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-exclusive" id="ref-for-dom-xrsession-exclusive">exclusive</a></code> to <var>options</var> <code class="idl"><a data-link-type="idl" href="#dom-xrsessioncreationoptions-exclusive" id="ref-for-dom-xrsessioncreationoptions-exclusive②">exclusive</a></code> value.</p>
+       <p>Initialize <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-immersive" id="ref-for-dom-xrsession-immersive">immersive</a></code> to <var>options</var> <code class="idl"><a data-link-type="idl" href="#dom-xrsessioncreationoptions-immersive" id="ref-for-dom-xrsessioncreationoptions-immersive②">immersive</a></code> value.</p>
       <li data-md="">
        <p>Initialize <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-outputcontext" id="ref-for-dom-xrsession-outputcontext">outputContext</a></code> to <var>options</var> <code class="idl"><a data-link-type="idl" href="#dom-xrsessioncreationoptions-outputcontext" id="ref-for-dom-xrsessioncreationoptions-outputcontext①">outputContext</a></code> value.</p>
       <li data-md="">
@@ -1865,9 +1865,9 @@ xrDevice<span class="p">.</span>requestSession<span class="p">({</span> exclusiv
       <li data-md="">
        <p>Set <var>session</var>’s <a data-link-type="dfn" href="#ended" id="ref-for-ended">ended</a> value to <code>true</code>.</p>
       <li data-md="">
-       <p>If <var>device</var>’s <a data-link-type="dfn" href="#exclusive-session" id="ref-for-exclusive-session③">exclusive session</a> is equal to <var>session</var>, set <var>device</var>’s <a data-link-type="dfn" href="#exclusive-session" id="ref-for-exclusive-session④">exclusive session</a> to <code>null</code>.</p>
+       <p>If <var>device</var>’s <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session③">immersive session</a> is equal to <var>session</var>, set <var>device</var>’s <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session④">immersive session</a> to <code>null</code>.</p>
       <li data-md="">
-       <p>If <var>device</var>’s <a data-link-type="dfn" href="#list-of-non-exclusive-sessions" id="ref-for-list-of-non-exclusive-sessions①">list of non-exclusive sessions</a> contains <var>session</var>, remove it from the list.</p>
+       <p>If <var>device</var>’s <a data-link-type="dfn" href="#list-of-non-immersive-sessions" id="ref-for-list-of-non-immersive-sessions①">list of non-immersive sessions</a> contains <var>session</var>, remove it from the list.</p>
       <li data-md="">
        <p>If no other features of the user agent are actively using them, perform the necessary platform-specific steps to shut down the device’s tracking and rendering capabilities.</p>
      </ol>
@@ -2109,9 +2109,9 @@ xrDevice<span class="p">.</span>requestSession<span class="p">({</span> exclusiv
       <li data-md="">
        <p>Let <var>session</var> be the target <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②①">XRSession</a></code>.</p>
       <li data-md="">
-       <p>If <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-exclusive" id="ref-for-dom-xrsession-exclusive①">exclusive</a></code> value is <code>true</code>, set the <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution①">native WebGL framebuffer resolution</a> to the resolution required to have a 1:1 ratio between the pixels of a framebuffer large enough to contain all of the session’s <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview⑤">XRView</a></code>s and the physical screen pixels in the area of the display under the highest magnification and abort these steps. If no method exists to determine the native resolution as described, the <a data-link-type="dfn" href="#recommended-webgl-framebuffer-resolution" id="ref-for-recommended-webgl-framebuffer-resolution">recommended WebGL framebuffer resolution</a> MAY be used.</p>
+       <p>If <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-immersive" id="ref-for-dom-xrsession-immersive①">immersive</a></code> value is <code>true</code>, set the <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution①">native WebGL framebuffer resolution</a> to the resolution required to have a 1:1 ratio between the pixels of a framebuffer large enough to contain all of the session’s <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview⑤">XRView</a></code>s and the physical screen pixels in the area of the display under the highest magnification and abort these steps. If no method exists to determine the native resolution as described, the <a data-link-type="dfn" href="#recommended-webgl-framebuffer-resolution" id="ref-for-recommended-webgl-framebuffer-resolution">recommended WebGL framebuffer resolution</a> MAY be used.</p>
       <li data-md="">
-       <p>If <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-exclusive" id="ref-for-dom-xrsession-exclusive②">exclusive</a></code> value is <code>false</code>, set the <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution②">native WebGL framebuffer resolution</a> to the size of the <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-outputcontext" id="ref-for-dom-xrsession-outputcontext①">outputContext</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrpresentationcontext-canvas" id="ref-for-dom-xrpresentationcontext-canvas">canvas</a></code> in physical display pixels and reevaluate these steps every time the size of the canvas changes.</p>
+       <p>If <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-immersive" id="ref-for-dom-xrsession-immersive②">immersive</a></code> value is <code>false</code>, set the <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution②">native WebGL framebuffer resolution</a> to the size of the <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-outputcontext" id="ref-for-dom-xrsession-outputcontext①">outputContext</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrpresentationcontext-canvas" id="ref-for-dom-xrpresentationcontext-canvas">canvas</a></code> in physical display pixels and reevaluate these steps every time the size of the canvas changes.</p>
      </ol>
     </div>
     <p>Additionally, the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②②">XRSession</a></code> MUST identify a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="recommended-webgl-framebuffer-resolution">recommended WebGL framebuffer resolution</dfn>, which represents a best estimate of the WebGL framebuffer resolution large enough to contain all of the session’s <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview⑥">XRView</a></code>s that provides an average application a good balance between performance and quality. It MAY be smaller than, larger than, or equal to the <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution③">native WebGL framebuffer resolution</a>.</p>
@@ -2603,13 +2603,6 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
    <li><a href="#ended">ended</a><span>, in §5.2</span>
    <li><a href="#end-the-session">end the session</a><span>, in §5.2</span>
    <li><a href="#enumerate-xr-devices">enumerate XR devices</a><span>, in §4.1</span>
-   <li>
-    exclusive
-    <ul>
-     <li><a href="#dom-xrsession-exclusive">attribute for XRSession</a><span>, in §5.2</span>
-     <li><a href="#dom-xrsessioncreationoptions-exclusive">dict-member for XRSessionCreationOptions</a><span>, in §5.1</span>
-    </ul>
-   <li><a href="#exclusive-session">exclusive session</a><span>, in §4.2</span>
    <li><a href="#dom-xrview-eye">eye</a><span>, in §8.1</span>
    <li><a href="#dom-xrframeofreferencetype-eye-level">"eye-level"</a><span>, in §7.2</span>
    <li><a href="#eventdef-xrsession-focus">focus</a><span>, in §13.4</span>
@@ -2636,6 +2629,13 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
    <li><a href="#dom-xrinputsource-handedness">handedness</a><span>, in §10.1</span>
    <li><a href="#dom-xrframeofreferencetype-head-model">"head-model"</a><span>, in §7.2</span>
    <li><a href="#dom-xrviewport-height">height</a><span>, in §8.2</span>
+   <li>
+    immersive
+    <ul>
+     <li><a href="#dom-xrsession-immersive">attribute for XRSession</a><span>, in §5.2</span>
+     <li><a href="#dom-xrsessioncreationoptions-immersive">dict-member for XRSessionCreationOptions</a><span>, in §5.1</span>
+    </ul>
+   <li><a href="#immersive-session">immersive session</a><span>, in §4.2</span>
    <li><a href="#initialize-the-session">initialize the session</a><span>, in §5.2</span>
    <li>
     inputSource
@@ -2652,7 +2652,7 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
     </ul>
    <li><a href="#list-of-animation-frame-callbacks">list of animation frame callbacks</a><span>, in §5.3</span>
    <li><a href="#list-of-layer-images">list of layer images</a><span>, in §5.4</span>
-   <li><a href="#list-of-non-exclusive-sessions">list of non-exclusive sessions</a><span>, in §4.2</span>
+   <li><a href="#list-of-non-immersive-sessions">list of non-immersive sessions</a><span>, in §4.2</span>
    <li><a href="#list-of-xr-devices">list of XR devices</a><span>, in §4.1</span>
    <li><a href="#matrix">matrix</a><span>, in §9.1</span>
    <li>
@@ -2729,7 +2729,7 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
      <li><a href="#dom-xrwebgllayerinit-stencil">dict-member for XRWebGLLayerInit</a><span>, in §11.2</span>
     </ul>
    <li><a href="#supported-by-the-device">supported by the device</a><span>, in §5.1</span>
-   <li><a href="#supports-exclusive">supports exclusive</a><span>, in §4.2</span>
+   <li><a href="#supports-immersive">supports immersive</a><span>, in §4.2</span>
    <li><a href="#supports-multiview">supports multiview</a><span>, in §11.2</span>
    <li><a href="#dom-xrdevice-supportssession">supportsSession()</a><span>, in §4.2</span>
    <li><a href="#dom-xrdevice-supportssession">supportsSession(options)</a><span>, in §4.2</span>
@@ -3168,14 +3168,14 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
 };
 
 <span class="kt">dictionary</span> <a class="nv" href="#dictdef-xrsessioncreationoptions"><code>XRSessionCreationOptions</code></a> {
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①⑤"><span class="kt">boolean</span></a> <a class="nv" data-default="false" data-type="boolean " href="#dom-xrsessioncreationoptions-exclusive"><code>exclusive</code></a> = <span class="kt">false</span>;
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①⑤"><span class="kt">boolean</span></a> <a class="nv" data-default="false" data-type="boolean " href="#dom-xrsessioncreationoptions-immersive"><code>immersive</code></a> = <span class="kt">false</span>;
   <a class="n" data-link-type="idl-name" href="#xrpresentationcontext" id="ref-for-xrpresentationcontext②">XRPresentationContext</a> <a class="nv" data-type="XRPresentationContext " href="#dom-xrsessioncreationoptions-outputcontext"><code>outputContext</code></a>;
 };
 
 [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext③①">SecureContext</a>, <a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed②①">Exposed</a>=<span class="n">Window</span>] <span class="kt">interface</span> <a class="nv" href="#xrsession"><code>XRSession</code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget①①">EventTarget</a> {
   // Attributes
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#xrdevice" id="ref-for-xrdevice⑨①">XRDevice</a> <a class="nv" data-readonly="" data-type="XRDevice" href="#dom-xrsession-device"><code>device</code></a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①④"><span class="kt">boolean</span></a> <a class="nv" data-readonly="" data-type="boolean" href="#dom-xrsession-exclusive"><code>exclusive</code></a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①④"><span class="kt">boolean</span></a> <a class="nv" data-readonly="" data-type="boolean" href="#dom-xrsession-immersive"><code>immersive</code></a>;
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#xrpresentationcontext" id="ref-for-xrpresentationcontext①①">XRPresentationContext</a> <a class="nv" data-readonly="" data-type="XRPresentationContext" href="#dom-xrsession-outputcontext"><code>outputContext</code></a>;
 
   <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑨"><span class="kt">double</span></a> <a class="nv" data-type="double" href="#dom-xrsession-depthnear"><code>depthNear</code></a>;
@@ -3374,7 +3374,7 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
   <div style="counter-reset:issue">
    <div class="issue"> Discuss use of sensor activity as a possible fingerprinting vector.<a href="#issue-5bd3ee1f"> ↵ </a></div>
    <div class="issue"> Take permissions into account when calling <code class="idl"><a data-link-type="idl" href="#dom-xr-requestdevice">requestDevice</a></code>.<a href="#issue-afd3362e"> ↵ </a></div>
-   <div class="issue"> Document restrictions and capabilities of an <a data-link-type="dfn" href="#exclusive-session">exclusive session</a><a href="#issue-71eaf0cc"> ↵ </a></div>
+   <div class="issue"> Document restrictions and capabilities of an <a data-link-type="dfn" href="#immersive-session">immersive session</a><a href="#issue-3f3ef2e4"> ↵ </a></div>
    <div class="issue"> Example of acquiring a session here.<a href="#issue-2db59f6a"> ↵ </a></div>
    <div class="issue"> Document what happens when we <span>end the session</span><a href="#issue-900c5a3a"> ↵ </a></div>
    <div class="issue"> Document effects when we <span>blur the session</span><a href="#issue-d4bfea98"> ↵ </a></div>
@@ -3464,25 +3464,25 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
     <li><a href="#ref-for-xrdevice②⑦">13.4. Event Types</a> <a href="#ref-for-xrdevice②⑧">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="supports-exclusive">
-   <b><a href="#supports-exclusive">#supports-exclusive</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="supports-immersive">
+   <b><a href="#supports-immersive">#supports-immersive</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-supports-exclusive">5.1. XRSessionCreationOptions</a>
+    <li><a href="#ref-for-supports-immersive">5.1. XRSessionCreationOptions</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="exclusive-session">
-   <b><a href="#exclusive-session">#exclusive-session</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="immersive-session">
+   <b><a href="#immersive-session">#immersive-session</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-exclusive-session">4.2. XRDevice</a> <a href="#ref-for-exclusive-session①">(2)</a>
-    <li><a href="#ref-for-exclusive-session②">5.1. XRSessionCreationOptions</a>
-    <li><a href="#ref-for-exclusive-session③">5.2. XRSession</a> <a href="#ref-for-exclusive-session④">(2)</a>
+    <li><a href="#ref-for-immersive-session">4.2. XRDevice</a> <a href="#ref-for-immersive-session①">(2)</a>
+    <li><a href="#ref-for-immersive-session②">5.1. XRSessionCreationOptions</a>
+    <li><a href="#ref-for-immersive-session③">5.2. XRSession</a> <a href="#ref-for-immersive-session④">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="list-of-non-exclusive-sessions">
-   <b><a href="#list-of-non-exclusive-sessions">#list-of-non-exclusive-sessions</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="list-of-non-immersive-sessions">
+   <b><a href="#list-of-non-immersive-sessions">#list-of-non-immersive-sessions</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-list-of-non-exclusive-sessions">4.2. XRDevice</a>
-    <li><a href="#ref-for-list-of-non-exclusive-sessions①">5.2. XRSession</a>
+    <li><a href="#ref-for-list-of-non-immersive-sessions">4.2. XRDevice</a>
+    <li><a href="#ref-for-list-of-non-immersive-sessions①">5.2. XRSession</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrdevice-supportssession">
@@ -3507,12 +3507,12 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
     <li><a href="#ref-for-dictdef-xrsessioncreationoptions④">5.2. XRSession</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-xrsessioncreationoptions-exclusive">
-   <b><a href="#dom-xrsessioncreationoptions-exclusive">#dom-xrsessioncreationoptions-exclusive</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-xrsessioncreationoptions-immersive">
+   <b><a href="#dom-xrsessioncreationoptions-immersive">#dom-xrsessioncreationoptions-immersive</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrsessioncreationoptions-exclusive">4.2. XRDevice</a>
-    <li><a href="#ref-for-dom-xrsessioncreationoptions-exclusive①">5.1. XRSessionCreationOptions</a>
-    <li><a href="#ref-for-dom-xrsessioncreationoptions-exclusive②">5.2. XRSession</a>
+    <li><a href="#ref-for-dom-xrsessioncreationoptions-immersive">4.2. XRDevice</a>
+    <li><a href="#ref-for-dom-xrsessioncreationoptions-immersive①">5.1. XRSessionCreationOptions</a>
+    <li><a href="#ref-for-dom-xrsessioncreationoptions-immersive②">5.2. XRSession</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrsessioncreationoptions-outputcontext">
@@ -3556,11 +3556,11 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
     <li><a href="#ref-for-dom-xrsession-device②">11.2. XRWebGLLayer</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-xrsession-exclusive">
-   <b><a href="#dom-xrsession-exclusive">#dom-xrsession-exclusive</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-xrsession-immersive">
+   <b><a href="#dom-xrsession-immersive">#dom-xrsession-immersive</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrsession-exclusive">5.2. XRSession</a>
-    <li><a href="#ref-for-dom-xrsession-exclusive①">11.2. XRWebGLLayer</a> <a href="#ref-for-dom-xrsession-exclusive②">(2)</a>
+    <li><a href="#ref-for-dom-xrsession-immersive">5.2. XRSession</a>
+    <li><a href="#ref-for-dom-xrsession-immersive①">11.2. XRWebGLLayer</a> <a href="#ref-for-dom-xrsession-immersive②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrsession-outputcontext">
