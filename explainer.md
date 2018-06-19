@@ -913,6 +913,29 @@ xrSession.depthNear = 1.0;
 xrSession.depthFar = 100.0;
 ```
 
+### Handling non-opaque displays
+
+Some devices which support the WebXR Device API may use displays that are not fully opaque, or otherwise show your surrounding environment in some capacity. To determine how the display will blend rendered content with the real world, check the `XRSession`'s `environmentBlendMode` attribute. It may currently be one of three values, and more may be added in the future if new display technology necessitates it:
+
+  - `opaque`: The environment is not visible at all through this display. Transparent pixels in the `baseLayer` will appear black. This is the expected mode for most VR headsets. Alpha values will be ignored, with the compositor treating all alpha values as 1.0.
+  - `additive`: The environment is visible through the display and pixels in the `baseLayer` will be shown additively against it. Black pixels will appear fully transparent, and there is typically no way to make a pixel fully opaque. Alpha values will be ignored, with the compositor treating all alpha values as 1.0. This is the expected mode for devices like HoloLens or Magic Leap.
+  - `alpha-blend`: The environment is visible through the display and pixels in the `baseLayer` will be blended with it according to the alpha value of the pixel. Pixels with an alpha value of 1.0 will be fully opaque and pixels with an alpha value of 0.0 will be fully transparent. This is the expected mode for devices which use passthrough video to show the environment such as ARCore or ARKit enabled phones, as well as headsets that utilize passthrough video for AR like the Vive Pro.
+
+When rendering content it's important to know how the content will appear on the display, as that may affect the techniques you use to render. For example, on an `additive` display is used that can only render additive light. This means that the color black appears as fully transparent and expensive graphical effects like shadows may not show up at all. Similarly, if the developer knows that the environment will be visible they may choose to not render an opaque background.
+
+```js
+function drawScene() {
+  renderer.enableShadows(xrSession.environmentBlendMode != 'additive');
+
+  // Only draw a background for the scene if the environment is not visible.
+  if (xrSession.environmentBlendMode == 'opaque') {
+    renderer.drawSkybox();
+  }
+
+  // Draw the reset of the scene.
+}
+```
+
 ## Appendix A: I don’t understand why this is a new API. Why can’t we use…
 
 ### `DeviceOrientation` Events
@@ -981,6 +1004,7 @@ dictionary XRSessionCreationOptions {
   readonly attribute XRDevice device;
   readonly attribute boolean immersive;
   readonly attribute XRPresentationContext outputContext;
+  readonly attribute XREnvironmentBlendMode environmentBlendMode;
 
   attribute double depthNear;
   attribute double depthFar;
@@ -1010,6 +1034,12 @@ dictionary XRSessionCreationOptions {
 // Timestamp is passed as part of the callback to make the signature compatible
 // with the window's FrameRequestCallback.
 callback XRFrameRequestCallback = void (DOMHighResTimeStamp time, XRFrame frame);
+
+enum XREnvironmentBlendMode {
+  "opaque",
+  "additive",
+  "alpha-blend",
+};
 
 //
 // Frame, Device Pose, and Views
