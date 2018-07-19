@@ -1212,7 +1212,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version ebb192a273e3f86733233d2a1a128c3244b6962f" name="generator">
+  <meta content="Bikeshed version 3678d496235a6f1964fc14f56861db11f24476c4" name="generator">
   <link href="https://immersive-web.github.io/webxr/" rel="canonical">
 <style>
   /* Re-add this once there are actually stable sections of the spec */
@@ -1488,7 +1488,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-07-06">6 July 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-07-19">19 July 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1510,7 +1510,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 6 July 2018,
+In addition, as of 19 July 2018,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2097,9 +2097,9 @@ xrDevice<span class="p">.</span>requestSession<span class="p">({</span> immersiv
 };
 
 <span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-xrtargetraymode"><code>XRTargetRayMode</code></dfn> {
-  <dfn class="s idl-code" data-dfn-for="XRTargetRayMode" data-dfn-type="enum-value" data-export="" id="dom-xrtargetraymode-gazing"><code>"gazing"</code><a class="self-link" href="#dom-xrtargetraymode-gazing"></a></dfn>,
-  <dfn class="s idl-code" data-dfn-for="XRTargetRayMode" data-dfn-type="enum-value" data-export="" id="dom-xrtargetraymode-pointing"><code>"pointing"</code><a class="self-link" href="#dom-xrtargetraymode-pointing"></a></dfn>,
-  <dfn class="s idl-code" data-dfn-for="XRTargetRayMode" data-dfn-type="enum-value" data-export="" id="dom-xrtargetraymode-tapping"><code>"tapping"</code><a class="self-link" href="#dom-xrtargetraymode-tapping"></a></dfn>
+  <dfn class="s idl-code" data-dfn-for="XRTargetRayMode" data-dfn-type="enum-value" data-export="" id="dom-xrtargetraymode-gaze"><code>"gaze"</code><a class="self-link" href="#dom-xrtargetraymode-gaze"></a></dfn>,
+  <dfn class="s idl-code" data-dfn-for="XRTargetRayMode" data-dfn-type="enum-value" data-export="" id="dom-xrtargetraymode-tracked-pointer"><code>"tracked-pointer"</code><a class="self-link" href="#dom-xrtargetraymode-tracked-pointer"></a></dfn>,
+  <dfn class="s idl-code" data-dfn-for="XRTargetRayMode" data-dfn-type="enum-value" data-export="" id="dom-xrtargetraymode-screen"><code>"screen"</code><a class="self-link" href="#dom-xrtargetraymode-screen"></a></dfn>
 };
 
 <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="xrinputsource"><code>XRInputSource</code></dfn> {
@@ -2639,7 +2639,7 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
    <li><a href="#dom-xrwebgllayer-framebufferheight">framebufferHeight</a><span>, in §11.2</span>
    <li><a href="#dom-xrwebgllayerinit-framebufferscalefactor">framebufferScaleFactor</a><span>, in §11.2</span>
    <li><a href="#dom-xrwebgllayer-framebufferwidth">framebufferWidth</a><span>, in §11.2</span>
-   <li><a href="#dom-xrtargetraymode-gazing">"gazing"</a><span>, in §10.1</span>
+   <li><a href="#dom-xrtargetraymode-gaze">"gaze"</a><span>, in §10.1</span>
    <li><a href="#dom-xrstagebounds-geometry">geometry</a><span>, in §7.3</span>
    <li><a href="#dom-xrframe-getdevicepose">getDevicePose(coordinateSystem)</a><span>, in §6.1</span>
    <li><a href="#dom-xrframe-getinputpose">getInputPose(inputSource, coordinateSystem)</a><span>, in §6.1</span>
@@ -2707,7 +2707,6 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
      <li><a href="#dom-xrsessioncreationoptions-outputcontext">dict-member for XRSessionCreationOptions</a><span>, in §5.1</span>
     </ul>
    <li><a href="#outside-in-tracking">outside-in tracking</a><span>, in §2</span>
-   <li><a href="#dom-xrtargetraymode-pointing">"pointing"</a><span>, in §10.1</span>
    <li><a href="#poll-the-device-pose">poll the device pose</a><span>, in §5.2</span>
    <li><a href="#dom-xrdevicepose-posemodelmatrix">poseModelMatrix</a><span>, in §9.2</span>
    <li><a href="#primary-action">primary action</a><span>, in §10.1</span>
@@ -2730,6 +2729,7 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
      <li><a href="#dom-xrhandedness-right">enum-value for XRHandedness</a><span>, in §10.1</span>
     </ul>
    <li><a href="#run-the-animation-frame-callbacks">run the animation frame callbacks</a><span>, in §5.3</span>
+   <li><a href="#dom-xrtargetraymode-screen">"screen"</a><span>, in §10.1</span>
    <li><a href="#eventdef-xrsession-select">select</a><span>, in §13.4</span>
    <li><a href="#select-a-default-xr-device">select a default XR device</a><span>, in §4.1</span>
    <li><a href="#eventdef-xrsession-selectend">selectend</a><span>, in §13.4</span>
@@ -2762,9 +2762,9 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
    <li><a href="#dom-xrdevice-supportssession">supportsSession()</a><span>, in §4.2</span>
    <li><a href="#dom-xrdevice-supportssession">supportsSession(options)</a><span>, in §4.2</span>
    <li><a href="#swap-chain">swap chain</a><span>, in §11.2</span>
-   <li><a href="#dom-xrtargetraymode-tapping">"tapping"</a><span>, in §10.1</span>
    <li><a href="#dom-xrinputpose-targetraymatrix">targetRayMatrix</a><span>, in §10.2</span>
    <li><a href="#dom-xrinputsource-targetraymode">targetRayMode</a><span>, in §10.1</span>
+   <li><a href="#dom-xrtargetraymode-tracked-pointer">"tracked-pointer"</a><span>, in §10.1</span>
    <li><a href="#view">view</a><span>, in §8.1</span>
    <li><a href="#viewport">viewport</a><span>, in §8.2</span>
    <li><a href="#dom-xrframe-views">views</a><span>, in §6.1</span>
@@ -3309,9 +3309,9 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
 };
 
 <span class="kt">enum</span> <a class="nv" href="#enumdef-xrtargetraymode"><code>XRTargetRayMode</code></a> {
-  <a class="s" href="#dom-xrtargetraymode-gazing"><code>"gazing"</code></a>,
-  <a class="s" href="#dom-xrtargetraymode-pointing"><code>"pointing"</code></a>,
-  <a class="s" href="#dom-xrtargetraymode-tapping"><code>"tapping"</code></a>
+  <a class="s" href="#dom-xrtargetraymode-gaze"><code>"gaze"</code></a>,
+  <a class="s" href="#dom-xrtargetraymode-tracked-pointer"><code>"tracked-pointer"</code></a>,
+  <a class="s" href="#dom-xrtargetraymode-screen"><code>"screen"</code></a>
 };
 
 <span class="kt">interface</span> <a class="nv" href="#xrinputsource"><code>XRInputSource</code></a> {
