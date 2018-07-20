@@ -1488,7 +1488,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-07-19">19 July 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-07-20">20 July 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1510,7 +1510,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 19 July 2018,
+In addition, as of 20 July 2018,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1730,8 +1730,8 @@ Parts of this work may be from another specification document.  If so, those par
 };
 </pre>
     <p>An <code class="idl"><a data-link-type="idl" href="#xrdevice" id="ref-for-xrdevice④">XRDevice</a></code> represents a physical unit of XR hardware that can present imagery to the user somehow. On desktop devices this may take the form of a headset peripheral; on mobile devices it may represent the device itself in conjunction with a viewer harness. It may also represent devices without the ability to present content in stereo but with advanced (6DoF) tracking capabilities.</p>
-    <p>Each <code class="idl"><a data-link-type="idl" href="#xrdevice" id="ref-for-xrdevice⑤">XRDevice</a></code> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="supports-immersive">supports immersive</dfn> value, which is a boolean which MUST be set to <code>true</code> if the device can support immersive sessions and <code>false</code> if it cannot.</p>
-    <p>Each <code class="idl"><a data-link-type="idl" href="#xrdevice" id="ref-for-xrdevice⑥">XRDevice</a></code> has an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="immersive-session">immersive session</dfn>, which MUST be initially <code>null</code>, and a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="list-of-non-immersive-sessions">list of non-immersive sessions</dfn>, which MUST be initially empty.</p>
+    <p>Each <code class="idl"><a data-link-type="idl" href="#xrdevice" id="ref-for-xrdevice⑤">XRDevice</a></code> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="supports-immersive">supports immersive</dfn> value, which is a boolean which MUST be set to <code>true</code> if the device can support <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session">immersive sessions</a> and <code>false</code> if it cannot.</p>
+    <p>Each <code class="idl"><a data-link-type="idl" href="#xrdevice" id="ref-for-xrdevice⑥">XRDevice</a></code> has an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="active-immersive-session">active immersive session</dfn>, which MUST be initially <code>null</code>, and a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="list-of-non-immersive-sessions">list of non-immersive sessions</dfn>, which MUST be initially empty.</p>
     <div class="algorithm" data-algorithm="supports-session">
      <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XRDevice" data-dfn-type="method" data-export="" data-lt="supportsSession(options)|supportsSession()" id="dom-xrdevice-supportssession"><code>supportsSession(<var>options</var>)</code></dfn> method is invoked, it MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise①">a new Promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">in parallel</a>:</p>
      <ol>
@@ -1753,7 +1753,7 @@ Parts of this work may be from another specification document.  If so, those par
       <li data-md="">
        <p>Let <var>immersive</var> be the <code class="idl"><a data-link-type="idl" href="#dom-xrsessioncreationoptions-immersive" id="ref-for-dom-xrsessioncreationoptions-immersive">immersive</a></code> attribute of the <var>options</var> argument.</p>
       <li data-md="">
-       <p>If <var>immersive</var> is <code>true</code> and <var>device</var>’s <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session">immersive session</a> is not <code>null</code>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise③">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code> and abort these steps.</p>
+       <p>If <var>immersive</var> is <code>true</code> and <var>device</var>’s <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session">active immersive session</a> is not <code>null</code>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise③">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code> and abort these steps.</p>
       <li data-md="">
        <p>If <var>immersive</var> is <code>true</code> and the algorithm is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation">triggered by user activation</a>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise④">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror">SecurityError</a></code> and abort these steps.</p>
       <li data-md="">
@@ -1761,7 +1761,7 @@ Parts of this work may be from another specification document.  If so, those par
       <li data-md="">
        <p><a data-link-type="dfn" href="#initialize-the-session" id="ref-for-initialize-the-session">Initialize the session</a> <var>session</var> with the <a data-link-type="dfn" href="#session-description" id="ref-for-session-description">session description</a> given by <var>options</var>.</p>
       <li data-md="">
-       <p>If <var>immersive</var> is <code>true</code> set the <var>device</var>’s <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session①">immersive session</a> to <var>session</var>.</p>
+       <p>If <var>immersive</var> is <code>true</code> set the <var>device</var>’s <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session①">active immersive session</a> to <var>session</var>.</p>
       <li data-md="">
        <p>Else append <var>session</var> to <var>device</var>’s <a data-link-type="dfn" href="#list-of-non-immersive-sessions" id="ref-for-list-of-non-immersive-sessions">list of non-immersive sessions</a>.</p>
       <li data-md="">
@@ -1796,7 +1796,9 @@ xrDevice<span class="p">.</span>requestSession<span class="p">({</span> immersiv
        <p>If <var>immersive</var> is <code>false</code> and <var>options</var>.<code class="idl"><a data-link-type="idl" href="#dom-xrsessioncreationoptions-outputcontext" id="ref-for-dom-xrsessioncreationoptions-outputcontext">outputContext</a></code> is <code>null</code>, return <code>false</code></p>
      </ol>
     </div>
-    <p class="issue" id="issue-3f3ef2e4"><a class="self-link" href="#issue-3f3ef2e4"></a> Document restrictions and capabilities of an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session②">immersive session</a></p>
+    <p>A session is considered to be an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="immersive-session">immersive session</dfn> if it’s output is displayed to the user in a way that makes the user feel the content is present in the same space with them, shown at the proper scale. Sessions are considered <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="non-immersive">non-immersive</dfn> (sometimes referred to as <dfn data-dfn-type="dfn" data-noexport="" id="inline">inline<a class="self-link" href="#inline"></a></dfn>) if their output is displayed as an element in an HTML document.</p>
+    <p class="note" role="note"><span>NOTE:</span> Content shown as part of an HTML document is always considered <a data-link-type="dfn" href="#non-immersive" id="ref-for-non-immersive">non-immersive</a> even if headtracking is taken into account, the content is displayed in stereo, or the document is displayed in a headset.</p>
+    <p class="issue" id="issue-3f3ef2e4"><a class="self-link" href="#issue-3f3ef2e4"></a> Document restrictions and capabilities of an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session①">immersive session</a></p>
     <h3 class="heading settled" data-level="5.2" id="xrsession-interface"><span class="secno">5.2. </span><span class="content">XRSession</span><a class="self-link" href="#xrsession-interface"></a></h3>
 <pre class="idl highlight def"><span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-xrenvironmentblendmode"><code>XREnvironmentBlendMode</code></dfn> {
   <a class="s idl-code" data-link-type="enum-value" href="#dom-xrenvironmentblendmode-opaque" id="ref-for-dom-xrenvironmentblendmode-opaque">"opaque"</a>,
@@ -1873,7 +1875,7 @@ xrDevice<span class="p">.</span>requestSession<span class="p">({</span> immersiv
       <li data-md="">
        <p>Set <var>session</var>’s <a data-link-type="dfn" href="#ended" id="ref-for-ended">ended</a> value to <code>true</code>.</p>
       <li data-md="">
-       <p>If <var>device</var>’s <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session③">immersive session</a> is equal to <var>session</var>, set <var>device</var>’s <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session④">immersive session</a> to <code>null</code>.</p>
+       <p>If <var>device</var>’s <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session②">active immersive session</a> is equal to <var>session</var>, set <var>device</var>’s <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session③">active immersive session</a> to <code>null</code>.</p>
       <li data-md="">
        <p>If <var>device</var>’s <a data-link-type="dfn" href="#list-of-non-immersive-sessions" id="ref-for-list-of-non-immersive-sessions①">list of non-immersive sessions</a> contains <var>session</var>, remove it from the list.</p>
       <li data-md="">
@@ -2572,6 +2574,7 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
    <li><a href="#dom-xrhandedness">""</a><span>, in §10.1</span>
    <li><a href="#3dof">3DoF</a><span>, in §2</span>
    <li><a href="#6dof">6DoF</a><span>, in §2</span>
+   <li><a href="#active-immersive-session">active immersive session</a><span>, in §4.2</span>
    <li><a href="#dom-xrenvironmentblendmode-additive">additive</a><span>, in §5.2</span>
    <li>
     alpha
@@ -2658,8 +2661,9 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
      <li><a href="#dom-xrsession-immersive">attribute for XRSession</a><span>, in §5.2</span>
      <li><a href="#dom-xrsessioncreationoptions-immersive">dict-member for XRSessionCreationOptions</a><span>, in §5.1</span>
     </ul>
-   <li><a href="#immersive-session">immersive session</a><span>, in §4.2</span>
+   <li><a href="#immersive-session">immersive session</a><span>, in §5.1</span>
    <li><a href="#initialize-the-session">initialize the session</a><span>, in §5.2</span>
+   <li><a href="#inline">inline</a><span>, in §5.1</span>
    <li>
     inputSource
     <ul>
@@ -2685,6 +2689,7 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
      <li><a href="#dom-xrwebgllayerinit-multiview">dict-member for XRWebGLLayerInit</a><span>, in §11.2</span>
     </ul>
    <li><a href="#native-webgl-framebuffer-resolution">native WebGL framebuffer resolution</a><span>, in §11.2</span>
+   <li><a href="#non-immersive">non-immersive</a><span>, in §5.1</span>
    <li><a href="#dom-xrsession-onblur">onblur</a><span>, in §5.2</span>
    <li><a href="#dom-xrframeofreference-onboundschange">onboundschange</a><span>, in §7.2</span>
    <li><a href="#dom-xr-ondevicechange">ondevicechange</a><span>, in §4.1</span>
@@ -2775,8 +2780,8 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
      <li><a href="#dom-xrstageboundspoint-x">attribute for XRStageBoundsPoint</a><span>, in §7.3</span>
      <li><a href="#dom-xrviewport-x">attribute for XRViewport</a><span>, in §8.2</span>
     </ul>
-   <li><a href="#dom-navigator-xr">xr</a><span>, in §4.1</span>
    <li><a href="#xr">XR</a><span>, in §4.1</span>
+   <li><a href="#dom-navigator-xr">xr</a><span>, in §4.1</span>
    <li><a href="#xr-compositor">XR Compositor</a><span>, in §5.4</span>
    <li><a href="#xrcoordinatesystem">XRCoordinateSystem</a><span>, in §7.1</span>
    <li><a href="#xrcoordinatesystemevent">XRCoordinateSystemEvent</a><span>, in §13.3</span>
@@ -3506,12 +3511,11 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
     <li><a href="#ref-for-supports-immersive">5.1. XRSessionCreationOptions</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="immersive-session">
-   <b><a href="#immersive-session">#immersive-session</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="active-immersive-session">
+   <b><a href="#active-immersive-session">#active-immersive-session</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-immersive-session">4.2. XRDevice</a> <a href="#ref-for-immersive-session①">(2)</a>
-    <li><a href="#ref-for-immersive-session②">5.1. XRSessionCreationOptions</a>
-    <li><a href="#ref-for-immersive-session③">5.2. XRSession</a> <a href="#ref-for-immersive-session④">(2)</a>
+    <li><a href="#ref-for-active-immersive-session">4.2. XRDevice</a> <a href="#ref-for-active-immersive-session①">(2)</a>
+    <li><a href="#ref-for-active-immersive-session②">5.2. XRSession</a> <a href="#ref-for-active-immersive-session③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="list-of-non-immersive-sessions">
@@ -3568,6 +3572,19 @@ glCanvas<span class="p">.</span>addEventListener<span class="p">(</span><span cl
    <b><a href="#supported-by-the-device">#supported-by-the-device</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-supported-by-the-device">4.2. XRDevice</a> <a href="#ref-for-supported-by-the-device①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="immersive-session">
+   <b><a href="#immersive-session">#immersive-session</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-immersive-session">4.2. XRDevice</a>
+    <li><a href="#ref-for-immersive-session①">5.1. XRSessionCreationOptions</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="non-immersive">
+   <b><a href="#non-immersive">#non-immersive</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-non-immersive">5.1. XRSessionCreationOptions</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="enumdef-xrenvironmentblendmode">
