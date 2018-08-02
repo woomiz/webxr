@@ -2146,11 +2146,14 @@ with an origin that corresponds to the first device pose acquired by the <code c
     <h3 class="heading settled" data-level="10.3" id="xrinputpose-interface"><span class="secno">10.3. </span><span class="content">XRInputPose</span><a class="self-link" href="#xrinputpose-interface"></a></h3>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①④"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①③"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrinputpose"><code><c- g>XRInputPose</c-></code></dfn> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean③"><c- b>boolean</c-></a> <dfn class="idl-code" data-dfn-for="XRInputPose" data-dfn-type="attribute" data-export data-readonly data-type="boolean" id="dom-xrinputpose-emulatedposition"><code><c- g>emulatedPosition</c-></code><a class="self-link" href="#dom-xrinputpose-emulatedposition"></a></dfn>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrray" id="ref-for-xrray③"><c- n>XRRay</c-></a> <dfn class="idl-code" data-dfn-for="XRInputPose" data-dfn-type="attribute" data-export data-readonly data-type="XRRay" id="dom-xrinputpose-targetray"><code><c- g>targetRay</c-></code><a class="self-link" href="#dom-xrinputpose-targetray"></a></dfn>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑥"><c- b>Float32Array</c-></a>? <dfn class="idl-code" data-dfn-for="XRInputPose" data-dfn-type="attribute" data-export data-readonly data-type="Float32Array?" id="dom-xrinputpose-gripmatrix"><code><c- g>gripMatrix</c-></code><a class="self-link" href="#dom-xrinputpose-gripmatrix"></a></dfn>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean③"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrinputpose-emulatedposition" id="ref-for-dom-xrinputpose-emulatedposition"><c- g>emulatedPosition</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrray" id="ref-for-xrray③"><c- n>XRRay</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRay" href="#dom-xrinputpose-targetray" id="ref-for-dom-xrinputpose-targetray"><c- g>targetRay</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑥"><c- b>Float32Array</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="Float32Array?" href="#dom-xrinputpose-gripmatrix" id="ref-for-dom-xrinputpose-gripmatrix"><c- g>gripMatrix</c-></a>;
 };
 </pre>
+    <p><dfn class="dfn-paneled idl-code" data-dfn-for="XRInputPose" data-dfn-type="attribute" data-export id="dom-xrinputpose-targetray"><code>targetRay</code></dfn></p>
+    <p><dfn class="dfn-paneled idl-code" data-dfn-for="XRInputPose" data-dfn-type="attribute" data-export id="dom-xrinputpose-gripmatrix"><code>gripMatrix</code></dfn></p>
+    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputPose" data-dfn-type="attribute" data-export id="dom-xrinputpose-emulatedposition"><code>emulatedPosition</code></dfn> attribute indicates the accuracy of the <code class="idl"><a data-link-type="idl" href="#dom-xrray-origin" id="ref-for-dom-xrray-origin③">origin</a></code> of the <code class="idl"><a data-link-type="idl" href="#dom-xrinputpose-targetray" id="ref-for-dom-xrinputpose-targetray①">targetRay</a></code> and translation component of the <code class="idl"><a data-link-type="idl" href="#dom-xrinputpose-gripmatrix" id="ref-for-dom-xrinputpose-gripmatrix①">gripMatrix</a></code>. <code class="idl"><a data-link-type="idl" href="#dom-xrinputpose-emulatedposition" id="ref-for-dom-xrinputpose-emulatedposition①">emulatedPosition</a></code> MUST be set to <code>true</code> if positional values are software estimations, such as those provided by a neck or arm model. <code class="idl"><a data-link-type="idl" href="#dom-xrinputpose-emulatedposition" id="ref-for-dom-xrinputpose-emulatedposition②">emulatedPosition</a></code> MUST be set to <code>false</code> if the positional values are based on sensor readings.</p>
     <h2 class="heading settled" data-level="11" id="layers"><span class="secno">11. </span><span class="content">Layers</span><a class="self-link" href="#layers"></a></h2>
     <h3 class="heading settled" data-level="11.1" id="xrlayer-interface"><span class="secno">11.1. </span><span class="content">XRLayer</span><a class="self-link" href="#xrlayer-interface"></a></h3>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⑤"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①④"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrlayer"><code><c- g>XRLayer</c-></code></dfn> {};
@@ -3354,16 +3357,16 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①③①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①②①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#xrray"><code><c- g>XRRay</c-></code></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry/#dompointreadonly" id="ref-for-dompointreadonly②"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrray-origin" id="ref-for-dom-xrray-origin③"><c- g>origin</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry/#dompointreadonly" id="ref-for-dompointreadonly②"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrray-origin" id="ref-for-dom-xrray-origin④"><c- g>origin</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry/#dompointreadonly" id="ref-for-dompointreadonly①①"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrray-direction" id="ref-for-dom-xrray-direction③"><c- g>direction</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑤①"><c- b>Float32Array</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="Float32Array" href="#dom-xrray-transformmatrix" id="ref-for-dom-xrray-transformmatrix②"><c- g>transformMatrix</c-></a>;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①④①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①③①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#xrinputpose"><code><c- g>XRInputPose</c-></code></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean③①"><c- b>boolean</c-></a> <a data-readonly data-type="boolean" href="#dom-xrinputpose-emulatedposition"><code><c- g>emulatedPosition</c-></code></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrray" id="ref-for-xrray③①"><c- n>XRRay</c-></a> <a data-readonly data-type="XRRay" href="#dom-xrinputpose-targetray"><code><c- g>targetRay</c-></code></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑥①"><c- b>Float32Array</c-></a>? <a data-readonly data-type="Float32Array?" href="#dom-xrinputpose-gripmatrix"><code><c- g>gripMatrix</c-></code></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean③①"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrinputpose-emulatedposition" id="ref-for-dom-xrinputpose-emulatedposition③"><c- g>emulatedPosition</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrray" id="ref-for-xrray③①"><c- n>XRRay</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRay" href="#dom-xrinputpose-targetray" id="ref-for-dom-xrinputpose-targetray②"><c- g>targetRay</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑥①"><c- b>Float32Array</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="Float32Array?" href="#dom-xrinputpose-gripmatrix" id="ref-for-dom-xrinputpose-gripmatrix②"><c- g>gripMatrix</c-></a>;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⑤①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①④①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrlayer"><code><c- g>XRLayer</c-></code></a> {};
@@ -4192,6 +4195,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#dom-xrray-origin">#dom-xrray-origin</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrray-origin">10.2. XRRay</a> <a href="#ref-for-dom-xrray-origin①">(2)</a> <a href="#ref-for-dom-xrray-origin②">(3)</a>
+    <li><a href="#ref-for-dom-xrray-origin③">10.3. XRInputPose</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrray-direction">
@@ -4210,6 +4214,24 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#xrinputpose">#xrinputpose</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-xrinputpose">6.1. XRFrame</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrinputpose-targetray">
+   <b><a href="#dom-xrinputpose-targetray">#dom-xrinputpose-targetray</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrinputpose-targetray">10.3. XRInputPose</a> <a href="#ref-for-dom-xrinputpose-targetray①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrinputpose-gripmatrix">
+   <b><a href="#dom-xrinputpose-gripmatrix">#dom-xrinputpose-gripmatrix</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrinputpose-gripmatrix">10.3. XRInputPose</a> <a href="#ref-for-dom-xrinputpose-gripmatrix①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrinputpose-emulatedposition">
+   <b><a href="#dom-xrinputpose-emulatedposition">#dom-xrinputpose-emulatedposition</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrinputpose-emulatedposition">10.3. XRInputPose</a> <a href="#ref-for-dom-xrinputpose-emulatedposition①">(2)</a> <a href="#ref-for-dom-xrinputpose-emulatedposition②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrlayer">
