@@ -2047,7 +2047,7 @@ with an origin that corresponds to the first device pose acquired by the <code c
     <h2 class="heading settled" data-level="8" id="views"><span class="secno">8. </span><span class="content">Views</span><a class="self-link" href="#views"></a></h2>
     <h3 class="heading settled" data-level="8.1" id="xrview-interface"><span class="secno">8.1. </span><span class="content">XRView</span><a class="self-link" href="#xrview-interface"></a></h3>
 <pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-xreye"><code><c- g>XREye</c-></code></dfn> {
-  <dfn class="idl-code" data-dfn-for="XREye" data-dfn-type="enum-value" data-export id="dom-xreye-left"><code><c- s>"left"</c-></code><a class="self-link" href="#dom-xreye-left"></a></dfn>,
+  <dfn class="dfn-paneled idl-code" data-dfn-for="XREye" data-dfn-type="enum-value" data-export id="dom-xreye-left"><code><c- s>"left"</c-></code></dfn>,
   <dfn class="idl-code" data-dfn-for="XREye" data-dfn-type="enum-value" data-export id="dom-xreye-right"><code><c- s>"right"</c-></code><a class="self-link" href="#dom-xreye-right"></a></dfn>
 };
 
@@ -2056,9 +2056,9 @@ with an origin that corresponds to the first device pose acquired by the <code c
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array①"><c- b>Float32Array</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="Float32Array" href="#dom-xrview-projectionmatrix" id="ref-for-dom-xrview-projectionmatrix"><c- g>projectionMatrix</c-></a>;
 };
 </pre>
-    <p>An <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①">XRView</a></code> describes a single <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="view">view</dfn> into an XR scene. Each <a data-link-type="dfn" href="#view" id="ref-for-view">view</a> corresponds to a display or portion of a display used by an XR device to present imagery to the user. They are used to retrieve all the information necessary to render content that is well aligned to the <a data-link-type="dfn" href="#view" id="ref-for-view①">view</a>'s physical output properties, including the field of view, eye offset, and other optical properties.</p>
-    <p>Many HMDs will request that content render two <a data-link-type="dfn" href="#view" id="ref-for-view②">views</a>, one for the left eye and one for the right, while most magic window devices will only request one <a data-link-type="dfn" href="#view" id="ref-for-view③">view</a>. However, no guarantee is made about the number of <a data-link-type="dfn" href="#view" id="ref-for-view④">views</a> any XR device uses, nor is the number of <a data-link-type="dfn" href="#view" id="ref-for-view⑤">views</a> required to be constant for the duration of an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②③">XRSession</a></code>. For example: A magic window device may request two views if it is capable of stereo output, but may revert to requesting a single view for performance reasons if the stereo output mode is turned off. Similarly, HMDs may request more than two views to facilitate a wide field of view or displays of different pixel density. <a data-link-type="dfn" href="#view" id="ref-for-view⑥">Views</a> may cover overlapping regions of the user’s vision and the order is not guaranteed.</p>
-    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-eye"><code>eye</code></dfn> attribute describes which eye this view is expected to be shown to. This attribute’s primary purpose is to ensure that prerendered stereo content can present the correct portion of the content to the correct eye. If the view does not have an intrinsicly associated eye (the display is monoscopic, for example) this attribute MUST be set to <code>"left"</code>.</p>
+    <p>An <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview①">XRView</a></code> describes a single <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="view">view</dfn> into an XR scene. Each <a data-link-type="dfn" href="#view" id="ref-for-view">view</a> corresponds to a display or portion of a display used by an XR device to present imagery to the user. They are used to retrieve all the information necessary to render content that is well aligned to the <a data-link-type="dfn" href="#view" id="ref-for-view①">view</a>'s physical output properties, including the field of view, eye offset, and other optical properties. <a data-link-type="dfn" href="#view" id="ref-for-view②">Views</a> may cover overlapping regions of the user’s vision. No guarantee is made about the number of <a data-link-type="dfn" href="#view" id="ref-for-view③">views</a> any XR device uses or their order, nor is the number of <a data-link-type="dfn" href="#view" id="ref-for-view④">views</a> required to be constant for the duration of an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②③">XRSession</a></code>.</p>
+    <p class="note" role="note"><span>NOTE:</span> Many HMDs will request that content render two <a data-link-type="dfn" href="#view" id="ref-for-view⑤">views</a>, one for the left eye and one for the right, while most magic window devices will only request one <a data-link-type="dfn" href="#view" id="ref-for-view⑥">view</a>, but applications should never assume a specific view comfiguration. For example: A magic window device may request two views if it is capable of stereo output, but may revert to requesting a single view for performance reasons if the stereo output mode is turned off. Similarly, HMDs may request more than two views to facilitate a wide field of view or displays of different pixel density.</p>
+    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-eye"><code>eye</code></dfn> attribute describes which eye this view is expected to be shown to. This attribute’s primary purpose is to ensure that prerendered stereo content can present the correct portion of the content to the correct eye. If the view does not have an intrinsicly associated eye (the display is monoscopic, for example) this attribute MUST be set to <code class="idl"><a data-link-type="idl" href="#dom-xreye-left" id="ref-for-dom-xreye-left">"left"</a></code>.</p>
     <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-projectionmatrix"><code>projectionMatrix</code></dfn> attribute provides a <a data-link-type="dfn" href="#matrix" id="ref-for-matrix">matrix</a> describing the projection to be used for the view’s rendering. It is <b>strongly recommended</b> that applications use this matrix without modification. Failure to use the provided projection matrices when rendering may cause the presented frame to be distorted or badly aligned, resulting in varying degrees of user discomfort.</p>
     <h3 class="heading settled" data-level="8.2" id="xrviewport-interface"><span class="secno">8.2. </span><span class="content">XRViewport</span><a class="self-link" href="#xrviewport-interface"></a></h3>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⓪"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑨"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrviewport"><code><c- g>XRViewport</c-></code></dfn> {
@@ -2110,18 +2110,28 @@ with an origin that corresponds to the first device pose acquired by the <code c
 };
 
 <c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-xrtargetraymode"><code><c- g>XRTargetRayMode</c-></code></dfn> {
-  <dfn class="idl-code" data-dfn-for="XRTargetRayMode" data-dfn-type="enum-value" data-export id="dom-xrtargetraymode-gaze"><code><c- s>"gaze"</c-></code><a class="self-link" href="#dom-xrtargetraymode-gaze"></a></dfn>,
-  <dfn class="idl-code" data-dfn-for="XRTargetRayMode" data-dfn-type="enum-value" data-export id="dom-xrtargetraymode-tracked-pointer"><code><c- s>"tracked-pointer"</c-></code><a class="self-link" href="#dom-xrtargetraymode-tracked-pointer"></a></dfn>,
-  <dfn class="idl-code" data-dfn-for="XRTargetRayMode" data-dfn-type="enum-value" data-export id="dom-xrtargetraymode-screen"><code><c- s>"screen"</c-></code><a class="self-link" href="#dom-xrtargetraymode-screen"></a></dfn>
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-gaze" id="ref-for-dom-xrtargetraymode-gaze"><c- s>"gaze"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-tracked-pointer" id="ref-for-dom-xrtargetraymode-tracked-pointer"><c- s>"tracked-pointer"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-screen" id="ref-for-dom-xrtargetraymode-screen"><c- s>"screen"</c-></a>
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①②"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrinputsource"><code><c- g>XRInputSource</c-></code></dfn> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrhandedness" id="ref-for-enumdef-xrhandedness"><c- n>XRHandedness</c-></a> <dfn class="idl-code" data-dfn-for="XRInputSource" data-dfn-type="attribute" data-export data-readonly data-type="XRHandedness" id="dom-xrinputsource-handedness"><code><c- g>handedness</c-></code><a class="self-link" href="#dom-xrinputsource-handedness"></a></dfn>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrtargetraymode" id="ref-for-enumdef-xrtargetraymode"><c- n>XRTargetRayMode</c-></a> <dfn class="idl-code" data-dfn-for="XRInputSource" data-dfn-type="attribute" data-export data-readonly data-type="XRTargetRayMode" id="dom-xrinputsource-targetraymode"><code><c- g>targetRayMode</c-></code><a class="self-link" href="#dom-xrinputsource-targetraymode"></a></dfn>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrhandedness" id="ref-for-enumdef-xrhandedness"><c- n>XRHandedness</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRHandedness" href="#dom-xrinputsource-handedness" id="ref-for-dom-xrinputsource-handedness"><c- g>handedness</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrtargetraymode" id="ref-for-enumdef-xrtargetraymode"><c- n>XRTargetRayMode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRTargetRayMode" href="#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode"><c- g>targetRayMode</c-></a>;
 };
 </pre>
     <p>Each <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource②">XRInputSource</a></code> SHOULD define a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="primary-action">primary action</dfn>. The <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action">primary action</a> is a platform-specific action that, when engaged, produces <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-selectstart" id="ref-for-eventdef-xrsession-selectstart①">selectstart</a></code>, <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-selectend" id="ref-for-eventdef-xrsession-selectend①">selectend</a></code>, and <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-select" id="ref-for-eventdef-xrsession-select①">select</a></code> events. Examples of possible <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action①">primary action</a>s are pressing a trigger, touchpad, or button, speaking a command, or making a hand gesture. If the platform guidelines define a recommended primary input then it should be used as the <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action②">primary action</a>, otherwise the user agent is free to select one.</p>
+    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSource" data-dfn-type="attribute" data-export id="dom-xrinputsource-handedness"><code>handedness</code></dfn> attribute describes which hand the input source is associated with, if any. Input sources with no natural handedness (such as headset-mounted controls or standard gamepads) or for which the handedness is not currently known MUST set this attribute to the empty string.</p>
+    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSource" data-dfn-type="attribute" data-export id="dom-xrinputsource-targetraymode"><code>targetRayMode</code></dfn> attribute describes the method used to produce the target ray, and indicates how the application should present the target ray to the user if desired.</p>
+    <ul>
+     <li data-md>
+      <p><dfn class="dfn-paneled idl-code" data-dfn-for="XRTargetRayMode" data-dfn-type="enum-value" data-export id="dom-xrtargetraymode-gaze"><code>gaze</code></dfn> indicates the target ray will originate at the user’s head and follow the direction they are looking (this is commonly referred to as a "gaze input" device).</p>
+     <li data-md>
+      <p><dfn class="dfn-paneled idl-code" data-dfn-for="XRTargetRayMode" data-dfn-type="enum-value" data-export id="dom-xrtargetraymode-tracked-pointer"><code>tracked-pointer</code></dfn> indicates that the target ray originates from either a handheld device or other hand-tracking mechanism and represents that the user is using their hands or the held device for pointing.</p>
+     <li data-md>
+      <p><dfn class="dfn-paneled idl-code" data-dfn-for="XRTargetRayMode" data-dfn-type="enum-value" data-export id="dom-xrtargetraymode-screen"><code>screen</code></dfn> indicates that the input source was an interaction with the canvas element associated with a non-immersive session’s output context, such as a mouse click or touch event.</p>
+    </ul>
     <h3 class="heading settled" data-level="10.2" id="xrray-interface"><span class="secno">10.2. </span><span class="content">XRRay</span><a class="self-link" href="#xrray-interface"></a></h3>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①③"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①②"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrray"><code><c- g>XRRay</c-></code></dfn> {
@@ -2667,7 +2677,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li><a href="#dom-xrwebgllayerinit-framebufferscalefactor">framebufferScaleFactor</a><span>, in §11.2</span>
    <li><a href="#dom-xrwebgllayer-framebufferwidth">framebufferWidth</a><span>, in §11.2</span>
    <li><a href="#frame-of-reference-type">frame of reference type</a><span>, in §7.2</span>
-   <li><a href="#dom-xrtargetraymode-gaze">"gaze"</a><span>, in §10.1</span>
+   <li><a href="#dom-xrtargetraymode-gaze">gaze</a><span>, in §10.1</span>
    <li><a href="#dom-xrstagebounds-geometry">geometry</a><span>, in §7.3</span>
    <li><a href="#dom-xrframe-getdevicepose">getDevicePose(coordinateSystem)</a><span>, in §6.1</span>
    <li><a href="#dom-xrframe-getinputpose">getInputPose(inputSource, coordinateSystem)</a><span>, in §6.1</span>
@@ -2754,7 +2764,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
      <li><a href="#dom-xreye-right">enum-value for XREye</a><span>, in §8.1</span>
      <li><a href="#dom-xrhandedness-right">enum-value for XRHandedness</a><span>, in §10.1</span>
     </ul>
-   <li><a href="#dom-xrtargetraymode-screen">"screen"</a><span>, in §10.1</span>
+   <li><a href="#dom-xrtargetraymode-screen">screen</a><span>, in §10.1</span>
    <li><a href="#eventdef-xrsession-select">select</a><span>, in §13.4</span>
    <li><a href="#select-a-default-xr-device">select a default XR device</a><span>, in §4.1</span>
    <li><a href="#eventdef-xrsession-selectend">selectend</a><span>, in §13.4</span>
@@ -2789,7 +2799,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li><a href="#swap-chain">swap chain</a><span>, in §11.2</span>
    <li><a href="#dom-xrinputpose-targetray">targetRay</a><span>, in §10.3</span>
    <li><a href="#dom-xrinputsource-targetraymode">targetRayMode</a><span>, in §10.1</span>
-   <li><a href="#dom-xrtargetraymode-tracked-pointer">"tracked-pointer"</a><span>, in §10.1</span>
+   <li><a href="#dom-xrtargetraymode-tracked-pointer">tracked-pointer</a><span>, in §10.1</span>
    <li><a href="#dom-xrray-transformmatrix">transformMatrix</a><span>, in §10.2</span>
    <li><a href="#view">view</a><span>, in §8.1</span>
    <li><a href="#dom-xrframe-views">views</a><span>, in §6.1</span>
@@ -3331,15 +3341,15 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 };
 
 <c- b>enum</c-> <a href="#enumdef-xrtargetraymode"><code><c- g>XRTargetRayMode</c-></code></a> {
-  <a href="#dom-xrtargetraymode-gaze"><code><c- s>"gaze"</c-></code></a>,
-  <a href="#dom-xrtargetraymode-tracked-pointer"><code><c- s>"tracked-pointer"</c-></code></a>,
-  <a href="#dom-xrtargetraymode-screen"><code><c- s>"screen"</c-></code></a>
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-gaze" id="ref-for-dom-xrtargetraymode-gaze①"><c- s>"gaze"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-tracked-pointer" id="ref-for-dom-xrtargetraymode-tracked-pointer①"><c- s>"tracked-pointer"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-screen" id="ref-for-dom-xrtargetraymode-screen①"><c- s>"screen"</c-></a>
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①②①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#xrinputsource"><code><c- g>XRInputSource</c-></code></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrhandedness" id="ref-for-enumdef-xrhandedness①"><c- n>XRHandedness</c-></a> <a data-readonly data-type="XRHandedness" href="#dom-xrinputsource-handedness"><code><c- g>handedness</c-></code></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrtargetraymode" id="ref-for-enumdef-xrtargetraymode①"><c- n>XRTargetRayMode</c-></a> <a data-readonly data-type="XRTargetRayMode" href="#dom-xrinputsource-targetraymode"><code><c- g>targetRayMode</c-></code></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrhandedness" id="ref-for-enumdef-xrhandedness①"><c- n>XRHandedness</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRHandedness" href="#dom-xrinputsource-handedness" id="ref-for-dom-xrinputsource-handedness①"><c- g>handedness</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrtargetraymode" id="ref-for-enumdef-xrtargetraymode①"><c- n>XRTargetRayMode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRTargetRayMode" href="#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode①"><c- g>targetRayMode</c-></a>;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①③①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①②①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
@@ -4020,6 +4030,12 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-enumdef-xreye">8.1. XRView</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="dom-xreye-left">
+   <b><a href="#dom-xreye-left">#dom-xreye-left</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xreye-left">8.1. XRView</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="xrview">
    <b><a href="#xrview">#xrview</a></b><b>Referenced in:</b>
    <ul>
@@ -4133,6 +4149,36 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-primary-action">10.1. XRInputSource</a> <a href="#ref-for-primary-action①">(2)</a> <a href="#ref-for-primary-action②">(3)</a>
     <li><a href="#ref-for-primary-action③">13.4. Event Types</a> <a href="#ref-for-primary-action④">(2)</a> <a href="#ref-for-primary-action⑤">(3)</a> <a href="#ref-for-primary-action⑥">(4)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrinputsource-handedness">
+   <b><a href="#dom-xrinputsource-handedness">#dom-xrinputsource-handedness</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrinputsource-handedness">10.1. XRInputSource</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrinputsource-targetraymode">
+   <b><a href="#dom-xrinputsource-targetraymode">#dom-xrinputsource-targetraymode</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrinputsource-targetraymode">10.1. XRInputSource</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrtargetraymode-gaze">
+   <b><a href="#dom-xrtargetraymode-gaze">#dom-xrtargetraymode-gaze</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrtargetraymode-gaze">10.1. XRInputSource</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrtargetraymode-tracked-pointer">
+   <b><a href="#dom-xrtargetraymode-tracked-pointer">#dom-xrtargetraymode-tracked-pointer</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrtargetraymode-tracked-pointer">10.1. XRInputSource</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrtargetraymode-screen">
+   <b><a href="#dom-xrtargetraymode-screen">#dom-xrtargetraymode-screen</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrtargetraymode-screen">10.1. XRInputSource</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrray">
