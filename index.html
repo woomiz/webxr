@@ -1212,7 +1212,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version ca499dee738ad325bae89163f1eee6d8a2978cf4" name="generator">
+  <meta content="Bikeshed version a816d78e14132d4d4d2ee44ccaf1b8bc90ac75d5" name="generator">
   <link href="https://immersive-web.github.io/webxr/" rel="canonical">
 <style>
   /* Re-add this once there are actually stable sections of the spec */
@@ -1488,7 +1488,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-08-10">10 August 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-08-20">20 August 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1510,7 +1510,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 10 August 2018,
+In addition, as of 20 August 2018,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2225,7 +2225,7 @@ with an origin that corresponds to the first device pose acquired by the <code c
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-xrwebgllayerinit"><code><c- g>XRWebGLLayerInit</c-></code></dfn> {
   <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean④"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="true" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-antialias"><code><c- g>antialias</c-></code></dfn> = <c- b>true</c->;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑤"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="false" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-depth"><code><c- g>depth</c-></code></dfn> = <c- b>false</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑤"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="true" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-depth"><code><c- g>depth</c-></code></dfn> = <c- b>true</c->;
   <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑥"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="false" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-stencil"><code><c- g>stencil</c-></code></dfn> = <c- b>false</c->;
   <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑦"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="true" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-alpha"><code><c- g>alpha</c-></code></dfn> = <c- b>true</c->;
   <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑧"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-default="false" data-dfn-for="XRWebGLLayerInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-xrwebgllayerinit-multiview"><code><c- g>multiview</c-></code></dfn> = <c- b>false</c->;
@@ -3420,7 +3420,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 
 <c- b>dictionary</c-> <a href="#dictdef-xrwebgllayerinit"><code><c- g>XRWebGLLayerInit</c-></code></a> {
   <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean④①"><c- b>boolean</c-></a> <a data-default="true" data-type="boolean " href="#dom-xrwebgllayerinit-antialias"><code><c- g>antialias</c-></code></a> = <c- b>true</c->;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑤①"><c- b>boolean</c-></a> <a data-default="false" data-type="boolean " href="#dom-xrwebgllayerinit-depth"><code><c- g>depth</c-></code></a> = <c- b>false</c->;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑤①"><c- b>boolean</c-></a> <a data-default="true" data-type="boolean " href="#dom-xrwebgllayerinit-depth"><code><c- g>depth</c-></code></a> = <c- b>true</c->;
   <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑥①"><c- b>boolean</c-></a> <a data-default="false" data-type="boolean " href="#dom-xrwebgllayerinit-stencil"><code><c- g>stencil</c-></code></a> = <c- b>false</c->;
   <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑦①"><c- b>boolean</c-></a> <a data-default="true" data-type="boolean " href="#dom-xrwebgllayerinit-alpha"><code><c- g>alpha</c-></code></a> = <c- b>true</c->;
   <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean⑧①"><c- b>boolean</c-></a> <a data-default="false" data-type="boolean " href="#dom-xrwebgllayerinit-multiview"><code><c- g>multiview</c-></code></a> = <c- b>false</c->;
