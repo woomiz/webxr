@@ -1494,7 +1494,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-12-21">21 December 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-01-07">7 January 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1520,7 +1520,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <p>While this specification is under development some concepts may be represented better by the <a href="https://github.com/w3c/webvr/blob/master/explainer.md">WebXR Device API Explainer</a>.</p>
     </details>
    </div>
-   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2018 <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2019 <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -1853,7 +1853,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
   <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrlayer" id="ref-for-xrlayer"><c- n>XRLayer</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="attribute" data-export data-type="XRLayer?" id="dom-xrsession-baselayer"><code><c- g>baseLayer</c-></code></dfn>;
 
   // Methods
-  <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace"><c- n>XRReferenceSpace</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="method" data-export data-lt="requestReferenceSpace(type, options)|requestReferenceSpace(type)" id="dom-xrsession-requestreferencespace"><code><c- g>requestReferenceSpace</c-></code></dfn>(<a class="n" data-link-type="idl-name" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype"><c- n>XRReferenceSpaceType</c-></a> <dfn class="idl-code" data-dfn-for="XRSession/requestReferenceSpace(type, options), XRSession/requestReferenceSpace(type)" data-dfn-type="argument" data-export id="dom-xrsession-requestreferencespace-type-options-type"><code><c- g>type</c-></code><a class="self-link" href="#dom-xrsession-requestreferencespace-type-options-type"></a></dfn>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrreferencespaceoptions" id="ref-for-dictdef-xrreferencespaceoptions"><c- n>XRReferenceSpaceOptions</c-></a> <dfn class="idl-code" data-dfn-for="XRSession/requestReferenceSpace(type, options), XRSession/requestReferenceSpace(type)" data-dfn-type="argument" data-export id="dom-xrsession-requestreferencespace-type-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-xrsession-requestreferencespace-type-options-options"></a></dfn>);
+  <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace"><c- n>XRReferenceSpace</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace"><c- g>requestReferenceSpace</c-></a>(<a class="n" data-link-type="idl-name" href="#dictdef-xrreferencespaceoptions" id="ref-for-dictdef-xrreferencespaceoptions"><c- n>XRReferenceSpaceOptions</c-></a> <dfn class="idl-code" data-dfn-for="XRSession/requestReferenceSpace(options)" data-dfn-type="argument" data-export id="dom-xrsession-requestreferencespace-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-xrsession-requestreferencespace-options-options"></a></dfn>);
 
   <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource"><c- n>XRInputSource</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsession-getinputsources" id="ref-for-dom-xrsession-getinputsources"><c- g>getInputSources</c-></a>();
 
@@ -1918,8 +1918,8 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
        <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise②">Resolve</a> <var>promise</var>.</p>
      </ol>
     </div>
-    <div class="algorithm" data-algorithm="request-frame-of-reference">
-     <p>When the <dfn class="idl-code" data-dfn-for="XRSession" data-dfn-type="method" data-export id="dom-xrsession-requestreferencespace-options"><code>requestReferenceSpace(<var>options</var>)</code><a class="self-link" href="#dom-xrsession-requestreferencespace-options"></a></dfn> method is invoked, the user agent MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise③">a new Promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel③">in parallel</a>:</p>
+    <div class="algorithm" data-algorithm="request-reference-space">
+     <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="method" data-export id="dom-xrsession-requestreferencespace"><code>requestReferenceSpace(<var>options</var>)</code></dfn> method is invoked, the user agent MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise③">a new Promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel③">in parallel</a>:</p>
      <ol>
       <li data-md>
        <p><a data-link-type="dfn" href="#create-a-reference-space" id="ref-for-create-a-reference-space">Create a reference space</a>, <var>referenceSpace</var>, as described by <var>options</var>.</p>
@@ -2117,7 +2117,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
 };
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-xrreferencespaceoptions"><code><c- g>XRReferenceSpaceOptions</c-></code></dfn> {
-  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype①"><c- n>XRReferenceSpaceType</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpaceOptions" data-dfn-type="dict-member" data-export data-type="XRReferenceSpaceType " id="dom-xrreferencespaceoptions-type"><code><c- g>type</c-></code></dfn>;
+  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype"><c- n>XRReferenceSpaceType</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpaceOptions" data-dfn-type="dict-member" data-export data-type="XRReferenceSpaceType " id="dom-xrreferencespaceoptions-type"><code><c- g>type</c-></code></dfn>;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑤"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed④"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrreferencespace"><code><c- g>XRReferenceSpace</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace⑦"><c- n>XRSpace</c-></a> {
@@ -2125,7 +2125,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
   <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://www.w3.org/TR/html51/webappapis.html#typedefdef-eventhandler" id="ref-for-typedefdef-eventhandler⑧"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrreferencespace-onreset" id="ref-for-dom-xrreferencespace-onreset"><c- g>onreset</c-></a>;
 };
 </pre>
-    <p>An <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace⑦">XRReferenceSpace</a></code> is obtained by calling <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace">requestReferenceSpace()</a></code>, which creates an instance of an interface extending <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace⑧">XRReferenceSpace</a></code>, determined by the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-type" id="ref-for-dom-xrreferencespaceoptions-type">type</a></code> value of the <code class="idl"><a data-link-type="idl" href="#dictdef-xrreferencespaceoptions" id="ref-for-dictdef-xrreferencespaceoptions①">XRReferenceSpaceOptions</a></code> dictionary passed into the call:</p>
+    <p>An <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace⑦">XRReferenceSpace</a></code> is obtained by calling <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace①">requestReferenceSpace()</a></code>, which creates an instance of an interface extending <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace⑧">XRReferenceSpace</a></code>, determined by the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-type" id="ref-for-dom-xrreferencespaceoptions-type">type</a></code> value of the <code class="idl"><a data-link-type="idl" href="#dictdef-xrreferencespaceoptions" id="ref-for-dictdef-xrreferencespaceoptions①">XRReferenceSpaceOptions</a></code> dictionary passed into the call:</p>
     <ul>
      <li data-md>
       <p>Passing a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-type" id="ref-for-dom-xrreferencespaceoptions-type①">type</a></code> of <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpaceType" data-dfn-type="enum-value" data-export id="dom-xrreferencespacetype-stationary"><code>stationary</code></dfn> creates an <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace">XRStationaryReferenceSpace</a></code> instance.</p>
@@ -2143,7 +2143,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
       <li data-md>
        <p>Initialize <a data-link-type="dfn" href="#xrspace-session" id="ref-for-xrspace-session②">session</a> be the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession③④">XRSession</a></code> object that requested creation of a reference space.</p>
       <li data-md>
-       <p>Let <var>options</var> be the <code class="idl"><a data-link-type="idl" href="#dictdef-xrreferencespaceoptions" id="ref-for-dictdef-xrreferencespaceoptions②">XRReferenceSpaceOptions</a></code> passed to <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace①">requestReferenceSpace()</a></code>.</p>
+       <p>Let <var>options</var> be the <code class="idl"><a data-link-type="idl" href="#dictdef-xrreferencespaceoptions" id="ref-for-dictdef-xrreferencespaceoptions②">XRReferenceSpaceOptions</a></code> passed to <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace②">requestReferenceSpace()</a></code>.</p>
       <li data-md>
        <p>Let <var>type</var> be set to <var>options</var> <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-type" id="ref-for-dom-xrreferencespaceoptions-type④">type</a></code>.</p>
       <li data-md>
@@ -2176,7 +2176,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrstationaryreferencespacesubtype" id="ref-for-enumdef-xrstationaryreferencespacesubtype①"><c- n>XRStationaryReferenceSpaceSubtype</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRStationaryReferenceSpaceSubtype" href="#dom-xrstationaryreferencespace-subtype" id="ref-for-dom-xrstationaryreferencespace-subtype①"><c- g>subtype</c-></a>;
 };
 </pre>
-    <p>There are several subtypes of <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace③">XRStationaryReferenceSpace</a></code>, determined by the <code class="idl"><a data-link-type="idl" href="#dom-xrstationaryreferencespaceoptions-subtype" id="ref-for-dom-xrstationaryreferencespaceoptions-subtype①">subtype</a></code> value of the <code class="idl"><a data-link-type="idl" href="#dictdef-xrstationaryreferencespaceoptions" id="ref-for-dictdef-xrstationaryreferencespaceoptions">XRStationaryReferenceSpaceOptions</a></code> dictionary passed into the <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace②">requestReferenceSpace()</a></code> call:</p>
+    <p>There are several subtypes of <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace③">XRStationaryReferenceSpace</a></code>, determined by the <code class="idl"><a data-link-type="idl" href="#dom-xrstationaryreferencespaceoptions-subtype" id="ref-for-dom-xrstationaryreferencespaceoptions-subtype①">subtype</a></code> value of the <code class="idl"><a data-link-type="idl" href="#dictdef-xrstationaryreferencespaceoptions" id="ref-for-dictdef-xrstationaryreferencespaceoptions">XRStationaryReferenceSpaceOptions</a></code> dictionary passed into the <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace③">requestReferenceSpace()</a></code> call:</p>
     <ul>
      <li data-md>
       <p>Passing a <code class="idl"><a data-link-type="idl" href="#dom-xrstationaryreferencespaceoptions-subtype" id="ref-for-dom-xrstationaryreferencespaceoptions-subtype②">subtype</a></code> of <dfn class="dfn-paneled idl-code" data-dfn-for="XRStationaryReferenceSpaceSubtype" data-dfn-type="enum-value" data-export id="dom-xrstationaryreferencespacesubtype-eye-level"><code>eye-level</code></dfn> creates an <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace④">XRStationaryReferenceSpace</a></code> with it’s origin near the user’s head at the time of creation. The exact position and orientation will be initialized based on the conventions of the underlying platform.</p>
@@ -2932,9 +2932,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
      <li><a href="#dom-xrreferencespaceeventinit-referencespace">dict-member for XRReferenceSpaceEventInit</a><span>, in §12.3</span>
     </ul>
    <li><a href="#dom-xrsession-requestanimationframe">requestAnimationFrame(callback)</a><span>, in §3.4</span>
-   <li><a href="#dom-xrsession-requestreferencespace-options">requestReferenceSpace(options)</a><span>, in §3.1</span>
-   <li><a href="#dom-xrsession-requestreferencespace">requestReferenceSpace(type)</a><span>, in §3.1</span>
-   <li><a href="#dom-xrsession-requestreferencespace">requestReferenceSpace(type, options)</a><span>, in §3.1</span>
+   <li><a href="#dom-xrsession-requestreferencespace">requestReferenceSpace(options)</a><span>, in §3.1</span>
    <li><a href="#dom-xr-requestsession">requestSession(options)</a><span>, in §2.1</span>
    <li><a href="#dom-xrwebgllayer-requestviewportscaling-scalefactor">requestViewportScaling(scaleFactor)</a><span>, in §10.2</span>
    <li><a href="#dom-xrwebgllayer-requestviewportscaling">requestViewportScaling(viewportScaleFactor)</a><span>, in §10.2</span>
@@ -3460,7 +3458,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrlayer" id="ref-for-xrlayer③"><c- n>XRLayer</c-></a>? <a data-type="XRLayer?" href="#dom-xrsession-baselayer"><code><c- g>baseLayer</c-></code></a>;
 
   // Methods
-  <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace②⑤"><c- n>XRReferenceSpace</c-></a>> <a href="#dom-xrsession-requestreferencespace"><code><c- g>requestReferenceSpace</c-></code></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype②"><c- n>XRReferenceSpaceType</c-></a> <a href="#dom-xrsession-requestreferencespace-type-options-type"><code><c- g>type</c-></code></a>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrreferencespaceoptions" id="ref-for-dictdef-xrreferencespaceoptions④"><c- n>XRReferenceSpaceOptions</c-></a> <a href="#dom-xrsession-requestreferencespace-type-options-options"><code><c- g>options</c-></code></a>);
+  <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace②⑤"><c- n>XRReferenceSpace</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace④"><c- g>requestReferenceSpace</c-></a>(<a class="n" data-link-type="idl-name" href="#dictdef-xrreferencespaceoptions" id="ref-for-dictdef-xrreferencespaceoptions④"><c- n>XRReferenceSpaceOptions</c-></a> <a href="#dom-xrsession-requestreferencespace-options-options"><code><c- g>options</c-></code></a>);
 
   <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource①③"><c- n>XRInputSource</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsession-getinputsources" id="ref-for-dom-xrsession-getinputsources①"><c- g>getInputSources</c-></a>();
 
@@ -3510,7 +3508,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-xrreferencespaceoptions"><code><c- g>XRReferenceSpaceOptions</c-></code></a> {
-  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype①①"><c- n>XRReferenceSpaceType</c-></a> <a data-type="XRReferenceSpaceType " href="#dom-xrreferencespaceoptions-type"><code><c- g>type</c-></code></a>;
+  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype①"><c- n>XRReferenceSpaceType</c-></a> <a data-type="XRReferenceSpaceType " href="#dom-xrreferencespaceoptions-type"><code><c- g>type</c-></code></a>;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑤①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed④①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrreferencespace"><code><c- g>XRReferenceSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace⑦①"><c- n>XRSpace</c-></a> {
@@ -3890,13 +3888,6 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-dom-xrsession-baselayer">3.1. XRSession</a> <a href="#ref-for-dom-xrsession-baselayer①">(2)</a> <a href="#ref-for-dom-xrsession-baselayer②">(3)</a> <a href="#ref-for-dom-xrsession-baselayer③">(4)</a> <a href="#ref-for-dom-xrsession-baselayer④">(5)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-xrsession-requestreferencespace">
-   <b><a href="#dom-xrsession-requestreferencespace">#dom-xrsession-requestreferencespace</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-xrsession-requestreferencespace">5.2. XRReferenceSpace</a> <a href="#ref-for-dom-xrsession-requestreferencespace①">(2)</a>
-    <li><a href="#ref-for-dom-xrsession-requestreferencespace②">5.3. XRStationaryReferenceSpace</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="initialize-the-session">
    <b><a href="#initialize-the-session">#initialize-the-session</a></b><b>Referenced in:</b>
    <ul>
@@ -3921,6 +3912,14 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#dom-xrsession-end">#dom-xrsession-end</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrsession-end">3.1. XRSession</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrsession-requestreferencespace">
+   <b><a href="#dom-xrsession-requestreferencespace">#dom-xrsession-requestreferencespace</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrsession-requestreferencespace">3.1. XRSession</a>
+    <li><a href="#ref-for-dom-xrsession-requestreferencespace①">5.2. XRReferenceSpace</a> <a href="#ref-for-dom-xrsession-requestreferencespace②">(2)</a>
+    <li><a href="#ref-for-dom-xrsession-requestreferencespace③">5.3. XRStationaryReferenceSpace</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrsession-getinputsources">
@@ -4218,8 +4217,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="enumdef-xrreferencespacetype">
    <b><a href="#enumdef-xrreferencespacetype">#enumdef-xrreferencespacetype</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-enumdef-xrreferencespacetype">3.1. XRSession</a>
-    <li><a href="#ref-for-enumdef-xrreferencespacetype①">5.2. XRReferenceSpace</a>
+    <li><a href="#ref-for-enumdef-xrreferencespacetype">5.2. XRReferenceSpace</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-xrreferencespaceoptions">
