@@ -14,7 +14,7 @@ To create an `XRHitTestSource` developers call the `XRSession.requestHitTestSour
 * `space` is required and is the `XRSpace` to be tracked by the hit test source. As this `XRSpace` updates its location each frame, the `XRHitTestSource` will move with it. If the supplied `space` is an `XRReferenceSpace`, the `offsetRay` of the resulting `XRHitTestSource` will be updated each time the `XRReferenceSpace.originOffset` is updated, even mid-frame.
 * `offsetRay` is optional and, if provided, is the `XRRay` from which the hit test should be performed. The ray's coordinates are defined with `space` as the origin. If an `offsetRay` is not provided, hit testing will be performed using a ray with coincident with the `space` origin and pointing in the "forward" direction. For more information on constructing an `XRRay`, see the [Spatial Tracking explainer](spatial-tracking-explainer.md#rays).
 
-In this example, an `XRHitTestSource` is created slightly above the center of the `viewerSpace`. This is because the developer has chosen to leave space for buttons along the bottom of the hand-held AR device screen while still giving the perception of a centered cursor. For more information, see [Rendering cursors and highlights](#rendering-cursors-and-highlights) in the Input Explainer.
+In this example, an `XRHitTestSource` is created slightly above the center of the `viewerSpace`. This is because the developer is planning to draw UI elements along the bottom of the hand-held AR device's immersive view while still wanting to give the perception of a centered cursor. For more information, see [Rendering cursors and highlights](#rendering-cursors-and-highlights) in the Input Explainer.
 
 ```js
 let viewerHitTestSource = null;
