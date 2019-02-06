@@ -1213,7 +1213,7 @@ Possible extra rowspan handling
 	}
 </style>
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet" type="text/css">
-  <meta content="Bikeshed version eee3e9e7543e2188fb60d183a6cf3fe3a7d971c1" name="generator">
+  <meta content="Bikeshed version d76ab51ece93be5af3a1621c820b89fd4f9cc432" name="generator">
   <link href="https://immersive-web.github.io/webxr/" rel="canonical">
 <style>
   /* Re-add this once there are actually stable sections of the spec */
@@ -1494,7 +1494,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">, <time class="dt-updated" datetime="2019-02-05">5 February 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">, <time class="dt-updated" datetime="2019-02-06">6 February 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2724,7 +2724,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement" id="ref-for-htmlcanvaselement①"><c- n>HTMLCanvasElement</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="HTMLCanvasElement" href="#dom-xrpresentationcontext-canvas" id="ref-for-dom-xrpresentationcontext-canvas①"><c- g>canvas</c-></a>;
 };
 </pre>
-    <p><dfn class="dfn-paneled idl-code" data-dfn-for="XRPresentationContext" data-dfn-type="attribute" data-export id="dom-xrpresentationcontext-canvas"><code>canvas</code></dfn></p>
+    <p>Each <code class="idl"><a data-link-type="idl" href="#xrpresentationcontext" id="ref-for-xrpresentationcontext②">XRPresentationContext</a></code> has an associated <dfn class="dfn-paneled idl-code" data-dfn-for="XRPresentationContext" data-dfn-type="attribute" data-export id="dom-xrpresentationcontext-canvas"><code>canvas</code></dfn> which is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement" id="ref-for-htmlcanvaselement②">HTMLCanvasElement</a></code> set during creation.</p>
+    <p>When the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#dom-canvas-getcontext" id="ref-for-dom-canvas-getcontext">getContext()</a></code> method of an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement" id="ref-for-htmlcanvaselement③">HTMLCanvasElement</a></code> <var>canvas</var> is to return a new object for the <var>contextId</var> <code>present-xr</code>, the user agent must return an <code class="idl"><a data-link-type="idl" href="#xrpresentationcontext" id="ref-for-xrpresentationcontext③">XRPresentationContext</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-xrpresentationcontext-canvas" id="ref-for-dom-xrpresentationcontext-canvas②">canvas</a></code> set to <var>canvas</var>.</p>
     <h2 class="heading settled" data-level="12" id="events"><span class="secno">12. </span><span class="content">Events</span><a class="self-link" href="#events"></a></h2>
     <h3 class="heading settled" data-level="12.1" id="xrsessionevent-interface"><span class="secno">12.1. </span><span class="content">XRSessionEvent</span><a class="self-link" href="#xrsessionevent-interface"></a></h3>
     <p><code class="idl"><a data-link-type="idl" href="#xrsessionevent" id="ref-for-xrsessionevent">XRSessionEvent</a></code>s are fired to indicate changes to the state of an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession④⑨">XRSession</a></code>.</p>
@@ -3234,7 +3235,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <a href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement">https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-htmlcanvaselement">10.3. WebGL Context Compatibility</a>
-    <li><a href="#ref-for-htmlcanvaselement①">11.1. XRPresentationContext</a>
+    <li><a href="#ref-for-htmlcanvaselement①">11.1. XRPresentationContext</a> <a href="#ref-for-htmlcanvaselement②">(2)</a> <a href="#ref-for-htmlcanvaselement③">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-navigator">
@@ -3250,6 +3251,12 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-event-handler-idl-attributes">2.1. XR</a>
     <li><a href="#ref-for-event-handler-idl-attributes①">3.1. XRSession</a> <a href="#ref-for-event-handler-idl-attributes②">(2)</a> <a href="#ref-for-event-handler-idl-attributes③">(3)</a> <a href="#ref-for-event-handler-idl-attributes④">(4)</a> <a href="#ref-for-event-handler-idl-attributes⑤">(5)</a> <a href="#ref-for-event-handler-idl-attributes⑥">(6)</a> <a href="#ref-for-event-handler-idl-attributes⑦">(7)</a>
     <li><a href="#ref-for-event-handler-idl-attributes⑧">5.2. XRReferenceSpace</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-canvas-getcontext">
+   <a href="https://html.spec.whatwg.org/multipage/canvas.html#dom-canvas-getcontext">https://html.spec.whatwg.org/multipage/canvas.html#dom-canvas-getcontext</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-canvas-getcontext">11.1. XRPresentationContext</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-in-parallel">
@@ -3495,6 +3502,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
      <li><span class="dfn-paneled" id="term-for-htmlcanvaselement" style="color:initial">HTMLCanvasElement</span>
      <li><span class="dfn-paneled" id="term-for-navigator" style="color:initial">Navigator</span>
      <li><span class="dfn-paneled" id="term-for-event-handler-idl-attributes" style="color:initial">event handler idl attribute</span>
+     <li><span class="dfn-paneled" id="term-for-dom-canvas-getcontext" style="color:initial">getContext(contextId)</span>
      <li><span class="dfn-paneled" id="term-for-in-parallel" style="color:initial">in parallel</span>
      <li><span class="dfn-paneled" id="term-for-report-the-exception" style="color:initial">report the exception</span>
      <li><span class="dfn-paneled" id="term-for-triggered-by-user-activation" style="color:initial">triggered by user activation</span>
@@ -3578,7 +3586,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext②③"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①⓪"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrsession"><code><c- g>XRSession</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget①①"><c- n>EventTarget</c-></a> {
   // Attributes
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode②①"><c- n>XRSessionMode</c-></a> <a data-readonly data-type="XRSessionMode" href="#dom-xrsession-mode"><code><c- g>mode</c-></code></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrpresentationcontext" id="ref-for-xrpresentationcontext②"><c- n>XRPresentationContext</c-></a>? <a data-readonly data-type="XRPresentationContext?" href="#dom-xrsession-outputcontext"><code><c- g>outputContext</c-></code></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrpresentationcontext" id="ref-for-xrpresentationcontext④"><c- n>XRPresentationContext</c-></a>? <a data-readonly data-type="XRPresentationContext?" href="#dom-xrsession-outputcontext"><code><c- g>outputContext</c-></code></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrenvironmentblendmode" id="ref-for-enumdef-xrenvironmentblendmode①"><c- n>XREnvironmentBlendMode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XREnvironmentBlendMode" href="#dom-xrsession-environmentblendmode" id="ref-for-dom-xrsession-environmentblendmode③"><c- g>environmentBlendMode</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrenderstate" id="ref-for-xrrenderstate⑤"><c- n>XRRenderState</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRenderState" href="#dom-xrsession-renderstate" id="ref-for-dom-xrsession-renderstate①"><c- g>renderState</c-></a>;
 
@@ -5061,13 +5069,14 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-xrpresentationcontext">3.1. XRSession</a>
     <li><a href="#ref-for-xrpresentationcontext①">3.3. XRSessionCreationOptions</a>
+    <li><a href="#ref-for-xrpresentationcontext②">11.1. XRPresentationContext</a> <a href="#ref-for-xrpresentationcontext③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrpresentationcontext-canvas">
    <b><a href="#dom-xrpresentationcontext-canvas">#dom-xrpresentationcontext-canvas</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrpresentationcontext-canvas">10.2. XRWebGLLayer</a>
-    <li><a href="#ref-for-dom-xrpresentationcontext-canvas①">11.1. XRPresentationContext</a>
+    <li><a href="#ref-for-dom-xrpresentationcontext-canvas①">11.1. XRPresentationContext</a> <a href="#ref-for-dom-xrpresentationcontext-canvas②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrsessionevent">
