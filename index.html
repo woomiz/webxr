@@ -1503,7 +1503,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-02-08">8 February 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-02-11">11 February 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2091,9 +2091,13 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
     <p>When an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession③⓪">XRSession</a></code> <var>session</var> receives updated <a data-link-type="dfn" href="#viewer" id="ref-for-viewer②">viewer</a> state from the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device②③">XR device</a>, it runs an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="xr-animation-frame">XR animation frame</dfn> with a timestamp <var>now</var> and an <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①">XRFrame</a></code> <var>frame</var>, which MUST run the following steps regardless of if the <a data-link-type="dfn" href="#list-of-animation-frame-callbacks" id="ref-for-list-of-animation-frame-callbacks③">list of animation frame callbacks</a> is empty or not:</p>
     <ol>
      <li data-md>
-      <p>Let <var>callbacks</var> be a list of the entries in <var>session</var>’s <a data-link-type="dfn" href="#list-of-animation-frame-callbacks" id="ref-for-list-of-animation-frame-callbacks④">list of animation frame callback</a>, in the order in which they were added to the list.</p>
-     <li data-md>
       <p>If <var>session</var>’s <a data-link-type="dfn" href="#list-of-pending-render-states" id="ref-for-list-of-pending-render-states③">list of pending render states</a> is not empty, <a data-link-type="dfn" href="#apply-pending-render-states" id="ref-for-apply-pending-render-states">apply pending render states</a>.</p>
+     <li data-md>
+      <p>If <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-renderstate" id="ref-for-dom-xrsession-renderstate①">renderState</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-baselayer" id="ref-for-dom-xrrenderstate-baselayer⑥">baseLayer</a></code> is <code>null</code>, abort these steps.</p>
+     <li data-md>
+      <p>If <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-mode" id="ref-for-dom-xrsession-mode①">mode</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline④">inline</a></code> and <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-outputcontext" id="ref-for-dom-xrsession-outputcontext①">outputContext</a></code> is <code>null</code>, abort these steps.</p>
+     <li data-md>
+      <p>Let <var>callbacks</var> be a list of the entries in <var>session</var>’s <a data-link-type="dfn" href="#list-of-animation-frame-callbacks" id="ref-for-list-of-animation-frame-callbacks④">list of animation frame callback</a>, in the order in which they were added to the list.</p>
      <li data-md>
       <p>Set <var>session</var>’s <a data-link-type="dfn" href="#list-of-animation-frame-callbacks" id="ref-for-list-of-animation-frame-callbacks⑤">list of animation frame callbacks</a> to the empty list.</p>
      <li data-md>
@@ -2618,9 +2622,9 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
      <li data-md>
       <p>Let <var>session</var> be the target <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession④⑥">XRSession</a></code>.</p>
      <li data-md>
-      <p>If <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-mode" id="ref-for-dom-xrsession-mode①">mode</a></code> value is not <code>"inline"</code>, set the <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution①">native WebGL framebuffer resolution</a> to the resolution required to have a 1:1 ratio between the pixels of a framebuffer large enough to contain all of the session’s <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview⑧">XRView</a></code>s and the physical screen pixels in the area of the display under the highest magnification and abort these steps. If no method exists to determine the native resolution as described, the <a data-link-type="dfn" href="#recommended-webgl-framebuffer-resolution" id="ref-for-recommended-webgl-framebuffer-resolution">recommended WebGL framebuffer resolution</a> MAY be used.</p>
+      <p>If <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-mode" id="ref-for-dom-xrsession-mode②">mode</a></code> value is not <code>"inline"</code>, set the <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution①">native WebGL framebuffer resolution</a> to the resolution required to have a 1:1 ratio between the pixels of a framebuffer large enough to contain all of the session’s <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview⑧">XRView</a></code>s and the physical screen pixels in the area of the display under the highest magnification and abort these steps. If no method exists to determine the native resolution as described, the <a data-link-type="dfn" href="#recommended-webgl-framebuffer-resolution" id="ref-for-recommended-webgl-framebuffer-resolution">recommended WebGL framebuffer resolution</a> MAY be used.</p>
      <li data-md>
-      <p>If <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-mode" id="ref-for-dom-xrsession-mode②">mode</a></code> value is <code>"inline"</code>, set the <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution②">native WebGL framebuffer resolution</a> to the size of the <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-outputcontext" id="ref-for-dom-xrsession-outputcontext①">outputContext</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrpresentationcontext-canvas" id="ref-for-dom-xrpresentationcontext-canvas">canvas</a></code> in physical display pixels and reevaluate these steps every time the size of the canvas changes.</p>
+      <p>If <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-mode" id="ref-for-dom-xrsession-mode③">mode</a></code> value is <code>"inline"</code>, set the <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution②">native WebGL framebuffer resolution</a> to the size of the <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-outputcontext" id="ref-for-dom-xrsession-outputcontext②">outputContext</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrpresentationcontext-canvas" id="ref-for-dom-xrpresentationcontext-canvas">canvas</a></code> in physical display pixels and reevaluate these steps every time the size of the canvas changes.</p>
     </ol>
    </div>
    <p>Additionally, the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession④⑦">XRSession</a></code> MUST identify a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="recommended-webgl-framebuffer-resolution">recommended WebGL framebuffer resolution</dfn>, which represents a best estimate of the WebGL framebuffer resolution large enough to contain all of the session’s <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview⑨">XRView</a></code>s that provides an average application a good balance between performance and quality. It MAY be smaller than, larger than, or equal to the <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution③">native WebGL framebuffer resolution</a>.</p>
@@ -3625,7 +3629,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode②①"><c- n>XRSessionMode</c-></a> <a data-readonly data-type="XRSessionMode" href="#dom-xrsession-mode"><code><c- g>mode</c-></code></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrpresentationcontext" id="ref-for-xrpresentationcontext④"><c- n>XRPresentationContext</c-></a>? <a data-readonly data-type="XRPresentationContext?" href="#dom-xrsession-outputcontext"><code><c- g>outputContext</c-></code></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrenvironmentblendmode" id="ref-for-enumdef-xrenvironmentblendmode①"><c- n>XREnvironmentBlendMode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XREnvironmentBlendMode" href="#dom-xrsession-environmentblendmode" id="ref-for-dom-xrsession-environmentblendmode③"><c- g>environmentBlendMode</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrenderstate" id="ref-for-xrrenderstate⑤"><c- n>XRRenderState</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRenderState" href="#dom-xrsession-renderstate" id="ref-for-dom-xrsession-renderstate①"><c- g>renderState</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrenderstate" id="ref-for-xrrenderstate⑤"><c- n>XRRenderState</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRenderState" href="#dom-xrsession-renderstate" id="ref-for-dom-xrsession-renderstate②"><c- g>renderState</c-></a>;
 
   // Methods
   <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-xrsession-updaterenderstate" id="ref-for-dom-xrsession-updaterenderstate①"><c- g>updateRenderState</c-></a>(<c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrrenderstateinit" id="ref-for-dictdef-xrrenderstateinit①"><c- n>XRRenderStateInit</c-></a> <a href="#dom-xrsession-updaterenderstate-state-state"><code><c- g>state</c-></code></a>);
@@ -4022,14 +4026,16 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#dom-xrsession-mode">#dom-xrsession-mode</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrsession-mode">3.1. XRSession</a>
-    <li><a href="#ref-for-dom-xrsession-mode①">10.2. XRWebGLLayer</a> <a href="#ref-for-dom-xrsession-mode②">(2)</a>
+    <li><a href="#ref-for-dom-xrsession-mode①">3.5. Animation Frames</a>
+    <li><a href="#ref-for-dom-xrsession-mode②">10.2. XRWebGLLayer</a> <a href="#ref-for-dom-xrsession-mode③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrsession-outputcontext">
    <b><a href="#dom-xrsession-outputcontext">#dom-xrsession-outputcontext</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrsession-outputcontext">3.1. XRSession</a>
-    <li><a href="#ref-for-dom-xrsession-outputcontext①">10.2. XRWebGLLayer</a>
+    <li><a href="#ref-for-dom-xrsession-outputcontext①">3.5. Animation Frames</a>
+    <li><a href="#ref-for-dom-xrsession-outputcontext②">10.2. XRWebGLLayer</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="initialize-the-session">
@@ -4075,6 +4081,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#dom-xrsession-renderstate">#dom-xrsession-renderstate</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrsession-renderstate">3.1. XRSession</a>
+    <li><a href="#ref-for-dom-xrsession-renderstate①">3.5. Animation Frames</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrsession-updaterenderstate">
@@ -4218,6 +4225,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-dom-xrsessionmode-inline">2.1. XR</a>
     <li><a href="#ref-for-dom-xrsessionmode-inline①">3.2. XRSessionMode</a> <a href="#ref-for-dom-xrsessionmode-inline②">(2)</a> <a href="#ref-for-dom-xrsessionmode-inline③">(3)</a>
+    <li><a href="#ref-for-dom-xrsessionmode-inline④">3.5. Animation Frames</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrsessionmode-immersive-vr">
@@ -4323,6 +4331,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-dom-xrrenderstate-baselayer">3.1. XRSession</a> <a href="#ref-for-dom-xrrenderstate-baselayer①">(2)</a> <a href="#ref-for-dom-xrrenderstate-baselayer②">(3)</a> <a href="#ref-for-dom-xrrenderstate-baselayer③">(4)</a> <a href="#ref-for-dom-xrrenderstate-baselayer④">(5)</a>
     <li><a href="#ref-for-dom-xrrenderstate-baselayer⑤">3.4. XRRenderState</a>
+    <li><a href="#ref-for-dom-xrrenderstate-baselayer⑥">3.5. Animation Frames</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="initialize-the-render-state">
