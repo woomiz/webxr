@@ -1503,7 +1503,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-02-11">11 February 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-02-12">12 February 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1619,13 +1619,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <li>
      <a href="#pose"><span class="secno">9</span> <span class="content">Pose</span></a>
      <ol class="toc">
-      <li><a href="#xrviewerpose-interface"><span class="secno">9.1</span> <span class="content">XRViewerPose</span></a>
+      <li><a href="#xrpose-interface"><span class="secno">9.1</span> <span class="content">XRPose</span></a>
+      <li><a href="#xrviewerpose-interface"><span class="secno">9.2</span> <span class="content">XRViewerPose</span></a>
      </ol>
     <li>
      <a href="#input"><span class="secno">10</span> <span class="content">Input</span></a>
      <ol class="toc">
       <li><a href="#xrinputsource-interface"><span class="secno">10.1</span> <span class="content">XRInputSource</span></a>
-      <li><a href="#xrinputpose-interface"><span class="secno">10.2</span> <span class="content">XRInputPose</span></a>
      </ol>
     <li>
      <a href="#layers"><span class="secno">11</span> <span class="content">Layers</span></a>
@@ -2139,63 +2139,54 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext④"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed③"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrframe"><code><c- g>XRFrame</c-></code></dfn> {
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession③③"><c- n>XRSession</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSession" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session"><c- g>session</c-></a>;
 
-  <a class="n" data-link-type="idl-name" href="#xrviewerpose" id="ref-for-xrviewerpose"><c- n>XRViewerPose</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-xrframe-getviewerpose" id="ref-for-dom-xrframe-getviewerpose"><c- g>getViewerPose</c-></a>(<c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①"><c- n>XRReferenceSpace</c-></a> <dfn class="idl-code" data-dfn-for="XRFrame/getViewerPose(referenceSpace), XRFrame/getViewerPose()" data-dfn-type="argument" data-export id="dom-xrframe-getviewerpose-referencespace-referencespace"><code><c- g>referenceSpace</c-></code><a class="self-link" href="#dom-xrframe-getviewerpose-referencespace-referencespace"></a></dfn>);
-  <a class="n" data-link-type="idl-name" href="#xrinputpose" id="ref-for-xrinputpose"><c- n>XRInputPose</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-xrframe-getinputpose" id="ref-for-dom-xrframe-getinputpose"><c- g>getInputPose</c-></a>(<a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource①"><c- n>XRInputSource</c-></a> <dfn class="idl-code" data-dfn-for="XRFrame/getInputPose(inputSource, referenceSpace), XRFrame/getInputPose(inputSource)" data-dfn-type="argument" data-export id="dom-xrframe-getinputpose-inputsource-referencespace-inputsource"><code><c- g>inputSource</c-></code><a class="self-link" href="#dom-xrframe-getinputpose-inputsource-referencespace-inputsource"></a></dfn>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace②"><c- n>XRReferenceSpace</c-></a> <dfn class="idl-code" data-dfn-for="XRFrame/getInputPose(inputSource, referenceSpace), XRFrame/getInputPose(inputSource)" data-dfn-type="argument" data-export id="dom-xrframe-getinputpose-inputsource-referencespace-referencespace"><code><c- g>referenceSpace</c-></code><a class="self-link" href="#dom-xrframe-getinputpose-inputsource-referencespace-referencespace"></a></dfn>);
+  <a class="n" data-link-type="idl-name" href="#xrviewerpose" id="ref-for-xrviewerpose"><c- n>XRViewerPose</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-xrframe-getviewerpose" id="ref-for-dom-xrframe-getviewerpose"><c- g>getViewerPose</c-></a>(<a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①"><c- n>XRReferenceSpace</c-></a> <dfn class="idl-code" data-dfn-for="XRFrame/getViewerPose(referenceSpace)" data-dfn-type="argument" data-export id="dom-xrframe-getviewerpose-referencespace-referencespace"><code><c- g>referenceSpace</c-></code><a class="self-link" href="#dom-xrframe-getviewerpose-referencespace-referencespace"></a></dfn>);
+  <a class="n" data-link-type="idl-name" href="#xrpose" id="ref-for-xrpose"><c- n>XRPose</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-xrframe-getpose" id="ref-for-dom-xrframe-getpose"><c- g>getPose</c-></a>(<a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace"><c- n>XRSpace</c-></a> <dfn class="idl-code" data-dfn-for="XRFrame/getPose(space, relativeTo)" data-dfn-type="argument" data-export id="dom-xrframe-getpose-space-relativeto-space"><code><c- g>space</c-></code><a class="self-link" href="#dom-xrframe-getpose-space-relativeto-space"></a></dfn>, <a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace①"><c- n>XRSpace</c-></a> <dfn class="idl-code" data-dfn-for="XRFrame/getPose(space, relativeTo)" data-dfn-type="argument" data-export id="dom-xrframe-getpose-space-relativeto-relativeto"><code><c- g>relativeTo</c-></code><a class="self-link" href="#dom-xrframe-getpose-space-relativeto-relativeto"></a></dfn>);
 };
 </pre>
    <p>Each <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe⑥">XRFrame</a></code> has a <dfn class="dfn-paneled" data-dfn-for="XRFrame" data-dfn-type="dfn" data-noexport id="xrframe-active">active</dfn> boolean which is initially set to <code>false</code>.</p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRFrame" data-dfn-type="attribute" data-export id="dom-xrframe-session"><code>session</code></dfn> attribute returns the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession③④">XRSession</a></code> that produced the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe⑦">XRFrame</a></code>.</p>
    <div class="algorithm" data-algorithm="get-viewer-pose">
-    <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XRFrame" data-dfn-type="method" data-export data-lt="getViewerPose(referenceSpace)|getViewerPose()" id="dom-xrframe-getviewerpose"><code>getViewerPose(<var>referenceSpace</var>)</code></dfn> method is invoked, the user agent MUST run the following steps:</p>
+    <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XRFrame" data-dfn-type="method" data-export id="dom-xrframe-getviewerpose"><code>getViewerPose(<var>referenceSpace</var>)</code></dfn> method is invoked, the user agent MUST run the following steps:</p>
     <ol>
      <li data-md>
       <p>If the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe⑧">XRFrame</a></code>'s <a data-link-type="dfn" href="#xrframe-active" id="ref-for-xrframe-active②">active</a> boolean is <code>false</code>, throw a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror③">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
       <p>Let <var>session</var> be the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe⑨">XRFrame</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session①">session</a></code> object.</p>
      <li data-md>
-      <p>If <var>referenceSpace</var>’s <a data-link-type="dfn" href="#xrspace-session" id="ref-for-xrspace-session">session</a> does not equal <var>session</var>, return <code>null</code> and abort these steps.</p>
+      <p>If <var>referenceSpace</var>’s <a data-link-type="dfn" href="#xrspace-session" id="ref-for-xrspace-session">session</a> does not equal <var>session</var>, throw a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror④">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
       <p>If the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer③">viewer</a>'s pose cannot be determined relative to <var>referenceSpace</var>, return <code>null</code></p>
      <li data-md>
       <p>Return a new <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose①">XRViewerPose</a></code> describing the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer④">viewer</a>'s pose relative to the origin of <var>referenceSpace</var> at the timestamp of the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①⓪">XRFrame</a></code>.</p>
     </ol>
    </div>
-   <div class="algorithm" data-algorithm="get-input-pose">
-    <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XRFrame" data-dfn-type="method" data-export data-lt="getInputPose(inputSource, referenceSpace)|getInputPose(inputSource)" id="dom-xrframe-getinputpose"><code>getInputPose(<var>inputSource</var>, <var>referenceSpace</var>)</code></dfn> method is invoked, the user agent MUST run the following steps:</p>
+   <div class="algorithm unstable" data-algorithm="get-pose">
+    <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XRFrame" data-dfn-type="method" data-export id="dom-xrframe-getpose"><code>getPose(<var>space</var>, <var>relativeTo</var>)</code></dfn> method is invoked, the user agent MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>If the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①①">XRFrame</a></code>'s <a data-link-type="dfn" href="#xrframe-active" id="ref-for-xrframe-active③">active</a> boolean is <code>false</code>, throw a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror④">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①①">XRFrame</a></code>'s <a data-link-type="dfn" href="#xrframe-active" id="ref-for-xrframe-active③">active</a> boolean is <code>false</code>, throw a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑤">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
       <p>Let <var>session</var> be the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①②">XRFrame</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session②">session</a></code> object.</p>
      <li data-md>
-      <p>If <var>referenceSpace</var>’s <a data-link-type="dfn" href="#xrspace-session" id="ref-for-xrspace-session①">session</a> does not equal <var>session</var>, return <code>null</code> and abort these steps.</p>
+      <p>If <var>space</var>’s <a data-link-type="dfn" href="#xrspace-session" id="ref-for-xrspace-session①">session</a> does not equal <var>session</var>, throw a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑥">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
-      <p>If <var>inputSource</var>’s pose cannot be determined relative to <var>referenceSpace</var>, return <code>null</code></p>
+      <p>If <var>relativeTo</var>’s <a data-link-type="dfn" href="#xrspace-session" id="ref-for-xrspace-session②">session</a> does not equal <var>session</var>, throw a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑦">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
-      <p>Return a new <code class="idl"><a data-link-type="idl" href="#xrinputpose" id="ref-for-xrinputpose①">XRInputPose</a></code> describing <var>inputSource</var>’s pose relative to the origin of <var>referenceSpace</var>.</p>
+      <p>If <var>space</var>’s pose cannot be determined relative to <var>relativeTo</var>, return <code>null</code></p>
+     <li data-md>
+      <p>Return a new <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose①">XRPose</a></code> describing <var>space</var>’s pose relative to the origin of <var>relativeTo</var>.</p>
     </ol>
    </div>
    <h2 class="heading settled" data-level="6" id="spaces"><span class="secno">6. </span><span class="content">Spaces</span><a class="self-link" href="#spaces"></a></h2>
    <h3 class="heading settled" data-level="6.1" id="xrspace-interface"><span class="secno">6.1. </span><span class="content">XRSpace</span><a class="self-link" href="#xrspace-interface"></a></h3>
-   <p>An <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace">XRSpace</a></code> describes an entity that is tracked by the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①⑧">XR device</a>'s tracking systems. <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace①">XRSpace</a></code>s MAY NOT have a fixed spatial relationship to one another or to any given <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace③">XRReferenceSpace</a></code>. The transform between two <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace②">XRSpace</a></code> can be evaluated by calling the <code class="idl"><a data-link-type="idl" href="#dom-xrspace-gettransformto" id="ref-for-dom-xrspace-gettransformto">getTransformTo()</a></code> method every <a data-link-type="dfn" href="#xr-animation-frame" id="ref-for-xr-animation-frame">XR animation frame</a>.</p>
+   <p>An <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace②">XRSpace</a></code> describes an entity that is tracked by the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①⑧">XR device</a>'s tracking systems. <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace③">XRSpace</a></code>s MAY NOT have a fixed spatial relationship to one another or to any given <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace②">XRReferenceSpace</a></code>. The transform between two <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace④">XRSpace</a></code> can be evaluated by calling an <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①③">XRFrame</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrframe-getpose" id="ref-for-dom-xrframe-getpose①">getPose()</a></code> method. The interface is intentionally opaque.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑤"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed④"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrspace"><code><c- g>XRSpace</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget②"><c- n>EventTarget</c-></a> {
-  <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform"><c- n>XRRigidTransform</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-xrspace-gettransformto" id="ref-for-dom-xrspace-gettransformto①"><c- g>getTransformTo</c-></a>(<a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace③"><c- n>XRSpace</c-></a> <dfn class="idl-code" data-dfn-for="XRSpace/getTransformTo(other)" data-dfn-type="argument" data-export id="dom-xrspace-gettransformto-other-other"><code><c- g>other</c-></code><a class="self-link" href="#dom-xrspace-gettransformto-other-other"></a></dfn>);
+  
 };
 </pre>
-   <p>Each <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace④">XRSpace</a></code> has a <dfn class="dfn-paneled" data-dfn-for="XRSpace" data-dfn-type="dfn" data-noexport id="xrspace-session">session</dfn> which is set to the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession③⑤">XRSession</a></code> that created the {{XRSpace}.</p>
-   <div class="algorithm" data-algorithm="get-transform-to">
-    <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XRSpace" data-dfn-type="method" data-export id="dom-xrspace-gettransformto"><code>getTransformTo(<var>other</var>)</code></dfn> method is invoked, the user agent MUST run the following steps:</p>
-    <ol>
-     <li data-md>
-      <p>Let <var>current</var> be the target <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace⑤">XRSpace</a></code> object.</p>
-     <li data-md>
-      <p>If a known transform exists from the space described by <var>current</var> to the space described by <var>other</var>, return it as an <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform①">XRRigidTransform</a></code>.</p>
-     <li data-md>
-      <p>Else return <code>null</code></p>
-    </ol>
-   </div>
+   <p>Each <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace⑤">XRSpace</a></code> has a <dfn class="dfn-paneled" data-dfn-for="XRSpace" data-dfn-type="dfn" data-noexport id="xrspace-session">session</dfn> which is set to the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession③⑤">XRSession</a></code> that created the {{XRSpace}.</p>
    <h3 class="heading settled" data-level="6.2" id="xrreferencespace-interface"><span class="secno">6.2. </span><span class="content">XRReferenceSpace</span><a class="self-link" href="#xrreferencespace-interface"></a></h3>
-   <p>An <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace④">XRReferenceSpace</a></code> describes an <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace⑥">XRSpace</a></code> that is generally expected to remain static for the duration of the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession③⑥">XRSession</a></code>, with the most common exception being mid-session reconfiguration by the user. Every <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace⑤">XRReferenceSpace</a></code> describes a coordinate system where the Y axis MUST be aligned with gravity, with <code>+Y</code> being "Up". <code>-Z</code> is considered "Forward", and <code>+X</code> is considered "Right".</p>
+   <p>An <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace③">XRReferenceSpace</a></code> describes an <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace⑥">XRSpace</a></code> that is generally expected to remain static for the duration of the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession③⑥">XRSession</a></code>, with the most common exception being mid-session reconfiguration by the user. Every <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace④">XRReferenceSpace</a></code> describes a coordinate system where the Y axis MUST be aligned with gravity, with <code>+Y</code> being "Up". <code>-Z</code> is considered "Forward", and <code>+X</code> is considered "Right".</p>
 <pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-xrreferencespacetype"><code><c- g>XRReferenceSpaceType</c-></code></dfn> {
   <a class="idl-code" data-link-type="enum-value" href="#dom-xrreferencespacetype-stationary" id="ref-for-dom-xrreferencespacetype-stationary"><c- s>"stationary"</c-></a>,
   <a class="idl-code" data-link-type="enum-value" href="#dom-xrreferencespacetype-bounded" id="ref-for-dom-xrreferencespacetype-bounded"><c- s>"bounded"</c-></a>,
@@ -2214,11 +2205,11 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑥"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑤"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrreferencespace"><code><c- g>XRReferenceSpace</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace⑦"><c- n>XRSpace</c-></a> {
-  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform②"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-type="XRRigidTransform" href="#dom-xrreferencespace-originoffset" id="ref-for-dom-xrreferencespace-originoffset"><c- g>originOffset</c-></a>;
+  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-type="XRRigidTransform" href="#dom-xrreferencespace-originoffset" id="ref-for-dom-xrreferencespace-originoffset"><c- g>originOffset</c-></a>;
   <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler⑧"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrreferencespace-onreset" id="ref-for-dom-xrreferencespace-onreset"><c- g>onreset</c-></a>;
 };
 </pre>
-   <p>An <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace⑥">XRReferenceSpace</a></code> is obtained by calling <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace①">requestReferenceSpace()</a></code>, which creates an instance of an interface extending <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace⑦">XRReferenceSpace</a></code>, determined by the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-type" id="ref-for-dom-xrreferencespaceoptions-type">type</a></code> value of the <code class="idl"><a data-link-type="idl" href="#dictdef-xrreferencespaceoptions" id="ref-for-dictdef-xrreferencespaceoptions①">XRReferenceSpaceOptions</a></code> dictionary passed into the call:</p>
+   <p>An <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace⑤">XRReferenceSpace</a></code> is obtained by calling <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace①">requestReferenceSpace()</a></code>, which creates an instance of an interface extending <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace⑥">XRReferenceSpace</a></code>, determined by the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-type" id="ref-for-dom-xrreferencespaceoptions-type">type</a></code> value of the <code class="idl"><a data-link-type="idl" href="#dictdef-xrreferencespaceoptions" id="ref-for-dictdef-xrreferencespaceoptions①">XRReferenceSpaceOptions</a></code> dictionary passed into the call:</p>
    <ul>
     <li data-md>
      <p>Passing a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-type" id="ref-for-dom-xrreferencespaceoptions-type①">type</a></code> of <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpaceType" data-dfn-type="enum-value" data-export id="dom-xrreferencespacetype-stationary"><code>stationary</code></dfn> creates an <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace">XRStationaryReferenceSpace</a></code> instance.</p>
@@ -2228,15 +2219,15 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
      <p>Passing a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-type" id="ref-for-dom-xrreferencespaceoptions-type③">type</a></code> of <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpaceType" data-dfn-type="enum-value" data-export id="dom-xrreferencespacetype-unbounded"><code>unbounded</code></dfn> creates an <code class="idl"><a data-link-type="idl" href="#xrunboundedreferencespace" id="ref-for-xrunboundedreferencespace">XRUnboundedReferenceSpace</a></code> instance if supported by the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device②⓪">XR device</a> and the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession③⑧">XRSession</a></code>.</p>
    </ul>
    <section class="unstable">
-     The <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpace" data-dfn-type="attribute" data-export id="dom-xrreferencespace-originoffset"><code>originOffset</code></dfn> attribute is a <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform③">XRRigidTransform</a></code> that describes an additional translation and rotation to be applied to any poses queried using the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace⑧">XRReferenceSpace</a></code>. It is initially set to an <a data-link-type="dfn" href="#identity-transform" id="ref-for-identity-transform">identity transform</a>. Changes to the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespace-originoffset" id="ref-for-dom-xrreferencespace-originoffset①">originOffset</a></code> take effect immediately, and subsequent poses queried with the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace⑨">XRReferenceSpace</a></code> will take into account the new transform. 
-    <p class="note" role="note"><span>Note:</span> Changing the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespace-originoffset" id="ref-for-dom-xrreferencespace-originoffset②">originOffset</a></code> between pose queries in a single <a data-link-type="dfn" href="#xr-animation-frame" id="ref-for-xr-animation-frame①">XR animation frame</a> is not advised, since it will cause inconsistencies in the tracking data and rendered output.</p>
+     The <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpace" data-dfn-type="attribute" data-export id="dom-xrreferencespace-originoffset"><code>originOffset</code></dfn> attribute is a <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform①">XRRigidTransform</a></code> that describes an additional translation and rotation to be applied to any poses queried using the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace⑦">XRReferenceSpace</a></code>. It is initially set to an <a data-link-type="dfn" href="#identity-transform" id="ref-for-identity-transform">identity transform</a>. Changes to the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespace-originoffset" id="ref-for-dom-xrreferencespace-originoffset①">originOffset</a></code> take effect immediately, and subsequent poses queried with the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace⑧">XRReferenceSpace</a></code> will take into account the new transform. 
+    <p class="note" role="note"><span>Note:</span> Changing the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespace-originoffset" id="ref-for-dom-xrreferencespace-originoffset②">originOffset</a></code> between pose queries in a single <a data-link-type="dfn" href="#xr-animation-frame" id="ref-for-xr-animation-frame">XR animation frame</a> is not advised, since it will cause inconsistencies in the tracking data and rendered output.</p>
    </section>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpace" data-dfn-type="attribute" data-export id="dom-xrreferencespace-onreset"><code>onreset</code></dfn> attribute is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-idl-attributes" id="ref-for-event-handler-idl-attributes⑧">Event handler IDL attribute</a> for the <code class="idl"><a data-link-type="idl" href="#eventdef-xrreferencespace-reset" id="ref-for-eventdef-xrreferencespace-reset">reset</a></code> event type.</p>
    <div class="algorithm" data-algorithm="create-frame-of-reference">
-    <p>When an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①⓪">XRReferenceSpace</a></code> is requested, the user agent MUST <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="create-a-reference-space">create a reference space</dfn> by running the following steps:</p>
+    <p>When an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace⑨">XRReferenceSpace</a></code> is requested, the user agent MUST <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="create-a-reference-space">create a reference space</dfn> by running the following steps:</p>
     <ol>
      <li data-md>
-      <p>Initialize <a data-link-type="dfn" href="#xrspace-session" id="ref-for-xrspace-session②">session</a> be the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession③⑨">XRSession</a></code> object that requested creation of a reference space.</p>
+      <p>Initialize <a data-link-type="dfn" href="#xrspace-session" id="ref-for-xrspace-session③">session</a> be the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession③⑨">XRSession</a></code> object that requested creation of a reference space.</p>
      <li data-md>
       <p>Let <var>options</var> be the <code class="idl"><a data-link-type="idl" href="#dictdef-xrreferencespaceoptions" id="ref-for-dictdef-xrreferencespaceoptions②">XRReferenceSpaceOptions</a></code> passed to <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace②">requestReferenceSpace()</a></code>.</p>
      <li data-md>
@@ -2260,7 +2251,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
    <h3 class="heading settled" data-level="6.3" id="xrstationaryreferencespace-interface"><span class="secno">6.3. </span><span class="content">XRStationaryReferenceSpace</span><a class="self-link" href="#xrstationaryreferencespace-interface"></a></h3>
    <p>An <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace②">XRStationaryReferenceSpace</a></code> represents a tracking space that the user is not expected to move around within. Tracking in a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-stationary" id="ref-for-dom-xrreferencespacetype-stationary③">stationary</a></code> reference space is optimized for the assumption that the user will not move much beyond their starting point, if at all. For devices with <a data-link-type="dfn" href="#6dof" id="ref-for-6dof②">6DoF</a> tracking, <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-stationary" id="ref-for-dom-xrreferencespacetype-stationary④">stationary</a></code> reference spaces should emphasize keeping the origin stable relative to the user’s environment.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑦"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑥"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrstationaryreferencespace"><code><c- g>XRStationaryReferenceSpace</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①①"><c- n>XRReferenceSpace</c-></a> {
+<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrstationaryreferencespace"><code><c- g>XRStationaryReferenceSpace</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①⓪"><c- n>XRReferenceSpace</c-></a> {
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrstationaryreferencespacesubtype" id="ref-for-enumdef-xrstationaryreferencespacesubtype①"><c- n>XRStationaryReferenceSpaceSubtype</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRStationaryReferenceSpaceSubtype" href="#dom-xrstationaryreferencespace-subtype" id="ref-for-dom-xrstationaryreferencespace-subtype①"><c- g>subtype</c-></a>;
 };
 </pre>
@@ -2278,20 +2269,20 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
    <h3 class="heading settled" data-level="6.4" id="xrboundedreferencespace-interface"><span class="secno">6.4. </span><span class="content">XRBoundedReferenceSpace</span><a class="self-link" href="#xrboundedreferencespace-interface"></a></h3>
    <p>An <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace②">XRBoundedReferenceSpace</a></code> represents a floor-relative tracking space where the user is expected to move within a pre-established boundary. Tracking in an <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded" id="ref-for-dom-xrreferencespacetype-bounded③">bounded</a></code> reference space is optimized for keeping the reference space origin and bounds geometry stable relative to the user’s environment.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑧"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑦"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrboundedreferencespace"><code><c- g>XRBoundedReferenceSpace</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①②"><c- n>XRReferenceSpace</c-></a> {
+<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrboundedreferencespace"><code><c- g>XRBoundedReferenceSpace</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①①"><c- n>XRReferenceSpace</c-></a> {
   <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly"><c- n>DOMPointReadOnly</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<DOMPointReadOnly>" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry"><c- g>boundsGeometry</c-></a>;
 };    
 </pre>
    <p>The origin of a <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace③">XRBoundedReferenceSpace</a></code> MUST be positioned at the floor, such that the `y` axis equals `0` at floor level. The `x` and `z` position and orientation are initialized based on the conventions of the underlying platform, typically expected to be near the center of the room facing in a logical forward direction.</p>
    <p class="note" role="note"><span>Note:</span> Other XR platforms sometimes refer to the type of tracking offered by a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded" id="ref-for-dom-xrreferencespacetype-bounded④">bounded</a></code> reference space as "room scale" tracking. An <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace④">XRBoundedReferenceSpace</a></code> is not intended to describe multi-room spaces, areas with uneven floor levels, or very large open areas. Content that needs to handle those scenarios should use an <code class="idl"><a data-link-type="idl" href="#xrunboundedreferencespace" id="ref-for-xrunboundedreferencespace②">XRUnboundedReferenceSpace</a></code>.</p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRBoundedReferenceSpace" data-dfn-type="attribute" data-export id="dom-xrboundedreferencespace-boundsgeometry"><code>boundsGeometry</code></dfn> attribute describes the border around the <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace⑤">XRBoundedReferenceSpace</a></code>, which the user can expect to safely move within.</p>
-   <p>The polygonal boundary is given as an array of <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly①">DOMPointReadOnly</a></code>s, which represents a loop of points at the edges of the safe space. The points describe offsets from the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①③">XRReferenceSpace</a></code> origin in meters. Points MUST be given in a clockwise order as viewed from above, looking towards the negative end of the Y axis. The <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-y" id="ref-for-dom-dompointreadonly-y">y</a></code> value of each point MUST be <code>0</code> and the <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w">w</a></code> value of each point MUST be <code>1</code>. The bounds can be considered to originate at the floor and extend infinitely high. The shape it describes MAY not be convex.</p>
+   <p>The polygonal boundary is given as an array of <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly①">DOMPointReadOnly</a></code>s, which represents a loop of points at the edges of the safe space. The points describe offsets from the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①②">XRReferenceSpace</a></code> origin in meters. Points MUST be given in a clockwise order as viewed from above, looking towards the negative end of the Y axis. The <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-y" id="ref-for-dom-dompointreadonly-y">y</a></code> value of each point MUST be <code>0</code> and the <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w">w</a></code> value of each point MUST be <code>1</code>. The bounds can be considered to originate at the floor and extend infinitely high. The shape it describes MAY not be convex.</p>
    <p class="note" role="note"><span>Note:</span> Content should not require the user to move beyond the <code class="idl"><a data-link-type="idl" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry①">boundsGeometry</a></code>. It is possible for the user to move beyond the bounds if their physical surroundings allow for it, resulting in position values outside of the polygon they describe. This is not an error condition and should be handled gracefully by page content.</p>
    <p class="note" role="note"><span>Note:</span> Content generally should not provide a visualization of the <code class="idl"><a data-link-type="idl" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry②">boundsGeometry</a></code>, as it’s the user agent’s responsibility to ensure that safety critical information is provided to the user.</p>
    <h3 class="heading settled" data-level="6.5" id="xrunboundedreferencespace-interface"><span class="secno">6.5. </span><span class="content">XRUnboundedReferenceSpace</span><a class="self-link" href="#xrunboundedreferencespace-interface"></a></h3>
    <p>An <code class="idl"><a data-link-type="idl" href="#xrunboundedreferencespace" id="ref-for-xrunboundedreferencespace③">XRUnboundedReferenceSpace</a></code> represents a tracking space where the user is expected to move freely around their environment, potentially even long distances from their starting point. Tracking in an <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-unbounded" id="ref-for-dom-xrreferencespacetype-unbounded③">unbounded</a></code> reference space is optimized for stability around the user’s current position, and as such the tracking origin may drift over time.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑨"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑧"><c- g>Exposed</c-></a>=<c- n>Window</c->] 
-<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrunboundedreferencespace"><code><c- g>XRUnboundedReferenceSpace</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①④"><c- n>XRReferenceSpace</c-></a> {
+<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrunboundedreferencespace"><code><c- g>XRUnboundedReferenceSpace</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①③"><c- n>XRReferenceSpace</c-></a> {
 };  
 </pre>
    <h2 class="heading settled" data-level="7" id="views"><span class="secno">7. </span><span class="content">Views</span><a class="self-link" href="#views"></a></h2>
@@ -2308,13 +2299,13 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xreye" id="ref-for-enumdef-xreye"><c- n>XREye</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XREye" href="#dom-xrview-eye" id="ref-for-dom-xrview-eye"><c- g>eye</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array"><c- b>Float32Array</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="Float32Array" href="#dom-xrview-projectionmatrix" id="ref-for-dom-xrview-projectionmatrix"><c- g>projectionMatrix</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array①"><c- b>Float32Array</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="Float32Array" href="#dom-xrview-viewmatrix" id="ref-for-dom-xrview-viewmatrix"><c- g>viewMatrix</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform④"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrview-transform" id="ref-for-dom-xrview-transform"><c- g>transform</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform②"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrview-transform" id="ref-for-dom-xrview-transform"><c- g>transform</c-></a>;
 };
 </pre>
     <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-eye"><code>eye</code></dfn> attribute describes which eye this view is expected to be shown to. This attribute’s primary purpose is to ensure that pre-rendered stereo content can present the correct portion of the content to the correct eye. If the view does not have an intrinsically associated eye (the display is monoscopic, for example) this attribute MUST be set to <code class="idl"><a data-link-type="idl" href="#dom-xreye-left" id="ref-for-dom-xreye-left">"left"</a></code>.</p>
     <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-projectionmatrix"><code>projectionMatrix</code></dfn> attribute provides a <a data-link-type="dfn" href="#matrix" id="ref-for-matrix">matrix</a> describing the projection to be used when rendering the <a data-link-type="dfn" href="#view" id="ref-for-view⑦">view</a>. It is <b>strongly recommended</b> that applications use this matrix without modification. Failure to use the provided projection matrices when rendering may cause the presented frame to be distorted or badly aligned, resulting in varying degrees of user discomfort.</p>
     <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-viewmatrix"><code>viewMatrix</code></dfn> attribute provides a <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①">matrix</a> describing the view transform to be used when rendering the <a data-link-type="dfn" href="#view" id="ref-for-view⑧">view</a>. The <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②">matrix</a> represents the inverse of the <code class="idl"><a data-link-type="idl" href="#dom-xrview-transform" id="ref-for-dom-xrview-transform①">transform</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-matrix" id="ref-for-dom-xrrigidtransform-matrix">matrix</a></code>. It is <b>strongly recommended</b> that applications use this matrix without modification. Failure to use the provided view matrices when rendering may cause the presented frame to be distorted or badly aligned, resulting in varying degrees of user discomfort.</p>
-    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-transform"><code>transform</code></dfn> attribute is the <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform⑤">XRRigidTransform</a></code> of the viewpoint.</p>
+    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-transform"><code>transform</code></dfn> attribute is the <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform③">XRRigidTransform</a></code> of the viewpoint.</p>
     <p class="note" role="note"><span>NOTE:</span> The <code class="idl"><a data-link-type="idl" href="#dom-xrview-transform" id="ref-for-dom-xrview-transform②">transform</a></code> can be used to position camera objects in many rendering libraries instead of using the <code class="idl"><a data-link-type="idl" href="#dom-xrview-viewmatrix" id="ref-for-dom-xrview-viewmatrix①">viewMatrix</a></code> directly if the library is more naturally set up to consume data in that format.</p>
    </section>
    <h3 class="heading settled" data-level="7.2" id="xrviewport-interface"><span class="secno">7.2. </span><span class="content">XRViewport</span><a class="self-link" href="#xrviewport-interface"></a></h3>
@@ -2352,7 +2343,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
    <p>WebXR provides various transforms in the form of <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="matrix" data-noexport id="matrix">matrices</dfn>. WebXR matrices are always 4x4 and given as 16 element <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array②">Float32Array</a></code>s in column major order. They may be passed directly to WebGL’s <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.10" id="ref-for-5.14.10">uniformMatrix4fv</a></code> function, used to create an equivalent <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dommatrix" id="ref-for-dommatrix">DOMMatrix</a></code>, or used with a variety of third party math libraries.</p>
    <p>Translations specified by WebXR matrices are always given in meters.</p>
    <h3 class="heading settled" data-level="8.2" id="xrrigidtransform-interface"><span class="secno">8.2. </span><span class="content">XRRigidTransform</span><a class="self-link" href="#xrrigidtransform-interface"></a></h3>
-   <p>An <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform⑥">XRRigidTransform</a></code> is a transform described by a <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position">position</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation">orientation</a></code>. When interpreting an <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform⑦">XRRigidTransform</a></code> the <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation①">orientation</a></code> is always applied prior to the <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position①">position</a></code>.</p>
+   <p>An <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform④">XRRigidTransform</a></code> is a transform described by a <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position">position</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation">orientation</a></code>. When interpreting an <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform⑤">XRRigidTransform</a></code> the <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation①">orientation</a></code> is always applied prior to the <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position①">position</a></code>.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①②"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①"><c- g>Exposed</c-></a>=<c- n>Window</c->,
  <a class="idl-code" data-link-type="constructor" href="#dom-xrrigidtransform-xrrigidtransform" id="ref-for-dom-xrrigidtransform-xrrigidtransform"><c- g>Constructor</c-></a>(<c- b>optional</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dictdef-dompointinit" id="ref-for-dictdef-dompointinit"><c- n>DOMPointInit</c-></a> <dfn class="idl-code" data-dfn-for="XRRigidTransform/XRRigidTransform(position, orientation)" data-dfn-type="argument" data-export id="dom-xrrigidtransform-xrrigidtransform-position-orientation-position"><code><c- g>position</c-></code><a class="self-link" href="#dom-xrrigidtransform-xrrigidtransform-position-orientation-position"></a></dfn>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dictdef-dompointinit" id="ref-for-dictdef-dompointinit①"><c- n>DOMPointInit</c-></a> <dfn class="idl-code" data-dfn-for="XRRigidTransform/XRRigidTransform(position, orientation)" data-dfn-type="argument" data-export id="dom-xrrigidtransform-xrrigidtransform-position-orientation-orientation"><code><c- g>orientation</c-></code><a class="self-link" href="#dom-xrrigidtransform-xrrigidtransform-position-orientation-orientation"></a></dfn>)]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrrigidtransform"><code><c- g>XRRigidTransform</c-></code></dfn> {
@@ -2365,7 +2356,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
     <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRRigidTransform" data-dfn-type="constructor" data-export id="dom-xrrigidtransform-xrrigidtransform"><code>XRRigidTransform(<var>position</var>, <var>orientation</var>)</code></dfn> constructor MUST perform the following steps when invoked:</p>
     <ol>
      <li data-md>
-      <p>Let <var>transform</var> be a new <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform⑧">XRRigidTransform</a></code>.</p>
+      <p>Let <var>transform</var> be a new <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform⑥">XRRigidTransform</a></code>.</p>
      <li data-md>
       <p>If <var>position</var> is not a <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dictdef-dompointinit" id="ref-for-dictdef-dompointinit②">DOMPointInit</a></code> initialize <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position③">position</a></code> to <code>{ x: 0.0, y: 0.0, z: 0.0, w: 1.0 }</code>.</p>
      <li data-md>
@@ -2383,13 +2374,13 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRRigidTransform" data-dfn-type="attribute" data-export id="dom-xrrigidtransform-position"><code>position</code></dfn> attribute is a 3-dimensional point, given in meters, describing the translation component of the transform. The <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position⑤">position</a></code>'s <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-w" id="ref-for-dom-dompointreadonly-w③">w</a></code> attribute MUST be <code>1.0</code>.</p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRRigidTransform" data-dfn-type="attribute" data-export id="dom-xrrigidtransform-orientation"><code>orientation</code></dfn> attribute is a quaternion describing the rotational component of the transform. The <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation⑥">orientation</a></code> MUST be normalized to have a length of <code>1.0</code>.</p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRRigidTransform" data-dfn-type="attribute" data-export id="dom-xrrigidtransform-matrix"><code>matrix</code></dfn> attribute returns the transform described by the <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position⑥">position</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation⑦">orientation</a></code> attributes as a <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③">matrix</a>.</p>
-   <p>An <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform⑨">XRRigidTransform</a></code> with a <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position⑦">position</a></code> of <code>{ x: 0, y: 0, z: 0 w: 1 }</code> and an <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation⑧">orientation</a></code> of <code>{ x: 0, y: 0, z: 0, w: 1 }</code> is known as an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="identity-transform">identity transform</dfn>.</p>
+   <p>An <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform⑦">XRRigidTransform</a></code> with a <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position⑦">position</a></code> of <code>{ x: 0, y: 0, z: 0 w: 1 }</code> and an <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-orientation" id="ref-for-dom-xrrigidtransform-orientation⑧">orientation</a></code> of <code>{ x: 0, y: 0, z: 0, w: 1 }</code> is known as an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="identity-transform">identity transform</dfn>.</p>
    <p>We still need to define the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="normalize">Normalize</dfn> step. (This is <a href="https://github.com/immersive-web/webxr/issues/472">filed</a>.)</p>
    <h3 class="heading settled" data-level="8.3" id="xrray-interface"><span class="secno">8.3. </span><span class="content">XRRay</span><a class="self-link" href="#xrray-interface"></a></h3>
    <p>An <code class="idl"><a data-link-type="idl" href="#xrray" id="ref-for-xrray">XRRay</a></code> is a geometric ray described by a <code class="idl"><a data-link-type="idl" href="#dom-xrray-origin" id="ref-for-dom-xrray-origin">origin</a></code> point and <code class="idl"><a data-link-type="idl" href="#dom-xrray-direction" id="ref-for-dom-xrray-direction">direction</a></code> vector.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①③"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①②"><c- g>Exposed</c-></a>=<c- n>Window</c->,
  <a class="idl-code" data-link-type="constructor" href="#dom-xrray-xrray" id="ref-for-dom-xrray-xrray"><c- g>Constructor</c-></a>(<c- b>optional</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dictdef-dompointinit" id="ref-for-dictdef-dompointinit④"><c- n>DOMPointInit</c-></a> <dfn class="idl-code" data-dfn-for="XRRay/XRRay(origin, direction)" data-dfn-type="argument" data-export id="dom-xrray-xrray-origin-direction-origin"><code><c- g>origin</c-></code><a class="self-link" href="#dom-xrray-xrray-origin-direction-origin"></a></dfn>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dictdef-dompointinit" id="ref-for-dictdef-dompointinit⑤"><c- n>DOMPointInit</c-></a> <dfn class="idl-code" data-dfn-for="XRRay/XRRay(origin, direction)" data-dfn-type="argument" data-export id="dom-xrray-xrray-origin-direction-direction"><code><c- g>direction</c-></code><a class="self-link" href="#dom-xrray-xrray-origin-direction-direction"></a></dfn>),
- <a class="idl-code" data-link-type="constructor" href="#dom-xrray-xrray-transform" id="ref-for-dom-xrray-xrray-transform"><c- g>Constructor</c-></a>(<a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform①⓪"><c- n>XRRigidTransform</c-></a> <dfn class="idl-code" data-dfn-for="XRRay/XRRay(transform)" data-dfn-type="argument" data-export id="dom-xrray-xrray-transform-transform"><code><c- g>transform</c-></code><a class="self-link" href="#dom-xrray-xrray-transform-transform"></a></dfn>)]
+ <a class="idl-code" data-link-type="constructor" href="#dom-xrray-xrray-transform" id="ref-for-dom-xrray-xrray-transform"><c- g>Constructor</c-></a>(<a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform⑧"><c- n>XRRigidTransform</c-></a> <dfn class="idl-code" data-dfn-for="XRRay/XRRay(transform)" data-dfn-type="argument" data-export id="dom-xrray-xrray-transform-transform"><code><c- g>transform</c-></code><a class="self-link" href="#dom-xrray-xrray-transform-transform"></a></dfn>)]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrray"><code><c- g>XRRay</c-></code></dfn> {
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly④"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrray-origin" id="ref-for-dom-xrray-origin①"><c- g>origin</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly⑤"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrray-direction" id="ref-for-dom-xrray-direction①"><c- g>direction</c-></a>;
@@ -2441,16 +2432,23 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
     <p class="note" role="note"><span>NOTE:</span> The <code class="idl"><a data-link-type="idl" href="#xrray" id="ref-for-xrray④">XRRay</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrray-matrix" id="ref-for-dom-xrray-matrix①">matrix</a></code> can be used to easily position graphical representations of the ray when rendering.</p>
    </section>
    <h2 class="heading settled" data-level="9" id="pose"><span class="secno">9. </span><span class="content">Pose</span><a class="self-link" href="#pose"></a></h2>
-   <h3 class="heading settled" data-level="9.1" id="xrviewerpose-interface"><span class="secno">9.1. </span><span class="content">XRViewerPose</span><a class="self-link" href="#xrviewerpose-interface"></a></h3>
-   <p>An <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose③">XRViewerPose</a></code> describes the state of a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="viewer">viewer</dfn> of the XR scene as tracked by the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device②①">XR device</a>. A <a data-link-type="dfn" href="#viewer" id="ref-for-viewer⑥">viewer</a> may represent a tracked piece of hardware, the observed position of a users head relative to the hardware, or some other means of computing a series of viewpoints into the XR scene. The <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose④">XRViewerPose</a></code> describes the position and orientation of the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer⑦">viewer</a> relative to the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①⑤">XRReferenceSpace</a></code> it was queried with, as well as an array of <a data-link-type="dfn" href="#view" id="ref-for-view⑨">view</a>s, which include view and projection matrices. These matrices should be used by the application when render a frame of an XR scene.</p>
-<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①④"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①③"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrviewerpose"><code><c- g>XRViewerPose</c-></code></dfn> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform①①"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrviewerpose-transform" id="ref-for-dom-xrviewerpose-transform"><c- g>transform</c-></a>;
+   <h3 class="heading settled" data-level="9.1" id="xrpose-interface"><span class="secno">9.1. </span><span class="content">XRPose</span><a class="self-link" href="#xrpose-interface"></a></h3>
+   <p>An <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose②">XRPose</a></code> describes a position and orientation in space relative to an <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace⑧">XRSpace</a></code>.</p>
+<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①④"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①③"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrpose"><code><c- g>XRPose</c-></code></dfn> {
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform⑨"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrpose-transform" id="ref-for-dom-xrpose-transform"><c- g>transform</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition"><c- g>emulatedPosition</c-></a>;
+};
+</pre>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRPose" data-dfn-type="attribute" data-export id="dom-xrpose-transform"><code>transform</code></dfn> attribute describes the <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform①⓪">XRRigidTransform</a></code> between two <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace⑨">XRSpace</a></code>.</p>
+   <section class="unstable"> The <dfn class="dfn-paneled idl-code" data-dfn-for="XRPose" data-dfn-type="attribute" data-export id="dom-xrpose-emulatedposition"><code>emulatedPosition</code></dfn> attribute MUST be <code>false</code> if the <code class="idl"><a data-link-type="idl" href="#dom-xrpose-transform" id="ref-for-dom-xrpose-transform①">transform</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position⑧">position</a></code> values are based on sensor readings, or <code>true</code> if the position values are software estimations, such as those provided by a neck or arm model. </section>
+   <h3 class="heading settled" data-level="9.2" id="xrviewerpose-interface"><span class="secno">9.2. </span><span class="content">XRViewerPose</span><a class="self-link" href="#xrviewerpose-interface"></a></h3>
+   <p>An <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose③">XRViewerPose</a></code> is an <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose③">XRPose</a></code> describing the state of a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="viewer">viewer</dfn> of the XR scene as tracked by the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device②①">XR device</a>. A <a data-link-type="dfn" href="#viewer" id="ref-for-viewer⑥">viewer</a> may represent a tracked piece of hardware, the observed position of a users head relative to the hardware, or some other means of computing a series of viewpoints into the XR scene. <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose④">XRViewerPose</a></code>s can only be queried relative to an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①④">XRReferenceSpace</a></code>. It provides, in addition to the <code class="idl"><a data-link-type="idl" href="#xrpose" id="ref-for-xrpose④">XRPose</a></code> values, an array of <a data-link-type="dfn" href="#view" id="ref-for-view⑨">view</a>s which include view and projection matrices. These matrices should be used by the application when render a frame of an XR scene.</p>
+<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⑤"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①④"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrviewerpose"><code><c- g>XRViewerPose</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="#xrpose" id="ref-for-xrpose⑤"><c- n>XRPose</c-></a> {
   <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrview" id="ref-for-xrview②"><c- n>XRView</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<XRView>" href="#dom-xrviewerpose-views" id="ref-for-dom-xrviewerpose-views"><c- g>views</c-></a>;
 };
 </pre>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRViewerPose" data-dfn-type="attribute" data-export id="dom-xrviewerpose-transform"><code>transform</code></dfn> is the <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform①②">XRRigidTransform</a></code> of the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer⑧">viewer</a> relative to the origin of the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①⑥">XRReferenceSpace</a></code> the <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose⑤">XRViewerPose</a></code> was queried with.</p>
-   <p class="note" role="note"><span>NOTE:</span> The <code class="idl"><a data-link-type="idl" href="#dom-xrviewerpose-transform" id="ref-for-dom-xrviewerpose-transform①">transform</a></code> can be used to position graphical representations of the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer⑨">viewer</a> for spectator views of the scene or multi-user interaction.</p>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRViewerPose" data-dfn-type="attribute" data-export id="dom-xrviewerpose-views"><code>views</code></dfn> array is a sequence of <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview③">XRView</a></code>s describing the viewpoints of the XR scene, relative to the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①⑦">XRReferenceSpace</a></code> the <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose⑥">XRViewerPose</a></code> was queried with. Every <a data-link-type="dfn" href="#view" id="ref-for-view①⓪">view</a> of the XR scene in the array must be rendered in order to display correctly on the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device②②">XR device</a>. Each <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview④">XRView</a></code> includes view and projection matrices, and can be used to query <code class="idl"><a data-link-type="idl" href="#xrviewport" id="ref-for-xrviewport②">XRViewport</a></code>s from layers when needed.</p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRViewerPose" data-dfn-type="attribute" data-export id="dom-xrviewerpose-views"><code>views</code></dfn> array is a sequence of <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview③">XRView</a></code>s describing the viewpoints of the XR scene, relative to the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①⑤">XRReferenceSpace</a></code> the <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose⑤">XRViewerPose</a></code> was queried with. Every <a data-link-type="dfn" href="#view" id="ref-for-view①⓪">view</a> of the XR scene in the array must be rendered in order to display correctly on the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device②②">XR device</a>. Each <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview④">XRView</a></code> includes view and projection matrices, and can be used to query <code class="idl"><a data-link-type="idl" href="#xrviewport" id="ref-for-xrviewport②">XRViewport</a></code>s from layers when needed.</p>
+   <p class="note" role="note"><span>NOTE:</span> The <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose⑥">XRViewerPose</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrpose-transform" id="ref-for-dom-xrpose-transform②">transform</a></code> can be used to position graphical representations of the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer⑦">viewer</a> for spectator views of the scene or multi-user interaction.</p>
    <h2 class="heading settled" data-level="10" id="input"><span class="secno">10. </span><span class="content">Input</span><a class="self-link" href="#input"></a></h2>
    <section class="unstable">
     <h3 class="heading settled" data-level="10.1" id="xrinputsource-interface"><span class="secno">10.1. </span><span class="content">XRInputSource</span><a class="self-link" href="#xrinputsource-interface"></a></h3>
@@ -2466,13 +2464,15 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
   <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-screen" id="ref-for-dom-xrtargetraymode-screen"><c- s>"screen"</c-></a>
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⑤"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①④"><c- g>Exposed</c-></a>=<c- n>Window</c->]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⑥"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⑤"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrinputsource"><code><c- g>XRInputSource</c-></code></dfn> {
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrhandedness" id="ref-for-enumdef-xrhandedness"><c- n>XRHandedness</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRHandedness" href="#dom-xrinputsource-handedness" id="ref-for-dom-xrinputsource-handedness"><c- g>handedness</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrtargetraymode" id="ref-for-enumdef-xrtargetraymode"><c- n>XRTargetRayMode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRTargetRayMode" href="#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode"><c- g>targetRayMode</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace①⓪"><c- n>XRSpace</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSpace" href="#dom-xrinputsource-targetrayspace" id="ref-for-dom-xrinputsource-targetrayspace"><c- g>targetRaySpace</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace①①"><c- n>XRSpace</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSpace?" href="#dom-xrinputsource-gripspace" id="ref-for-dom-xrinputsource-gripspace"><c- g>gripSpace</c-></a>;
 };
 </pre>
-    <p>Each <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource②">XRInputSource</a></code> SHOULD define a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="primary-action">primary action</dfn>. The <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action">primary action</a> is a platform-specific action that, when engaged, produces <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-selectstart" id="ref-for-eventdef-xrsession-selectstart①">selectstart</a></code>, <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-selectend" id="ref-for-eventdef-xrsession-selectend①">selectend</a></code>, and <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-select" id="ref-for-eventdef-xrsession-select②">select</a></code> events. Examples of possible <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action①">primary action</a>s are pressing a trigger, touchpad, or button, speaking a command, or making a hand gesture. If the platform guidelines define a recommended primary input then it should be used as the <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action②">primary action</a>, otherwise the user agent is free to select one.</p>
+    <p>Each <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource①">XRInputSource</a></code> SHOULD define a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="primary-action">primary action</dfn>. The <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action">primary action</a> is a platform-specific action that, when engaged, produces <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-selectstart" id="ref-for-eventdef-xrsession-selectstart①">selectstart</a></code>, <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-selectend" id="ref-for-eventdef-xrsession-selectend①">selectend</a></code>, and <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-select" id="ref-for-eventdef-xrsession-select②">select</a></code> events. Examples of possible <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action①">primary action</a>s are pressing a trigger, touchpad, or button, speaking a command, or making a hand gesture. If the platform guidelines define a recommended primary input then it should be used as the <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action②">primary action</a>, otherwise the user agent is free to select one.</p>
     <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSource" data-dfn-type="attribute" data-export id="dom-xrinputsource-handedness"><code>handedness</code></dfn> attribute describes which hand the input source is associated with, if any. Input sources with no natural handedness (such as headset-mounted controls or standard gamepads) or for which the handedness is not currently known MUST set this attribute to the empty string.</p>
     <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSource" data-dfn-type="attribute" data-export id="dom-xrinputsource-targetraymode"><code>targetRayMode</code></dfn> attribute describes the method used to produce the target ray, and indicates how the application should present the target ray to the user if desired.</p>
     <ul>
@@ -2483,22 +2483,10 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
      <li data-md>
       <p><dfn class="dfn-paneled idl-code" data-dfn-for="XRTargetRayMode" data-dfn-type="enum-value" data-export id="dom-xrtargetraymode-screen"><code>screen</code></dfn> indicates that the input source was an interaction with the canvas element associated with a inline session’s output context, such as a mouse click or touch event.</p>
     </ul>
-    <p class="note" role="note"><span>Note:</span> Some input sources, like an <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource③">XRInputSource</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode①">targetRayMode</a></code> set to <code class="idl"><a data-link-type="idl" href="#dom-xrtargetraymode-screen" id="ref-for-dom-xrtargetraymode-screen①">screen</a></code>, will only be added to the session’s <a data-link-type="dfn" href="#list-of-active-input-sources" id="ref-for-list-of-active-input-sources①">list of active input sources</a> immediately before the <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-selectstart" id="ref-for-eventdef-xrsession-selectstart②">selectstart</a></code> event, and removed from the session’s <a data-link-type="dfn" href="#list-of-active-input-sources" id="ref-for-list-of-active-input-sources②">list of active input sources</a> immediately after the <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-selectend" id="ref-for-eventdef-xrsession-selectend②">selectend</a></code> event.</p>
-   </section>
-   <section class="unstable">
-    <h3 class="heading settled" data-level="10.2" id="xrinputpose-interface"><span class="secno">10.2. </span><span class="content">XRInputPose</span><a class="self-link" href="#xrinputpose-interface"></a></h3>
-<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⑥"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⑤"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrinputpose"><code><c- g>XRInputPose</c-></code></dfn> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrinputpose-emulatedposition" id="ref-for-dom-xrinputpose-emulatedposition"><c- g>emulatedPosition</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrray" id="ref-for-xrray⑤"><c- n>XRRay</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRay" href="#dom-xrinputpose-targetray" id="ref-for-dom-xrinputpose-targetray"><c- g>targetRay</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform①③"><c- n>XRRigidTransform</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform?" href="#dom-xrinputpose-griptransform" id="ref-for-dom-xrinputpose-griptransform"><c- g>gripTransform</c-></a>;
-};
-</pre>
-    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputPose" data-dfn-type="attribute" data-export id="dom-xrinputpose-targetray"><code>targetRay</code></dfn> describes the preferred pointing ray of the <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource④">XRInputSource</a></code>, as defined by the <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode②">targetRayMode</a></code>.</p>
-    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputPose" data-dfn-type="attribute" data-export id="dom-xrinputpose-griptransform"><code>gripTransform</code></dfn> MUST describe a transform to a space which, if the user were to hold a straight rod in their hand their hand, places the origin at the centroid of their curled fingers and where the <code>-Z</code> axis points along the rod towards their thumb. The <code>X</code> axis is perpendicular to the back of the hand being described, with back of the users right hand pointing towards <code>+X</code> and the back of the user’s left hand pointing towards <code>-X</code>. The <code>Y</code> axis is implied by the relationship between the <code>X</code> and <code>Z</code> axis, with <code>+Y</code> roughly pointing in the direction of the user’s arm.</p>
-    <p>The <code class="idl"><a data-link-type="idl" href="#dom-xrinputpose-griptransform" id="ref-for-dom-xrinputpose-griptransform①">gripTransform</a></code> MAY represent an emulated translation or rotation if the input source’s cannot supply full <a data-link-type="dfn" href="#6dof" id="ref-for-6dof③">6DoF</a> tracking.</p>
-    <p>The <code class="idl"><a data-link-type="idl" href="#dom-xrinputpose-griptransform" id="ref-for-dom-xrinputpose-griptransform②">gripTransform</a></code> MUST be `null` if the input source isn’t trackable.</p>
-    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputPose" data-dfn-type="attribute" data-export id="dom-xrinputpose-emulatedposition"><code>emulatedPosition</code></dfn> attribute indicates the accuracy of the <code class="idl"><a data-link-type="idl" href="#dom-xrray-origin" id="ref-for-dom-xrray-origin⑧">origin</a></code> of the <code class="idl"><a data-link-type="idl" href="#dom-xrinputpose-targetray" id="ref-for-dom-xrinputpose-targetray①">targetRay</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-position" id="ref-for-dom-xrrigidtransform-position⑧">position</a></code> of the <code class="idl"><a data-link-type="idl" href="#dom-xrinputpose-griptransform" id="ref-for-dom-xrinputpose-griptransform③">gripTransform</a></code>. <code class="idl"><a data-link-type="idl" href="#dom-xrinputpose-emulatedposition" id="ref-for-dom-xrinputpose-emulatedposition①">emulatedPosition</a></code> MUST be set to <code>true</code> if positional values are software estimations, such as those provided by a neck or arm model. <code class="idl"><a data-link-type="idl" href="#dom-xrinputpose-emulatedposition" id="ref-for-dom-xrinputpose-emulatedposition②">emulatedPosition</a></code> MUST be set to <code>false</code> if the positional values are based on sensor readings.</p>
+    <p class="note" role="note"><span>Note:</span> Some input sources, like an <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource②">XRInputSource</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode①">targetRayMode</a></code> set to <code class="idl"><a data-link-type="idl" href="#dom-xrtargetraymode-screen" id="ref-for-dom-xrtargetraymode-screen①">screen</a></code>, will only be added to the session’s <a data-link-type="dfn" href="#list-of-active-input-sources" id="ref-for-list-of-active-input-sources①">list of active input sources</a> immediately before the <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-selectstart" id="ref-for-eventdef-xrsession-selectstart②">selectstart</a></code> event, and removed from the session’s <a data-link-type="dfn" href="#list-of-active-input-sources" id="ref-for-list-of-active-input-sources②">list of active input sources</a> immediately after the <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-selectend" id="ref-for-eventdef-xrsession-selectend②">selectend</a></code> event.</p>
+    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSource" data-dfn-type="attribute" data-export id="dom-xrinputsource-targetrayspace"><code>targetRaySpace</code></dfn> attribute is an <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace①②">XRSpace</a></code> that tracks the pose of the preferred pointing ray of the <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource③">XRInputSource</a></code>, as defined by the <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode②">targetRayMode</a></code>.</p>
+    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSource" data-dfn-type="attribute" data-export id="dom-xrinputsource-gripspace"><code>gripSpace</code></dfn> attribute is an <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace①③">XRSpace</a></code> that tracks the pose that should be used to render virtual objects such that they appear to be held in the user’s hand. If the user were to hold a straight rod, this <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace①④">XRSpace</a></code> places the origin at the centroid of their curled fingers and where the <code>-Z</code> axis points along the length of the rod towards their thumb. The <code>X</code> axis is perpendicular to the back of the hand being described, with back of the users right hand pointing towards <code>+X</code> and the back of the user’s left hand pointing towards <code>-X</code>. The <code>Y</code> axis is implied by the relationship between the <code>X</code> and <code>Z</code> axis, with <code>+Y</code> roughly pointing in the direction of the user’s arm.</p>
+    <p>The <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gripspace" id="ref-for-dom-xrinputsource-gripspace①">gripSpace</a></code> MUST be <code>null</code> if the input source isn’t inherently trackable such as for input sources with a <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode③">targetRayMode</a></code> of <code class="idl"><a data-link-type="idl" href="#dom-xrtargetraymode-gaze" id="ref-for-dom-xrtargetraymode-gaze①">gaze</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-xrtargetraymode-screen" id="ref-for-dom-xrtargetraymode-screen②">screen</a></code>.</p>
    </section>
    <h2 class="heading settled" data-level="11" id="layers"><span class="secno">11. </span><span class="content">Layers</span><a class="self-link" href="#layers"></a></h2>
    <h3 class="heading settled" data-level="11.1" id="xrlayer-interface"><span class="secno">11.1. </span><span class="content">XRLayer</span><a class="self-link" href="#xrlayer-interface"></a></h3>
@@ -2548,11 +2536,11 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
      <li data-md>
       <p>Let <var>layer</var> be a new <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer⑤">XRWebGLLayer</a></code></p>
      <li data-md>
-      <p>If <var>session</var>’s <a data-link-type="dfn" href="#ended" id="ref-for-ended②">ended</a> value is <code>true</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑤">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>session</var>’s <a data-link-type="dfn" href="#ended" id="ref-for-ended②">ended</a> value is <code>true</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑧">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
-      <p>If <var>context</var> is lost, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑥">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>context</var> is lost, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑨">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
-      <p>If <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible①">XR compatible</a> boolean is false, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑦">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible①">XR compatible</a> boolean is false, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⓪">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
       <p>Initialize <var>layer</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-context" id="ref-for-dom-xrwebgllayer-context①">context</a></code> to <var>context</var>.</p>
      <li data-md>
@@ -2699,7 +2687,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
       <li data-md>
        <p>Let <var>context</var> be the target <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase" id="ref-for-WebGLRenderingContextBase⑥">WebGLRenderingContextBase</a></code> object.</p>
       <li data-md>
-       <p>If <var>context</var>’s <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#webgl-context-lost-flag" id="ref-for-webgl-context-lost-flag">WebGL context lost flag</a> is set, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑨">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑧">InvalidStateError</a></code> and abort these abort these steps.</p>
+       <p>If <var>context</var>’s <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#webgl-context-lost-flag" id="ref-for-webgl-context-lost-flag">WebGL context lost flag</a> is set, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑨">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①①">InvalidStateError</a></code> and abort these abort these steps.</p>
       <li data-md>
        <p>If <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑦">XR compatible</a> boolean is <code>true</code>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise④">resolve</a> <var>promise</var> and abort these steps.</p>
       <li data-md>
@@ -2787,20 +2775,20 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRSessionEvent" data-dfn-type="attribute" data-export id="dom-xrsessionevent-session"><code>session</code></dfn> attribute indicates the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑤③">XRSession</a></code> that generated the event.</p>
    <section class="unstable">
     <h3 class="heading settled" data-level="13.2" id="xrinputsourceevent-interface"><span class="secno">13.2. </span><span class="content">XRInputSourceEvent</span><a class="self-link" href="#xrinputsourceevent-interface"></a></h3>
-    <p><code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent">XRInputSourceEvent</a></code>s are fired to indicate changes to the state of an <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource⑤">XRInputSource</a></code>.</p>
+    <p><code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent">XRInputSourceEvent</a></code>s are fired to indicate changes to the state of an <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource④">XRInputSource</a></code>.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext②①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed②⓪"><c- g>Exposed</c-></a>=<c- n>Window</c->, <dfn class="idl-code" data-dfn-for="XRInputSourceEvent" data-dfn-type="constructor" data-export data-lt="XRInputSourceEvent(type, eventInitDict)" id="dom-xrinputsourceevent-xrinputsourceevent"><code><c- g>Constructor</c-></code><a class="self-link" href="#dom-xrinputsourceevent-xrinputsourceevent"></a></dfn>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="XRInputSourceEvent/XRInputSourceEvent(type, eventInitDict)" data-dfn-type="argument" data-export id="dom-xrinputsourceevent-xrinputsourceevent-type-eventinitdict-type"><code><c- g>type</c-></code><a class="self-link" href="#dom-xrinputsourceevent-xrinputsourceevent-type-eventinitdict-type"></a></dfn>, <a class="n" data-link-type="idl-name" href="#dictdef-xrinputsourceeventinit" id="ref-for-dictdef-xrinputsourceeventinit"><c- n>XRInputSourceEventInit</c-></a> <dfn class="idl-code" data-dfn-for="XRInputSourceEvent/XRInputSourceEvent(type, eventInitDict)" data-dfn-type="argument" data-export id="dom-xrinputsourceevent-xrinputsourceevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code><a class="self-link" href="#dom-xrinputsourceevent-xrinputsourceevent-type-eventinitdict-eventinitdict"></a></dfn>)]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrinputsourceevent"><code><c- g>XRInputSourceEvent</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event①"><c- n>Event</c-></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrframe" id="ref-for-xrframe①③"><c- n>XRFrame</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRFrame" href="#dom-xrinputsourceevent-frame" id="ref-for-dom-xrinputsourceevent-frame"><c- g>frame</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource⑥"><c- n>XRInputSource</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRInputSource" href="#dom-xrinputsourceevent-inputsource" id="ref-for-dom-xrinputsourceevent-inputsource"><c- g>inputSource</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrframe" id="ref-for-xrframe①④"><c- n>XRFrame</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRFrame" href="#dom-xrinputsourceevent-frame" id="ref-for-dom-xrinputsourceevent-frame"><c- g>frame</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource⑤"><c- n>XRInputSource</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRInputSource" href="#dom-xrinputsourceevent-inputsource" id="ref-for-dom-xrinputsourceevent-inputsource"><c- g>inputSource</c-></a>;
 };
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-xrinputsourceeventinit"><code><c- g>XRInputSourceEventInit</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit" id="ref-for-dictdef-eventinit①"><c- n>EventInit</c-></a> {
-  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrframe" id="ref-for-xrframe①④"><c- n>XRFrame</c-></a> <dfn class="idl-code" data-dfn-for="XRInputSourceEventInit" data-dfn-type="dict-member" data-export data-type="XRFrame " id="dom-xrinputsourceeventinit-frame"><code><c- g>frame</c-></code><a class="self-link" href="#dom-xrinputsourceeventinit-frame"></a></dfn>;
-  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource⑦"><c- n>XRInputSource</c-></a> <dfn class="idl-code" data-dfn-for="XRInputSourceEventInit" data-dfn-type="dict-member" data-export data-type="XRInputSource " id="dom-xrinputsourceeventinit-inputsource"><code><c- g>inputSource</c-></code><a class="self-link" href="#dom-xrinputsourceeventinit-inputsource"></a></dfn>;
+  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrframe" id="ref-for-xrframe①⑤"><c- n>XRFrame</c-></a> <dfn class="idl-code" data-dfn-for="XRInputSourceEventInit" data-dfn-type="dict-member" data-export data-type="XRFrame " id="dom-xrinputsourceeventinit-frame"><code><c- g>frame</c-></code><a class="self-link" href="#dom-xrinputsourceeventinit-frame"></a></dfn>;
+  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource⑥"><c- n>XRInputSource</c-></a> <dfn class="idl-code" data-dfn-for="XRInputSourceEventInit" data-dfn-type="dict-member" data-export data-type="XRInputSource " id="dom-xrinputsourceeventinit-inputsource"><code><c- g>inputSource</c-></code><a class="self-link" href="#dom-xrinputsourceeventinit-inputsource"></a></dfn>;
 };
 </pre>
-    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSourceEvent" data-dfn-type="attribute" data-export id="dom-xrinputsourceevent-inputsource"><code>inputSource</code></dfn> attribute indicates the <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource⑧">XRInputSource</a></code> that generated this event.</p>
-    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSourceEvent" data-dfn-type="attribute" data-export id="dom-xrinputsourceevent-frame"><code>frame</code></dfn> attribute is an <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①⑤">XRFrame</a></code> that corresponds with the time that the event took place. It may represent historical data. Any <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose⑦">XRViewerPose</a></code> queried from the <code class="idl"><a data-link-type="idl" href="#dom-xrinputsourceevent-frame" id="ref-for-dom-xrinputsourceevent-frame①">frame</a></code> MUST have an empty <code class="idl"><a data-link-type="idl" href="#dom-xrviewerpose-views" id="ref-for-dom-xrviewerpose-views①">views</a></code> array.</p>
+    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSourceEvent" data-dfn-type="attribute" data-export id="dom-xrinputsourceevent-inputsource"><code>inputSource</code></dfn> attribute indicates the <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource⑦">XRInputSource</a></code> that generated this event.</p>
+    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSourceEvent" data-dfn-type="attribute" data-export id="dom-xrinputsourceevent-frame"><code>frame</code></dfn> attribute is an <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①⑥">XRFrame</a></code> that corresponds with the time that the event took place. It may represent historical data. Any <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose⑦">XRViewerPose</a></code> queried from the <code class="idl"><a data-link-type="idl" href="#dom-xrinputsourceevent-frame" id="ref-for-dom-xrinputsourceevent-frame①">frame</a></code> MUST have an empty <code class="idl"><a data-link-type="idl" href="#dom-xrviewerpose-views" id="ref-for-dom-xrviewerpose-views①">views</a></code> array.</p>
     <div class="algorithm" data-algorithm="fire-input-source-event">
      <p>When the user agent fires an <code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent①">XRInputSourceEvent</a></code> <var>event</var> it MUST run the following steps:</p>
      <ol>
@@ -2816,19 +2804,19 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     </div>
    </section>
    <h3 class="heading settled" data-level="13.3" id="xrreferencespaceevent-interface"><span class="secno">13.3. </span><span class="content">XRReferenceSpaceEvent</span><a class="self-link" href="#xrreferencespaceevent-interface"></a></h3>
-   <p><code class="idl"><a data-link-type="idl" href="#xrreferencespaceevent" id="ref-for-xrreferencespaceevent">XRReferenceSpaceEvent</a></code>s are fired to indicate changes to the state of an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①⑧">XRReferenceSpace</a></code>.</p>
+   <p><code class="idl"><a data-link-type="idl" href="#xrreferencespaceevent" id="ref-for-xrreferencespaceevent">XRReferenceSpaceEvent</a></code>s are fired to indicate changes to the state of an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①⑥">XRReferenceSpace</a></code>.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext②②"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed②①"><c- g>Exposed</c-></a>=<c- n>Window</c->, <dfn class="idl-code" data-dfn-for="XRReferenceSpaceEvent" data-dfn-type="constructor" data-export data-lt="XRReferenceSpaceEvent(type, eventInitDict)" id="dom-xrreferencespaceevent-xrreferencespaceevent"><code><c- g>Constructor</c-></code><a class="self-link" href="#dom-xrreferencespaceevent-xrreferencespaceevent"></a></dfn>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString②"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="XRReferenceSpaceEvent/XRReferenceSpaceEvent(type, eventInitDict)" data-dfn-type="argument" data-export id="dom-xrreferencespaceevent-xrreferencespaceevent-type-eventinitdict-type"><code><c- g>type</c-></code><a class="self-link" href="#dom-xrreferencespaceevent-xrreferencespaceevent-type-eventinitdict-type"></a></dfn>, <a class="n" data-link-type="idl-name" href="#dictdef-xrreferencespaceeventinit" id="ref-for-dictdef-xrreferencespaceeventinit"><c- n>XRReferenceSpaceEventInit</c-></a> <dfn class="idl-code" data-dfn-for="XRReferenceSpaceEvent/XRReferenceSpaceEvent(type, eventInitDict)" data-dfn-type="argument" data-export id="dom-xrreferencespaceevent-xrreferencespaceevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code><a class="self-link" href="#dom-xrreferencespaceevent-xrreferencespaceevent-type-eventinitdict-eventinitdict"></a></dfn>)]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrreferencespaceevent"><code><c- g>XRReferenceSpaceEvent</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event②"><c- n>Event</c-></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①⑨"><c- n>XRReferenceSpace</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRReferenceSpace" href="#dom-xrreferencespaceevent-referencespace" id="ref-for-dom-xrreferencespaceevent-referencespace"><c- g>referenceSpace</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform①④"><c- n>XRRigidTransform</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform?" href="#dom-xrreferencespaceevent-transform" id="ref-for-dom-xrreferencespaceevent-transform"><c- g>transform</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①⑦"><c- n>XRReferenceSpace</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRReferenceSpace" href="#dom-xrreferencespaceevent-referencespace" id="ref-for-dom-xrreferencespaceevent-referencespace"><c- g>referenceSpace</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform①①"><c- n>XRRigidTransform</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform?" href="#dom-xrreferencespaceevent-transform" id="ref-for-dom-xrreferencespaceevent-transform"><c- g>transform</c-></a>;
 };
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-xrreferencespaceeventinit"><code><c- g>XRReferenceSpaceEventInit</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit" id="ref-for-dictdef-eventinit②"><c- n>EventInit</c-></a> {
-  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace②⓪"><c- n>XRReferenceSpace</c-></a> <dfn class="idl-code" data-dfn-for="XRReferenceSpaceEventInit" data-dfn-type="dict-member" data-export data-type="XRReferenceSpace " id="dom-xrreferencespaceeventinit-referencespace"><code><c- g>referenceSpace</c-></code><a class="self-link" href="#dom-xrreferencespaceeventinit-referencespace"></a></dfn>;
-  <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform①⑤"><c- n>XRRigidTransform</c-></a> <dfn class="idl-code" data-dfn-for="XRReferenceSpaceEventInit" data-dfn-type="dict-member" data-export data-type="XRRigidTransform " id="dom-xrreferencespaceeventinit-transform"><code><c- g>transform</c-></code><a class="self-link" href="#dom-xrreferencespaceeventinit-transform"></a></dfn>;
+  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①⑧"><c- n>XRReferenceSpace</c-></a> <dfn class="idl-code" data-dfn-for="XRReferenceSpaceEventInit" data-dfn-type="dict-member" data-export data-type="XRReferenceSpace " id="dom-xrreferencespaceeventinit-referencespace"><code><c- g>referenceSpace</c-></code><a class="self-link" href="#dom-xrreferencespaceeventinit-referencespace"></a></dfn>;
+  <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform①②"><c- n>XRRigidTransform</c-></a> <dfn class="idl-code" data-dfn-for="XRReferenceSpaceEventInit" data-dfn-type="dict-member" data-export data-type="XRRigidTransform " id="dom-xrreferencespaceeventinit-transform"><code><c- g>transform</c-></code><a class="self-link" href="#dom-xrreferencespaceeventinit-transform"></a></dfn>;
 };
 </pre>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpaceEvent" data-dfn-type="attribute" data-export id="dom-xrreferencespaceevent-referencespace"><code>referenceSpace</code></dfn> attribute indicates the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace②①">XRReferenceSpace</a></code> that generated this event.</p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpaceEvent" data-dfn-type="attribute" data-export id="dom-xrreferencespaceevent-referencespace"><code>referenceSpace</code></dfn> attribute indicates the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①⑨">XRReferenceSpace</a></code> that generated this event.</p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpaceEvent" data-dfn-type="attribute" data-export id="dom-xrreferencespaceevent-transform"><code>transform</code></dfn> attribute describes the transform the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceevent-referencespace" id="ref-for-dom-xrreferencespaceevent-referencespace①">referenceSpace</a></code> underwent during this event, if applicable.</p>
    <h3 class="heading settled" data-level="13.4" id="event-types"><span class="secno">13.4. </span><span class="content">Event Types</span><a class="self-link" href="#event-types"></a></h3>
    <p>The user agent MUST provide the following new events. Registration for and firing of the events must follow the usual behavior of DOM4 Events.</p>
@@ -2839,10 +2827,10 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    </section>
    <p>A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-end"><code>end</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑤⑨">XRSession</a></code> when the session ends, either by the application or the user agent. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrsessionevent" id="ref-for-xrsessionevent③">XRSessionEvent</a></code>.</p>
    <section class="unstable"> A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-inputsourceschange"><code>inputsourceschange</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥⓪">XRSession</a></code> when the session’s <a data-link-type="dfn" href="#list-of-active-input-sources" id="ref-for-list-of-active-input-sources③">list of active input sources</a> has changed. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrsessionevent" id="ref-for-xrsessionevent④">XRSessionEvent</a></code>. </section>
-   <p>A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-selectstart"><code>selectstart</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥①">XRSession</a></code> when one of its <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource⑨">XRInputSource</a></code>s begins its <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action③">primary action</a>. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent②">XRInputSourceEvent</a></code>.</p>
-   <p>A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-selectend"><code>selectend</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥②">XRSession</a></code> when one of its <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource①⓪">XRInputSource</a></code>s ends its <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action④">primary action</a> or when an <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource①①">XRInputSource</a></code> that has begun a <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action⑤">primary action</a> is disconnected. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent③">XRInputSourceEvent</a></code>.</p>
-   <p>A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-select"><code>select</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥③">XRSession</a></code> when one of its <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource①②">XRInputSource</a></code>s has fully completed a <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action⑥">primary action</a>. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent④">XRInputSourceEvent</a></code>.</p>
-   <p>A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpace" data-dfn-type="event" data-export id="eventdef-xrreferencespace-reset"><code>reset</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace②②">XRReferenceSpace</a></code> when discontinuities of the origin occur. (That is, significant changes in the origin’s position or orientation relative to the user’s environment.) It also fires when the <code class="idl"><a data-link-type="idl" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry③">boundsGeometry</a></code> changes for a <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace⑥">XRBoundedReferenceSpace</a></code>. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrreferencespaceevent" id="ref-for-xrreferencespaceevent①">XRReferenceSpaceEvent</a></code>, and MUST be dispatched prior to the execution of any <a data-link-type="dfn" href="#xr-animation-frame" id="ref-for-xr-animation-frame②">XR animation frame</a>s that make use of the new origin.</p>
+   <p>A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-selectstart"><code>selectstart</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥①">XRSession</a></code> when one of its <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource⑧">XRInputSource</a></code>s begins its <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action③">primary action</a>. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent②">XRInputSourceEvent</a></code>.</p>
+   <p>A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-selectend"><code>selectend</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥②">XRSession</a></code> when one of its <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource⑨">XRInputSource</a></code>s ends its <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action④">primary action</a> or when an <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource①⓪">XRInputSource</a></code> that has begun a <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action⑤">primary action</a> is disconnected. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent③">XRInputSourceEvent</a></code>.</p>
+   <p>A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="event" data-export id="eventdef-xrsession-select"><code>select</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥③">XRSession</a></code> when one of its <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource①①">XRInputSource</a></code>s has fully completed a <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action⑥">primary action</a>. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrinputsourceevent" id="ref-for-xrinputsourceevent④">XRInputSourceEvent</a></code>.</p>
+   <p>A user agent MUST dispatch a <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpace" data-dfn-type="event" data-export id="eventdef-xrreferencespace-reset"><code>reset</code></dfn> event on an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace②⓪">XRReferenceSpace</a></code> when discontinuities of the origin occur. (That is, significant changes in the origin’s position or orientation relative to the user’s environment.) It also fires when the <code class="idl"><a data-link-type="idl" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry③">boundsGeometry</a></code> changes for a <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace⑥">XRBoundedReferenceSpace</a></code>. The event MUST be of type <code class="idl"><a data-link-type="idl" href="#xrreferencespaceevent" id="ref-for-xrreferencespaceevent①">XRReferenceSpaceEvent</a></code>, and MUST be dispatched prior to the execution of any <a data-link-type="dfn" href="#xr-animation-frame" id="ref-for-xr-animation-frame①">XR animation frame</a>s that make use of the new origin.</p>
    <h2 class="heading settled" data-level="14" id="security"><span class="secno">14. </span><span class="content">Security, Privacy, and Comfort Considerations</span><a class="self-link" href="#security"></a></h2>
    <p>The WebXR Device API provides powerful new features which bring with them several unique privacy, security, and comfort risks that user agents must take steps to mitigate.</p>
    <section class="unstable">
@@ -2944,7 +2932,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     </ul>
    <li><a href="#eventdef-xr-devicechange">devicechange</a><span>, in §13.4</span>
    <li><a href="#dom-xrray-direction">direction</a><span>, in §8.3</span>
-   <li><a href="#dom-xrinputpose-emulatedposition">emulatedPosition</a><span>, in §10.2</span>
+   <li><a href="#dom-xrpose-emulatedposition">emulatedPosition</a><span>, in §9.1</span>
    <li><a href="#dom-xrsession-end">end()</a><span>, in §4.1</span>
    <li><a href="#eventdef-xrsession-end">end</a><span>, in §13.4</span>
    <li><a href="#ended">ended</a><span>, in §4.1</span>
@@ -2969,15 +2957,12 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li><a href="#dom-xrwebgllayerinit-framebufferscalefactor">framebufferScaleFactor</a><span>, in §11.2</span>
    <li><a href="#dom-xrwebgllayer-framebufferwidth">framebufferWidth</a><span>, in §11.2</span>
    <li><a href="#dom-xrtargetraymode-gaze">gaze</a><span>, in §10.1</span>
-   <li><a href="#dom-xrframe-getinputpose">getInputPose(inputSource)</a><span>, in §5.1</span>
-   <li><a href="#dom-xrframe-getinputpose">getInputPose(inputSource, referenceSpace)</a><span>, in §5.1</span>
    <li><a href="#dom-xrsession-getinputsources">getInputSources()</a><span>, in §4.1</span>
    <li><a href="#dom-xrwebgllayer-getnativeframebufferscalefactor">getNativeFramebufferScaleFactor(session)</a><span>, in §11.2</span>
-   <li><a href="#dom-xrspace-gettransformto">getTransformTo(other)</a><span>, in §6.1</span>
-   <li><a href="#dom-xrframe-getviewerpose">getViewerPose()</a><span>, in §5.1</span>
+   <li><a href="#dom-xrframe-getpose">getPose(space, relativeTo)</a><span>, in §5.1</span>
    <li><a href="#dom-xrframe-getviewerpose">getViewerPose(referenceSpace)</a><span>, in §5.1</span>
    <li><a href="#dom-xrwebgllayer-getviewport">getViewport(view)</a><span>, in §11.2</span>
-   <li><a href="#dom-xrinputpose-griptransform">gripTransform</a><span>, in §10.2</span>
+   <li><a href="#dom-xrinputsource-gripspace">gripSpace</a><span>, in §10.1</span>
    <li><a href="#dom-xrinputsource-handedness">handedness</a><span>, in §10.1</span>
    <li><a href="#dom-xrviewport-height">height</a><span>, in §7.2</span>
    <li><a href="#identity-transform">identity transform</a><span>, in §8.2</span>
@@ -3101,25 +3086,25 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     </ul>
    <li><a href="#dom-xr-supportssessionmode">supportsSessionMode(mode)</a><span>, in §3.2</span>
    <li><a href="#swap-chain">swap chain</a><span>, in §11.2</span>
-   <li><a href="#dom-xrinputpose-targetray">targetRay</a><span>, in §10.2</span>
    <li><a href="#dom-xrinputsource-targetraymode">targetRayMode</a><span>, in §10.1</span>
+   <li><a href="#dom-xrinputsource-targetrayspace">targetRaySpace</a><span>, in §10.1</span>
    <li><a href="#dom-xrtargetraymode-tracked-pointer">tracked-pointer</a><span>, in §10.1</span>
    <li>
     transform
     <ul>
+     <li><a href="#dom-xrpose-transform">attribute for XRPose</a><span>, in §9.1</span>
      <li><a href="#dom-xrreferencespaceevent-transform">attribute for XRReferenceSpaceEvent</a><span>, in §13.3</span>
      <li><a href="#dom-xrview-transform">attribute for XRView</a><span>, in §7.1</span>
-     <li><a href="#dom-xrviewerpose-transform">attribute for XRViewerPose</a><span>, in §9.1</span>
      <li><a href="#dom-xrreferencespaceeventinit-transform">dict-member for XRReferenceSpaceEventInit</a><span>, in §13.3</span>
     </ul>
    <li><a href="#dom-xrreferencespaceoptions-type">type</a><span>, in §6.2</span>
    <li><a href="#dom-xrreferencespacetype-unbounded">unbounded</a><span>, in §6.2</span>
    <li><a href="#dom-xrsession-updaterenderstate">updateRenderState(newState)</a><span>, in §4.1</span>
    <li><a href="#view">view</a><span>, in §7.1</span>
-   <li><a href="#viewer">viewer</a><span>, in §9.1</span>
+   <li><a href="#viewer">viewer</a><span>, in §9.2</span>
    <li><a href="#dom-xrview-viewmatrix">viewMatrix</a><span>, in §7.1</span>
    <li><a href="#viewport-scale-factor">viewport scale factor</a><span>, in §11.2</span>
-   <li><a href="#dom-xrviewerpose-views">views</a><span>, in §9.1</span>
+   <li><a href="#dom-xrviewerpose-views">views</a><span>, in §9.2</span>
    <li><a href="#dom-xrviewport-width">width</a><span>, in §7.2</span>
    <li><a href="#dom-xrviewport-x">x</a><span>, in §7.2</span>
    <li><a href="#dom-navigator-xr">xr</a><span>, in §3.1</span>
@@ -3140,12 +3125,12 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li><a href="#xrframe">XRFrame</a><span>, in §5.1</span>
    <li><a href="#callbackdef-xrframerequestcallback">XRFrameRequestCallback</a><span>, in §4.5</span>
    <li><a href="#enumdef-xrhandedness">XRHandedness</a><span>, in §10.1</span>
-   <li><a href="#xrinputpose">XRInputPose</a><span>, in §10.2</span>
    <li><a href="#xrinputsource">XRInputSource</a><span>, in §10.1</span>
    <li><a href="#xrinputsourceevent">XRInputSourceEvent</a><span>, in §13.2</span>
    <li><a href="#dictdef-xrinputsourceeventinit">XRInputSourceEventInit</a><span>, in §13.2</span>
    <li><a href="#dom-xrinputsourceevent-xrinputsourceevent">XRInputSourceEvent(type, eventInitDict)</a><span>, in §13.2</span>
    <li><a href="#xrlayer">XRLayer</a><span>, in §11.1</span>
+   <li><a href="#xrpose">XRPose</a><span>, in §9.1</span>
    <li><a href="#xrpresentationcontext">XRPresentationContext</a><span>, in §12.1</span>
    <li><a href="#xrray">XRRay</a><span>, in §8.3</span>
    <li><a href="#dom-xrray-xrray">XRRay(origin, direction)</a><span>, in §8.3</span>
@@ -3172,7 +3157,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li><a href="#enumdef-xrtargetraymode">XRTargetRayMode</a><span>, in §10.1</span>
    <li><a href="#xrunboundedreferencespace">XRUnboundedReferenceSpace</a><span>, in §6.5</span>
    <li><a href="#xrview">XRView</a><span>, in §7.1</span>
-   <li><a href="#xrviewerpose">XRViewerPose</a><span>, in §9.1</span>
+   <li><a href="#xrviewerpose">XRViewerPose</a><span>, in §9.2</span>
    <li><a href="#xrviewport">XRViewport</a><span>, in §7.2</span>
    <li><a href="#xrwebgllayer">XRWebGLLayer</a><span>, in §11.2</span>
    <li><a href="#dictdef-xrwebgllayerinit">XRWebGLLayerInit</a><span>, in §11.2</span>
@@ -3450,9 +3435,9 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-Exposed①⓪">7.2. XRViewport</a>
     <li><a href="#ref-for-Exposed①①">8.2. XRRigidTransform</a>
     <li><a href="#ref-for-Exposed①②">8.3. XRRay</a>
-    <li><a href="#ref-for-Exposed①③">9.1. XRViewerPose</a>
-    <li><a href="#ref-for-Exposed①④">10.1. XRInputSource</a>
-    <li><a href="#ref-for-Exposed①⑤">10.2. XRInputPose</a>
+    <li><a href="#ref-for-Exposed①③">9.1. XRPose</a>
+    <li><a href="#ref-for-Exposed①④">9.2. XRViewerPose</a>
+    <li><a href="#ref-for-Exposed①⑤">10.1. XRInputSource</a>
     <li><a href="#ref-for-Exposed①⑥">11.1. XRLayer</a>
     <li><a href="#ref-for-Exposed①⑦">11.2. XRWebGLLayer</a>
     <li><a href="#ref-for-Exposed①⑧">12.1. XRPresentationContext</a>
@@ -3475,9 +3460,9 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-invalidstateerror">3.2. XR</a>
     <li><a href="#ref-for-invalidstateerror①">4.1. XRSession</a> <a href="#ref-for-invalidstateerror②">(2)</a>
-    <li><a href="#ref-for-invalidstateerror③">5.1. XRFrame</a> <a href="#ref-for-invalidstateerror④">(2)</a>
-    <li><a href="#ref-for-invalidstateerror⑤">11.2. XRWebGLLayer</a> <a href="#ref-for-invalidstateerror⑥">(2)</a> <a href="#ref-for-invalidstateerror⑦">(3)</a>
-    <li><a href="#ref-for-invalidstateerror⑧">11.3. WebGL Context Compatibility</a>
+    <li><a href="#ref-for-invalidstateerror③">5.1. XRFrame</a> <a href="#ref-for-invalidstateerror④">(2)</a> <a href="#ref-for-invalidstateerror⑤">(3)</a> <a href="#ref-for-invalidstateerror⑥">(4)</a> <a href="#ref-for-invalidstateerror⑦">(5)</a>
+    <li><a href="#ref-for-invalidstateerror⑧">11.2. XRWebGLLayer</a> <a href="#ref-for-invalidstateerror⑨">(2)</a> <a href="#ref-for-invalidstateerror①⓪">(3)</a>
+    <li><a href="#ref-for-invalidstateerror①①">11.3. WebGL Context Compatibility</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-notsupportederror">
@@ -3516,9 +3501,9 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-SecureContext①①">7.2. XRViewport</a>
     <li><a href="#ref-for-SecureContext①②">8.2. XRRigidTransform</a>
     <li><a href="#ref-for-SecureContext①③">8.3. XRRay</a>
-    <li><a href="#ref-for-SecureContext①④">9.1. XRViewerPose</a>
-    <li><a href="#ref-for-SecureContext①⑤">10.1. XRInputSource</a>
-    <li><a href="#ref-for-SecureContext①⑥">10.2. XRInputPose</a>
+    <li><a href="#ref-for-SecureContext①④">9.1. XRPose</a>
+    <li><a href="#ref-for-SecureContext①⑤">9.2. XRViewerPose</a>
+    <li><a href="#ref-for-SecureContext①⑥">10.1. XRInputSource</a>
     <li><a href="#ref-for-SecureContext①⑦">11.1. XRLayer</a>
     <li><a href="#ref-for-SecureContext①⑧">11.2. XRWebGLLayer</a>
     <li><a href="#ref-for-SecureContext①⑨">12.1. XRPresentationContext</a>
@@ -3542,7 +3527,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="term-for-idl-boolean">
    <a href="https://heycam.github.io/webidl/#idl-boolean">https://heycam.github.io/webidl/#idl-boolean</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-idl-boolean">10.2. XRInputPose</a>
+    <li><a href="#ref-for-idl-boolean">9.1. XRPose</a>
     <li><a href="#ref-for-idl-boolean①">11.2. XRWebGLLayer</a> <a href="#ref-for-idl-boolean②">(2)</a> <a href="#ref-for-idl-boolean③">(3)</a> <a href="#ref-for-idl-boolean④">(4)</a> <a href="#ref-for-idl-boolean⑤">(5)</a> <a href="#ref-for-idl-boolean⑥">(6)</a> <a href="#ref-for-idl-boolean⑦">(7)</a> <a href="#ref-for-idl-boolean⑧">(8)</a>
     <li><a href="#ref-for-idl-boolean⑨">11.3. WebGL Context Compatibility</a>
    </ul>
@@ -3710,9 +3695,9 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 
   // Methods
   <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-xrsession-updaterenderstate" id="ref-for-dom-xrsession-updaterenderstate①"><c- g>updateRenderState</c-></a>(<c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrrenderstateinit" id="ref-for-dictdef-xrrenderstateinit①"><c- n>XRRenderStateInit</c-></a> <a href="#dom-xrsession-updaterenderstate-state-state"><code><c- g>state</c-></code></a>);
-  <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace②④"><c- n>XRReferenceSpace</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace④"><c- g>requestReferenceSpace</c-></a>(<a class="n" data-link-type="idl-name" href="#dictdef-xrreferencespaceoptions" id="ref-for-dictdef-xrreferencespaceoptions④"><c- n>XRReferenceSpaceOptions</c-></a> <a href="#dom-xrsession-requestreferencespace-options-options"><code><c- g>options</c-></code></a>);
+  <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace②①"><c- n>XRReferenceSpace</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace④"><c- g>requestReferenceSpace</c-></a>(<a class="n" data-link-type="idl-name" href="#dictdef-xrreferencespaceoptions" id="ref-for-dictdef-xrreferencespaceoptions④"><c- n>XRReferenceSpaceOptions</c-></a> <a href="#dom-xrsession-requestreferencespace-options-options"><code><c- g>options</c-></code></a>);
 
-  <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource①④"><c- n>XRInputSource</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsession-getinputsources" id="ref-for-dom-xrsession-getinputsources①"><c- g>getInputSources</c-></a>();
+  <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource①②"><c- n>XRInputSource</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsession-getinputsources" id="ref-for-dom-xrsession-getinputsources①"><c- g>getInputSources</c-></a>();
 
   <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-long" id="ref-for-idl-long⑥"><c- b>long</c-></a> <a class="idl-code" data-link-type="method" href="#dom-xrsession-requestanimationframe" id="ref-for-dom-xrsession-requestanimationframe⑥"><c- g>requestAnimationFrame</c-></a>(<a class="n" data-link-type="idl-name" href="#callbackdef-xrframerequestcallback" id="ref-for-callbackdef-xrframerequestcallback③"><c- n>XRFrameRequestCallback</c-></a> <a href="#dom-xrsession-requestanimationframe-callback-callback"><code><c- g>callback</c-></code></a>);
   <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-xrsession-cancelanimationframe" id="ref-for-dom-xrsession-cancelanimationframe①"><c- g>cancelAnimationFrame</c-></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-long" id="ref-for-idl-long①①"><c- b>long</c-></a> <a href="#dom-xrsession-cancelanimationframe-handle-handle"><code><c- g>handle</c-></code></a>);
@@ -3752,17 +3737,17 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrlayer" id="ref-for-xrlayer①①"><c- n>XRLayer</c-></a>? <a data-readonly data-type="XRLayer?" href="#dom-xrrenderstate-baselayer"><code><c- g>baseLayer</c-></code></a>;
 };
 
-<c- b>callback</c-> <a href="#callbackdef-xrframerequestcallback"><code><c- g>XRFrameRequestCallback</c-></code></a> = <c- b>void</c-> (<a class="n" data-link-type="idl-name" href="https://www.w3.org/TR/hr-time/#dom-domhighrestimestamp" id="ref-for-dom-domhighrestimestamp①"><c- n>DOMHighResTimeStamp</c-></a> <a href="#dom-xrframerequestcallback-time"><code><c- g>time</c-></code></a>, <a class="n" data-link-type="idl-name" href="#xrframe" id="ref-for-xrframe①⑥"><c- n>XRFrame</c-></a> <a href="#dom-xrframerequestcallback-frame"><code><c- g>frame</c-></code></a>);
+<c- b>callback</c-> <a href="#callbackdef-xrframerequestcallback"><code><c- g>XRFrameRequestCallback</c-></code></a> = <c- b>void</c-> (<a class="n" data-link-type="idl-name" href="https://www.w3.org/TR/hr-time/#dom-domhighrestimestamp" id="ref-for-dom-domhighrestimestamp①"><c- n>DOMHighResTimeStamp</c-></a> <a href="#dom-xrframerequestcallback-time"><code><c- g>time</c-></code></a>, <a class="n" data-link-type="idl-name" href="#xrframe" id="ref-for-xrframe①⑦"><c- n>XRFrame</c-></a> <a href="#dom-xrframerequestcallback-frame"><code><c- g>frame</c-></code></a>);
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext④①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed③①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrframe"><code><c- g>XRFrame</c-></code></a> {
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession③③①"><c- n>XRSession</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSession" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session③"><c- g>session</c-></a>;
 
-  <a class="n" data-link-type="idl-name" href="#xrviewerpose" id="ref-for-xrviewerpose⑧"><c- n>XRViewerPose</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-xrframe-getviewerpose" id="ref-for-dom-xrframe-getviewerpose①"><c- g>getViewerPose</c-></a>(<c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①①⓪"><c- n>XRReferenceSpace</c-></a> <a href="#dom-xrframe-getviewerpose-referencespace-referencespace"><code><c- g>referenceSpace</c-></code></a>);
-  <a class="n" data-link-type="idl-name" href="#xrinputpose" id="ref-for-xrinputpose②"><c- n>XRInputPose</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-xrframe-getinputpose" id="ref-for-dom-xrframe-getinputpose①"><c- g>getInputPose</c-></a>(<a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource①③"><c- n>XRInputSource</c-></a> <a href="#dom-xrframe-getinputpose-inputsource-referencespace-inputsource"><code><c- g>inputSource</c-></code></a>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace②③"><c- n>XRReferenceSpace</c-></a> <a href="#dom-xrframe-getinputpose-inputsource-referencespace-referencespace"><code><c- g>referenceSpace</c-></code></a>);
+  <a class="n" data-link-type="idl-name" href="#xrviewerpose" id="ref-for-xrviewerpose⑧"><c- n>XRViewerPose</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-xrframe-getviewerpose" id="ref-for-dom-xrframe-getviewerpose①"><c- g>getViewerPose</c-></a>(<a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①①⓪"><c- n>XRReferenceSpace</c-></a> <a href="#dom-xrframe-getviewerpose-referencespace-referencespace"><code><c- g>referenceSpace</c-></code></a>);
+  <a class="n" data-link-type="idl-name" href="#xrpose" id="ref-for-xrpose⑥"><c- n>XRPose</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-xrframe-getpose" id="ref-for-dom-xrframe-getpose②"><c- g>getPose</c-></a>(<a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace①⑤"><c- n>XRSpace</c-></a> <a href="#dom-xrframe-getpose-space-relativeto-space"><code><c- g>space</c-></code></a>, <a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace①⑥"><c- n>XRSpace</c-></a> <a href="#dom-xrframe-getpose-space-relativeto-relativeto"><code><c- g>relativeTo</c-></code></a>);
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑤①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed④①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrspace"><code><c- g>XRSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget②①"><c- n>EventTarget</c-></a> {
-  <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform①⑥"><c- n>XRRigidTransform</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-xrspace-gettransformto" id="ref-for-dom-xrspace-gettransformto①①"><c- g>getTransformTo</c-></a>(<a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace③①"><c- n>XRSpace</c-></a> <a href="#dom-xrspace-gettransformto-other-other"><code><c- g>other</c-></code></a>);
+  
 };
 
 <c- b>enum</c-> <a href="#enumdef-xrreferencespacetype"><code><c- g>XRReferenceSpaceType</c-></code></a> {
@@ -3783,22 +3768,22 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑥①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑤①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrreferencespace"><code><c- g>XRReferenceSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace⑦①"><c- n>XRSpace</c-></a> {
-  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform②①"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-type="XRRigidTransform" href="#dom-xrreferencespace-originoffset" id="ref-for-dom-xrreferencespace-originoffset③"><c- g>originOffset</c-></a>;
+  <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform①③"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-type="XRRigidTransform" href="#dom-xrreferencespace-originoffset" id="ref-for-dom-xrreferencespace-originoffset③"><c- g>originOffset</c-></a>;
   <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler⑧①"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrreferencespace-onreset" id="ref-for-dom-xrreferencespace-onreset①"><c- g>onreset</c-></a>;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑦①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑥①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <a href="#xrstationaryreferencespace"><code><c- g>XRStationaryReferenceSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①①①"><c- n>XRReferenceSpace</c-></a> {
+<c- b>interface</c-> <a href="#xrstationaryreferencespace"><code><c- g>XRStationaryReferenceSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①⓪①"><c- n>XRReferenceSpace</c-></a> {
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrstationaryreferencespacesubtype" id="ref-for-enumdef-xrstationaryreferencespacesubtype①①"><c- n>XRStationaryReferenceSpaceSubtype</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRStationaryReferenceSpaceSubtype" href="#dom-xrstationaryreferencespace-subtype" id="ref-for-dom-xrstationaryreferencespace-subtype①①"><c- g>subtype</c-></a>;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑧①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑦①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <a href="#xrboundedreferencespace"><code><c- g>XRBoundedReferenceSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①②①"><c- n>XRReferenceSpace</c-></a> {
+<c- b>interface</c-> <a href="#xrboundedreferencespace"><code><c- g>XRBoundedReferenceSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①①①"><c- n>XRReferenceSpace</c-></a> {
   <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly⑥"><c- n>DOMPointReadOnly</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<DOMPointReadOnly>" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry④"><c- g>boundsGeometry</c-></a>;
 };    
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑨①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑧①"><c- g>Exposed</c-></a>=<c- n>Window</c->] 
-<c- b>interface</c-> <a href="#xrunboundedreferencespace"><code><c- g>XRUnboundedReferenceSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①④①"><c- n>XRReferenceSpace</c-></a> {
+<c- b>interface</c-> <a href="#xrunboundedreferencespace"><code><c- g>XRUnboundedReferenceSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①③①"><c- n>XRReferenceSpace</c-></a> {
 };  
 
 <c- b>enum</c-> <a href="#enumdef-xreye"><code><c- g>XREye</c-></code></a> {
@@ -3810,7 +3795,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xreye" id="ref-for-enumdef-xreye①"><c- n>XREye</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XREye" href="#dom-xrview-eye" id="ref-for-dom-xrview-eye①"><c- g>eye</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array⑤"><c- b>Float32Array</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="Float32Array" href="#dom-xrview-projectionmatrix" id="ref-for-dom-xrview-projectionmatrix①"><c- g>projectionMatrix</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array①①"><c- b>Float32Array</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="Float32Array" href="#dom-xrview-viewmatrix" id="ref-for-dom-xrview-viewmatrix②"><c- g>viewMatrix</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform④①"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrview-transform" id="ref-for-dom-xrview-transform③"><c- g>transform</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform②①"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrview-transform" id="ref-for-dom-xrview-transform③"><c- g>transform</c-></a>;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①①①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⓪①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrviewport"><code><c- g>XRViewport</c-></code></a> {
@@ -3830,15 +3815,19 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①③①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①②①"><c- g>Exposed</c-></a>=<c- n>Window</c->,
  <a class="idl-code" data-link-type="constructor" href="#dom-xrray-xrray" id="ref-for-dom-xrray-xrray①"><c- g>Constructor</c-></a>(<c- b>optional</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dictdef-dompointinit" id="ref-for-dictdef-dompointinit④①"><c- n>DOMPointInit</c-></a> <a href="#dom-xrray-xrray-origin-direction-origin"><code><c- g>origin</c-></code></a>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dictdef-dompointinit" id="ref-for-dictdef-dompointinit⑤①"><c- n>DOMPointInit</c-></a> <a href="#dom-xrray-xrray-origin-direction-direction"><code><c- g>direction</c-></code></a>),
- <a class="idl-code" data-link-type="constructor" href="#dom-xrray-xrray-transform" id="ref-for-dom-xrray-xrray-transform①"><c- g>Constructor</c-></a>(<a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform①⓪①"><c- n>XRRigidTransform</c-></a> <a href="#dom-xrray-xrray-transform-transform"><code><c- g>transform</c-></code></a>)]
+ <a class="idl-code" data-link-type="constructor" href="#dom-xrray-xrray-transform" id="ref-for-dom-xrray-xrray-transform①"><c- g>Constructor</c-></a>(<a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform⑧①"><c- n>XRRigidTransform</c-></a> <a href="#dom-xrray-xrray-transform-transform"><code><c- g>transform</c-></code></a>)]
 <c- b>interface</c-> <a href="#xrray"><code><c- g>XRRay</c-></code></a> {
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly④①"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrray-origin" id="ref-for-dom-xrray-origin①①"><c- g>origin</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly⑤①"><c- n>DOMPointReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMPointReadOnly" href="#dom-xrray-direction" id="ref-for-dom-xrray-direction①①"><c- g>direction</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-Float32Array" id="ref-for-idl-Float32Array④①"><c- b>Float32Array</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="Float32Array" href="#dom-xrray-matrix" id="ref-for-dom-xrray-matrix②"><c- g>matrix</c-></a>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①④①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①③①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrviewerpose"><code><c- g>XRViewerPose</c-></code></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform①①①"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrviewerpose-transform" id="ref-for-dom-xrviewerpose-transform②"><c- g>transform</c-></a>;
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①④①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①③①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrpose"><code><c- g>XRPose</c-></code></a> {
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform⑨①"><c- n>XRRigidTransform</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform" href="#dom-xrpose-transform" id="ref-for-dom-xrpose-transform③"><c- g>transform</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①⓪"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrpose-emulatedposition" id="ref-for-dom-xrpose-emulatedposition①"><c- g>emulatedPosition</c-></a>;
+};
+
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⑤①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①④①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrviewerpose"><code><c- g>XRViewerPose</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrpose" id="ref-for-xrpose⑤①"><c- n>XRPose</c-></a> {
   <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrview" id="ref-for-xrview②①"><c- n>XRView</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<XRView>" href="#dom-xrviewerpose-views" id="ref-for-dom-xrviewerpose-views②"><c- g>views</c-></a>;
 };
 
@@ -3849,22 +3838,17 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 };
 
 <c- b>enum</c-> <a href="#enumdef-xrtargetraymode"><code><c- g>XRTargetRayMode</c-></code></a> {
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-gaze" id="ref-for-dom-xrtargetraymode-gaze①"><c- s>"gaze"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-gaze" id="ref-for-dom-xrtargetraymode-gaze②"><c- s>"gaze"</c-></a>,
   <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-tracked-pointer" id="ref-for-dom-xrtargetraymode-tracked-pointer①"><c- s>"tracked-pointer"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-screen" id="ref-for-dom-xrtargetraymode-screen②"><c- s>"screen"</c-></a>
-};
-
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⑤①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①④①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <a href="#xrinputsource"><code><c- g>XRInputSource</c-></code></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrhandedness" id="ref-for-enumdef-xrhandedness①"><c- n>XRHandedness</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRHandedness" href="#dom-xrinputsource-handedness" id="ref-for-dom-xrinputsource-handedness①"><c- g>handedness</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrtargetraymode" id="ref-for-enumdef-xrtargetraymode①"><c- n>XRTargetRayMode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRTargetRayMode" href="#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode③"><c- g>targetRayMode</c-></a>;
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrtargetraymode-screen" id="ref-for-dom-xrtargetraymode-screen③"><c- s>"screen"</c-></a>
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⑥①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⑤①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <a href="#xrinputpose"><code><c- g>XRInputPose</c-></code></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①⓪"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-xrinputpose-emulatedposition" id="ref-for-dom-xrinputpose-emulatedposition③"><c- g>emulatedPosition</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrray" id="ref-for-xrray⑤①"><c- n>XRRay</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRay" href="#dom-xrinputpose-targetray" id="ref-for-dom-xrinputpose-targetray②"><c- g>targetRay</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform①③①"><c- n>XRRigidTransform</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform?" href="#dom-xrinputpose-griptransform" id="ref-for-dom-xrinputpose-griptransform④"><c- g>gripTransform</c-></a>;
+<c- b>interface</c-> <a href="#xrinputsource"><code><c- g>XRInputSource</c-></code></a> {
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrhandedness" id="ref-for-enumdef-xrhandedness①"><c- n>XRHandedness</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRHandedness" href="#dom-xrinputsource-handedness" id="ref-for-dom-xrinputsource-handedness①"><c- g>handedness</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrtargetraymode" id="ref-for-enumdef-xrtargetraymode①"><c- n>XRTargetRayMode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRTargetRayMode" href="#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode④"><c- g>targetRayMode</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace①⓪①"><c- n>XRSpace</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSpace" href="#dom-xrinputsource-targetrayspace" id="ref-for-dom-xrinputsource-targetrayspace①"><c- g>targetRaySpace</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace①①①"><c- n>XRSpace</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSpace?" href="#dom-xrinputsource-gripspace" id="ref-for-dom-xrinputsource-gripspace②"><c- g>gripSpace</c-></a>;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①⑦①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⑥①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrlayer"><code><c- g>XRLayer</c-></code></a> {};
@@ -3927,24 +3911,24 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext②①①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed②⓪①"><c- g>Exposed</c-></a>=<c- n>Window</c->, <a href="#dom-xrinputsourceevent-xrinputsourceevent"><code><c- g>Constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①①"><c- b>DOMString</c-></a> <a href="#dom-xrinputsourceevent-xrinputsourceevent-type-eventinitdict-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-xrinputsourceeventinit" id="ref-for-dictdef-xrinputsourceeventinit①"><c- n>XRInputSourceEventInit</c-></a> <a href="#dom-xrinputsourceevent-xrinputsourceevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code></a>)]
 <c- b>interface</c-> <a href="#xrinputsourceevent"><code><c- g>XRInputSourceEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event①①"><c- n>Event</c-></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrframe" id="ref-for-xrframe①③①"><c- n>XRFrame</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRFrame" href="#dom-xrinputsourceevent-frame" id="ref-for-dom-xrinputsourceevent-frame③"><c- g>frame</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource⑥①"><c- n>XRInputSource</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRInputSource" href="#dom-xrinputsourceevent-inputsource" id="ref-for-dom-xrinputsourceevent-inputsource①"><c- g>inputSource</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrframe" id="ref-for-xrframe①④①"><c- n>XRFrame</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRFrame" href="#dom-xrinputsourceevent-frame" id="ref-for-dom-xrinputsourceevent-frame③"><c- g>frame</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource⑤①"><c- n>XRInputSource</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRInputSource" href="#dom-xrinputsourceevent-inputsource" id="ref-for-dom-xrinputsourceevent-inputsource①"><c- g>inputSource</c-></a>;
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-xrinputsourceeventinit"><code><c- g>XRInputSourceEventInit</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit" id="ref-for-dictdef-eventinit①①"><c- n>EventInit</c-></a> {
-  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrframe" id="ref-for-xrframe①④①"><c- n>XRFrame</c-></a> <a data-type="XRFrame " href="#dom-xrinputsourceeventinit-frame"><code><c- g>frame</c-></code></a>;
-  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource⑦①"><c- n>XRInputSource</c-></a> <a data-type="XRInputSource " href="#dom-xrinputsourceeventinit-inputsource"><code><c- g>inputSource</c-></code></a>;
+  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrframe" id="ref-for-xrframe①⑤①"><c- n>XRFrame</c-></a> <a data-type="XRFrame " href="#dom-xrinputsourceeventinit-frame"><code><c- g>frame</c-></code></a>;
+  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource⑥①"><c- n>XRInputSource</c-></a> <a data-type="XRInputSource " href="#dom-xrinputsourceeventinit-inputsource"><code><c- g>inputSource</c-></code></a>;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext②②①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed②①①"><c- g>Exposed</c-></a>=<c- n>Window</c->, <a href="#dom-xrreferencespaceevent-xrreferencespaceevent"><code><c- g>Constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString②①"><c- b>DOMString</c-></a> <a href="#dom-xrreferencespaceevent-xrreferencespaceevent-type-eventinitdict-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-xrreferencespaceeventinit" id="ref-for-dictdef-xrreferencespaceeventinit①"><c- n>XRReferenceSpaceEventInit</c-></a> <a href="#dom-xrreferencespaceevent-xrreferencespaceevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code></a>)]
 <c- b>interface</c-> <a href="#xrreferencespaceevent"><code><c- g>XRReferenceSpaceEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event②①"><c- n>Event</c-></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①⑨①"><c- n>XRReferenceSpace</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRReferenceSpace" href="#dom-xrreferencespaceevent-referencespace" id="ref-for-dom-xrreferencespaceevent-referencespace②"><c- g>referenceSpace</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform①④①"><c- n>XRRigidTransform</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform?" href="#dom-xrreferencespaceevent-transform" id="ref-for-dom-xrreferencespaceevent-transform①"><c- g>transform</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①⑦①"><c- n>XRReferenceSpace</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRReferenceSpace" href="#dom-xrreferencespaceevent-referencespace" id="ref-for-dom-xrreferencespaceevent-referencespace②"><c- g>referenceSpace</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform①①①"><c- n>XRRigidTransform</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRigidTransform?" href="#dom-xrreferencespaceevent-transform" id="ref-for-dom-xrreferencespaceevent-transform①"><c- g>transform</c-></a>;
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-xrreferencespaceeventinit"><code><c- g>XRReferenceSpaceEventInit</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit" id="ref-for-dictdef-eventinit②①"><c- n>EventInit</c-></a> {
-  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace②⓪①"><c- n>XRReferenceSpace</c-></a> <a data-type="XRReferenceSpace " href="#dom-xrreferencespaceeventinit-referencespace"><code><c- g>referenceSpace</c-></code></a>;
-  <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform①⑤①"><c- n>XRRigidTransform</c-></a> <a data-type="XRRigidTransform " href="#dom-xrreferencespaceeventinit-transform"><code><c- g>transform</c-></code></a>;
+  <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①⑧①"><c- n>XRReferenceSpace</c-></a> <a data-type="XRReferenceSpace " href="#dom-xrreferencespaceeventinit-referencespace"><code><c- g>referenceSpace</c-></code></a>;
+  <a class="n" data-link-type="idl-name" href="#xrrigidtransform" id="ref-for-xrrigidtransform①②①"><c- n>XRRigidTransform</c-></a> <a data-type="XRRigidTransform " href="#dom-xrreferencespaceeventinit-transform"><code><c- g>transform</c-></code></a>;
 };
 
 </pre>
@@ -3960,7 +3944,6 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-6dof">1. Introduction</a>
     <li><a href="#ref-for-6dof①">1.1. Terminology</a>
     <li><a href="#ref-for-6dof②">6.3. XRStationaryReferenceSpace</a>
-    <li><a href="#ref-for-6dof③">10.2. XRInputPose</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xr-device">
@@ -3976,7 +3959,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-xr-device①⑦">4.6. The XR Compositor</a>
     <li><a href="#ref-for-xr-device①⑧">6.1. XRSpace</a>
     <li><a href="#ref-for-xr-device①⑨">6.2. XRReferenceSpace</a> <a href="#ref-for-xr-device②⓪">(2)</a>
-    <li><a href="#ref-for-xr-device②①">9.1. XRViewerPose</a> <a href="#ref-for-xr-device②②">(2)</a>
+    <li><a href="#ref-for-xr-device②①">9.2. XRViewerPose</a> <a href="#ref-for-xr-device②②">(2)</a>
     <li><a href="#ref-for-xr-device②③">11.1. XRLayer</a>
     <li><a href="#ref-for-xr-device②④">11.2. XRWebGLLayer</a> <a href="#ref-for-xr-device②⑤">(2)</a>
     <li><a href="#ref-for-xr-device②⑥">11.3. WebGL Context Compatibility</a> <a href="#ref-for-xr-device②⑦">(2)</a> <a href="#ref-for-xr-device②⑧">(3)</a> <a href="#ref-for-xr-device②⑨">(4)</a> <a href="#ref-for-xr-device③⓪">(5)</a> <a href="#ref-for-xr-device③①">(6)</a>
@@ -4472,9 +4455,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="xr-animation-frame">
    <b><a href="#xr-animation-frame">#xr-animation-frame</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xr-animation-frame">6.1. XRSpace</a>
-    <li><a href="#ref-for-xr-animation-frame①">6.2. XRReferenceSpace</a>
-    <li><a href="#ref-for-xr-animation-frame②">13.4. Event Types</a>
+    <li><a href="#ref-for-xr-animation-frame">6.2. XRReferenceSpace</a>
+    <li><a href="#ref-for-xr-animation-frame①">13.4. Event Types</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xr-compositor">
@@ -4489,7 +4471,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-xrframe">4.5. Animation Frames</a> <a href="#ref-for-xrframe①">(2)</a>
     <li><a href="#ref-for-xrframe②">5.1. XRFrame</a> <a href="#ref-for-xrframe③">(2)</a> <a href="#ref-for-xrframe④">(3)</a> <a href="#ref-for-xrframe⑤">(4)</a> <a href="#ref-for-xrframe⑥">(5)</a> <a href="#ref-for-xrframe⑦">(6)</a> <a href="#ref-for-xrframe⑧">(7)</a> <a href="#ref-for-xrframe⑨">(8)</a> <a href="#ref-for-xrframe①⓪">(9)</a> <a href="#ref-for-xrframe①①">(10)</a> <a href="#ref-for-xrframe①②">(11)</a>
-    <li><a href="#ref-for-xrframe①③">13.2. XRInputSourceEvent</a> <a href="#ref-for-xrframe①④">(2)</a> <a href="#ref-for-xrframe①⑤">(3)</a>
+    <li><a href="#ref-for-xrframe①③">6.1. XRSpace</a>
+    <li><a href="#ref-for-xrframe①④">13.2. XRInputSourceEvent</a> <a href="#ref-for-xrframe①⑤">(2)</a> <a href="#ref-for-xrframe①⑥">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrframe-active">
@@ -4512,30 +4495,28 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-dom-xrframe-getviewerpose">5.1. XRFrame</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-xrframe-getinputpose">
-   <b><a href="#dom-xrframe-getinputpose">#dom-xrframe-getinputpose</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-xrframe-getpose">
+   <b><a href="#dom-xrframe-getpose">#dom-xrframe-getpose</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrframe-getinputpose">5.1. XRFrame</a>
+    <li><a href="#ref-for-dom-xrframe-getpose">5.1. XRFrame</a>
+    <li><a href="#ref-for-dom-xrframe-getpose①">6.1. XRSpace</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrspace">
    <b><a href="#xrspace">#xrspace</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xrspace">6.1. XRSpace</a> <a href="#ref-for-xrspace①">(2)</a> <a href="#ref-for-xrspace②">(3)</a> <a href="#ref-for-xrspace③">(4)</a> <a href="#ref-for-xrspace④">(5)</a> <a href="#ref-for-xrspace⑤">(6)</a>
+    <li><a href="#ref-for-xrspace">5.1. XRFrame</a> <a href="#ref-for-xrspace①">(2)</a>
+    <li><a href="#ref-for-xrspace②">6.1. XRSpace</a> <a href="#ref-for-xrspace③">(2)</a> <a href="#ref-for-xrspace④">(3)</a> <a href="#ref-for-xrspace⑤">(4)</a>
     <li><a href="#ref-for-xrspace⑥">6.2. XRReferenceSpace</a> <a href="#ref-for-xrspace⑦">(2)</a>
+    <li><a href="#ref-for-xrspace⑧">9.1. XRPose</a> <a href="#ref-for-xrspace⑨">(2)</a>
+    <li><a href="#ref-for-xrspace①⓪">10.1. XRInputSource</a> <a href="#ref-for-xrspace①①">(2)</a> <a href="#ref-for-xrspace①②">(3)</a> <a href="#ref-for-xrspace①③">(4)</a> <a href="#ref-for-xrspace①④">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrspace-session">
    <b><a href="#xrspace-session">#xrspace-session</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xrspace-session">5.1. XRFrame</a> <a href="#ref-for-xrspace-session①">(2)</a>
-    <li><a href="#ref-for-xrspace-session②">6.2. XRReferenceSpace</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-xrspace-gettransformto">
-   <b><a href="#dom-xrspace-gettransformto">#dom-xrspace-gettransformto</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-xrspace-gettransformto">6.1. XRSpace</a> <a href="#ref-for-dom-xrspace-gettransformto①">(2)</a>
+    <li><a href="#ref-for-xrspace-session">5.1. XRFrame</a> <a href="#ref-for-xrspace-session①">(2)</a> <a href="#ref-for-xrspace-session②">(3)</a>
+    <li><a href="#ref-for-xrspace-session③">6.2. XRReferenceSpace</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="enumdef-xrreferencespacetype">
@@ -4576,15 +4557,15 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#xrreferencespace">#xrreferencespace</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-xrreferencespace">4.1. XRSession</a>
-    <li><a href="#ref-for-xrreferencespace①">5.1. XRFrame</a> <a href="#ref-for-xrreferencespace②">(2)</a>
-    <li><a href="#ref-for-xrreferencespace③">6.1. XRSpace</a>
-    <li><a href="#ref-for-xrreferencespace④">6.2. XRReferenceSpace</a> <a href="#ref-for-xrreferencespace⑤">(2)</a> <a href="#ref-for-xrreferencespace⑥">(3)</a> <a href="#ref-for-xrreferencespace⑦">(4)</a> <a href="#ref-for-xrreferencespace⑧">(5)</a> <a href="#ref-for-xrreferencespace⑨">(6)</a> <a href="#ref-for-xrreferencespace①⓪">(7)</a>
-    <li><a href="#ref-for-xrreferencespace①①">6.3. XRStationaryReferenceSpace</a>
-    <li><a href="#ref-for-xrreferencespace①②">6.4. XRBoundedReferenceSpace</a> <a href="#ref-for-xrreferencespace①③">(2)</a>
-    <li><a href="#ref-for-xrreferencespace①④">6.5. XRUnboundedReferenceSpace</a>
-    <li><a href="#ref-for-xrreferencespace①⑤">9.1. XRViewerPose</a> <a href="#ref-for-xrreferencespace①⑥">(2)</a> <a href="#ref-for-xrreferencespace①⑦">(3)</a>
-    <li><a href="#ref-for-xrreferencespace①⑧">13.3. XRReferenceSpaceEvent</a> <a href="#ref-for-xrreferencespace①⑨">(2)</a> <a href="#ref-for-xrreferencespace②⓪">(3)</a> <a href="#ref-for-xrreferencespace②①">(4)</a>
-    <li><a href="#ref-for-xrreferencespace②②">13.4. Event Types</a>
+    <li><a href="#ref-for-xrreferencespace①">5.1. XRFrame</a>
+    <li><a href="#ref-for-xrreferencespace②">6.1. XRSpace</a>
+    <li><a href="#ref-for-xrreferencespace③">6.2. XRReferenceSpace</a> <a href="#ref-for-xrreferencespace④">(2)</a> <a href="#ref-for-xrreferencespace⑤">(3)</a> <a href="#ref-for-xrreferencespace⑥">(4)</a> <a href="#ref-for-xrreferencespace⑦">(5)</a> <a href="#ref-for-xrreferencespace⑧">(6)</a> <a href="#ref-for-xrreferencespace⑨">(7)</a>
+    <li><a href="#ref-for-xrreferencespace①⓪">6.3. XRStationaryReferenceSpace</a>
+    <li><a href="#ref-for-xrreferencespace①①">6.4. XRBoundedReferenceSpace</a> <a href="#ref-for-xrreferencespace①②">(2)</a>
+    <li><a href="#ref-for-xrreferencespace①③">6.5. XRUnboundedReferenceSpace</a>
+    <li><a href="#ref-for-xrreferencespace①④">9.2. XRViewerPose</a> <a href="#ref-for-xrreferencespace①⑤">(2)</a>
+    <li><a href="#ref-for-xrreferencespace①⑥">13.3. XRReferenceSpaceEvent</a> <a href="#ref-for-xrreferencespace①⑦">(2)</a> <a href="#ref-for-xrreferencespace①⑧">(3)</a> <a href="#ref-for-xrreferencespace①⑨">(4)</a>
+    <li><a href="#ref-for-xrreferencespace②⓪">13.4. Event Types</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrreferencespacetype-stationary">
@@ -4686,7 +4667,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#view">#view</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-view">7.1. XRView</a> <a href="#ref-for-view①">(2)</a> <a href="#ref-for-view②">(3)</a> <a href="#ref-for-view③">(4)</a> <a href="#ref-for-view④">(5)</a> <a href="#ref-for-view⑤">(6)</a> <a href="#ref-for-view⑥">(7)</a> <a href="#ref-for-view⑦">(8)</a> <a href="#ref-for-view⑧">(9)</a>
-    <li><a href="#ref-for-view⑨">9.1. XRViewerPose</a> <a href="#ref-for-view①⓪">(2)</a>
+    <li><a href="#ref-for-view⑨">9.2. XRViewerPose</a> <a href="#ref-for-view①⓪">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="enumdef-xreye">
@@ -4706,7 +4687,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-xrview">7.1. XRView</a>
     <li><a href="#ref-for-xrview①">7.2. XRViewport</a>
-    <li><a href="#ref-for-xrview②">9.1. XRViewerPose</a> <a href="#ref-for-xrview③">(2)</a> <a href="#ref-for-xrview④">(3)</a>
+    <li><a href="#ref-for-xrview②">9.2. XRViewerPose</a> <a href="#ref-for-xrview③">(2)</a> <a href="#ref-for-xrview④">(3)</a>
     <li><a href="#ref-for-xrview⑤">11.2. XRWebGLLayer</a> <a href="#ref-for-xrview⑥">(2)</a> <a href="#ref-for-xrview⑦">(3)</a> <a href="#ref-for-xrview⑧">(4)</a> <a href="#ref-for-xrview⑨">(5)</a>
    </ul>
   </aside>
@@ -4738,7 +4719,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#xrviewport">#xrviewport</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-xrviewport">7.2. XRViewport</a> <a href="#ref-for-xrviewport①">(2)</a>
-    <li><a href="#ref-for-xrviewport②">9.1. XRViewerPose</a>
+    <li><a href="#ref-for-xrviewport②">9.2. XRViewerPose</a>
     <li><a href="#ref-for-xrviewport③">11.2. XRWebGLLayer</a> <a href="#ref-for-xrviewport④">(2)</a> <a href="#ref-for-xrviewport⑤">(3)</a>
    </ul>
   </aside>
@@ -4781,14 +4762,12 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="xrrigidtransform">
    <b><a href="#xrrigidtransform">#xrrigidtransform</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xrrigidtransform">6.1. XRSpace</a> <a href="#ref-for-xrrigidtransform①">(2)</a>
-    <li><a href="#ref-for-xrrigidtransform②">6.2. XRReferenceSpace</a> <a href="#ref-for-xrrigidtransform③">(2)</a>
-    <li><a href="#ref-for-xrrigidtransform④">7.1. XRView</a> <a href="#ref-for-xrrigidtransform⑤">(2)</a>
-    <li><a href="#ref-for-xrrigidtransform⑥">8.2. XRRigidTransform</a> <a href="#ref-for-xrrigidtransform⑦">(2)</a> <a href="#ref-for-xrrigidtransform⑧">(3)</a> <a href="#ref-for-xrrigidtransform⑨">(4)</a>
-    <li><a href="#ref-for-xrrigidtransform①⓪">8.3. XRRay</a>
-    <li><a href="#ref-for-xrrigidtransform①①">9.1. XRViewerPose</a> <a href="#ref-for-xrrigidtransform①②">(2)</a>
-    <li><a href="#ref-for-xrrigidtransform①③">10.2. XRInputPose</a>
-    <li><a href="#ref-for-xrrigidtransform①④">13.3. XRReferenceSpaceEvent</a> <a href="#ref-for-xrrigidtransform①⑤">(2)</a>
+    <li><a href="#ref-for-xrrigidtransform">6.2. XRReferenceSpace</a> <a href="#ref-for-xrrigidtransform①">(2)</a>
+    <li><a href="#ref-for-xrrigidtransform②">7.1. XRView</a> <a href="#ref-for-xrrigidtransform③">(2)</a>
+    <li><a href="#ref-for-xrrigidtransform④">8.2. XRRigidTransform</a> <a href="#ref-for-xrrigidtransform⑤">(2)</a> <a href="#ref-for-xrrigidtransform⑥">(3)</a> <a href="#ref-for-xrrigidtransform⑦">(4)</a>
+    <li><a href="#ref-for-xrrigidtransform⑧">8.3. XRRay</a>
+    <li><a href="#ref-for-xrrigidtransform⑨">9.1. XRPose</a> <a href="#ref-for-xrrigidtransform①⓪">(2)</a>
+    <li><a href="#ref-for-xrrigidtransform①①">13.3. XRReferenceSpaceEvent</a> <a href="#ref-for-xrrigidtransform①②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrrigidtransform-xrrigidtransform">
@@ -4801,7 +4780,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#dom-xrrigidtransform-position">#dom-xrrigidtransform-position</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrrigidtransform-position">8.2. XRRigidTransform</a> <a href="#ref-for-dom-xrrigidtransform-position①">(2)</a> <a href="#ref-for-dom-xrrigidtransform-position②">(3)</a> <a href="#ref-for-dom-xrrigidtransform-position③">(4)</a> <a href="#ref-for-dom-xrrigidtransform-position④">(5)</a> <a href="#ref-for-dom-xrrigidtransform-position⑤">(6)</a> <a href="#ref-for-dom-xrrigidtransform-position⑥">(7)</a> <a href="#ref-for-dom-xrrigidtransform-position⑦">(8)</a>
-    <li><a href="#ref-for-dom-xrrigidtransform-position⑧">10.2. XRInputPose</a>
+    <li><a href="#ref-for-dom-xrrigidtransform-position⑧">9.1. XRPose</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrrigidtransform-orientation">
@@ -4835,7 +4814,6 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#xrray">#xrray</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-xrray">8.3. XRRay</a> <a href="#ref-for-xrray①">(2)</a> <a href="#ref-for-xrray②">(3)</a> <a href="#ref-for-xrray③">(4)</a> <a href="#ref-for-xrray④">(5)</a>
-    <li><a href="#ref-for-xrray⑤">10.2. XRInputPose</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrray-xrray">
@@ -4854,7 +4832,6 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#dom-xrray-origin">#dom-xrray-origin</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrray-origin">8.3. XRRay</a> <a href="#ref-for-dom-xrray-origin①">(2)</a> <a href="#ref-for-dom-xrray-origin②">(3)</a> <a href="#ref-for-dom-xrray-origin③">(4)</a> <a href="#ref-for-dom-xrray-origin④">(5)</a> <a href="#ref-for-dom-xrray-origin⑤">(6)</a> <a href="#ref-for-dom-xrray-origin⑥">(7)</a> <a href="#ref-for-dom-xrray-origin⑦">(8)</a>
-    <li><a href="#ref-for-dom-xrray-origin⑧">10.2. XRInputPose</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrray-direction">
@@ -4869,6 +4846,27 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-dom-xrray-matrix">8.3. XRRay</a> <a href="#ref-for-dom-xrray-matrix①">(2)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="xrpose">
+   <b><a href="#xrpose">#xrpose</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-xrpose">5.1. XRFrame</a> <a href="#ref-for-xrpose①">(2)</a>
+    <li><a href="#ref-for-xrpose②">9.1. XRPose</a>
+    <li><a href="#ref-for-xrpose③">9.2. XRViewerPose</a> <a href="#ref-for-xrpose④">(2)</a> <a href="#ref-for-xrpose⑤">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrpose-transform">
+   <b><a href="#dom-xrpose-transform">#dom-xrpose-transform</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrpose-transform">9.1. XRPose</a> <a href="#ref-for-dom-xrpose-transform①">(2)</a>
+    <li><a href="#ref-for-dom-xrpose-transform②">9.2. XRViewerPose</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrpose-emulatedposition">
+   <b><a href="#dom-xrpose-emulatedposition">#dom-xrpose-emulatedposition</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrpose-emulatedposition">9.1. XRPose</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="viewer">
    <b><a href="#viewer">#viewer</a></b><b>Referenced in:</b>
    <ul>
@@ -4876,7 +4874,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-viewer②">4.5. Animation Frames</a>
     <li><a href="#ref-for-viewer③">5.1. XRFrame</a> <a href="#ref-for-viewer④">(2)</a>
     <li><a href="#ref-for-viewer⑤">6.3. XRStationaryReferenceSpace</a>
-    <li><a href="#ref-for-viewer⑥">9.1. XRViewerPose</a> <a href="#ref-for-viewer⑦">(2)</a> <a href="#ref-for-viewer⑧">(3)</a> <a href="#ref-for-viewer⑨">(4)</a>
+    <li><a href="#ref-for-viewer⑥">9.2. XRViewerPose</a> <a href="#ref-for-viewer⑦">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrviewerpose">
@@ -4884,20 +4882,14 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-xrviewerpose">5.1. XRFrame</a> <a href="#ref-for-xrviewerpose①">(2)</a>
     <li><a href="#ref-for-xrviewerpose②">7.2. XRViewport</a>
-    <li><a href="#ref-for-xrviewerpose③">9.1. XRViewerPose</a> <a href="#ref-for-xrviewerpose④">(2)</a> <a href="#ref-for-xrviewerpose⑤">(3)</a> <a href="#ref-for-xrviewerpose⑥">(4)</a>
+    <li><a href="#ref-for-xrviewerpose③">9.2. XRViewerPose</a> <a href="#ref-for-xrviewerpose④">(2)</a> <a href="#ref-for-xrviewerpose⑤">(3)</a> <a href="#ref-for-xrviewerpose⑥">(4)</a>
     <li><a href="#ref-for-xrviewerpose⑦">13.2. XRInputSourceEvent</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-xrviewerpose-transform">
-   <b><a href="#dom-xrviewerpose-transform">#dom-xrviewerpose-transform</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-xrviewerpose-transform">9.1. XRViewerPose</a> <a href="#ref-for-dom-xrviewerpose-transform①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrviewerpose-views">
    <b><a href="#dom-xrviewerpose-views">#dom-xrviewerpose-views</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrviewerpose-views">9.1. XRViewerPose</a>
+    <li><a href="#ref-for-dom-xrviewerpose-views">9.2. XRViewerPose</a>
     <li><a href="#ref-for-dom-xrviewerpose-views①">13.2. XRInputSourceEvent</a>
    </ul>
   </aside>
@@ -4917,11 +4909,9 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#xrinputsource">#xrinputsource</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-xrinputsource">4.1. XRSession</a>
-    <li><a href="#ref-for-xrinputsource①">5.1. XRFrame</a>
-    <li><a href="#ref-for-xrinputsource②">10.1. XRInputSource</a> <a href="#ref-for-xrinputsource③">(2)</a>
-    <li><a href="#ref-for-xrinputsource④">10.2. XRInputPose</a>
-    <li><a href="#ref-for-xrinputsource⑤">13.2. XRInputSourceEvent</a> <a href="#ref-for-xrinputsource⑥">(2)</a> <a href="#ref-for-xrinputsource⑦">(3)</a> <a href="#ref-for-xrinputsource⑧">(4)</a>
-    <li><a href="#ref-for-xrinputsource⑨">13.4. Event Types</a> <a href="#ref-for-xrinputsource①⓪">(2)</a> <a href="#ref-for-xrinputsource①①">(3)</a> <a href="#ref-for-xrinputsource①②">(4)</a>
+    <li><a href="#ref-for-xrinputsource①">10.1. XRInputSource</a> <a href="#ref-for-xrinputsource②">(2)</a> <a href="#ref-for-xrinputsource③">(3)</a>
+    <li><a href="#ref-for-xrinputsource④">13.2. XRInputSourceEvent</a> <a href="#ref-for-xrinputsource⑤">(2)</a> <a href="#ref-for-xrinputsource⑥">(3)</a> <a href="#ref-for-xrinputsource⑦">(4)</a>
+    <li><a href="#ref-for-xrinputsource⑧">13.4. Event Types</a> <a href="#ref-for-xrinputsource⑨">(2)</a> <a href="#ref-for-xrinputsource①⓪">(3)</a> <a href="#ref-for-xrinputsource①①">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="primary-action">
@@ -4940,14 +4930,13 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="dom-xrinputsource-targetraymode">
    <b><a href="#dom-xrinputsource-targetraymode">#dom-xrinputsource-targetraymode</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrinputsource-targetraymode">10.1. XRInputSource</a> <a href="#ref-for-dom-xrinputsource-targetraymode①">(2)</a>
-    <li><a href="#ref-for-dom-xrinputsource-targetraymode②">10.2. XRInputPose</a>
+    <li><a href="#ref-for-dom-xrinputsource-targetraymode">10.1. XRInputSource</a> <a href="#ref-for-dom-xrinputsource-targetraymode①">(2)</a> <a href="#ref-for-dom-xrinputsource-targetraymode②">(3)</a> <a href="#ref-for-dom-xrinputsource-targetraymode③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrtargetraymode-gaze">
    <b><a href="#dom-xrtargetraymode-gaze">#dom-xrtargetraymode-gaze</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrtargetraymode-gaze">10.1. XRInputSource</a>
+    <li><a href="#ref-for-dom-xrtargetraymode-gaze">10.1. XRInputSource</a> <a href="#ref-for-dom-xrtargetraymode-gaze①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrtargetraymode-tracked-pointer">
@@ -4959,31 +4948,19 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="dom-xrtargetraymode-screen">
    <b><a href="#dom-xrtargetraymode-screen">#dom-xrtargetraymode-screen</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrtargetraymode-screen">10.1. XRInputSource</a> <a href="#ref-for-dom-xrtargetraymode-screen①">(2)</a>
+    <li><a href="#ref-for-dom-xrtargetraymode-screen">10.1. XRInputSource</a> <a href="#ref-for-dom-xrtargetraymode-screen①">(2)</a> <a href="#ref-for-dom-xrtargetraymode-screen②">(3)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="xrinputpose">
-   <b><a href="#xrinputpose">#xrinputpose</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-xrinputsource-targetrayspace">
+   <b><a href="#dom-xrinputsource-targetrayspace">#dom-xrinputsource-targetrayspace</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xrinputpose">5.1. XRFrame</a> <a href="#ref-for-xrinputpose①">(2)</a>
+    <li><a href="#ref-for-dom-xrinputsource-targetrayspace">10.1. XRInputSource</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-xrinputpose-targetray">
-   <b><a href="#dom-xrinputpose-targetray">#dom-xrinputpose-targetray</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-xrinputsource-gripspace">
+   <b><a href="#dom-xrinputsource-gripspace">#dom-xrinputsource-gripspace</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrinputpose-targetray">10.2. XRInputPose</a> <a href="#ref-for-dom-xrinputpose-targetray①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-xrinputpose-griptransform">
-   <b><a href="#dom-xrinputpose-griptransform">#dom-xrinputpose-griptransform</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-xrinputpose-griptransform">10.2. XRInputPose</a> <a href="#ref-for-dom-xrinputpose-griptransform①">(2)</a> <a href="#ref-for-dom-xrinputpose-griptransform②">(3)</a> <a href="#ref-for-dom-xrinputpose-griptransform③">(4)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-xrinputpose-emulatedposition">
-   <b><a href="#dom-xrinputpose-emulatedposition">#dom-xrinputpose-emulatedposition</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-xrinputpose-emulatedposition">10.2. XRInputPose</a> <a href="#ref-for-dom-xrinputpose-emulatedposition①">(2)</a> <a href="#ref-for-dom-xrinputpose-emulatedposition②">(3)</a>
+    <li><a href="#ref-for-dom-xrinputsource-gripspace">10.1. XRInputSource</a> <a href="#ref-for-dom-xrinputsource-gripspace①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrlayer">
