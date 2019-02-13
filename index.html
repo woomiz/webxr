@@ -1503,7 +1503,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-02-12">12 February 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-02-13">13 February 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1925,12 +1925,22 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
     </ol>
    </div>
    <div class="algorithm" data-algorithm="end-session">
-    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="method" data-export id="dom-xrsession-end"><code>end()</code></dfn> method provides a way to manually shut down a session. When invoked, it MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise②">a new Promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel②">in parallel</a>:</p>
+    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="method" data-export id="dom-xrsession-end"><code>end()</code></dfn> method provides a way to manually shut down a session. When invoked, it MUST run the following steps:</p>
     <ol>
+     <li data-md>
+      <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise②">a new Promise</a>.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="#shut-down-the-session" id="ref-for-shut-down-the-session①">Shut down</a> the target <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑤">XRSession</a></code> object.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise②">Resolve</a> <var>promise</var>.</p>
+      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①">Queue a task</a> to perform the following steps:</p>
+      <ol>
+       <li data-md>
+        <p>Wait until any platform-specific steps related to shutting down the session have completed.</p>
+       <li data-md>
+        <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise②">Resolve</a> <var>promise</var>.</p>
+      </ol>
+     <li data-md>
+      <p>Return <var>promise</var>.</p>
     </ol>
    </div>
    <p>Each <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑥">XRSession</a></code> has an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="active-render-state">active render state</dfn> which is a new <code class="idl"><a data-link-type="idl" href="#xrrenderstate" id="ref-for-xrrenderstate①">XRRenderState</a></code>, a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="list-of-pending-render-states">list of pending render states</dfn>, which is initially empty.</p>
@@ -1972,7 +1982,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
     </ol>
    </div>
    <div class="algorithm" data-algorithm="request-reference-space">
-    <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="method" data-export id="dom-xrsession-requestreferencespace"><code>requestReferenceSpace(<var>options</var>)</code></dfn> method is invoked, the user agent MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise③">a new Promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel③">in parallel</a>:</p>
+    <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="method" data-export id="dom-xrsession-requestreferencespace"><code>requestReferenceSpace(<var>options</var>)</code></dfn> method is invoked, the user agent MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise③">a new Promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel②">in parallel</a>:</p>
     <ol>
      <li data-md>
       <p><a data-link-type="dfn" href="#create-a-reference-space" id="ref-for-create-a-reference-space">Create a reference space</a>, <var>referenceSpace</var>, as described by <var>options</var>.</p>
@@ -2682,7 +2692,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
     </div>
     <p>To set the <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑥">XR compatible</a> boolean after the context has been created, the <code class="idl"><a data-link-type="idl" href="#dom-webglrenderingcontextbase-makexrcompatible" id="ref-for-dom-webglrenderingcontextbase-makexrcompatible①">makeXRCompatible()</a></code> method is used.</p>
     <div class="algorithm" data-algorithm="make-xr-compatible">
-     <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="WebGLRenderingContextBase" data-dfn-type="method" data-export id="dom-webglrenderingcontextbase-makexrcompatible"><code>makeXRCompatible()</code></dfn> method is invoked, the user agent MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise④">a new Promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel④">in parallel</a>:</p>
+     <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="WebGLRenderingContextBase" data-dfn-type="method" data-export id="dom-webglrenderingcontextbase-makexrcompatible"><code>makeXRCompatible()</code></dfn> method is invoked, the user agent MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise④">a new Promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel③">in parallel</a>:</p>
      <ol>
       <li data-md>
        <p>Let <var>context</var> be the target <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase" id="ref-for-WebGLRenderingContextBase⑥">WebGLRenderingContextBase</a></code> object.</p>
@@ -2699,7 +2709,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
          <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise⑤">Resolve</a> <var>promise</var> and abort these steps.</p>
        </ol>
       <li data-md>
-       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①">Queue a task</a> to perform the following steps:</p>
+       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task②">Queue a task</a> to perform the following steps:</p>
        <ol>
         <li data-md>
          <p>Force <var>context</var> to be lost and <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#CONTEXT_LOST" id="ref-for-CONTEXT_LOST">handle the context loss</a> as described by the WebGL specification.</p>
@@ -3313,15 +3323,16 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <a href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-in-parallel">3.2. XR</a> <a href="#ref-for-in-parallel①">(2)</a>
-    <li><a href="#ref-for-in-parallel②">4.1. XRSession</a> <a href="#ref-for-in-parallel③">(2)</a>
-    <li><a href="#ref-for-in-parallel④">11.3. WebGL Context Compatibility</a>
+    <li><a href="#ref-for-in-parallel②">4.1. XRSession</a>
+    <li><a href="#ref-for-in-parallel③">11.3. WebGL Context Compatibility</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-queue-a-task">
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-queue-a-task">3.2. XR</a>
-    <li><a href="#ref-for-queue-a-task①">11.3. WebGL Context Compatibility</a>
+    <li><a href="#ref-for-queue-a-task①">4.1. XRSession</a>
+    <li><a href="#ref-for-queue-a-task②">11.3. WebGL Context Compatibility</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-report-the-exception">
