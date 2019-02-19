@@ -1503,7 +1503,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-02-18">18 February 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-02-19">19 February 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2480,7 +2480,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
     <h3 class="heading settled" data-level="10.1" id="xrinputsource-interface"><span class="secno">10.1. </span><span class="content">XRInputSource</span><a class="self-link" href="#xrinputsource-interface"></a></h3>
     <p>An <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource①">XRInputSource</a></code> represents any input mechanism which allows the user to perform targeted actions in the same virtual space as the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer⑨">viewer</a>.</p>
 <pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-xrhandedness"><code><c- g>XRHandedness</c-></code></dfn> {
-  <dfn class="idl-code" data-dfn-for="XRHandedness" data-dfn-type="enum-value" data-export id="dom-xrhandedness"><code><c- s>""</c-></code><a class="self-link" href="#dom-xrhandedness"></a></dfn>,
+  <dfn class="dfn-paneled idl-code" data-dfn-for="XRHandedness" data-dfn-type="enum-value" data-export id="dom-xrhandedness-none"><code><c- s>"none"</c-></code></dfn>,
   <dfn class="idl-code" data-dfn-for="XRHandedness" data-dfn-type="enum-value" data-export id="dom-xrhandedness-left"><code><c- s>"left"</c-></code><a class="self-link" href="#dom-xrhandedness-left"></a></dfn>,
   <dfn class="idl-code" data-dfn-for="XRHandedness" data-dfn-type="enum-value" data-export id="dom-xrhandedness-right"><code><c- s>"right"</c-></code><a class="self-link" href="#dom-xrhandedness-right"></a></dfn>
 };
@@ -2500,7 +2500,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
 };
 </pre>
     <p>Each <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource②">XRInputSource</a></code> SHOULD define a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="primary-action">primary action</dfn>. The <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action">primary action</a> is a platform-specific action that, when engaged, produces <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-selectstart" id="ref-for-eventdef-xrsession-selectstart①">selectstart</a></code>, <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-selectend" id="ref-for-eventdef-xrsession-selectend①">selectend</a></code>, and <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-select" id="ref-for-eventdef-xrsession-select②">select</a></code> events. Examples of possible <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action①">primary action</a>s are pressing a trigger, touchpad, or button, speaking a command, or making a hand gesture. If the platform guidelines define a recommended primary input then it should be used as the <a data-link-type="dfn" href="#primary-action" id="ref-for-primary-action②">primary action</a>, otherwise the user agent is free to select one.</p>
-    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSource" data-dfn-type="attribute" data-export id="dom-xrinputsource-handedness"><code>handedness</code></dfn> attribute describes which hand the input source is associated with, if any. Input sources with no natural handedness (such as headset-mounted controls or standard gamepads) or for which the handedness is not currently known MUST set this attribute to the empty string.</p>
+    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSource" data-dfn-type="attribute" data-export id="dom-xrinputsource-handedness"><code>handedness</code></dfn> attribute describes which hand the input source is associated with, if any. Input sources with no natural handedness (such as headset-mounted controls or standard gamepads) or for which the handedness is not currently known MUST set this attribute <code class="idl"><a data-link-type="idl" href="#dom-xrhandedness-none" id="ref-for-dom-xrhandedness-none">none</a></code>.</p>
     <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSource" data-dfn-type="attribute" data-export id="dom-xrinputsource-targetraymode"><code>targetRayMode</code></dfn> attribute describes the method used to produce the target ray, and indicates how the application should present the target ray to the user if desired.</p>
     <ul>
      <li data-md>
@@ -2900,7 +2900,6 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
-   <li><a href="#dom-xrhandedness">""</a><span>, in §10.1</span>
    <li><a href="#3dof">3DoF</a><span>, in §1.1</span>
    <li><a href="#6dof">6DoF</a><span>, in §1.1</span>
    <li><a href="#xrframe-active">active</a><span>, in §5.1</span>
@@ -3035,6 +3034,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
      <li><a href="#dom-xrsessioncreationoptions-mode">dict-member for XRSessionCreationOptions</a><span>, in §4.3</span>
     </ul>
    <li><a href="#native-webgl-framebuffer-resolution">native WebGL framebuffer resolution</a><span>, in §11.2</span>
+   <li><a href="#dom-xrhandedness-none">"none"</a><span>, in §10.1</span>
    <li><a href="#normalize">normalize</a><span>, in §8.2</span>
    <li><a href="#dom-xrsession-onblur">onblur</a><span>, in §4.1</span>
    <li><a href="#dom-xr-ondevicechange">ondevicechange</a><span>, in §3.2</span>
@@ -3863,7 +3863,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 };
 
 <c- b>enum</c-> <a href="#enumdef-xrhandedness"><code><c- g>XRHandedness</c-></code></a> {
-  <a href="#dom-xrhandedness"><code><c- s>""</c-></code></a>,
+  <a href="#dom-xrhandedness-none"><code><c- s>"none"</c-></code></a>,
   <a href="#dom-xrhandedness-left"><code><c- s>"left"</c-></code></a>,
   <a href="#dom-xrhandedness-right"><code><c- s>"right"</c-></code></a>
 };
@@ -4941,6 +4941,12 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#enumdef-xrhandedness">#enumdef-xrhandedness</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-enumdef-xrhandedness">10.1. XRInputSource</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrhandedness-none">
+   <b><a href="#dom-xrhandedness-none">#dom-xrhandedness-none</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrhandedness-none">10.1. XRInputSource</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="enumdef-xrtargetraymode">
