@@ -2236,6 +2236,17 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
     <li data-md>
      <p>Passing a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-type" id="ref-for-dom-xrreferencespaceoptions-type③">type</a></code> of <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpaceType" data-dfn-type="enum-value" data-export id="dom-xrreferencespacetype-unbounded"><code>unbounded</code></dfn> creates an <code class="idl"><a data-link-type="idl" href="#xrunboundedreferencespace" id="ref-for-xrunboundedreferencespace">XRUnboundedReferenceSpace</a></code> instance if supported by the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device②⓪">XR device</a> and the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession③⑧">XRSession</a></code>.</p>
    </ul>
+   <p>If a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-type" id="ref-for-dom-xrreferencespaceoptions-type④">type</a></code> of <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-stationary" id="ref-for-dom-xrreferencespacetype-stationary①">stationary</a></code> is specified a {XRReferenceSpaceOptions/subtype}} must also be given:</p>
+   <ul>
+    <li data-md>
+     <p>Passing a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-subtype" id="ref-for-dom-xrreferencespaceoptions-subtype">subtype</a></code> of <dfn class="dfn-paneled idl-code" data-dfn-for="XRStationaryReferenceSpaceSubtype" data-dfn-type="enum-value" data-export id="dom-xrstationaryreferencespacesubtype-eye-level"><code>eye-level</code></dfn> creates an <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace①">XRStationaryReferenceSpace</a></code> with it’s origin near the user’s head at the time of creation. The exact position and orientation will be initialized based on the conventions of the underlying platform.</p>
+    <li data-md>
+     <p>Passing a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-subtype" id="ref-for-dom-xrreferencespaceoptions-subtype①">subtype</a></code> of <dfn class="dfn-paneled idl-code" data-dfn-for="XRStationaryReferenceSpaceSubtype" data-dfn-type="enum-value" data-export id="dom-xrstationaryreferencespacesubtype-floor-level"><code>floor-level</code></dfn> creates an <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace②">XRStationaryReferenceSpace</a></code> with it’s origin positioned at the floor in a safe position for the user to stand. The `y` axis equals `0` at floor level, with the `x` and `z` position and orientation initialized based on the conventions of the underlying platform. If the floor level isn’t known it will be estimated.</p>
+    <li data-md>
+     <p>Passing a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-subtype" id="ref-for-dom-xrreferencespaceoptions-subtype②">subtype</a></code> of <dfn class="dfn-paneled idl-code" data-dfn-for="XRStationaryReferenceSpaceSubtype" data-dfn-type="enum-value" data-export id="dom-xrstationaryreferencespacesubtype-position-disabled"><code>position-disabled</code></dfn> creates an <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace③">XRStationaryReferenceSpace</a></code> where orientation is tracked but the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer⑥">viewer</a>s position is always reported as being at the origin.</p>
+   </ul>
+   <p class="note" role="note"><span>Note:</span> The <code class="idl"><a data-link-type="idl" href="#dom-xrstationaryreferencespacesubtype-position-disabled" id="ref-for-dom-xrstationaryreferencespacesubtype-position-disabled①">position-disabled</a></code> subtype is primarily intended for use with pre-rendered media such as panoramic photos or videos. It should not be used for most other media types due to user discomfort associated with the lack of a neck model or full positional tracking.</p>
+   <p>Devices that support <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-stationary" id="ref-for-dom-xrreferencespacetype-stationary②">stationary</a></code> reference spaces MUST support all <code class="idl"><a data-link-type="idl" href="#enumdef-xrstationaryreferencespacesubtype" id="ref-for-enumdef-xrstationaryreferencespacesubtype①">XRStationaryReferenceSpaceSubtype</a></code>s.</p>
    <section class="unstable">
      The <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpace" data-dfn-type="attribute" data-export id="dom-xrreferencespace-originoffset"><code>originOffset</code></dfn> attribute is a <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform①">XRRigidTransform</a></code> that describes an additional translation and rotation to be applied to any poses queried using the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace⑨">XRReferenceSpace</a></code>. It is initially set to an <a data-link-type="dfn" href="#identity-transform" id="ref-for-identity-transform">identity transform</a>. Changes to the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespace-originoffset" id="ref-for-dom-xrreferencespace-originoffset①">originOffset</a></code> take effect immediately, and subsequent poses queried with the <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①⓪">XRReferenceSpace</a></code> will take into account the new transform. 
     <p class="note" role="note"><span>Note:</span> Changing the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespace-originoffset" id="ref-for-dom-xrreferencespace-originoffset②">originOffset</a></code> between pose queries in a single <a data-link-type="dfn" href="#xr-animation-frame" id="ref-for-xr-animation-frame">XR animation frame</a> is not advised, since it will cause inconsistencies in the tracking data and rendered output.</p>
@@ -2249,15 +2260,15 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
      <li data-md>
       <p>Let <var>options</var> be the <code class="idl"><a data-link-type="idl" href="#dictdef-xrreferencespaceoptions" id="ref-for-dictdef-xrreferencespaceoptions②">XRReferenceSpaceOptions</a></code> passed to <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace②">requestReferenceSpace()</a></code>.</p>
      <li data-md>
-      <p>Let <var>type</var> be set to <var>options</var> <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-type" id="ref-for-dom-xrreferencespaceoptions-type④">type</a></code>.</p>
+      <p>Let <var>type</var> be set to <var>options</var> <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-type" id="ref-for-dom-xrreferencespaceoptions-type⑤">type</a></code>.</p>
      <li data-md>
       <p>Let <var>referenceSpace</var> be set to <code>null</code>.</p>
      <li data-md>
-      <p>If <var>type</var> is <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-stationary" id="ref-for-dom-xrreferencespacetype-stationary①">stationary</a></code> and <var>options</var> does not have a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-subtype" id="ref-for-dom-xrreferencespaceoptions-subtype">subtype</a></code> field, throw <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror">TypeError</a></code>.</p>
+      <p>If <var>type</var> is <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-stationary" id="ref-for-dom-xrreferencespacetype-stationary③">stationary</a></code> and <var>options</var> does not have a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-subtype" id="ref-for-dom-xrreferencespaceoptions-subtype③">subtype</a></code> field, throw <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror">TypeError</a></code>.</p>
      <li data-md>
-      <p>Else if <var>type</var> is <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded" id="ref-for-dom-xrreferencespacetype-bounded①">bounded</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-unbounded" id="ref-for-dom-xrreferencespacetype-unbounded①">unbounded</a></code> and <var>options</var> has a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-subtype" id="ref-for-dom-xrreferencespaceoptions-subtype①">subtype</a></code> field, throw a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①">TypeError</a></code>.</p>
+      <p>Else if <var>type</var> is <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded" id="ref-for-dom-xrreferencespacetype-bounded①">bounded</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-unbounded" id="ref-for-dom-xrreferencespacetype-unbounded①">unbounded</a></code> and <var>options</var> has a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-subtype" id="ref-for-dom-xrreferencespaceoptions-subtype④">subtype</a></code> field, throw a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①">TypeError</a></code>.</p>
      <li data-md>
-      <p>If <var>type</var> is <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-stationary" id="ref-for-dom-xrreferencespacetype-stationary②">stationary</a></code>, let <var>referenceSpace</var> be a new <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace①">XRStationaryReferenceSpace</a></code> with a <code class="idl"><a data-link-type="idl" href="#dom-xrstationaryreferencespace-subtype" id="ref-for-dom-xrstationaryreferencespace-subtype">subtype</a></code> of <var>options</var> <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-subtype" id="ref-for-dom-xrreferencespaceoptions-subtype②">subtype</a></code>.</p>
+      <p>If <var>type</var> is <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-stationary" id="ref-for-dom-xrreferencespacetype-stationary④">stationary</a></code>, let <var>referenceSpace</var> be a new <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace④">XRStationaryReferenceSpace</a></code> with a <code class="idl"><a data-link-type="idl" href="#dom-xrstationaryreferencespace-subtype" id="ref-for-dom-xrstationaryreferencespace-subtype">subtype</a></code> of <var>options</var> <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-subtype" id="ref-for-dom-xrreferencespaceoptions-subtype⑤">subtype</a></code>.</p>
      <li data-md>
       <p>Else if <var>type</var> is <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded" id="ref-for-dom-xrreferencespacetype-bounded②">bounded</a></code>, let <var>referenceSpace</var> be a new <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace①">XRBoundedReferenceSpace</a></code>.</p>
      <li data-md>
@@ -2267,23 +2278,13 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
     </ol>
    </div>
    <h3 class="heading settled" data-level="6.3" id="xrstationaryreferencespace-interface"><span class="secno">6.3. </span><span class="content">XRStationaryReferenceSpace</span><a class="self-link" href="#xrstationaryreferencespace-interface"></a></h3>
-   <p>An <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace②">XRStationaryReferenceSpace</a></code> represents a tracking space that the user is not expected to move around within. Tracking in a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-stationary" id="ref-for-dom-xrreferencespacetype-stationary③">stationary</a></code> reference space is optimized for the assumption that the user will not move much beyond their starting point, if at all. For devices with <a data-link-type="dfn" href="#6dof" id="ref-for-6dof②">6DoF</a> tracking, <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-stationary" id="ref-for-dom-xrreferencespacetype-stationary④">stationary</a></code> reference spaces should emphasize keeping the origin stable relative to the user’s environment.</p>
+   <p>An <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace⑤">XRStationaryReferenceSpace</a></code> represents a tracking space that the user is not expected to move around within. Tracking in a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-stationary" id="ref-for-dom-xrreferencespacetype-stationary⑤">stationary</a></code> reference space is optimized for the assumption that the user will not move much beyond their starting point, if at all. For devices with <a data-link-type="dfn" href="#6dof" id="ref-for-6dof②">6DoF</a> tracking, <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-stationary" id="ref-for-dom-xrreferencespacetype-stationary⑥">stationary</a></code> reference spaces should emphasize keeping the origin stable relative to the user’s environment.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑦"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑥"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrstationaryreferencespace"><code><c- g>XRStationaryReferenceSpace</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①②"><c- n>XRReferenceSpace</c-></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrstationaryreferencespacesubtype" id="ref-for-enumdef-xrstationaryreferencespacesubtype①"><c- n>XRStationaryReferenceSpaceSubtype</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRStationaryReferenceSpaceSubtype" href="#dom-xrstationaryreferencespace-subtype" id="ref-for-dom-xrstationaryreferencespace-subtype①"><c- g>subtype</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrstationaryreferencespacesubtype" id="ref-for-enumdef-xrstationaryreferencespacesubtype②"><c- n>XRStationaryReferenceSpaceSubtype</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRStationaryReferenceSpaceSubtype" href="#dom-xrstationaryreferencespace-subtype" id="ref-for-dom-xrstationaryreferencespace-subtype①"><c- g>subtype</c-></a>;
 };
 </pre>
-   <p>There are several subtypes of <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace③">XRStationaryReferenceSpace</a></code>, determined by the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-subtype" id="ref-for-dom-xrreferencespaceoptions-subtype③">subtype</a></code> value of the <code class="idl"><a data-link-type="idl" href="#dictdef-xrreferencespaceoptions" id="ref-for-dictdef-xrreferencespaceoptions③">XRReferenceSpaceOptions</a></code> dictionary passed into the <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace③">requestReferenceSpace()</a></code> call:</p>
-   <ul>
-    <li data-md>
-     <p>Passing a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-subtype" id="ref-for-dom-xrreferencespaceoptions-subtype④">subtype</a></code> of <dfn class="dfn-paneled idl-code" data-dfn-for="XRStationaryReferenceSpaceSubtype" data-dfn-type="enum-value" data-export id="dom-xrstationaryreferencespacesubtype-eye-level"><code>eye-level</code></dfn> creates an <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace④">XRStationaryReferenceSpace</a></code> with it’s origin near the user’s head at the time of creation. The exact position and orientation will be initialized based on the conventions of the underlying platform.</p>
-    <li data-md>
-     <p>Passing a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-subtype" id="ref-for-dom-xrreferencespaceoptions-subtype⑤">subtype</a></code> of <dfn class="dfn-paneled idl-code" data-dfn-for="XRStationaryReferenceSpaceSubtype" data-dfn-type="enum-value" data-export id="dom-xrstationaryreferencespacesubtype-floor-level"><code>floor-level</code></dfn> creates an <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace⑤">XRStationaryReferenceSpace</a></code> with it’s origin positioned at the floor in a safe position for the user to stand. The `y` axis equals `0` at floor level, with the `x` and `z` position and orientation initialized based on the conventions of the underlying platform. If the floor level isn’t known it will be estimated.</p>
-    <li data-md>
-     <p>Passing a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespaceoptions-subtype" id="ref-for-dom-xrreferencespaceoptions-subtype⑥">subtype</a></code> of <dfn class="dfn-paneled idl-code" data-dfn-for="XRStationaryReferenceSpaceSubtype" data-dfn-type="enum-value" data-export id="dom-xrstationaryreferencespacesubtype-position-disabled"><code>position-disabled</code></dfn> creates an <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace⑥">XRStationaryReferenceSpace</a></code> where orientation is tracked but the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer⑥">viewer</a>s position is always reported as being at the origin.</p>
-   </ul>
-   <p class="note" role="note"><span>Note:</span> The <code class="idl"><a data-link-type="idl" href="#dom-xrstationaryreferencespacesubtype-position-disabled" id="ref-for-dom-xrstationaryreferencespacesubtype-position-disabled①">position-disabled</a></code> subtype is primarily intended for use with pre-rendered media such as panoramic photos or videos. It should not be used for most other media types due to user discomfort associated with the lack of a neck model or full positional tracking.</p>
-   <p>The <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace⑦">XRStationaryReferenceSpace</a></code>'s <dfn class="dfn-paneled idl-code" data-dfn-for="XRStationaryReferenceSpace" data-dfn-type="attribute" data-export id="dom-xrstationaryreferencespace-subtype"><code>subtype</code></dfn> attribute is the <code class="idl"><a data-link-type="idl" href="#enumdef-xrstationaryreferencespacesubtype" id="ref-for-enumdef-xrstationaryreferencespacesubtype②">XRStationaryReferenceSpaceSubtype</a></code> that the <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace⑧">XRStationaryReferenceSpace</a></code> was created with.</p>
+   <p>The <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace⑥">XRStationaryReferenceSpace</a></code>'s <dfn class="dfn-paneled idl-code" data-dfn-for="XRStationaryReferenceSpace" data-dfn-type="attribute" data-export id="dom-xrstationaryreferencespace-subtype"><code>subtype</code></dfn> attribute is the <code class="idl"><a data-link-type="idl" href="#enumdef-xrstationaryreferencespacesubtype" id="ref-for-enumdef-xrstationaryreferencespacesubtype③">XRStationaryReferenceSpaceSubtype</a></code> that the <code class="idl"><a data-link-type="idl" href="#xrstationaryreferencespace" id="ref-for-xrstationaryreferencespace⑦">XRStationaryReferenceSpace</a></code> was created with.</p>
    <h3 class="heading settled" data-level="6.4" id="xrboundedreferencespace-interface"><span class="secno">6.4. </span><span class="content">XRBoundedReferenceSpace</span><a class="self-link" href="#xrboundedreferencespace-interface"></a></h3>
    <p>An <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace②">XRBoundedReferenceSpace</a></code> represents a floor-relative tracking space where the user is expected to move within a pre-established boundary. Tracking in an <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded" id="ref-for-dom-xrreferencespacetype-bounded③">bounded</a></code> reference space is optimized for keeping the reference space origin and bounds geometry stable relative to the user’s environment.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑧"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑦"><c- g>Exposed</c-></a>=<c- n>Window</c->]
@@ -2974,8 +2975,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li><a href="#dom-xrsession-environmentblendmode">environmentBlendMode</a><span>, in §4.1</span>
    <li><a href="#exclusive-access">exclusive access</a><span>, in §4.2</span>
    <li><a href="#dom-xrview-eye">eye</a><span>, in §7.1</span>
-   <li><a href="#dom-xrstationaryreferencespacesubtype-eye-level">eye-level</a><span>, in §6.3</span>
-   <li><a href="#dom-xrstationaryreferencespacesubtype-floor-level">floor-level</a><span>, in §6.3</span>
+   <li><a href="#dom-xrstationaryreferencespacesubtype-eye-level">eye-level</a><span>, in §6.2</span>
+   <li><a href="#dom-xrstationaryreferencespacesubtype-floor-level">floor-level</a><span>, in §6.2</span>
    <li><a href="#eventdef-xrsession-focus">focus</a><span>, in §13.4</span>
    <li>
     frame
@@ -3064,7 +3065,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li><a href="#pending-immersive-session">pending immersive session</a><span>, in §3.2</span>
    <li><a href="#poll-the-device-pose">poll the device pose</a><span>, in §4.1</span>
    <li><a href="#dom-xrrigidtransform-position">position</a><span>, in §8.3</span>
-   <li><a href="#dom-xrstationaryreferencespacesubtype-position-disabled">position-disabled</a><span>, in §6.3</span>
+   <li><a href="#dom-xrstationaryreferencespacesubtype-position-disabled">position-disabled</a><span>, in §6.2</span>
    <li><a href="#primary-action">primary action</a><span>, in §10.1</span>
    <li><a href="#dom-xrview-projectionmatrix">projectionMatrix</a><span>, in §7.1</span>
    <li><a href="#recommended-webgl-framebuffer-resolution">recommended WebGL framebuffer resolution</a><span>, in §11.2</span>
@@ -3731,7 +3732,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 
   // Methods
   <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-xrsession-updaterenderstate" id="ref-for-dom-xrsession-updaterenderstate①"><c- g>updateRenderState</c-></a>(<c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrrenderstateinit" id="ref-for-dictdef-xrrenderstateinit①"><c- n>XRRenderStateInit</c-></a> <a href="#dom-xrsession-updaterenderstate-state-state"><code><c- g>state</c-></code></a>);
-  <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace②③"><c- n>XRReferenceSpace</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace④"><c- g>requestReferenceSpace</c-></a>(<a class="n" data-link-type="idl-name" href="#dictdef-xrreferencespaceoptions" id="ref-for-dictdef-xrreferencespaceoptions④"><c- n>XRReferenceSpaceOptions</c-></a> <a href="#dom-xrsession-requestreferencespace-options-options"><code><c- g>options</c-></code></a>);
+  <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace②③"><c- n>XRReferenceSpace</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsession-requestreferencespace" id="ref-for-dom-xrsession-requestreferencespace③"><c- g>requestReferenceSpace</c-></a>(<a class="n" data-link-type="idl-name" href="#dictdef-xrreferencespaceoptions" id="ref-for-dictdef-xrreferencespaceoptions③"><c- n>XRReferenceSpaceOptions</c-></a> <a href="#dom-xrsession-requestreferencespace-options-options"><code><c- g>options</c-></code></a>);
 
   <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource①③"><c- n>XRInputSource</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xrsession-getinputsources" id="ref-for-dom-xrsession-getinputsources①"><c- g>getInputSources</c-></a>();
 
@@ -3787,7 +3788,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 };
 
 <c- b>enum</c-> <a href="#enumdef-xrreferencespacetype"><code><c- g>XRReferenceSpaceType</c-></code></a> {
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrreferencespacetype-stationary" id="ref-for-dom-xrreferencespacetype-stationary⑤"><c- s>"stationary"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrreferencespacetype-stationary" id="ref-for-dom-xrreferencespacetype-stationary⑦"><c- s>"stationary"</c-></a>,
   <a class="idl-code" data-link-type="enum-value" href="#dom-xrreferencespacetype-bounded" id="ref-for-dom-xrreferencespacetype-bounded⑤"><c- s>"bounded"</c-></a>,
   <a class="idl-code" data-link-type="enum-value" href="#dom-xrreferencespacetype-unbounded" id="ref-for-dom-xrreferencespacetype-unbounded④"><c- s>"unbounded"</c-></a>
 };
@@ -3800,7 +3801,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 
 <c- b>dictionary</c-> <a href="#dictdef-xrreferencespaceoptions"><code><c- g>XRReferenceSpaceOptions</c-></code></a> {
   <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype①"><c- n>XRReferenceSpaceType</c-></a> <a data-type="XRReferenceSpaceType " href="#dom-xrreferencespaceoptions-type"><code><c- g>type</c-></code></a>;
-  <a class="n" data-link-type="idl-name" href="#enumdef-xrstationaryreferencespacesubtype" id="ref-for-enumdef-xrstationaryreferencespacesubtype③"><c- n>XRStationaryReferenceSpaceSubtype</c-></a> <a data-type="XRStationaryReferenceSpaceSubtype " href="#dom-xrreferencespaceoptions-subtype"><code><c- g>subtype</c-></code></a>;
+  <a class="n" data-link-type="idl-name" href="#enumdef-xrstationaryreferencespacesubtype" id="ref-for-enumdef-xrstationaryreferencespacesubtype④"><c- n>XRStationaryReferenceSpaceSubtype</c-></a> <a data-type="XRStationaryReferenceSpaceSubtype " href="#dom-xrreferencespaceoptions-subtype"><code><c- g>subtype</c-></code></a>;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑥①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑤①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrreferencespace"><code><c- g>XRReferenceSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace⑨①"><c- n>XRSpace</c-></a> {
@@ -3810,7 +3811,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑦①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑥①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#xrstationaryreferencespace"><code><c- g>XRStationaryReferenceSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①②①"><c- n>XRReferenceSpace</c-></a> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrstationaryreferencespacesubtype" id="ref-for-enumdef-xrstationaryreferencespacesubtype①①"><c- n>XRStationaryReferenceSpaceSubtype</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRStationaryReferenceSpaceSubtype" href="#dom-xrstationaryreferencespace-subtype" id="ref-for-dom-xrstationaryreferencespace-subtype①①"><c- g>subtype</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrstationaryreferencespacesubtype" id="ref-for-enumdef-xrstationaryreferencespacesubtype②①"><c- n>XRStationaryReferenceSpaceSubtype</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRStationaryReferenceSpaceSubtype" href="#dom-xrstationaryreferencespace-subtype" id="ref-for-dom-xrstationaryreferencespace-subtype①①"><c- g>subtype</c-></a>;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑧①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑦①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
@@ -4208,7 +4209,6 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-dom-xrsession-requestreferencespace">4.1. XRSession</a>
     <li><a href="#ref-for-dom-xrsession-requestreferencespace①">6.2. XRReferenceSpace</a> <a href="#ref-for-dom-xrsession-requestreferencespace②">(2)</a>
-    <li><a href="#ref-for-dom-xrsession-requestreferencespace③">6.3. XRStationaryReferenceSpace</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrsession-getinputsources">
@@ -4581,8 +4581,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="enumdef-xrstationaryreferencespacesubtype">
    <b><a href="#enumdef-xrstationaryreferencespacesubtype">#enumdef-xrstationaryreferencespacesubtype</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-enumdef-xrstationaryreferencespacesubtype">6.2. XRReferenceSpace</a>
-    <li><a href="#ref-for-enumdef-xrstationaryreferencespacesubtype①">6.3. XRStationaryReferenceSpace</a> <a href="#ref-for-enumdef-xrstationaryreferencespacesubtype②">(2)</a>
+    <li><a href="#ref-for-enumdef-xrstationaryreferencespacesubtype">6.2. XRReferenceSpace</a> <a href="#ref-for-enumdef-xrstationaryreferencespacesubtype①">(2)</a>
+    <li><a href="#ref-for-enumdef-xrstationaryreferencespacesubtype②">6.3. XRStationaryReferenceSpace</a> <a href="#ref-for-enumdef-xrstationaryreferencespacesubtype③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-xrreferencespaceoptions">
@@ -4590,20 +4590,18 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-dictdef-xrreferencespaceoptions">4.1. XRSession</a>
     <li><a href="#ref-for-dictdef-xrreferencespaceoptions①">6.2. XRReferenceSpace</a> <a href="#ref-for-dictdef-xrreferencespaceoptions②">(2)</a>
-    <li><a href="#ref-for-dictdef-xrreferencespaceoptions③">6.3. XRStationaryReferenceSpace</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrreferencespaceoptions-type">
    <b><a href="#dom-xrreferencespaceoptions-type">#dom-xrreferencespaceoptions-type</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrreferencespaceoptions-type">6.2. XRReferenceSpace</a> <a href="#ref-for-dom-xrreferencespaceoptions-type①">(2)</a> <a href="#ref-for-dom-xrreferencespaceoptions-type②">(3)</a> <a href="#ref-for-dom-xrreferencespaceoptions-type③">(4)</a> <a href="#ref-for-dom-xrreferencespaceoptions-type④">(5)</a>
+    <li><a href="#ref-for-dom-xrreferencespaceoptions-type">6.2. XRReferenceSpace</a> <a href="#ref-for-dom-xrreferencespaceoptions-type①">(2)</a> <a href="#ref-for-dom-xrreferencespaceoptions-type②">(3)</a> <a href="#ref-for-dom-xrreferencespaceoptions-type③">(4)</a> <a href="#ref-for-dom-xrreferencespaceoptions-type④">(5)</a> <a href="#ref-for-dom-xrreferencespaceoptions-type⑤">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrreferencespaceoptions-subtype">
    <b><a href="#dom-xrreferencespaceoptions-subtype">#dom-xrreferencespaceoptions-subtype</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrreferencespaceoptions-subtype">6.2. XRReferenceSpace</a> <a href="#ref-for-dom-xrreferencespaceoptions-subtype①">(2)</a> <a href="#ref-for-dom-xrreferencespaceoptions-subtype②">(3)</a>
-    <li><a href="#ref-for-dom-xrreferencespaceoptions-subtype③">6.3. XRStationaryReferenceSpace</a> <a href="#ref-for-dom-xrreferencespaceoptions-subtype④">(2)</a> <a href="#ref-for-dom-xrreferencespaceoptions-subtype⑤">(3)</a> <a href="#ref-for-dom-xrreferencespaceoptions-subtype⑥">(4)</a>
+    <li><a href="#ref-for-dom-xrreferencespaceoptions-subtype">6.2. XRReferenceSpace</a> <a href="#ref-for-dom-xrreferencespaceoptions-subtype①">(2)</a> <a href="#ref-for-dom-xrreferencespaceoptions-subtype②">(3)</a> <a href="#ref-for-dom-xrreferencespaceoptions-subtype③">(4)</a> <a href="#ref-for-dom-xrreferencespaceoptions-subtype④">(5)</a> <a href="#ref-for-dom-xrreferencespaceoptions-subtype⑤">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrreferencespace">
@@ -4624,8 +4622,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="dom-xrreferencespacetype-stationary">
    <b><a href="#dom-xrreferencespacetype-stationary">#dom-xrreferencespacetype-stationary</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrreferencespacetype-stationary">6.2. XRReferenceSpace</a> <a href="#ref-for-dom-xrreferencespacetype-stationary①">(2)</a> <a href="#ref-for-dom-xrreferencespacetype-stationary②">(3)</a>
-    <li><a href="#ref-for-dom-xrreferencespacetype-stationary③">6.3. XRStationaryReferenceSpace</a> <a href="#ref-for-dom-xrreferencespacetype-stationary④">(2)</a>
+    <li><a href="#ref-for-dom-xrreferencespacetype-stationary">6.2. XRReferenceSpace</a> <a href="#ref-for-dom-xrreferencespacetype-stationary①">(2)</a> <a href="#ref-for-dom-xrreferencespacetype-stationary②">(3)</a> <a href="#ref-for-dom-xrreferencespacetype-stationary③">(4)</a> <a href="#ref-for-dom-xrreferencespacetype-stationary④">(5)</a>
+    <li><a href="#ref-for-dom-xrreferencespacetype-stationary⑤">6.3. XRStationaryReferenceSpace</a> <a href="#ref-for-dom-xrreferencespacetype-stationary⑥">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrreferencespacetype-bounded">
@@ -4640,6 +4638,24 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-dom-xrreferencespacetype-unbounded">6.2. XRReferenceSpace</a> <a href="#ref-for-dom-xrreferencespacetype-unbounded①">(2)</a> <a href="#ref-for-dom-xrreferencespacetype-unbounded②">(3)</a>
     <li><a href="#ref-for-dom-xrreferencespacetype-unbounded③">6.5. XRUnboundedReferenceSpace</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrstationaryreferencespacesubtype-eye-level">
+   <b><a href="#dom-xrstationaryreferencespacesubtype-eye-level">#dom-xrstationaryreferencespacesubtype-eye-level</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrstationaryreferencespacesubtype-eye-level">6.2. XRReferenceSpace</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrstationaryreferencespacesubtype-floor-level">
+   <b><a href="#dom-xrstationaryreferencespacesubtype-floor-level">#dom-xrstationaryreferencespacesubtype-floor-level</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrstationaryreferencespacesubtype-floor-level">6.2. XRReferenceSpace</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrstationaryreferencespacesubtype-position-disabled">
+   <b><a href="#dom-xrstationaryreferencespacesubtype-position-disabled">#dom-xrstationaryreferencespacesubtype-position-disabled</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrstationaryreferencespacesubtype-position-disabled">6.2. XRReferenceSpace</a> <a href="#ref-for-dom-xrstationaryreferencespacesubtype-position-disabled①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrreferencespace-originoffset">
@@ -4663,27 +4679,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="xrstationaryreferencespace">
    <b><a href="#xrstationaryreferencespace">#xrstationaryreferencespace</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xrstationaryreferencespace">6.2. XRReferenceSpace</a> <a href="#ref-for-xrstationaryreferencespace①">(2)</a>
-    <li><a href="#ref-for-xrstationaryreferencespace②">6.3. XRStationaryReferenceSpace</a> <a href="#ref-for-xrstationaryreferencespace③">(2)</a> <a href="#ref-for-xrstationaryreferencespace④">(3)</a> <a href="#ref-for-xrstationaryreferencespace⑤">(4)</a> <a href="#ref-for-xrstationaryreferencespace⑥">(5)</a> <a href="#ref-for-xrstationaryreferencespace⑦">(6)</a> <a href="#ref-for-xrstationaryreferencespace⑧">(7)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-xrstationaryreferencespacesubtype-eye-level">
-   <b><a href="#dom-xrstationaryreferencespacesubtype-eye-level">#dom-xrstationaryreferencespacesubtype-eye-level</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-xrstationaryreferencespacesubtype-eye-level">6.2. XRReferenceSpace</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-xrstationaryreferencespacesubtype-floor-level">
-   <b><a href="#dom-xrstationaryreferencespacesubtype-floor-level">#dom-xrstationaryreferencespacesubtype-floor-level</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-xrstationaryreferencespacesubtype-floor-level">6.2. XRReferenceSpace</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-xrstationaryreferencespacesubtype-position-disabled">
-   <b><a href="#dom-xrstationaryreferencespacesubtype-position-disabled">#dom-xrstationaryreferencespacesubtype-position-disabled</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-xrstationaryreferencespacesubtype-position-disabled">6.2. XRReferenceSpace</a>
-    <li><a href="#ref-for-dom-xrstationaryreferencespacesubtype-position-disabled①">6.3. XRStationaryReferenceSpace</a>
+    <li><a href="#ref-for-xrstationaryreferencespace">6.2. XRReferenceSpace</a> <a href="#ref-for-xrstationaryreferencespace①">(2)</a> <a href="#ref-for-xrstationaryreferencespace②">(3)</a> <a href="#ref-for-xrstationaryreferencespace③">(4)</a> <a href="#ref-for-xrstationaryreferencespace④">(5)</a>
+    <li><a href="#ref-for-xrstationaryreferencespace⑤">6.3. XRStationaryReferenceSpace</a> <a href="#ref-for-xrstationaryreferencespace⑥">(2)</a> <a href="#ref-for-xrstationaryreferencespace⑦">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrstationaryreferencespace-subtype">
@@ -4927,7 +4924,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-viewer①">4.2. XRSessionMode</a> <a href="#ref-for-viewer②">(2)</a>
     <li><a href="#ref-for-viewer③">4.5. Animation Frames</a>
     <li><a href="#ref-for-viewer④">5.1. XRFrame</a> <a href="#ref-for-viewer⑤">(2)</a>
-    <li><a href="#ref-for-viewer⑥">6.3. XRStationaryReferenceSpace</a>
+    <li><a href="#ref-for-viewer⑥">6.2. XRReferenceSpace</a>
     <li><a href="#ref-for-viewer⑦">9.2. XRViewerPose</a> <a href="#ref-for-viewer⑧">(2)</a>
     <li><a href="#ref-for-viewer⑨">10.1. XRInputSource</a>
    </ul>
