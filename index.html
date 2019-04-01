@@ -1213,7 +1213,7 @@ Possible extra rowspan handling
 	}
 </style>
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-w3c/ED" rel="stylesheet" type="text/css">
-  <meta content="Bikeshed version 90d8208675530570e2845a328f5a44d1ddd26fec" name="generator">
+  <meta content="Bikeshed version 4d208866a95a1121fceca549a36bfb09c5bf1705" name="generator">
   <link href="https://www.w3.org/TR/webxr/" rel="canonical">
   <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
   <link href="favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
@@ -1505,7 +1505,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-03-28">28 March 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-04-01">1 April 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2335,7 +2335,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
 };
 </pre>
     <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-eye"><code>eye</code></dfn> attribute describes which eye this view is expected to be shown to. This attribute’s primary purpose is to ensure that pre-rendered stereo content can present the correct portion of the content to the correct eye. If the view does not have an intrinsically associated eye (the display is monoscopic, for example) this attribute MUST be set to <code class="idl"><a data-link-type="idl" href="#dom-xreye-left" id="ref-for-dom-xreye-left">"left"</a></code>.</p>
-    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-projectionmatrix"><code>projectionMatrix</code></dfn> attribute provides a <a data-link-type="dfn" href="#matrix" id="ref-for-matrix">matrix</a> describing the projection to be used when rendering the <a data-link-type="dfn" href="#view" id="ref-for-view⑦">view</a>. It is <b>strongly recommended</b> that applications use this matrix without modification. Failure to use the provided projection matrices when rendering may cause the presented frame to be distorted or badly aligned, resulting in varying degrees of user discomfort.</p>
+    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-projectionmatrix"><code>projectionMatrix</code></dfn> attribute provides a <a data-link-type="dfn" href="#matrix" id="ref-for-matrix">matrix</a> describing the projection to be used when rendering the <a data-link-type="dfn" href="#view" id="ref-for-view⑦">view</a>. It is <b>strongly recommended</b> that applications use this matrix without modification or decomposition. The <code class="idl"><a data-link-type="idl" href="#dom-xrview-projectionmatrix" id="ref-for-dom-xrview-projectionmatrix②">projectionMatrix</a></code> MAY include transformations such as shearing that prevent the projection from being accurately described by a simple frustum. Failure to use the provided projection matrices when rendering may cause the presented frame to be distorted or badly aligned, resulting in varying degrees of user discomfort.</p>
     <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRView" data-dfn-type="attribute" data-export id="dom-xrview-transform"><code>transform</code></dfn> attribute is the <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform③">XRRigidTransform</a></code> of the viewpoint.</p>
     <p class="note" role="note"><span>NOTE:</span> The <code class="idl"><a data-link-type="idl" href="#dom-xrview-transform" id="ref-for-dom-xrview-transform①">transform</a></code> can be used to position camera objects in many rendering libraries. If a more traditional view matrix is needed by the application one can be retrieved by calling `view.transform.inverse().matrix`.</p>
    </section>
@@ -4824,7 +4824,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#dom-xrview-projectionmatrix">#dom-xrview-projectionmatrix</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrview-projectionmatrix">4.4. XRRenderState</a>
-    <li><a href="#ref-for-dom-xrview-projectionmatrix①">7.1. XRView</a>
+    <li><a href="#ref-for-dom-xrview-projectionmatrix①">7.1. XRView</a> <a href="#ref-for-dom-xrview-projectionmatrix②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrview-transform">
