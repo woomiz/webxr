@@ -1528,7 +1528,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-04-04">4 April 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-04-15">15 April 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1949,6 +1949,8 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
      <li data-md>
       <p>Remove <var>session</var> from the <a data-link-type="dfn" href="#list-of-inline-sessions" id="ref-for-list-of-inline-sessions①">list of inline sessions</a>.</p>
      <li data-md>
+      <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑧">Reject</a> any outstanding promises returned by <var>session</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①">InvalidStateError</a></code>.</p>
+     <li data-md>
       <p>If no other features of the user agent are actively using them, perform the necessary platform-specific steps to shut down the device’s tracking and rendering capabilities.</p>
     </ol>
    </div>
@@ -1979,9 +1981,9 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
      <li data-md>
       <p>Let <var>session</var> be the target <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑧">XRSession</a></code>.</p>
      <li data-md>
-      <p>If <var>session</var>’s <a data-link-type="dfn" href="#ended" id="ref-for-ended①">ended</a> value is <code>true</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>session</var>’s <a data-link-type="dfn" href="#ended" id="ref-for-ended①">ended</a> value is <code>true</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror②">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
-      <p>If <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-baselayer" id="ref-for-dom-xrrenderstateinit-baselayer">baseLayer</a></code>'s was created with an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑨">XRSession</a></code> other than <var>session</var>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror②">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-baselayer" id="ref-for-dom-xrrenderstateinit-baselayer">baseLayer</a></code>'s was created with an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑨">XRSession</a></code> other than <var>session</var>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror③">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
       <p>Append <var>newState</var> to <var>session</var>’s <a data-link-type="dfn" href="#list-of-pending-render-states" id="ref-for-list-of-pending-render-states">list of pending render states</a>.</p>
     </ol>
@@ -2017,7 +2019,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
      <li data-md>
       <p><a data-link-type="dfn" href="#create-a-reference-space" id="ref-for-create-a-reference-space">Create a reference space</a>, <var>referenceSpace</var>, as described by <var>options</var>.</p>
      <li data-md>
-      <p>If <var>referenceSpace</var> is <code>null</code>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑧">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror③">NotSupportedError</a></code> and abort these steps.</p>
+      <p>If <var>referenceSpace</var> is <code>null</code>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑨">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror③">NotSupportedError</a></code> and abort these steps.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise③">Resolve</a> <var>promise</var> with <var>referenceSpace</var>.</p>
     </ol>
@@ -2198,13 +2200,13 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
     <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XRFrame" data-dfn-type="method" data-export id="dom-xrframe-getviewerpose"><code>getViewerPose(<var>referenceSpace</var>)</code></dfn> method is invoked, the user agent MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>If the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe⑨">XRFrame</a></code>'s <a data-link-type="dfn" href="#xrframe-active" id="ref-for-xrframe-active②">active</a> boolean is <code>false</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror③">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe⑨">XRFrame</a></code>'s <a data-link-type="dfn" href="#xrframe-active" id="ref-for-xrframe-active②">active</a> boolean is <code>false</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror④">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
-      <p>If the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①⓪">XRFrame</a></code>'s <a data-link-type="dfn" href="#xrframe-animationframe" id="ref-for-xrframe-animationframe①">animationFrame</a> boolean is <code>false</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror④">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①⓪">XRFrame</a></code>'s <a data-link-type="dfn" href="#xrframe-animationframe" id="ref-for-xrframe-animationframe①">animationFrame</a> boolean is <code>false</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑤">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
       <p>Let <var>session</var> be the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①①">XRFrame</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session①">session</a></code> object.</p>
      <li data-md>
-      <p>If <var>referenceSpace</var>’s <a data-link-type="dfn" href="#xrspace-session" id="ref-for-xrspace-session">session</a> does not equal <var>session</var>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑤">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>referenceSpace</var>’s <a data-link-type="dfn" href="#xrspace-session" id="ref-for-xrspace-session">session</a> does not equal <var>session</var>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑥">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
       <p>If the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer④">viewer</a>'s pose cannot be determined relative to <var>referenceSpace</var>, return <code>null</code></p>
      <li data-md>
@@ -2215,13 +2217,13 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
     <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XRFrame" data-dfn-type="method" data-export id="dom-xrframe-getpose"><code>getPose(<var>space</var>, <var>relativeTo</var>)</code></dfn> method is invoked, the user agent MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>If the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①③">XRFrame</a></code>'s <a data-link-type="dfn" href="#xrframe-active" id="ref-for-xrframe-active③">active</a> boolean is <code>false</code>, throw a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑥">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①③">XRFrame</a></code>'s <a data-link-type="dfn" href="#xrframe-active" id="ref-for-xrframe-active③">active</a> boolean is <code>false</code>, throw a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑦">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
       <p>Let <var>session</var> be the <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①④">XRFrame</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrframe-session" id="ref-for-dom-xrframe-session②">session</a></code> object.</p>
      <li data-md>
-      <p>If <var>space</var>’s <a data-link-type="dfn" href="#xrspace-session" id="ref-for-xrspace-session①">session</a> does not equal <var>session</var>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑦">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>space</var>’s <a data-link-type="dfn" href="#xrspace-session" id="ref-for-xrspace-session①">session</a> does not equal <var>session</var>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑧">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
-      <p>If <var>relativeTo</var>’s <a data-link-type="dfn" href="#xrspace-session" id="ref-for-xrspace-session②">session</a> does not equal <var>session</var>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑧">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>relativeTo</var>’s <a data-link-type="dfn" href="#xrspace-session" id="ref-for-xrspace-session②">session</a> does not equal <var>session</var>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑨">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
       <p>If <var>space</var>’s pose cannot be determined relative to <var>relativeTo</var>, return <code>null</code></p>
      <li data-md>
@@ -2408,7 +2410,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
      <li data-md>
       <p>Let <var>length</var> be the square root of the sum of the squares of each component.</p>
      <li data-md>
-      <p>If <var>length</var> is <code>0</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror⑨">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>length</var> is <code>0</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⓪">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
       <p>Divide each component by <var>length</var> and set the component.</p>
     </ol>
@@ -2700,11 +2702,11 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
      <li data-md>
       <p>Let <var>layer</var> be a new <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer⑥">XRWebGLLayer</a></code></p>
      <li data-md>
-      <p>If <var>session</var>’s <a data-link-type="dfn" href="#ended" id="ref-for-ended②">ended</a> value is <code>true</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⓪">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>session</var>’s <a data-link-type="dfn" href="#ended" id="ref-for-ended②">ended</a> value is <code>true</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①①">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
-      <p>If <var>context</var> is lost, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①①">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>context</var> is lost, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①②">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
-      <p>If <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible①">XR compatible</a> boolean is false, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①②">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible①">XR compatible</a> boolean is false, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①③">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
       <p>Initialize <var>layer</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-context" id="ref-for-dom-xrwebgllayer-context①">context</a></code> to <var>context</var>.</p>
      <li data-md>
@@ -2858,7 +2860,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
       <li data-md>
        <p>Let <var>context</var> be the target <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase" id="ref-for-WebGLRenderingContextBase⑥">WebGLRenderingContextBase</a></code> object.</p>
       <li data-md>
-       <p>If <var>context</var>’s <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#webgl-context-lost-flag" id="ref-for-webgl-context-lost-flag">WebGL context lost flag</a> is set, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑨">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①③">InvalidStateError</a></code> and abort these abort these steps.</p>
+       <p>If <var>context</var>’s <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#webgl-context-lost-flag" id="ref-for-webgl-context-lost-flag">WebGL context lost flag</a> is set, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise①⓪">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①④">InvalidStateError</a></code> and abort these abort these steps.</p>
       <li data-md>
        <p>If <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑦">XR compatible</a> boolean is <code>true</code>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise④">resolve</a> <var>promise</var> and abort these steps.</p>
       <li data-md>
@@ -2875,7 +2877,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
         <li data-md>
          <p>Force <var>context</var> to be lost and <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#CONTEXT_LOST" id="ref-for-CONTEXT_LOST">handle the context loss</a> as described by the WebGL specification.</p>
         <li data-md>
-         <p>If the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#canceled-flag" id="ref-for-canceled-flag">canceled flag</a> of the "webglcontextlost" event fired in the previous step was not set, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise①⓪">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#aborterror" id="ref-for-aborterror">AbortError</a></code> and abort these steps.</p>
+         <p>If the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#canceled-flag" id="ref-for-canceled-flag">canceled flag</a> of the "webglcontextlost" event fired in the previous step was not set, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise①①">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#aborterror" id="ref-for-aborterror">AbortError</a></code> and abort these steps.</p>
         <li data-md>
          <p><a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#restore-the-drawing-buffer" id="ref-for-restore-the-drawing-buffer">Restore the context</a> on a <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter⑥">compatible graphics adapter</a> for the <a data-link-type="dfn" href="#xr-xr-device" id="ref-for-xr-xr-device①④">XR device</a>.</p>
         <li data-md>
@@ -3655,8 +3657,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <a href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise">https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-reject-promise">3.2. XR</a> <a href="#ref-for-reject-promise①">(2)</a> <a href="#ref-for-reject-promise②">(3)</a> <a href="#ref-for-reject-promise③">(4)</a> <a href="#ref-for-reject-promise④">(5)</a> <a href="#ref-for-reject-promise⑤">(6)</a> <a href="#ref-for-reject-promise⑥">(7)</a> <a href="#ref-for-reject-promise⑦">(8)</a>
-    <li><a href="#ref-for-reject-promise⑧">4.1. XRSession</a>
-    <li><a href="#ref-for-reject-promise⑨">11.3. WebGL Context Compatibility</a> <a href="#ref-for-reject-promise①⓪">(2)</a>
+    <li><a href="#ref-for-reject-promise⑧">4.1. XRSession</a> <a href="#ref-for-reject-promise⑨">(2)</a>
+    <li><a href="#ref-for-reject-promise①⓪">11.3. WebGL Context Compatibility</a> <a href="#ref-for-reject-promise①①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-resolve-promise">
@@ -3727,11 +3729,11 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <a href="https://heycam.github.io/webidl/#invalidstateerror">https://heycam.github.io/webidl/#invalidstateerror</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-invalidstateerror">3.2. XR</a>
-    <li><a href="#ref-for-invalidstateerror①">4.1. XRSession</a> <a href="#ref-for-invalidstateerror②">(2)</a>
-    <li><a href="#ref-for-invalidstateerror③">5.1. XRFrame</a> <a href="#ref-for-invalidstateerror④">(2)</a> <a href="#ref-for-invalidstateerror⑤">(3)</a> <a href="#ref-for-invalidstateerror⑥">(4)</a> <a href="#ref-for-invalidstateerror⑦">(5)</a> <a href="#ref-for-invalidstateerror⑧">(6)</a>
-    <li><a href="#ref-for-invalidstateerror⑨">8.2. Normalization</a>
-    <li><a href="#ref-for-invalidstateerror①⓪">11.2. XRWebGLLayer</a> <a href="#ref-for-invalidstateerror①①">(2)</a> <a href="#ref-for-invalidstateerror①②">(3)</a>
-    <li><a href="#ref-for-invalidstateerror①③">11.3. WebGL Context Compatibility</a>
+    <li><a href="#ref-for-invalidstateerror①">4.1. XRSession</a> <a href="#ref-for-invalidstateerror②">(2)</a> <a href="#ref-for-invalidstateerror③">(3)</a>
+    <li><a href="#ref-for-invalidstateerror④">5.1. XRFrame</a> <a href="#ref-for-invalidstateerror⑤">(2)</a> <a href="#ref-for-invalidstateerror⑥">(3)</a> <a href="#ref-for-invalidstateerror⑦">(4)</a> <a href="#ref-for-invalidstateerror⑧">(5)</a> <a href="#ref-for-invalidstateerror⑨">(6)</a>
+    <li><a href="#ref-for-invalidstateerror①⓪">8.2. Normalization</a>
+    <li><a href="#ref-for-invalidstateerror①①">11.2. XRWebGLLayer</a> <a href="#ref-for-invalidstateerror①②">(2)</a> <a href="#ref-for-invalidstateerror①③">(3)</a>
+    <li><a href="#ref-for-invalidstateerror①④">11.3. WebGL Context Compatibility</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-notsupportederror">
