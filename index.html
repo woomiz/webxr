@@ -1604,16 +1604,15 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <ol class="toc">
       <li><a href="#navigator-xr-attribute"><span class="secno">3.1</span> <span class="content">navigator.xr</span></a>
       <li><a href="#xr-interface"><span class="secno">3.2</span> <span class="content">XR</span></a>
+      <li><a href="#xrsessionmode-enum"><span class="secno">3.3</span> <span class="content">XRSessionMode</span></a>
      </ol>
     <li>
      <a href="#session"><span class="secno">4</span> <span class="content">Session</span></a>
      <ol class="toc">
       <li><a href="#xrsession-interface"><span class="secno">4.1</span> <span class="content">XRSession</span></a>
-      <li><a href="#xrsessionmode-enum"><span class="secno">4.2</span> <span class="content">XRSessionMode</span></a>
-      <li><a href="#xrsessioncreationoptions-interface"><span class="secno">4.3</span> <span class="content">XRSessionCreationOptions</span></a>
-      <li><a href="#xrrenderstate-interface"><span class="secno">4.4</span> <span class="content">XRRenderState</span></a>
-      <li><a href="#animation-frames"><span class="secno">4.5</span> <span class="content">Animation Frames</span></a>
-      <li><a href="#compositor"><span class="secno">4.6</span> <span class="content">The XR Compositor</span></a>
+      <li><a href="#xrrenderstate-interface"><span class="secno">4.2</span> <span class="content">XRRenderState</span></a>
+      <li><a href="#animation-frames"><span class="secno">4.3</span> <span class="content">Animation Frames</span></a>
+      <li><a href="#compositor"><span class="secno">4.4</span> <span class="content">The XR Compositor</span></a>
      </ol>
     <li>
      <a href="#frame"><span class="secno">5</span> <span class="content">Frame Loop</span></a>
@@ -1765,7 +1764,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xr"><code><c- g>XR</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget"><c- n>EventTarget</c-></a> {
   // Methods
   <c- b>Promise</c->&lt;<c- b>void</c->> <a class="idl-code" data-link-type="method" href="#dom-xr-supportssessionmode" id="ref-for-dom-xr-supportssessionmode①"><c- g>supportsSessionMode</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①"><c- n>XRSessionMode</c-></a> <dfn class="idl-code" data-dfn-for="XR/supportsSessionMode(mode)" data-dfn-type="argument" data-export id="dom-xr-supportssessionmode-mode-mode"><code><c- g>mode</c-></code><a class="self-link" href="#dom-xr-supportssessionmode-mode-mode"></a></dfn>);
-  <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession②"><c- n>XRSession</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xr-requestsession" id="ref-for-dom-xr-requestsession①"><c- g>requestSession</c-></a>(<c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrsessioncreationoptions" id="ref-for-dictdef-xrsessioncreationoptions"><c- n>XRSessionCreationOptions</c-></a> <dfn class="idl-code" data-dfn-for="XR/requestSession(parameters), XR/requestSession()" data-dfn-type="argument" data-export id="dom-xr-requestsession-parameters-parameters"><code><c- g>parameters</c-></code><a class="self-link" href="#dom-xr-requestsession-parameters-parameters"></a></dfn>);
+  <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession②"><c- n>XRSession</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xr-requestsession" id="ref-for-dom-xr-requestsession①"><c- g>requestSession</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode②"><c- n>XRSessionMode</c-></a> <dfn class="idl-code" data-dfn-for="XR/requestSession(mode)" data-dfn-type="argument" data-export id="dom-xr-requestsession-mode-mode"><code><c- g>mode</c-></code><a class="self-link" href="#dom-xr-requestsession-mode-mode"></a></dfn>);
 
   // Events
   <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xr-ondevicechange" id="ref-for-dom-xr-ondevicechange"><c- g>ondevicechange</c-></a>;
@@ -1836,10 +1835,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    </div>
    <p>The <code class="idl"><a data-link-type="idl" href="#xr" id="ref-for-xr⑥">XR</a></code> object has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="pending-immersive-session">pending immersive session</dfn> boolean, which MUST be initially <code>false</code>, an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="active-immersive-session">active immersive session</dfn>, which MUST be initially <code>null</code>, and a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="list-of-inline-sessions">list of inline sessions</dfn>, which MUST be initially empty.</p>
    <div class="algorithm" data-algorithm="request-session">
-    <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XR" data-dfn-type="method" data-export id="dom-xr-requestsession"><code>requestSession(<var>options</var>)</code></dfn> method is invoked, the user agent MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise①">a new Promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">in parallel</a>:</p>
+    <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XR" data-dfn-type="method" data-export id="dom-xr-requestsession"><code>requestSession(<var>mode</var>)</code></dfn> method is invoked, the user agent MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise①">a new Promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">in parallel</a>:</p>
     <ol>
-     <li data-md>
-      <p>Let <var>mode</var> be the <code class="idl"><a data-link-type="idl" href="#dom-xrsessioncreationoptions-mode" id="ref-for-dom-xrsessioncreationoptions-mode">mode</a></code> attribute of the <var>options</var> argument.</p>
      <li data-md>
       <p>Let <var>immersive</var> be a boolean set to <code>true</code> if <var>mode</var> is <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr①">immersive-vr</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-ar" id="ref-for-dom-xrsessionmode-immersive-ar">immersive-ar</a></code> and <code>false</code> otherwise.</p>
      <li data-md>
@@ -1865,7 +1862,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li data-md>
       <p>Let <var>session</var> be a new <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥">XRSession</a></code>.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="#initialize-the-session" id="ref-for-initialize-the-session">Initialize the session</a> <var>session</var> with the <a data-link-type="dfn" href="#session-description" id="ref-for-session-description">session description</a> given by <var>options</var>.</p>
+      <p><a data-link-type="dfn" href="#initialize-the-session" id="ref-for-initialize-the-session">Initialize the session</a> <var>session</var> with the <a data-link-type="dfn">session description</a> given by <var>options</var>.</p>
      <li data-md>
       <p>If <var>immersive</var> is <code>true</code> set the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session①">active immersive session</a> to <var>session</var> and set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session③">pending immersive session</a> to <code>false</code>.</p>
      <li data-md>
@@ -1874,29 +1871,49 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise①">Resolve</a> <var>promise</var> with <var>session</var>.</p>
     </ol>
    </div>
-   <div class="example" id="example-0b25cfd3">
-    <a class="self-link" href="#example-0b25cfd3"></a> The following code attempts to retrieve an <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr②">immersive-vr</a></code> <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑦">XRSession</a></code>. 
+   <div class="example" id="example-a17c6da1">
+    <a class="self-link" href="#example-a17c6da1"></a> The following code attempts to retrieve an <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr②">immersive-vr</a></code> <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑦">XRSession</a></code>. 
 <pre class="highlight"><c- a>let</c-> xrSession<c- p>;</c->
 
-navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> <c- u>"immersive-vr"</c-> <c- p>}).</c->then<c- p>((</c->session<c- p>)</c-> <c- p>=></c-> <c- p>{</c->
+navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>(</c-><c- u>"immersive-vr"</c-><c- p>).</c->then<c- p>((</c->session<c- p>)</c-> <c- p>=></c-> <c- p>{</c->
   xrSession <c- o>=</c-> session<c- p>;</c->
 <c- p>});</c->
 </pre>
    </div>
+   <section class="unstable">
+    <h3 class="heading settled" data-level="3.3" id="xrsessionmode-enum"><span class="secno">3.3. </span><span class="content">XRSessionMode</span><a class="self-link" href="#xrsessionmode-enum"></a></h3>
+    <p>The <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode③">XRSessionMode</a></code> enum defines the modes that an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑧">XRSession</a></code> can operate in.</p>
+<pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-xrsessionmode"><code><c- g>XRSessionMode</c-></code></dfn> {
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline"><c- s>"inline"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr③"><c- s>"immersive-vr"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-immersive-ar" id="ref-for-dom-xrsessionmode-immersive-ar①"><c- s>"immersive-ar"</c-></a>
+};
+</pre>
+    <ul>
+     <li data-md>
+      <p>A session mode of <dfn class="dfn-paneled idl-code" data-dfn-for="XRSessionMode" data-dfn-type="enum-value" data-export id="dom-xrsessionmode-inline"><code>inline</code></dfn> indicates that the session’s output will be shown as an element in the HTML document. <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline①">inline</a></code> session content MAY be displayed in mono or stereo and MAY allow for <a data-link-type="dfn" href="#viewer" id="ref-for-viewer">viewer</a> tracking. User agents MUST allow <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline②">inline</a></code> sessions to be created for any <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device⑧">XR device</a>.</p>
+     <li data-md>
+      <p>A session mode of <dfn class="dfn-paneled idl-code" data-dfn-for="XRSessionMode" data-dfn-type="enum-value" data-export id="dom-xrsessionmode-immersive-vr"><code>immersive-vr</code></dfn> indicates that the session’s output will be given <a data-link-type="dfn" href="#exclusive-access" id="ref-for-exclusive-access">exclusive access</a> to the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device⑨">XR device</a> display and that content <b>is not</b> intended to be integrated with the user’s environment. The <code class="idl"><a data-link-type="idl" href="#dom-xrsession-environmentblendmode" id="ref-for-dom-xrsession-environmentblendmode">environmentBlendMode</a></code> for <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr④">immersive-vr</a></code> sessions is expected to be <code class="idl"><a data-link-type="idl" href="#dom-xrenvironmentblendmode-opaque" id="ref-for-dom-xrenvironmentblendmode-opaque">opaque</a></code> when possible, but MAY be <code class="idl"><a data-link-type="idl" href="#dom-xrenvironmentblendmode-additive" id="ref-for-dom-xrenvironmentblendmode-additive">additive</a></code> if the hardware requires it.</p>
+     <li data-md>
+      <p>A session mode of <dfn class="dfn-paneled idl-code" data-dfn-for="XRSessionMode" data-dfn-type="enum-value" data-export id="dom-xrsessionmode-immersive-ar"><code>immersive-ar</code></dfn> indicates that the session’s output will be given <a data-link-type="dfn" href="#exclusive-access" id="ref-for-exclusive-access①">exclusive access</a> to the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①⓪">XR device</a> display and that content <b>is</b> intended to be integrated with the user’s environment. The <code class="idl"><a data-link-type="idl" href="#dom-xrsession-environmentblendmode" id="ref-for-dom-xrsession-environmentblendmode①">environmentBlendMode</a></code> MUST NOT be <code class="idl"><a data-link-type="idl" href="#dom-xrenvironmentblendmode-opaque" id="ref-for-dom-xrenvironmentblendmode-opaque①">opaque</a></code> for <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-ar" id="ref-for-dom-xrsessionmode-immersive-ar②">immersive-ar</a></code> sessions.</p>
+    </ul>
+    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="immersive-session">immersive session</dfn> refers to either an <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr⑤">immersive-vr</a></code> or an <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-ar" id="ref-for-dom-xrsessionmode-immersive-ar③">immersive-ar</a></code> session. <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session">Immersive sessions</a> MUST provide some level of <a data-link-type="dfn" href="#viewer" id="ref-for-viewer①">viewer</a> tracking, and content MUST be shown at the proper scale relative to the user and/or the surrounding environment. Additionally, <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session①">Immersive sessions</a> MUST be given <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="exclusive-access">exclusive access</dfn> to the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①①">XR device</a>, meaning that while the <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session②">immersive session</a> is not <a data-link-type="dfn" href="#blurred" id="ref-for-blurred">blurred</a> the HTML document is not shown on the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①②">XR device</a>'s display, nor is content from other applications shown on the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①③">XR device</a>'s display.</p>
+    <p class="note" role="note"><span>NOTE:</span> Examples of ways <a data-link-type="dfn" href="#exclusive-access" id="ref-for-exclusive-access②">exclusive access</a> may be presented include stereo content displayed on a virtual reality or augmented reality headset, or augmented reality content displayed fullscreen on a mobile device.</p>
+   </section>
    <h2 class="heading settled" data-level="4" id="session"><span class="secno">4. </span><span class="content">Session</span><a class="self-link" href="#session"></a></h2>
    <h3 class="heading settled" data-level="4.1" id="xrsession-interface"><span class="secno">4.1. </span><span class="content">XRSession</span><a class="self-link" href="#xrsession-interface"></a></h3>
-   <p>Any interaction with XR hardware is done via an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑧">XRSession</a></code> object, which can only be retrieved by calling <code class="idl"><a data-link-type="idl" href="#dom-xr-requestsession" id="ref-for-dom-xr-requestsession②">requestSession()</a></code> on the <code class="idl"><a data-link-type="idl" href="#xr" id="ref-for-xr⑦">XR</a></code> object. Once a session has been successfully acquired it can be used to <a data-link-type="dfn" href="#poll-the-device-pose" id="ref-for-poll-the-device-pose">poll the device pose</a>, query information about the user’s environment and, present imagery to the user.</p>
-   <p>The user agent, when possible, <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="should-not-initialize-device-tracking">SHOULD NOT initialize device tracking</dfn> or rendering capabilities until an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑨">XRSession</a></code> has been acquired. This is to prevent unwanted side effects of engaging the XR systems when they’re not actively being used, such as increased battery usage or related utility applications from appearing when first navigating to a page that only wants to test for the presence of XR hardware in order to advertise XR features. Not all XR platforms offer ways to detect the hardware’s presence without initializing tracking, however, so this is only a strong recommendation.</p>
+   <p>Any interaction with XR hardware is done via an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑨">XRSession</a></code> object, which can only be retrieved by calling <code class="idl"><a data-link-type="idl" href="#dom-xr-requestsession" id="ref-for-dom-xr-requestsession②">requestSession()</a></code> on the <code class="idl"><a data-link-type="idl" href="#xr" id="ref-for-xr⑦">XR</a></code> object. Once a session has been successfully acquired it can be used to <a data-link-type="dfn" href="#poll-the-device-pose" id="ref-for-poll-the-device-pose">poll the device pose</a>, query information about the user’s environment and, present imagery to the user.</p>
+   <p>The user agent, when possible, <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="should-not-initialize-device-tracking">SHOULD NOT initialize device tracking</dfn> or rendering capabilities until an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⓪">XRSession</a></code> has been acquired. This is to prevent unwanted side effects of engaging the XR systems when they’re not actively being used, such as increased battery usage or related utility applications from appearing when first navigating to a page that only wants to test for the presence of XR hardware in order to advertise XR features. Not all XR platforms offer ways to detect the hardware’s presence without initializing tracking, however, so this is only a strong recommendation.</p>
 <pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-xrenvironmentblendmode"><code><c- g>XREnvironmentBlendMode</c-></code></dfn> {
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrenvironmentblendmode-opaque" id="ref-for-dom-xrenvironmentblendmode-opaque"><c- s>"opaque"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrenvironmentblendmode-additive" id="ref-for-dom-xrenvironmentblendmode-additive"><c- s>"additive"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrenvironmentblendmode-opaque" id="ref-for-dom-xrenvironmentblendmode-opaque②"><c- s>"opaque"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrenvironmentblendmode-additive" id="ref-for-dom-xrenvironmentblendmode-additive①"><c- s>"additive"</c-></a>,
   <a class="idl-code" data-link-type="enum-value" href="#dom-xrenvironmentblendmode-alpha-blend" id="ref-for-dom-xrenvironmentblendmode-alpha-blend"><c- s>"alpha-blend"</c-></a>,
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext②"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrsession"><code><c- g>XRSession</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget①"><c- n>EventTarget</c-></a> {
   // Attributes
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode②"><c- n>XRSessionMode</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="attribute" data-export data-readonly data-type="XRSessionMode" id="dom-xrsession-mode"><code><c- g>mode</c-></code></dfn>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrenvironmentblendmode" id="ref-for-enumdef-xrenvironmentblendmode"><c- n>XREnvironmentBlendMode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XREnvironmentBlendMode" href="#dom-xrsession-environmentblendmode" id="ref-for-dom-xrsession-environmentblendmode"><c- g>environmentBlendMode</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode④"><c- n>XRSessionMode</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="attribute" data-export data-readonly data-type="XRSessionMode" id="dom-xrsession-mode"><code><c- g>mode</c-></code></dfn>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrenvironmentblendmode" id="ref-for-enumdef-xrenvironmentblendmode"><c- n>XREnvironmentBlendMode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XREnvironmentBlendMode" href="#dom-xrsession-environmentblendmode" id="ref-for-dom-xrsession-environmentblendmode②"><c- g>environmentBlendMode</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrenderstate" id="ref-for-xrrenderstate"><c- n>XRRenderState</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRenderState" href="#dom-xrsession-renderstate" id="ref-for-dom-xrsession-renderstate"><c- g>renderState</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace"><c- n>XRSpace</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSpace" href="#dom-xrsession-viewerspace" id="ref-for-dom-xrsession-viewerspace"><c- g>viewerSpace</c-></a>;
 
@@ -1922,26 +1939,26 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
 };
 </pre>
    <div class="algorithm" data-algorithm="initialize-session">
-    <p>When an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⓪">XRSession</a></code> is created, the user agent MUST <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="initialize-the-session">initialize the session</dfn> by running the following steps:</p>
+    <p>When an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①">XRSession</a></code> is created, the user agent MUST <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="initialize-the-session">initialize the session</dfn> by running the following steps:</p>
     <ol>
      <li data-md>
-      <p>Let <var>session</var> be the newly created <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①">XRSession</a></code> object.</p>
+      <p>Let <var>session</var> be the newly created <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②">XRSession</a></code> object.</p>
      <li data-md>
-      <p>Let <var>options</var> be the <code class="idl"><a data-link-type="idl" href="#dictdef-xrsessioncreationoptions" id="ref-for-dictdef-xrsessioncreationoptions①">XRSessionCreationOptions</a></code> passed to <code class="idl"><a data-link-type="idl" href="#dom-xr-requestsession" id="ref-for-dom-xr-requestsession③">requestSession()</a></code>.</p>
+      <p>Let <var>options</var> be the <code class="idl"><a data-link-type="idl">XRSessionCreationOptions</a></code> passed to <code class="idl"><a data-link-type="idl" href="#dom-xr-requestsession" id="ref-for-dom-xr-requestsession③">requestSession()</a></code>.</p>
      <li data-md>
-      <p>Initialize <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-mode" id="ref-for-dom-xrsession-mode">mode</a></code> to <var>options</var> <code class="idl"><a data-link-type="idl" href="#dom-xrsessioncreationoptions-mode" id="ref-for-dom-xrsessioncreationoptions-mode①">mode</a></code> value.</p>
+      <p>Initialize <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-mode" id="ref-for-dom-xrsession-mode">mode</a></code> to <var>options</var> <code class="idl"><a data-link-type="idl">mode</a></code> value.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="#initialize-the-render-state" id="ref-for-initialize-the-render-state">Initialize the render state</a>.</p>
      <li data-md>
       <p>If no other features of the user agent have done so already, perform the necessary platform-specific steps to initialize the device’s tracking and rendering capabilities.</p>
     </ol>
    </div>
-   <p>A number of different circumstances may <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="shut-down-the-session">shut down the session</dfn>, which is permanent and irreversible. Once a session has been shut down the only way to access the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device⑧">XR device</a>'s tracking or rendering capabilities again is to request a new session. Each <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②">XRSession</a></code> has an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="ended">ended</dfn> boolean, initially set to <code>false</code>, that indicates if it has been shut down.</p>
+   <p>A number of different circumstances may <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="shut-down-the-session">shut down the session</dfn>, which is permanent and irreversible. Once a session has been shut down the only way to access the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①④">XR device</a>'s tracking or rendering capabilities again is to request a new session. Each <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①③">XRSession</a></code> has an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="ended">ended</dfn> boolean, initially set to <code>false</code>, that indicates if it has been shut down.</p>
    <div class="algorithm" data-algorithm="shut-down-session">
-    <p>When an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①③">XRSession</a></code> is shut down the following steps are run:</p>
+    <p>When an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①④">XRSession</a></code> is shut down the following steps are run:</p>
     <ol>
      <li data-md>
-      <p>Let <var>session</var> be the target <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①④">XRSession</a></code> object.</p>
+      <p>Let <var>session</var> be the target <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑤">XRSession</a></code> object.</p>
      <li data-md>
       <p>Set <var>session</var>’s <a data-link-type="dfn" href="#ended" id="ref-for-ended">ended</a> value to <code>true</code>.</p>
      <li data-md>
@@ -1960,7 +1977,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
      <li data-md>
       <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise②">a new Promise</a>.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="#shut-down-the-session" id="ref-for-shut-down-the-session①">Shut down</a> the target <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑤">XRSession</a></code> object.</p>
+      <p><a data-link-type="dfn" href="#shut-down-the-session" id="ref-for-shut-down-the-session①">Shut down</a> the target <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑥">XRSession</a></code> object.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①">Queue a task</a> to perform the following steps:</p>
       <ol>
@@ -1973,29 +1990,29 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
       <p>Return <var>promise</var>.</p>
     </ol>
    </div>
-   <p>Each <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑥">XRSession</a></code> has an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="active-render-state">active render state</dfn> which is a new <code class="idl"><a data-link-type="idl" href="#xrrenderstate" id="ref-for-xrrenderstate①">XRRenderState</a></code>, a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="list-of-pending-render-states">list of pending render states</dfn>, which is initially empty.</p>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="attribute" data-export id="dom-xrsession-renderstate"><code>renderState</code></dfn> attribute returns the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑦">XRSession</a></code>'s <a data-link-type="dfn" href="#active-render-state" id="ref-for-active-render-state">active render state</a>.</p>
-   <p>Each <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑧">XRSession</a></code> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="minimum-inline-field-of-view">minimum inline field of view</dfn> and a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="maximum-inline-field-of-view">maximum inline field of view</dfn>, defined in radians. The values MUST be determined by the user agent and MUST fall in the range of <code>0</code> to <code>PI</code>.</p>
+   <p>Each <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑦">XRSession</a></code> has an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="active-render-state">active render state</dfn> which is a new <code class="idl"><a data-link-type="idl" href="#xrrenderstate" id="ref-for-xrrenderstate①">XRRenderState</a></code>, a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="list-of-pending-render-states">list of pending render states</dfn>, which is initially empty.</p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="attribute" data-export id="dom-xrsession-renderstate"><code>renderState</code></dfn> attribute returns the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑧">XRSession</a></code>'s <a data-link-type="dfn" href="#active-render-state" id="ref-for-active-render-state">active render state</a>.</p>
+   <p>Each <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑨">XRSession</a></code> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="minimum-inline-field-of-view">minimum inline field of view</dfn> and a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="maximum-inline-field-of-view">maximum inline field of view</dfn>, defined in radians. The values MUST be determined by the user agent and MUST fall in the range of <code>0</code> to <code>PI</code>.</p>
    <div class="algorithm" data-algorithm="update-render-state">
     <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="method" data-export id="dom-xrsession-updaterenderstate"><code>updateRenderState(<var>newState</var>)</code></dfn> method is invoked, the user agent MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>Let <var>session</var> be the target <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①⑨">XRSession</a></code>.</p>
+      <p>Let <var>session</var> be the target <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②⓪">XRSession</a></code>.</p>
      <li data-md>
       <p>If <var>session</var>’s <a data-link-type="dfn" href="#ended" id="ref-for-ended①">ended</a> value is <code>true</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror②">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
-      <p>If <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-baselayer" id="ref-for-dom-xrrenderstateinit-baselayer">baseLayer</a></code>'s was created with an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②⓪">XRSession</a></code> other than <var>session</var>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror③">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-baselayer" id="ref-for-dom-xrrenderstateinit-baselayer">baseLayer</a></code>'s was created with an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②①">XRSession</a></code> other than <var>session</var>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror③">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
-      <p>If <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-inlineverticalfieldofview" id="ref-for-dom-xrrenderstateinit-inlineverticalfieldofview">inlineVerticalFieldOfView</a></code> is set and <var>session</var> is an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session">immersive session</a>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror④">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>newState</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstateinit-inlineverticalfieldofview" id="ref-for-dom-xrrenderstateinit-inlineverticalfieldofview">inlineVerticalFieldOfView</a></code> is set and <var>session</var> is an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session③">immersive session</a>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror④">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
       <p>Append <var>newState</var> to <var>session</var>’s <a data-link-type="dfn" href="#list-of-pending-render-states" id="ref-for-list-of-pending-render-states">list of pending render states</a>.</p>
     </ol>
    </div>
    <div class="algorithm" data-algorithm="apply-pending-render-states">
-    <p>When requested, the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②①">XRSession</a></code> MUST <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="apply-pending-render-states">apply pending render states</dfn> by running the following steps:</p>
+    <p>When requested, the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②②">XRSession</a></code> MUST <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="apply-pending-render-states">apply pending render states</dfn> by running the following steps:</p>
     <ol>
      <li data-md>
-      <p>Let <var>session</var> be the target <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②②">XRSession</a></code>.</p>
+      <p>Let <var>session</var> be the target <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②③">XRSession</a></code>.</p>
      <li data-md>
       <p>Let <var>activeState</var> be <var>session</var>’s <a data-link-type="dfn" href="#active-render-state" id="ref-for-active-render-state①">active render state</a>.</p>
      <li data-md>
@@ -2040,7 +2057,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
       <p>Return the current <a data-link-type="dfn" href="#list-of-active-input-sources" id="ref-for-list-of-active-input-sources">list of active input sources</a>.</p>
     </ol>
    </div>
-   <p>Each <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②③">XRSession</a></code> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="environment-blending-mode">environment blending mode</dfn> value, which is a enum which MUST be set to whichever of the following values best matches the behavior of imagery rendered by the session in relation to the user’s surrounding environment.</p>
+   <p>Each <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②④">XRSession</a></code> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="environment-blending-mode">environment blending mode</dfn> value, which is a enum which MUST be set to whichever of the following values best matches the behavior of imagery rendered by the session in relation to the user’s surrounding environment.</p>
    <ul>
     <li data-md>
      <p>A blend mode of <dfn class="dfn-paneled idl-code" data-dfn-for="XREnvironmentBlendMode" data-dfn-type="enum-value" data-export id="dom-xrenvironmentblendmode-opaque"><code>opaque</code></dfn> indicates that the user’s surrounding environment is not visible at all. Alpha values in the <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-baselayer" id="ref-for-dom-xrrenderstate-baselayer①">baseLayer</a></code> will be ignored, with the compositor treating all alpha values as 1.0.</p>
@@ -2049,9 +2066,9 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
     <li data-md>
      <p>A blend mode of <dfn class="dfn-paneled idl-code" data-dfn-for="XREnvironmentBlendMode" data-dfn-type="enum-value" data-export id="dom-xrenvironmentblendmode-alpha-blend"><code>alpha-blend</code></dfn> indicates that the user’s surrounding environment is visible and the <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-baselayer" id="ref-for-dom-xrrenderstate-baselayer④">baseLayer</a></code> will be blended with it according to the alpha values of each pixel. Pixels with an alpha value of 1.0 will be fully opaque and pixels with an alpha value of 0.0 will be fully transparent.</p>
    </ul>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="attribute" data-export id="dom-xrsession-environmentblendmode"><code>environmentBlendMode</code></dfn> attribute returns the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②④">XRSession</a></code>'s <a data-link-type="dfn" href="#environment-blending-mode" id="ref-for-environment-blending-mode">environment blending mode</a></p>
-   <p class="note" role="note"><span>NOTE:</span> Most Virtual Reality devices exhibit <code class="idl"><a data-link-type="idl" href="#dom-xrenvironmentblendmode-opaque" id="ref-for-dom-xrenvironmentblendmode-opaque①">opaque</a></code> blending behavior. Augmented Reality devices that use transparent optical elements frequently exhibit <code class="idl"><a data-link-type="idl" href="#dom-xrenvironmentblendmode-additive" id="ref-for-dom-xrenvironmentblendmode-additive①">additive</a></code> blending behavior, and Augmented Reality devices that use passthrough cameras frequently exhibit <code class="idl"><a data-link-type="idl" href="#dom-xrenvironmentblendmode-alpha-blend" id="ref-for-dom-xrenvironmentblendmode-alpha-blend①">alpha-blend</a></code> blending behavior.</p>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="attribute" data-export id="dom-xrsession-viewerspace"><code>viewerSpace</code></dfn> attribute is an <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace①">XRSpace</a></code> which tracks the pose of the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer">viewer</a>.</p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="attribute" data-export id="dom-xrsession-environmentblendmode"><code>environmentBlendMode</code></dfn> attribute returns the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②⑤">XRSession</a></code>'s <a data-link-type="dfn" href="#environment-blending-mode" id="ref-for-environment-blending-mode">environment blending mode</a></p>
+   <p class="note" role="note"><span>NOTE:</span> Most Virtual Reality devices exhibit <code class="idl"><a data-link-type="idl" href="#dom-xrenvironmentblendmode-opaque" id="ref-for-dom-xrenvironmentblendmode-opaque③">opaque</a></code> blending behavior. Augmented Reality devices that use transparent optical elements frequently exhibit <code class="idl"><a data-link-type="idl" href="#dom-xrenvironmentblendmode-additive" id="ref-for-dom-xrenvironmentblendmode-additive②">additive</a></code> blending behavior, and Augmented Reality devices that use passthrough cameras frequently exhibit <code class="idl"><a data-link-type="idl" href="#dom-xrenvironmentblendmode-alpha-blend" id="ref-for-dom-xrenvironmentblendmode-alpha-blend①">alpha-blend</a></code> blending behavior.</p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="attribute" data-export id="dom-xrsession-viewerspace"><code>viewerSpace</code></dfn> attribute is an <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace①">XRSpace</a></code> which tracks the pose of the <a data-link-type="dfn" href="#viewer" id="ref-for-viewer②">viewer</a>.</p>
    <p class="note" role="note"><span>NOTE:</span> For any given <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe">XRFrame</a></code> calling <code class="idl"><a data-link-type="idl" href="#dom-xrframe-getpose" id="ref-for-dom-xrframe-getpose">getPose()</a></code> with the <code class="idl"><a data-link-type="idl" href="#dom-xrsession-viewerspace" id="ref-for-dom-xrsession-viewerspace①">viewerSpace</a></code> and any <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①">XRReferenceSpace</a></code> will return the same pose (without the <code class="idl"><a data-link-type="idl" href="#dom-xrviewerpose-views" id="ref-for-dom-xrviewerpose-views">views</a></code> array) as calling <code class="idl"><a data-link-type="idl" href="#dom-xrframe-getviewerpose" id="ref-for-dom-xrframe-getviewerpose">getViewerPose()</a></code> with the same <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace②">XRReferenceSpace</a></code>.</p>
    <section class="unstable">
      The <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="attribute" data-export id="dom-xrsession-onblur"><code>onblur</code></dfn> attribute is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-idl-attributes" id="ref-for-event-handler-idl-attributes①">Event handler IDL attribute</a> for the <code class="idl"><a data-link-type="idl" href="#eventdef-xrsession-blur" id="ref-for-eventdef-xrsession-blur">blur</a></code> event type. 
@@ -2066,35 +2083,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
    <p>We still need to document what happens when we <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="blur-all-sessions">blur all sessions</dfn>. (This is <a href="https://github.com/immersive-web/webxr/issues/468">filed</a>.)</p>
    <p>We still need to document what happens when we <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="poll-the-device-pose">poll the device pose</dfn> (This is <a href="https://github.com/immersive-web/webxr/issues/480">filed</a>.)</p>
    <p>We still need to document how the<dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="list-of-active-input-sources">list of active input sources</dfn> is maintained. (This is <a href="https://github.com/immersive-web/webxr/issues/465">filed</a>.)</p>
-   <section class="unstable">
-    <h3 class="heading settled" data-level="4.2" id="xrsessionmode-enum"><span class="secno">4.2. </span><span class="content">XRSessionMode</span><a class="self-link" href="#xrsessionmode-enum"></a></h3>
-    <p>The <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode③">XRSessionMode</a></code> enum defines the modes that an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②⑤">XRSession</a></code> can operate in.</p>
-<pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-xrsessionmode"><code><c- g>XRSessionMode</c-></code></dfn> {
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline"><c- s>"inline"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr③"><c- s>"immersive-vr"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-immersive-ar" id="ref-for-dom-xrsessionmode-immersive-ar①"><c- s>"immersive-ar"</c-></a>
-};
-</pre>
-    <ul>
-     <li data-md>
-      <p>A session mode of <dfn class="dfn-paneled idl-code" data-dfn-for="XRSessionMode" data-dfn-type="enum-value" data-export id="dom-xrsessionmode-inline"><code>inline</code></dfn> indicates that the session’s output will be shown as an element in the HTML document. <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline①">inline</a></code> session content MAY be displayed in mono or stereo and MAY allow for <a data-link-type="dfn" href="#viewer" id="ref-for-viewer①">viewer</a> tracking. User agents MUST allow <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline②">inline</a></code> sessions to be created for any <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device⑨">XR device</a>.</p>
-     <li data-md>
-      <p>A session mode of <dfn class="dfn-paneled idl-code" data-dfn-for="XRSessionMode" data-dfn-type="enum-value" data-export id="dom-xrsessionmode-immersive-vr"><code>immersive-vr</code></dfn> indicates that the session’s output will be given <a data-link-type="dfn" href="#exclusive-access" id="ref-for-exclusive-access">exclusive access</a> to the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①⓪">XR device</a> display and that content <b>is not</b> intended to be integrated with the user’s environment. The <code class="idl"><a data-link-type="idl" href="#dom-xrsession-environmentblendmode" id="ref-for-dom-xrsession-environmentblendmode①">environmentBlendMode</a></code> for <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr④">immersive-vr</a></code> sessions is expected to be <code class="idl"><a data-link-type="idl" href="#dom-xrenvironmentblendmode-opaque" id="ref-for-dom-xrenvironmentblendmode-opaque②">opaque</a></code> when possible, but MAY be <code class="idl"><a data-link-type="idl" href="#dom-xrenvironmentblendmode-additive" id="ref-for-dom-xrenvironmentblendmode-additive②">additive</a></code> if the hardware requires it.</p>
-     <li data-md>
-      <p>A session mode of <dfn class="dfn-paneled idl-code" data-dfn-for="XRSessionMode" data-dfn-type="enum-value" data-export id="dom-xrsessionmode-immersive-ar"><code>immersive-ar</code></dfn> indicates that the session’s output will be given <a data-link-type="dfn" href="#exclusive-access" id="ref-for-exclusive-access①">exclusive access</a> to the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①①">XR device</a> display and that content <b>is</b> intended to be integrated with the user’s environment. The <code class="idl"><a data-link-type="idl" href="#dom-xrsession-environmentblendmode" id="ref-for-dom-xrsession-environmentblendmode②">environmentBlendMode</a></code> MUST NOT be <code class="idl"><a data-link-type="idl" href="#dom-xrenvironmentblendmode-opaque" id="ref-for-dom-xrenvironmentblendmode-opaque③">opaque</a></code> for <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-ar" id="ref-for-dom-xrsessionmode-immersive-ar②">immersive-ar</a></code> sessions.</p>
-    </ul>
-    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="immersive-session">immersive session</dfn> refers to either an <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr⑤">immersive-vr</a></code> or an <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-ar" id="ref-for-dom-xrsessionmode-immersive-ar③">immersive-ar</a></code> session. <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session①">Immersive sessions</a> MUST provide some level of <a data-link-type="dfn" href="#viewer" id="ref-for-viewer②">viewer</a> tracking, and content MUST be shown at the proper scale relative to the user and/or the surrounding environment. Additionally, <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session②">Immersive sessions</a> MUST be given <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="exclusive-access">exclusive access</dfn> to the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①②">XR device</a>, meaning that while the <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session③">immersive session</a> is not <a data-link-type="dfn" href="#blurred" id="ref-for-blurred">blurred</a> the HTML document is not shown on the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①③">XR device</a>'s display, nor is content from other applications shown on the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①④">XR device</a>'s display.</p>
-    <p class="note" role="note"><span>NOTE:</span> Examples of ways <a data-link-type="dfn" href="#exclusive-access" id="ref-for-exclusive-access②">exclusive access</a> may be presented include stereo content displayed on a virtual reality or augmented reality headset, or augmented reality content displayed fullscreen on a mobile device.</p>
-   </section>
-   <section class="unstable">
-    <h3 class="heading settled" data-level="4.3" id="xrsessioncreationoptions-interface"><span class="secno">4.3. </span><span class="content">XRSessionCreationOptions</span><a class="self-link" href="#xrsessioncreationoptions-interface"></a></h3>
-    <p>The <code class="idl"><a data-link-type="idl" href="#dictdef-xrsessioncreationoptions" id="ref-for-dictdef-xrsessioncreationoptions②">XRSessionCreationOptions</a></code> dictionary provides a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="session-description">session description</dfn>, indicating the desired properties of a session to be returned from <code class="idl"><a data-link-type="idl" href="#dom-xr-requestsession" id="ref-for-dom-xr-requestsession④">requestSession()</a></code>.</p>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-xrsessioncreationoptions"><code><c- g>XRSessionCreationOptions</c-></code></dfn> {
-  <a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode④"><c- n>XRSessionMode</c-></a> <dfn class="dfn-paneled idl-code" data-default="&quot;inline&quot;" data-dfn-for="XRSessionCreationOptions" data-dfn-type="dict-member" data-export data-type="XRSessionMode " id="dom-xrsessioncreationoptions-mode"><code><c- g>mode</c-></code></dfn> = "inline";
-};
-</pre>
-   </section>
-   <h3 class="heading settled" data-level="4.4" id="xrrenderstate-interface"><span class="secno">4.4. </span><span class="content">XRRenderState</span><a class="self-link" href="#xrrenderstate-interface"></a></h3>
+   <h3 class="heading settled" data-level="4.2" id="xrrenderstate-interface"><span class="secno">4.2. </span><span class="content">XRRenderState</span><a class="self-link" href="#xrrenderstate-interface"></a></h3>
    <p>There are multiple values that developers can configure which affect how the session’s output is composited. These values are tracked by an <code class="idl"><a data-link-type="idl" href="#xrrenderstate" id="ref-for-xrrenderstate②">XRRenderState</a></code> object.</p>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-xrrenderstateinit"><code><c- g>XRRenderStateInit</c-></code></dfn> {
   <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double"><c- b>double</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="XRRenderStateInit" data-dfn-type="dict-member" data-export data-type="double " id="dom-xrrenderstateinit-depthnear"><code><c- g>depthNear</c-></code></dfn>;
@@ -2134,7 +2123,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRRenderState" data-dfn-type="attribute" data-export id="dom-xrrenderstate-depthnear"><code>depthNear</code></dfn> attribute defines the distance, in meters, of the near clip plane from the viewer. The <dfn class="dfn-paneled idl-code" data-dfn-for="XRRenderState" data-dfn-type="attribute" data-export id="dom-xrrenderstate-depthfar"><code>depthFar</code></dfn> attribute defines the distance, in meters, of the far clip plane from the viewer.</p>
    <p><code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-depthnear" id="ref-for-dom-xrrenderstate-depthnear③">depthNear</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-depthfar" id="ref-for-dom-xrrenderstate-depthfar③">depthFar</a></code> is used in the computation of the <code class="idl"><a data-link-type="idl" href="#dom-xrview-projectionmatrix" id="ref-for-dom-xrview-projectionmatrix">projectionMatrix</a></code> of <code class="idl"><a data-link-type="idl" href="#xrview" id="ref-for-xrview">XRView</a></code>s and determines how the values of an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer">XRWebGLLayer</a></code> depth buffer are interpreted. <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-depthnear" id="ref-for-dom-xrrenderstate-depthnear④">depthNear</a></code> MAY be greater than <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-depthfar" id="ref-for-dom-xrrenderstate-depthfar④">depthFar</a></code>.</p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRRenderState" data-dfn-type="attribute" data-export id="dom-xrrenderstate-inlineverticalfieldofview"><code>inlineVerticalFieldOfView</code></dfn> attribute defines the default vertical field of view in radians used when computing projection matrices for <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline③">inline</a></code> <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②⑦">XRSession</a></code>s. The projection matrix calculation also takes into account the aspect ratio of the <code class="idl"><a data-link-type="idl" href="#dom-xrrenderstate-outputcontext" id="ref-for-dom-xrrenderstate-outputcontext②">outputContext</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrpresentationcontext-canvas" id="ref-for-dom-xrpresentationcontext-canvas">canvas</a></code>. This value MUST be <code>null</code> for <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session⑤">immersive sessions</a>.</p>
-   <h3 class="heading settled" data-level="4.5" id="animation-frames"><span class="secno">4.5. </span><span class="content">Animation Frames</span><a class="self-link" href="#animation-frames"></a></h3>
+   <h3 class="heading settled" data-level="4.3" id="animation-frames"><span class="secno">4.3. </span><span class="content">Animation Frames</span><a class="self-link" href="#animation-frames"></a></h3>
    <p>The primary way an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②⑧">XRSession</a></code> provides information about the tracking state of the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①⑤">XR device</a> is via callbacks scheduled by calling <code class="idl"><a data-link-type="idl" href="#dom-xrsession-requestanimationframe" id="ref-for-dom-xrsession-requestanimationframe①">requestAnimationFrame()</a></code> on the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②⑨">XRSession</a></code> instance.</p>
 <pre class="idl highlight def"><c- b>callback</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="callback" data-export id="callbackdef-xrframerequestcallback"><code><c- g>XRFrameRequestCallback</c-></code></dfn> = <c- b>void</c-> (<a class="n" data-link-type="idl-name" href="https://www.w3.org/TR/hr-time/#dom-domhighrestimestamp" id="ref-for-dom-domhighrestimestamp"><c- n>DOMHighResTimeStamp</c-></a> <dfn class="idl-code" data-dfn-for="XRFrameRequestCallback" data-dfn-type="argument" data-export id="dom-xrframerequestcallback-time"><code><c- g>time</c-></code><a class="self-link" href="#dom-xrframerequestcallback-time"></a></dfn>, <a class="n" data-link-type="idl-name" href="#xrframe" id="ref-for-xrframe①"><c- n>XRFrame</c-></a> <dfn class="idl-code" data-dfn-for="XRFrameRequestCallback" data-dfn-type="argument" data-export id="dom-xrframerequestcallback-frame"><code><c- g>frame</c-></code><a class="self-link" href="#dom-xrframerequestcallback-frame"></a></dfn>);
 </pre>
@@ -2196,7 +2185,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
     </ol>
    </div>
    <section class="unstable">
-    <h3 class="heading settled" data-level="4.6" id="compositor"><span class="secno">4.6. </span><span class="content">The XR Compositor</span><a class="self-link" href="#compositor"></a></h3>
+    <h3 class="heading settled" data-level="4.4" id="compositor"><span class="secno">4.4. </span><span class="content">The XR Compositor</span><a class="self-link" href="#compositor"></a></h3>
     <p>The user agent MUST maintain an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="xr-compositor">XR Compositor</dfn> which handles presentation to the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device①⑦">XR device</a> and frame timing. The compositor MUST use an independent rendering context whose state is isolated from that of any WebGL contexts used as <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer①">XRWebGLLayer</a></code> sources to prevent the page from corrupting the compositor state or reading back content from other pages. the compositor MUST also run in separate thread or processes to decouple performance of the page from the ability to present new imagery to the user at the appropriate framerate.</p>
     <p>The <a data-link-type="dfn" href="#xr-compositor" id="ref-for-xr-compositor">XR Compositor</a> has a list of layer images, which is initially empty.</p>
    </section>
@@ -2361,7 +2350,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>({</c-> mode<c- o>:</c-> 
    <p>An <code class="idl"><a data-link-type="idl" href="#xrunboundedreferencespace" id="ref-for-xrunboundedreferencespace③">XRUnboundedReferenceSpace</a></code> represents a tracking space where the user is expected to move freely around their environment, potentially even long distances from their starting point. Tracking in an <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-unbounded" id="ref-for-dom-xrreferencespacetype-unbounded③">unbounded</a></code> reference space is optimized for stability around the user’s current position, and as such the tracking origin may drift over time.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑨"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑧"><c- g>Exposed</c-></a>=<c- n>Window</c->] 
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrunboundedreferencespace"><code><c- g>XRUnboundedReferenceSpace</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①⑧"><c- n>XRReferenceSpace</c-></a> {
-};  
+};
 </pre>
    <h2 class="heading settled" data-level="7" id="views"><span class="secno">7. </span><span class="content">Views</span><a class="self-link" href="#views"></a></h2>
    <section class="unstable">
@@ -3100,7 +3089,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     </ul>
    <li><a href="#dom-xrenvironmentblendmode-alpha-blend">alpha-blend</a><span>, in §4.1</span>
    <li><a href="#xrframe-animationframe">animationFrame</a><span>, in §5.1</span>
-   <li><a href="#animation-frame-callback-identifier">animation frame callback identifier</a><span>, in §4.5</span>
+   <li><a href="#animation-frame-callback-identifier">animation frame callback identifier</a><span>, in §4.3</span>
    <li>
     antialias
     <ul>
@@ -3111,8 +3100,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li>
     baseLayer
     <ul>
-     <li><a href="#dom-xrrenderstate-baselayer">attribute for XRRenderState</a><span>, in §4.4</span>
-     <li><a href="#dom-xrrenderstateinit-baselayer">dict-member for XRRenderStateInit</a><span>, in §4.4</span>
+     <li><a href="#dom-xrrenderstate-baselayer">attribute for XRRenderState</a><span>, in §4.2</span>
+     <li><a href="#dom-xrrenderstateinit-baselayer">dict-member for XRRenderStateInit</a><span>, in §4.2</span>
     </ul>
    <li><a href="#eventdef-xrsession-blur">blur</a><span>, in §13.4</span>
    <li><a href="#blur-all-sessions">blur all sessions</a><span>, in §4.1</span>
@@ -3125,8 +3114,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
      <li><a href="#dom-xrinputsourceevent-buttonindex">attribute for XRInputSourceEvent</a><span>, in §13.2</span>
      <li><a href="#dom-xrinputsourceeventinit-buttonindex">dict-member for XRInputSourceEventInit</a><span>, in §13.2</span>
     </ul>
-   <li><a href="#dom-xrsession-cancelanimationframe">cancelAnimationFrame(handle)</a><span>, in §4.5</span>
-   <li><a href="#xrframerequestcallback-cancelled">cancelled</a><span>, in §4.5</span>
+   <li><a href="#dom-xrsession-cancelanimationframe">cancelAnimationFrame(handle)</a><span>, in §4.3</span>
+   <li><a href="#xrframerequestcallback-cancelled">cancelled</a><span>, in §4.3</span>
    <li><a href="#dom-xrpresentationcontext-canvas">canvas</a><span>, in §12.1</span>
    <li><a href="#compatible-graphics-adapter">compatible graphics adapter</a><span>, in §11.3</span>
    <li><a href="#dom-xrwebgllayer-context">context</a><span>, in §11.2</span>
@@ -3140,14 +3129,14 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li>
     depthFar
     <ul>
-     <li><a href="#dom-xrrenderstate-depthfar">attribute for XRRenderState</a><span>, in §4.4</span>
-     <li><a href="#dom-xrrenderstateinit-depthfar">dict-member for XRRenderStateInit</a><span>, in §4.4</span>
+     <li><a href="#dom-xrrenderstate-depthfar">attribute for XRRenderState</a><span>, in §4.2</span>
+     <li><a href="#dom-xrrenderstateinit-depthfar">dict-member for XRRenderStateInit</a><span>, in §4.2</span>
     </ul>
    <li>
     depthNear
     <ul>
-     <li><a href="#dom-xrrenderstate-depthnear">attribute for XRRenderState</a><span>, in §4.4</span>
-     <li><a href="#dom-xrrenderstateinit-depthnear">dict-member for XRRenderStateInit</a><span>, in §4.4</span>
+     <li><a href="#dom-xrrenderstate-depthnear">attribute for XRRenderState</a><span>, in §4.2</span>
+     <li><a href="#dom-xrrenderstateinit-depthnear">dict-member for XRRenderStateInit</a><span>, in §4.2</span>
     </ul>
    <li><a href="#eventdef-xr-devicechange">devicechange</a><span>, in §13.4</span>
    <li><a href="#dom-xrray-direction">direction</a><span>, in §8.4</span>
@@ -3160,7 +3149,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li><a href="#enumerate-xr-devices">enumerate XR devices</a><span>, in §3.2</span>
    <li><a href="#environment-blending-mode">environment blending mode</a><span>, in §4.1</span>
    <li><a href="#dom-xrsession-environmentblendmode">environmentBlendMode</a><span>, in §4.1</span>
-   <li><a href="#exclusive-access">exclusive access</a><span>, in §4.2</span>
+   <li><a href="#exclusive-access">exclusive access</a><span>, in §3.3</span>
    <li><a href="#dom-xrview-eye">eye</a><span>, in §7.1</span>
    <li><a href="#dom-xrstationaryreferencespacesubtype-eye-level">eye-level</a><span>, in §6.2</span>
    <li><a href="#dom-xrstationaryreferencespacesubtype-floor-level">floor-level</a><span>, in §6.2</span>
@@ -3194,17 +3183,17 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
      <li><a href="#dom-xrwebgllayer-ignoredepthvalues">attribute for XRWebGLLayer</a><span>, in §11.2</span>
      <li><a href="#dom-xrwebgllayerinit-ignoredepthvalues">dict-member for XRWebGLLayerInit</a><span>, in §11.2</span>
     </ul>
-   <li><a href="#dom-xrsessionmode-immersive-ar">immersive-ar</a><span>, in §4.2</span>
-   <li><a href="#immersive-session">immersive session</a><span>, in §4.2</span>
-   <li><a href="#dom-xrsessionmode-immersive-vr">immersive-vr</a><span>, in §4.2</span>
-   <li><a href="#initialize-the-render-state">initialize the render state</a><span>, in §4.4</span>
+   <li><a href="#dom-xrsessionmode-immersive-ar">immersive-ar</a><span>, in §3.3</span>
+   <li><a href="#immersive-session">immersive session</a><span>, in §3.3</span>
+   <li><a href="#dom-xrsessionmode-immersive-vr">immersive-vr</a><span>, in §3.3</span>
+   <li><a href="#initialize-the-render-state">initialize the render state</a><span>, in §4.2</span>
    <li><a href="#initialize-the-session">initialize the session</a><span>, in §4.1</span>
-   <li><a href="#dom-xrsessionmode-inline">inline</a><span>, in §4.2</span>
+   <li><a href="#dom-xrsessionmode-inline">inline</a><span>, in §3.3</span>
    <li>
     inlineVerticalFieldOfView
     <ul>
-     <li><a href="#dom-xrrenderstate-inlineverticalfieldofview">attribute for XRRenderState</a><span>, in §4.4</span>
-     <li><a href="#dom-xrrenderstateinit-inlineverticalfieldofview">dict-member for XRRenderStateInit</a><span>, in §4.4</span>
+     <li><a href="#dom-xrrenderstate-inlineverticalfieldofview">attribute for XRRenderState</a><span>, in §4.2</span>
+     <li><a href="#dom-xrrenderstateinit-inlineverticalfieldofview">dict-member for XRRenderStateInit</a><span>, in §4.2</span>
     </ul>
    <li>
     inputSource
@@ -3221,7 +3210,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
      <li><a href="#dom-xrhandedness-left">enum-value for XRHandedness</a><span>, in §10.1</span>
     </ul>
    <li><a href="#list-of-active-input-sources">list of active input sources</a><span>, in §4.1</span>
-   <li><a href="#list-of-animation-frame-callbacks">list of animation frame callbacks</a><span>, in §4.5</span>
+   <li><a href="#list-of-animation-frame-callbacks">list of animation frame callbacks</a><span>, in §4.3</span>
    <li><a href="#list-of-inline-sessions">list of inline sessions</a><span>, in §3.2</span>
    <li><a href="#list-of-pending-render-states">list of pending render states</a><span>, in §4.1</span>
    <li><a href="#list-of-supported-modes">list of supported modes</a><span>, in §2.1</span>
@@ -3238,12 +3227,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li><a href="#maximum-inline-field-of-view">maximum inline field of view</a><span>, in §4.1</span>
    <li><a href="#minimum-inline-field-of-view">minimum inline field of view</a><span>, in §4.1</span>
    <li><a href="#minimum-viewport-scale-factor">minimum viewport scale factor</a><span>, in §11.2</span>
-   <li>
-    mode
-    <ul>
-     <li><a href="#dom-xrsession-mode">attribute for XRSession</a><span>, in §4.1</span>
-     <li><a href="#dom-xrsessioncreationoptions-mode">dict-member for XRSessionCreationOptions</a><span>, in §4.3</span>
-    </ul>
+   <li><a href="#dom-xrsession-mode">mode</a><span>, in §4.1</span>
    <li><a href="#native-webgl-framebuffer-resolution">native WebGL framebuffer resolution</a><span>, in §11.2</span>
    <li><a href="#dom-xrhandedness-none">"none"</a><span>, in §10.1</span>
    <li><a href="#normalize">normalize</a><span>, in §8.2</span>
@@ -3264,8 +3248,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li>
     outputContext
     <ul>
-     <li><a href="#dom-xrrenderstate-outputcontext">attribute for XRRenderState</a><span>, in §4.4</span>
-     <li><a href="#dom-xrrenderstateinit-outputcontext">dict-member for XRRenderStateInit</a><span>, in §4.4</span>
+     <li><a href="#dom-xrrenderstate-outputcontext">attribute for XRRenderState</a><span>, in §4.2</span>
+     <li><a href="#dom-xrrenderstateinit-outputcontext">dict-member for XRRenderStateInit</a><span>, in §4.2</span>
     </ul>
    <li><a href="#pending-immersive-session">pending immersive session</a><span>, in §3.2</span>
    <li><a href="#poll-the-device-pose">poll the device pose</a><span>, in §4.1</span>
@@ -3281,9 +3265,9 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
      <li><a href="#dom-xrreferencespaceeventinit-referencespace">dict-member for XRReferenceSpaceEventInit</a><span>, in §13.3</span>
     </ul>
    <li><a href="#dom-xrsession-renderstate">renderState</a><span>, in §4.1</span>
-   <li><a href="#dom-xrsession-requestanimationframe">requestAnimationFrame(callback)</a><span>, in §4.5</span>
+   <li><a href="#dom-xrsession-requestanimationframe">requestAnimationFrame(callback)</a><span>, in §4.3</span>
    <li><a href="#dom-xrsession-requestreferencespace">requestReferenceSpace(options)</a><span>, in §4.1</span>
-   <li><a href="#dom-xr-requestsession">requestSession(options)</a><span>, in §3.2</span>
+   <li><a href="#dom-xr-requestsession">requestSession(mode)</a><span>, in §3.2</span>
    <li><a href="#dom-xrwebgllayer-requestviewportscaling-scalefactor">requestViewportScaling(scaleFactor)</a><span>, in §11.2</span>
    <li><a href="#dom-xrwebgllayer-requestviewportscaling">requestViewportScaling(viewportScaleFactor)</a><span>, in §11.2</span>
    <li><a href="#eventdef-xrreferencespace-reset">reset</a><span>, in §13.4</span>
@@ -3307,7 +3291,6 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
      <li><a href="#xrspace-session">dfn for XRSpace</a><span>, in §6.1</span>
      <li><a href="#dom-xrsessioneventinit-session">dict-member for XRSessionEventInit</a><span>, in §13.1</span>
     </ul>
-   <li><a href="#session-description">session description</a><span>, in §4.3</span>
    <li><a href="#should-not-initialize-device-tracking">SHOULD NOT initialize device tracking</a><span>, in §4.1</span>
    <li><a href="#shut-down-the-session">shut down the session</a><span>, in §4.1</span>
    <li><a href="#dom-gamepadmappingtype-standard">"standard"</a><span>, in §10.3</span>
@@ -3350,11 +3333,11 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li><a href="#dom-xrviewport-x">x</a><span>, in §7.2</span>
    <li><a href="#dom-navigator-xr">xr</a><span>, in §3.1</span>
    <li><a href="#xr">XR</a><span>, in §3.2</span>
-   <li><a href="#xr-animation-frame">XR animation frame</a><span>, in §4.5</span>
+   <li><a href="#xr-animation-frame">XR animation frame</a><span>, in §4.3</span>
    <li><a href="#xrboundedreferencespace">XRBoundedReferenceSpace</a><span>, in §6.4</span>
    <li><a href="#dom-webglcontextattributes-xrcompatible">xrCompatible</a><span>, in §11.3</span>
    <li><a href="#xr-compatible">XR compatible</a><span>, in §11.3</span>
-   <li><a href="#xr-compositor">XR Compositor</a><span>, in §4.6</span>
+   <li><a href="#xr-compositor">XR Compositor</a><span>, in §4.4</span>
    <li>
     XR device
     <ul>
@@ -3364,7 +3347,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li><a href="#enumdef-xrenvironmentblendmode">XREnvironmentBlendMode</a><span>, in §4.1</span>
    <li><a href="#enumdef-xreye">XREye</a><span>, in §7.1</span>
    <li><a href="#xrframe">XRFrame</a><span>, in §5.1</span>
-   <li><a href="#callbackdef-xrframerequestcallback">XRFrameRequestCallback</a><span>, in §4.5</span>
+   <li><a href="#callbackdef-xrframerequestcallback">XRFrameRequestCallback</a><span>, in §4.3</span>
    <li><a href="#enumdef-xrhandedness">XRHandedness</a><span>, in §10.1</span>
    <li><a href="#xrinputsource">XRInputSource</a><span>, in §10.1</span>
    <li><a href="#xrinputsourceevent">XRInputSourceEvent</a><span>, in §13.2</span>
@@ -3382,16 +3365,15 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li><a href="#dom-xrreferencespaceevent-xrreferencespaceevent">XRReferenceSpaceEvent(type, eventInitDict)</a><span>, in §13.3</span>
    <li><a href="#dictdef-xrreferencespaceoptions">XRReferenceSpaceOptions</a><span>, in §6.2</span>
    <li><a href="#enumdef-xrreferencespacetype">XRReferenceSpaceType</a><span>, in §6.2</span>
-   <li><a href="#xrrenderstate">XRRenderState</a><span>, in §4.4</span>
-   <li><a href="#dictdef-xrrenderstateinit">XRRenderStateInit</a><span>, in §4.4</span>
+   <li><a href="#xrrenderstate">XRRenderState</a><span>, in §4.2</span>
+   <li><a href="#dictdef-xrrenderstateinit">XRRenderStateInit</a><span>, in §4.2</span>
    <li><a href="#xrrigidtransform">XRRigidTransform</a><span>, in §8.3</span>
    <li><a href="#dom-xrrigidtransform-xrrigidtransform">XRRigidTransform(position, orientation)</a><span>, in §8.3</span>
    <li><a href="#xrsession">XRSession</a><span>, in §4.1</span>
-   <li><a href="#dictdef-xrsessioncreationoptions">XRSessionCreationOptions</a><span>, in §4.3</span>
    <li><a href="#xrsessionevent">XRSessionEvent</a><span>, in §13.1</span>
    <li><a href="#dictdef-xrsessioneventinit">XRSessionEventInit</a><span>, in §13.1</span>
    <li><a href="#dom-xrsessionevent-xrsessionevent">XRSessionEvent(type, eventInitDict)</a><span>, in §13.1</span>
-   <li><a href="#enumdef-xrsessionmode">XRSessionMode</a><span>, in §4.2</span>
+   <li><a href="#enumdef-xrsessionmode">XRSessionMode</a><span>, in §3.3</span>
    <li><a href="#xrspace">XRSpace</a><span>, in §6.1</span>
    <li><a href="#dom-gamepadmappingtype-xr-standard">xr-standard</a><span>, in §10.3</span>
    <li><a href="#xrstationaryreferencespace">XRStationaryReferenceSpace</a><span>, in §6.3</span>
@@ -3621,7 +3603,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="term-for-report-the-exception">
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#report-the-exception">https://html.spec.whatwg.org/multipage/webappapis.html#report-the-exception</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-report-the-exception">4.5. Animation Frames</a>
+    <li><a href="#ref-for-report-the-exception">4.3. Animation Frames</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-triggered-by-user-activation">
@@ -3718,7 +3700,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-Exposed">3.2. XR</a>
     <li><a href="#ref-for-Exposed①">4.1. XRSession</a>
-    <li><a href="#ref-for-Exposed②">4.4. XRRenderState</a>
+    <li><a href="#ref-for-Exposed②">4.2. XRRenderState</a>
     <li><a href="#ref-for-Exposed③">5.1. XRFrame</a>
     <li><a href="#ref-for-Exposed④">6.1. XRSpace</a>
     <li><a href="#ref-for-Exposed⑤">6.2. XRReferenceSpace</a>
@@ -3786,7 +3768,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-SecureContext">3.1. navigator.xr</a>
     <li><a href="#ref-for-SecureContext①">3.2. XR</a>
     <li><a href="#ref-for-SecureContext②">4.1. XRSession</a>
-    <li><a href="#ref-for-SecureContext③">4.4. XRRenderState</a>
+    <li><a href="#ref-for-SecureContext③">4.2. XRRenderState</a>
     <li><a href="#ref-for-SecureContext④">5.1. XRFrame</a>
     <li><a href="#ref-for-SecureContext⑤">6.1. XRSpace</a>
     <li><a href="#ref-for-SecureContext⑥">6.2. XRReferenceSpace</a>
@@ -3832,14 +3814,14 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="term-for-idl-double">
    <a href="https://heycam.github.io/webidl/#idl-double">https://heycam.github.io/webidl/#idl-double</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-idl-double">4.4. XRRenderState</a> <a href="#ref-for-idl-double①">(2)</a> <a href="#ref-for-idl-double②">(3)</a> <a href="#ref-for-idl-double③">(4)</a> <a href="#ref-for-idl-double④">(5)</a> <a href="#ref-for-idl-double⑤">(6)</a>
+    <li><a href="#ref-for-idl-double">4.2. XRRenderState</a> <a href="#ref-for-idl-double①">(2)</a> <a href="#ref-for-idl-double②">(3)</a> <a href="#ref-for-idl-double③">(4)</a> <a href="#ref-for-idl-double④">(5)</a> <a href="#ref-for-idl-double⑤">(6)</a>
     <li><a href="#ref-for-idl-double⑥">11.2. XRWebGLLayer</a> <a href="#ref-for-idl-double⑦">(2)</a> <a href="#ref-for-idl-double⑧">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-es-invoking-callback-functions">
    <a href="https://www.w3.org/TR/WebIDL-1/#es-invoking-callback-functions">https://www.w3.org/TR/WebIDL-1/#es-invoking-callback-functions</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-es-invoking-callback-functions">4.5. Animation Frames</a>
+    <li><a href="#ref-for-es-invoking-callback-functions">4.3. Animation Frames</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-long">
@@ -3986,22 +3968,28 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①①⓪"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed②②"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xr"><code><c- g>XR</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget③"><c- n>EventTarget</c-></a> {
   // Methods
   <c- b>Promise</c->&lt;<c- b>void</c->> <a class="idl-code" data-link-type="method" href="#dom-xr-supportssessionmode" id="ref-for-dom-xr-supportssessionmode①①"><c- g>supportsSessionMode</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①①"><c- n>XRSessionMode</c-></a> <a href="#dom-xr-supportssessionmode-mode-mode"><code><c- g>mode</c-></code></a>);
-  <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession②①⓪"><c- n>XRSession</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xr-requestsession" id="ref-for-dom-xr-requestsession①①"><c- g>requestSession</c-></a>(<c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-xrsessioncreationoptions" id="ref-for-dictdef-xrsessioncreationoptions③"><c- n>XRSessionCreationOptions</c-></a> <a href="#dom-xr-requestsession-parameters-parameters"><code><c- g>parameters</c-></code></a>);
+  <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession②①⓪"><c- n>XRSession</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xr-requestsession" id="ref-for-dom-xr-requestsession①①"><c- g>requestSession</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode②①"><c- n>XRSessionMode</c-></a> <a href="#dom-xr-requestsession-mode-mode"><code><c- g>mode</c-></code></a>);
 
   // Events
   <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler⑨"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xr-ondevicechange" id="ref-for-dom-xr-ondevicechange①"><c- g>ondevicechange</c-></a>;
 };
 
+<c- b>enum</c-> <a href="#enumdef-xrsessionmode"><code><c- g>XRSessionMode</c-></code></a> {
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline⑤"><c- s>"inline"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr③①"><c- s>"immersive-vr"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-immersive-ar" id="ref-for-dom-xrsessionmode-immersive-ar①①"><c- s>"immersive-ar"</c-></a>
+};
+
 <c- b>enum</c-> <a href="#enumdef-xrenvironmentblendmode"><code><c- g>XREnvironmentBlendMode</c-></code></a> {
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrenvironmentblendmode-opaque" id="ref-for-dom-xrenvironmentblendmode-opaque④"><c- s>"opaque"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrenvironmentblendmode-additive" id="ref-for-dom-xrenvironmentblendmode-additive③"><c- s>"additive"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrenvironmentblendmode-opaque" id="ref-for-dom-xrenvironmentblendmode-opaque②①"><c- s>"opaque"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-xrenvironmentblendmode-additive" id="ref-for-dom-xrenvironmentblendmode-additive①①"><c- s>"additive"</c-></a>,
   <a class="idl-code" data-link-type="enum-value" href="#dom-xrenvironmentblendmode-alpha-blend" id="ref-for-dom-xrenvironmentblendmode-alpha-blend②"><c- s>"alpha-blend"</c-></a>,
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext②③"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①⓪"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrsession"><code><c- g>XRSession</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget①①"><c- n>EventTarget</c-></a> {
   // Attributes
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode②①"><c- n>XRSessionMode</c-></a> <a data-readonly data-type="XRSessionMode" href="#dom-xrsession-mode"><code><c- g>mode</c-></code></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrenvironmentblendmode" id="ref-for-enumdef-xrenvironmentblendmode①"><c- n>XREnvironmentBlendMode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XREnvironmentBlendMode" href="#dom-xrsession-environmentblendmode" id="ref-for-dom-xrsession-environmentblendmode③"><c- g>environmentBlendMode</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode④①"><c- n>XRSessionMode</c-></a> <a data-readonly data-type="XRSessionMode" href="#dom-xrsession-mode"><code><c- g>mode</c-></code></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-xrenvironmentblendmode" id="ref-for-enumdef-xrenvironmentblendmode①"><c- n>XREnvironmentBlendMode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XREnvironmentBlendMode" href="#dom-xrsession-environmentblendmode" id="ref-for-dom-xrsession-environmentblendmode②①"><c- g>environmentBlendMode</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrrenderstate" id="ref-for-xrrenderstate⑤"><c- n>XRRenderState</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRRenderState" href="#dom-xrsession-renderstate" id="ref-for-dom-xrsession-renderstate⑥"><c- g>renderState</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrspace" id="ref-for-xrspace①⑦"><c- n>XRSpace</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRSpace" href="#dom-xrsession-viewerspace" id="ref-for-dom-xrsession-viewerspace②"><c- g>viewerSpace</c-></a>;
 
@@ -4024,16 +4012,6 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler⑤①"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-oninputsourceschange" id="ref-for-dom-xrsession-oninputsourceschange①"><c- g>oninputsourceschange</c-></a>;
   <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler⑥①"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onselectstart" id="ref-for-dom-xrsession-onselectstart①"><c- g>onselectstart</c-></a>;
   <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler⑦①"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-xrsession-onselectend" id="ref-for-dom-xrsession-onselectend①"><c- g>onselectend</c-></a>;
-};
-
-<c- b>enum</c-> <a href="#enumdef-xrsessionmode"><code><c- g>XRSessionMode</c-></code></a> {
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline⑤"><c- s>"inline"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr③①"><c- s>"immersive-vr"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-xrsessionmode-immersive-ar" id="ref-for-dom-xrsessionmode-immersive-ar①①"><c- s>"immersive-ar"</c-></a>
-};
-
-<c- b>dictionary</c-> <a href="#dictdef-xrsessioncreationoptions"><code><c- g>XRSessionCreationOptions</c-></code></a> {
-  <a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode④①"><c- n>XRSessionMode</c-></a> <a data-default="&quot;inline&quot;" data-type="XRSessionMode " href="#dom-xrsessioncreationoptions-mode"><code><c- g>mode</c-></code></a> = "inline";
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-xrrenderstateinit"><code><c- g>XRRenderStateInit</c-></code></a> {
@@ -4100,7 +4078,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑨①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑧①"><c- g>Exposed</c-></a>=<c- n>Window</c->] 
 <c- b>interface</c-> <a href="#xrunboundedreferencespace"><code><c- g>XRUnboundedReferenceSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace①⑧①"><c- n>XRReferenceSpace</c-></a> {
-};  
+};
 
 <c- b>enum</c-> <a href="#enumdef-xreye"><code><c- g>XREye</c-></code></a> {
   <a href="#dom-xreye-left"><code><c- s>"left"</c-></code></a>,
@@ -4284,10 +4262,10 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-xr-device②">1.2. Application flow</a>
     <li><a href="#ref-for-xr-device③">2.1. XR device</a> <a href="#ref-for-xr-device④">(2)</a>
     <li><a href="#ref-for-xr-device⑤">3.2. XR</a> <a href="#ref-for-xr-device⑥">(2)</a> <a href="#ref-for-xr-device⑦">(3)</a>
-    <li><a href="#ref-for-xr-device⑧">4.1. XRSession</a>
-    <li><a href="#ref-for-xr-device⑨">4.2. XRSessionMode</a> <a href="#ref-for-xr-device①⓪">(2)</a> <a href="#ref-for-xr-device①①">(3)</a> <a href="#ref-for-xr-device①②">(4)</a> <a href="#ref-for-xr-device①③">(5)</a> <a href="#ref-for-xr-device①④">(6)</a>
-    <li><a href="#ref-for-xr-device①⑤">4.5. Animation Frames</a> <a href="#ref-for-xr-device①⑥">(2)</a>
-    <li><a href="#ref-for-xr-device①⑦">4.6. The XR Compositor</a>
+    <li><a href="#ref-for-xr-device⑧">3.3. XRSessionMode</a> <a href="#ref-for-xr-device⑨">(2)</a> <a href="#ref-for-xr-device①⓪">(3)</a> <a href="#ref-for-xr-device①①">(4)</a> <a href="#ref-for-xr-device①②">(5)</a> <a href="#ref-for-xr-device①③">(6)</a>
+    <li><a href="#ref-for-xr-device①④">4.1. XRSession</a>
+    <li><a href="#ref-for-xr-device①⑤">4.3. Animation Frames</a> <a href="#ref-for-xr-device①⑥">(2)</a>
+    <li><a href="#ref-for-xr-device①⑦">4.4. The XR Compositor</a>
     <li><a href="#ref-for-xr-device①⑧">6.1. XRSpace</a>
     <li><a href="#ref-for-xr-device①⑨">6.2. XRReferenceSpace</a> <a href="#ref-for-xr-device②⓪">(2)</a>
     <li><a href="#ref-for-xr-device②①">9.2. XRViewerPose</a> <a href="#ref-for-xr-device②②">(2)</a>
@@ -4390,7 +4368,51 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-dom-xr-requestsession">1.2. Application flow</a>
     <li><a href="#ref-for-dom-xr-requestsession①">3.2. XR</a>
     <li><a href="#ref-for-dom-xr-requestsession②">4.1. XRSession</a> <a href="#ref-for-dom-xr-requestsession③">(2)</a>
-    <li><a href="#ref-for-dom-xr-requestsession④">4.3. XRSessionCreationOptions</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="enumdef-xrsessionmode">
+   <b><a href="#enumdef-xrsessionmode">#enumdef-xrsessionmode</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-enumdef-xrsessionmode">2.1. XR device</a>
+    <li><a href="#ref-for-enumdef-xrsessionmode①">3.2. XR</a> <a href="#ref-for-enumdef-xrsessionmode②">(2)</a>
+    <li><a href="#ref-for-enumdef-xrsessionmode③">3.3. XRSessionMode</a>
+    <li><a href="#ref-for-enumdef-xrsessionmode④">4.1. XRSession</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrsessionmode-inline">
+   <b><a href="#dom-xrsessionmode-inline">#dom-xrsessionmode-inline</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrsessionmode-inline">3.3. XRSessionMode</a> <a href="#ref-for-dom-xrsessionmode-inline①">(2)</a> <a href="#ref-for-dom-xrsessionmode-inline②">(3)</a>
+    <li><a href="#ref-for-dom-xrsessionmode-inline③">4.2. XRRenderState</a>
+    <li><a href="#ref-for-dom-xrsessionmode-inline④">4.3. Animation Frames</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrsessionmode-immersive-vr">
+   <b><a href="#dom-xrsessionmode-immersive-vr">#dom-xrsessionmode-immersive-vr</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrsessionmode-immersive-vr">3.2. XR</a> <a href="#ref-for-dom-xrsessionmode-immersive-vr①">(2)</a> <a href="#ref-for-dom-xrsessionmode-immersive-vr②">(3)</a>
+    <li><a href="#ref-for-dom-xrsessionmode-immersive-vr③">3.3. XRSessionMode</a> <a href="#ref-for-dom-xrsessionmode-immersive-vr④">(2)</a> <a href="#ref-for-dom-xrsessionmode-immersive-vr⑤">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-xrsessionmode-immersive-ar">
+   <b><a href="#dom-xrsessionmode-immersive-ar">#dom-xrsessionmode-immersive-ar</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-xrsessionmode-immersive-ar">3.2. XR</a>
+    <li><a href="#ref-for-dom-xrsessionmode-immersive-ar①">3.3. XRSessionMode</a> <a href="#ref-for-dom-xrsessionmode-immersive-ar②">(2)</a> <a href="#ref-for-dom-xrsessionmode-immersive-ar③">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="immersive-session">
+   <b><a href="#immersive-session">#immersive-session</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-immersive-session">3.3. XRSessionMode</a> <a href="#ref-for-immersive-session①">(2)</a> <a href="#ref-for-immersive-session②">(3)</a>
+    <li><a href="#ref-for-immersive-session③">4.1. XRSession</a>
+    <li><a href="#ref-for-immersive-session④">4.2. XRRenderState</a> <a href="#ref-for-immersive-session⑤">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="exclusive-access">
+   <b><a href="#exclusive-access">#exclusive-access</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-exclusive-access">3.3. XRSessionMode</a> <a href="#ref-for-exclusive-access①">(2)</a> <a href="#ref-for-exclusive-access②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="should-not-initialize-device-tracking">
@@ -4410,10 +4432,10 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-xrsession">1.2. Application flow</a> <a href="#ref-for-xrsession①">(2)</a>
     <li><a href="#ref-for-xrsession②">3.2. XR</a> <a href="#ref-for-xrsession③">(2)</a> <a href="#ref-for-xrsession④">(3)</a> <a href="#ref-for-xrsession⑤">(4)</a> <a href="#ref-for-xrsession⑥">(5)</a> <a href="#ref-for-xrsession⑦">(6)</a>
-    <li><a href="#ref-for-xrsession⑧">4.1. XRSession</a> <a href="#ref-for-xrsession⑨">(2)</a> <a href="#ref-for-xrsession①⓪">(3)</a> <a href="#ref-for-xrsession①①">(4)</a> <a href="#ref-for-xrsession①②">(5)</a> <a href="#ref-for-xrsession①③">(6)</a> <a href="#ref-for-xrsession①④">(7)</a> <a href="#ref-for-xrsession①⑤">(8)</a> <a href="#ref-for-xrsession①⑥">(9)</a> <a href="#ref-for-xrsession①⑦">(10)</a> <a href="#ref-for-xrsession①⑧">(11)</a> <a href="#ref-for-xrsession①⑨">(12)</a> <a href="#ref-for-xrsession②⓪">(13)</a> <a href="#ref-for-xrsession②①">(14)</a> <a href="#ref-for-xrsession②②">(15)</a> <a href="#ref-for-xrsession②③">(16)</a> <a href="#ref-for-xrsession②④">(17)</a>
-    <li><a href="#ref-for-xrsession②⑤">4.2. XRSessionMode</a>
-    <li><a href="#ref-for-xrsession②⑥">4.4. XRRenderState</a> <a href="#ref-for-xrsession②⑦">(2)</a>
-    <li><a href="#ref-for-xrsession②⑧">4.5. Animation Frames</a> <a href="#ref-for-xrsession②⑨">(2)</a> <a href="#ref-for-xrsession③⓪">(3)</a> <a href="#ref-for-xrsession③①">(4)</a> <a href="#ref-for-xrsession③②">(5)</a> <a href="#ref-for-xrsession③③">(6)</a>
+    <li><a href="#ref-for-xrsession⑧">3.3. XRSessionMode</a>
+    <li><a href="#ref-for-xrsession⑨">4.1. XRSession</a> <a href="#ref-for-xrsession①⓪">(2)</a> <a href="#ref-for-xrsession①①">(3)</a> <a href="#ref-for-xrsession①②">(4)</a> <a href="#ref-for-xrsession①③">(5)</a> <a href="#ref-for-xrsession①④">(6)</a> <a href="#ref-for-xrsession①⑤">(7)</a> <a href="#ref-for-xrsession①⑥">(8)</a> <a href="#ref-for-xrsession①⑦">(9)</a> <a href="#ref-for-xrsession①⑧">(10)</a> <a href="#ref-for-xrsession①⑨">(11)</a> <a href="#ref-for-xrsession②⓪">(12)</a> <a href="#ref-for-xrsession②①">(13)</a> <a href="#ref-for-xrsession②②">(14)</a> <a href="#ref-for-xrsession②③">(15)</a> <a href="#ref-for-xrsession②④">(16)</a> <a href="#ref-for-xrsession②⑤">(17)</a>
+    <li><a href="#ref-for-xrsession②⑥">4.2. XRRenderState</a> <a href="#ref-for-xrsession②⑦">(2)</a>
+    <li><a href="#ref-for-xrsession②⑧">4.3. Animation Frames</a> <a href="#ref-for-xrsession②⑨">(2)</a> <a href="#ref-for-xrsession③⓪">(3)</a> <a href="#ref-for-xrsession③①">(4)</a> <a href="#ref-for-xrsession③②">(5)</a> <a href="#ref-for-xrsession③③">(6)</a>
     <li><a href="#ref-for-xrsession③④">5.1. XRFrame</a> <a href="#ref-for-xrsession③⑤">(2)</a> <a href="#ref-for-xrsession③⑥">(3)</a> <a href="#ref-for-xrsession③⑦">(4)</a>
     <li><a href="#ref-for-xrsession③⑧">6.1. XRSpace</a>
     <li><a href="#ref-for-xrsession③⑨">6.2. XRReferenceSpace</a> <a href="#ref-for-xrsession④⓪">(2)</a> <a href="#ref-for-xrsession④①">(3)</a> <a href="#ref-for-xrsession④②">(4)</a>
@@ -4431,7 +4453,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#dom-xrsession-mode">#dom-xrsession-mode</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrsession-mode">4.1. XRSession</a>
-    <li><a href="#ref-for-dom-xrsession-mode①">4.5. Animation Frames</a>
+    <li><a href="#ref-for-dom-xrsession-mode①">4.3. Animation Frames</a>
     <li><a href="#ref-for-dom-xrsession-mode②">11.2. XRWebGLLayer</a> <a href="#ref-for-dom-xrsession-mode③">(2)</a>
    </ul>
   </aside>
@@ -4471,14 +4493,14 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#list-of-pending-render-states">#list-of-pending-render-states</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-list-of-pending-render-states">4.1. XRSession</a> <a href="#ref-for-list-of-pending-render-states①">(2)</a> <a href="#ref-for-list-of-pending-render-states②">(3)</a>
-    <li><a href="#ref-for-list-of-pending-render-states③">4.5. Animation Frames</a>
+    <li><a href="#ref-for-list-of-pending-render-states③">4.3. Animation Frames</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrsession-renderstate">
    <b><a href="#dom-xrsession-renderstate">#dom-xrsession-renderstate</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrsession-renderstate">4.1. XRSession</a>
-    <li><a href="#ref-for-dom-xrsession-renderstate①">4.5. Animation Frames</a> <a href="#ref-for-dom-xrsession-renderstate②">(2)</a>
+    <li><a href="#ref-for-dom-xrsession-renderstate①">4.3. Animation Frames</a> <a href="#ref-for-dom-xrsession-renderstate②">(2)</a>
     <li><a href="#ref-for-dom-xrsession-renderstate③">11.2. XRWebGLLayer</a>
     <li><a href="#ref-for-dom-xrsession-renderstate④">12.1. XRPresentationContext</a> <a href="#ref-for-dom-xrsession-renderstate⑤">(2)</a>
    </ul>
@@ -4504,7 +4526,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="apply-pending-render-states">
    <b><a href="#apply-pending-render-states">#apply-pending-render-states</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-apply-pending-render-states">4.5. Animation Frames</a>
+    <li><a href="#ref-for-apply-pending-render-states">4.3. Animation Frames</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrsession-requestreferencespace">
@@ -4530,15 +4552,15 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="dom-xrenvironmentblendmode-opaque">
    <b><a href="#dom-xrenvironmentblendmode-opaque">#dom-xrenvironmentblendmode-opaque</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrenvironmentblendmode-opaque">4.1. XRSession</a> <a href="#ref-for-dom-xrenvironmentblendmode-opaque①">(2)</a>
-    <li><a href="#ref-for-dom-xrenvironmentblendmode-opaque②">4.2. XRSessionMode</a> <a href="#ref-for-dom-xrenvironmentblendmode-opaque③">(2)</a>
+    <li><a href="#ref-for-dom-xrenvironmentblendmode-opaque">3.3. XRSessionMode</a> <a href="#ref-for-dom-xrenvironmentblendmode-opaque①">(2)</a>
+    <li><a href="#ref-for-dom-xrenvironmentblendmode-opaque②">4.1. XRSession</a> <a href="#ref-for-dom-xrenvironmentblendmode-opaque③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrenvironmentblendmode-additive">
    <b><a href="#dom-xrenvironmentblendmode-additive">#dom-xrenvironmentblendmode-additive</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrenvironmentblendmode-additive">4.1. XRSession</a> <a href="#ref-for-dom-xrenvironmentblendmode-additive①">(2)</a>
-    <li><a href="#ref-for-dom-xrenvironmentblendmode-additive②">4.2. XRSessionMode</a>
+    <li><a href="#ref-for-dom-xrenvironmentblendmode-additive">3.3. XRSessionMode</a>
+    <li><a href="#ref-for-dom-xrenvironmentblendmode-additive①">4.1. XRSession</a> <a href="#ref-for-dom-xrenvironmentblendmode-additive②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrenvironmentblendmode-alpha-blend">
@@ -4550,8 +4572,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="dom-xrsession-environmentblendmode">
    <b><a href="#dom-xrsession-environmentblendmode">#dom-xrsession-environmentblendmode</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrsession-environmentblendmode">4.1. XRSession</a>
-    <li><a href="#ref-for-dom-xrsession-environmentblendmode①">4.2. XRSessionMode</a> <a href="#ref-for-dom-xrsession-environmentblendmode②">(2)</a>
+    <li><a href="#ref-for-dom-xrsession-environmentblendmode">3.3. XRSessionMode</a> <a href="#ref-for-dom-xrsession-environmentblendmode①">(2)</a>
+    <li><a href="#ref-for-dom-xrsession-environmentblendmode②">4.1. XRSession</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrsession-viewerspace">
@@ -4628,73 +4650,6 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-list-of-active-input-sources③">13.4. Event Types</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="enumdef-xrsessionmode">
-   <b><a href="#enumdef-xrsessionmode">#enumdef-xrsessionmode</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-enumdef-xrsessionmode">2.1. XR device</a>
-    <li><a href="#ref-for-enumdef-xrsessionmode①">3.2. XR</a>
-    <li><a href="#ref-for-enumdef-xrsessionmode②">4.1. XRSession</a>
-    <li><a href="#ref-for-enumdef-xrsessionmode③">4.2. XRSessionMode</a>
-    <li><a href="#ref-for-enumdef-xrsessionmode④">4.3. XRSessionCreationOptions</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-xrsessionmode-inline">
-   <b><a href="#dom-xrsessionmode-inline">#dom-xrsessionmode-inline</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-xrsessionmode-inline">4.2. XRSessionMode</a> <a href="#ref-for-dom-xrsessionmode-inline①">(2)</a> <a href="#ref-for-dom-xrsessionmode-inline②">(3)</a>
-    <li><a href="#ref-for-dom-xrsessionmode-inline③">4.4. XRRenderState</a>
-    <li><a href="#ref-for-dom-xrsessionmode-inline④">4.5. Animation Frames</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-xrsessionmode-immersive-vr">
-   <b><a href="#dom-xrsessionmode-immersive-vr">#dom-xrsessionmode-immersive-vr</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-xrsessionmode-immersive-vr">3.2. XR</a> <a href="#ref-for-dom-xrsessionmode-immersive-vr①">(2)</a> <a href="#ref-for-dom-xrsessionmode-immersive-vr②">(3)</a>
-    <li><a href="#ref-for-dom-xrsessionmode-immersive-vr③">4.2. XRSessionMode</a> <a href="#ref-for-dom-xrsessionmode-immersive-vr④">(2)</a> <a href="#ref-for-dom-xrsessionmode-immersive-vr⑤">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-xrsessionmode-immersive-ar">
-   <b><a href="#dom-xrsessionmode-immersive-ar">#dom-xrsessionmode-immersive-ar</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-xrsessionmode-immersive-ar">3.2. XR</a>
-    <li><a href="#ref-for-dom-xrsessionmode-immersive-ar①">4.2. XRSessionMode</a> <a href="#ref-for-dom-xrsessionmode-immersive-ar②">(2)</a> <a href="#ref-for-dom-xrsessionmode-immersive-ar③">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="immersive-session">
-   <b><a href="#immersive-session">#immersive-session</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-immersive-session">4.1. XRSession</a>
-    <li><a href="#ref-for-immersive-session①">4.2. XRSessionMode</a> <a href="#ref-for-immersive-session②">(2)</a> <a href="#ref-for-immersive-session③">(3)</a>
-    <li><a href="#ref-for-immersive-session④">4.4. XRRenderState</a> <a href="#ref-for-immersive-session⑤">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="exclusive-access">
-   <b><a href="#exclusive-access">#exclusive-access</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-exclusive-access">4.2. XRSessionMode</a> <a href="#ref-for-exclusive-access①">(2)</a> <a href="#ref-for-exclusive-access②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="session-description">
-   <b><a href="#session-description">#session-description</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-session-description">3.2. XR</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dictdef-xrsessioncreationoptions">
-   <b><a href="#dictdef-xrsessioncreationoptions">#dictdef-xrsessioncreationoptions</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dictdef-xrsessioncreationoptions">3.2. XR</a>
-    <li><a href="#ref-for-dictdef-xrsessioncreationoptions①">4.1. XRSession</a>
-    <li><a href="#ref-for-dictdef-xrsessioncreationoptions②">4.3. XRSessionCreationOptions</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-xrsessioncreationoptions-mode">
-   <b><a href="#dom-xrsessioncreationoptions-mode">#dom-xrsessioncreationoptions-mode</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-xrsessioncreationoptions-mode">3.2. XR</a>
-    <li><a href="#ref-for-dom-xrsessioncreationoptions-mode①">4.1. XRSession</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="dictdef-xrrenderstateinit">
    <b><a href="#dictdef-xrrenderstateinit">#dictdef-xrrenderstateinit</a></b><b>Referenced in:</b>
    <ul>
@@ -4735,23 +4690,23 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#xrrenderstate">#xrrenderstate</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-xrrenderstate">4.1. XRSession</a> <a href="#ref-for-xrrenderstate①">(2)</a>
-    <li><a href="#ref-for-xrrenderstate②">4.4. XRRenderState</a> <a href="#ref-for-xrrenderstate③">(2)</a> <a href="#ref-for-xrrenderstate④">(3)</a>
+    <li><a href="#ref-for-xrrenderstate②">4.2. XRRenderState</a> <a href="#ref-for-xrrenderstate③">(2)</a> <a href="#ref-for-xrrenderstate④">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrrenderstate-baselayer">
    <b><a href="#dom-xrrenderstate-baselayer">#dom-xrrenderstate-baselayer</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrrenderstate-baselayer">4.1. XRSession</a> <a href="#ref-for-dom-xrrenderstate-baselayer①">(2)</a> <a href="#ref-for-dom-xrrenderstate-baselayer②">(3)</a> <a href="#ref-for-dom-xrrenderstate-baselayer③">(4)</a> <a href="#ref-for-dom-xrrenderstate-baselayer④">(5)</a>
-    <li><a href="#ref-for-dom-xrrenderstate-baselayer⑤">4.4. XRRenderState</a>
-    <li><a href="#ref-for-dom-xrrenderstate-baselayer⑥">4.5. Animation Frames</a>
+    <li><a href="#ref-for-dom-xrrenderstate-baselayer⑤">4.2. XRRenderState</a>
+    <li><a href="#ref-for-dom-xrrenderstate-baselayer⑥">4.3. Animation Frames</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrrenderstate-outputcontext">
    <b><a href="#dom-xrrenderstate-outputcontext">#dom-xrrenderstate-outputcontext</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrrenderstate-outputcontext">4.1. XRSession</a>
-    <li><a href="#ref-for-dom-xrrenderstate-outputcontext①">4.4. XRRenderState</a> <a href="#ref-for-dom-xrrenderstate-outputcontext②">(2)</a>
-    <li><a href="#ref-for-dom-xrrenderstate-outputcontext③">4.5. Animation Frames</a>
+    <li><a href="#ref-for-dom-xrrenderstate-outputcontext①">4.2. XRRenderState</a> <a href="#ref-for-dom-xrrenderstate-outputcontext②">(2)</a>
+    <li><a href="#ref-for-dom-xrrenderstate-outputcontext③">4.3. Animation Frames</a>
     <li><a href="#ref-for-dom-xrrenderstate-outputcontext④">11.2. XRWebGLLayer</a> <a href="#ref-for-dom-xrrenderstate-outputcontext⑤">(2)</a>
     <li><a href="#ref-for-dom-xrrenderstate-outputcontext⑥">12.1. XRPresentationContext</a> <a href="#ref-for-dom-xrrenderstate-outputcontext⑦">(2)</a>
    </ul>
@@ -4766,7 +4721,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#dom-xrrenderstate-depthnear">#dom-xrrenderstate-depthnear</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrrenderstate-depthnear">4.1. XRSession</a>
-    <li><a href="#ref-for-dom-xrrenderstate-depthnear①">4.4. XRRenderState</a> <a href="#ref-for-dom-xrrenderstate-depthnear②">(2)</a> <a href="#ref-for-dom-xrrenderstate-depthnear③">(3)</a> <a href="#ref-for-dom-xrrenderstate-depthnear④">(4)</a>
+    <li><a href="#ref-for-dom-xrrenderstate-depthnear①">4.2. XRRenderState</a> <a href="#ref-for-dom-xrrenderstate-depthnear②">(2)</a> <a href="#ref-for-dom-xrrenderstate-depthnear③">(3)</a> <a href="#ref-for-dom-xrrenderstate-depthnear④">(4)</a>
     <li><a href="#ref-for-dom-xrrenderstate-depthnear⑤">11.2. XRWebGLLayer</a>
    </ul>
   </aside>
@@ -4774,7 +4729,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#dom-xrrenderstate-depthfar">#dom-xrrenderstate-depthfar</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrrenderstate-depthfar">4.1. XRSession</a>
-    <li><a href="#ref-for-dom-xrrenderstate-depthfar①">4.4. XRRenderState</a> <a href="#ref-for-dom-xrrenderstate-depthfar②">(2)</a> <a href="#ref-for-dom-xrrenderstate-depthfar③">(3)</a> <a href="#ref-for-dom-xrrenderstate-depthfar④">(4)</a>
+    <li><a href="#ref-for-dom-xrrenderstate-depthfar①">4.2. XRRenderState</a> <a href="#ref-for-dom-xrrenderstate-depthfar②">(2)</a> <a href="#ref-for-dom-xrrenderstate-depthfar③">(3)</a> <a href="#ref-for-dom-xrrenderstate-depthfar④">(4)</a>
     <li><a href="#ref-for-dom-xrrenderstate-depthfar⑤">11.2. XRWebGLLayer</a>
    </ul>
   </aside>
@@ -4782,40 +4737,40 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#dom-xrrenderstate-inlineverticalfieldofview">#dom-xrrenderstate-inlineverticalfieldofview</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrrenderstate-inlineverticalfieldofview">4.1. XRSession</a> <a href="#ref-for-dom-xrrenderstate-inlineverticalfieldofview①">(2)</a> <a href="#ref-for-dom-xrrenderstate-inlineverticalfieldofview②">(3)</a> <a href="#ref-for-dom-xrrenderstate-inlineverticalfieldofview③">(4)</a> <a href="#ref-for-dom-xrrenderstate-inlineverticalfieldofview④">(5)</a>
-    <li><a href="#ref-for-dom-xrrenderstate-inlineverticalfieldofview⑤">4.4. XRRenderState</a> <a href="#ref-for-dom-xrrenderstate-inlineverticalfieldofview⑥">(2)</a> <a href="#ref-for-dom-xrrenderstate-inlineverticalfieldofview⑦">(3)</a>
+    <li><a href="#ref-for-dom-xrrenderstate-inlineverticalfieldofview⑤">4.2. XRRenderState</a> <a href="#ref-for-dom-xrrenderstate-inlineverticalfieldofview⑥">(2)</a> <a href="#ref-for-dom-xrrenderstate-inlineverticalfieldofview⑦">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="callbackdef-xrframerequestcallback">
    <b><a href="#callbackdef-xrframerequestcallback">#callbackdef-xrframerequestcallback</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-callbackdef-xrframerequestcallback">4.1. XRSession</a>
-    <li><a href="#ref-for-callbackdef-xrframerequestcallback①">4.5. Animation Frames</a>
+    <li><a href="#ref-for-callbackdef-xrframerequestcallback①">4.3. Animation Frames</a>
     <li><a href="#ref-for-callbackdef-xrframerequestcallback②">5.1. XRFrame</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrframerequestcallback-cancelled">
    <b><a href="#xrframerequestcallback-cancelled">#xrframerequestcallback-cancelled</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xrframerequestcallback-cancelled">4.5. Animation Frames</a> <a href="#ref-for-xrframerequestcallback-cancelled①">(2)</a>
+    <li><a href="#ref-for-xrframerequestcallback-cancelled">4.3. Animation Frames</a> <a href="#ref-for-xrframerequestcallback-cancelled①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="list-of-animation-frame-callbacks">
    <b><a href="#list-of-animation-frame-callbacks">#list-of-animation-frame-callbacks</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-list-of-animation-frame-callbacks">4.5. Animation Frames</a> <a href="#ref-for-list-of-animation-frame-callbacks①">(2)</a> <a href="#ref-for-list-of-animation-frame-callbacks②">(3)</a> <a href="#ref-for-list-of-animation-frame-callbacks③">(4)</a> <a href="#ref-for-list-of-animation-frame-callbacks④">(5)</a> <a href="#ref-for-list-of-animation-frame-callbacks⑤">(6)</a>
+    <li><a href="#ref-for-list-of-animation-frame-callbacks">4.3. Animation Frames</a> <a href="#ref-for-list-of-animation-frame-callbacks①">(2)</a> <a href="#ref-for-list-of-animation-frame-callbacks②">(3)</a> <a href="#ref-for-list-of-animation-frame-callbacks③">(4)</a> <a href="#ref-for-list-of-animation-frame-callbacks④">(5)</a> <a href="#ref-for-list-of-animation-frame-callbacks⑤">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="animation-frame-callback-identifier">
    <b><a href="#animation-frame-callback-identifier">#animation-frame-callback-identifier</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-animation-frame-callback-identifier">4.5. Animation Frames</a> <a href="#ref-for-animation-frame-callback-identifier①">(2)</a> <a href="#ref-for-animation-frame-callback-identifier②">(3)</a>
+    <li><a href="#ref-for-animation-frame-callback-identifier">4.3. Animation Frames</a> <a href="#ref-for-animation-frame-callback-identifier①">(2)</a> <a href="#ref-for-animation-frame-callback-identifier②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrsession-requestanimationframe">
    <b><a href="#dom-xrsession-requestanimationframe">#dom-xrsession-requestanimationframe</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrsession-requestanimationframe">4.1. XRSession</a>
-    <li><a href="#ref-for-dom-xrsession-requestanimationframe①">4.5. Animation Frames</a>
+    <li><a href="#ref-for-dom-xrsession-requestanimationframe①">4.3. Animation Frames</a>
     <li><a href="#ref-for-dom-xrsession-requestanimationframe②">5.1. XRFrame</a>
     <li><a href="#ref-for-dom-xrsession-requestanimationframe③">11.2. XRWebGLLayer</a> <a href="#ref-for-dom-xrsession-requestanimationframe④">(2)</a> <a href="#ref-for-dom-xrsession-requestanimationframe⑤">(3)</a>
    </ul>
@@ -4836,7 +4791,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="xr-compositor">
    <b><a href="#xr-compositor">#xr-compositor</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xr-compositor">4.6. The XR Compositor</a>
+    <li><a href="#ref-for-xr-compositor">4.4. The XR Compositor</a>
     <li><a href="#ref-for-xr-compositor①">11.2. XRWebGLLayer</a> <a href="#ref-for-xr-compositor②">(2)</a> <a href="#ref-for-xr-compositor③">(3)</a>
     <li><a href="#ref-for-xr-compositor④">14.2. Trusted Environment</a>
    </ul>
@@ -4845,7 +4800,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#xrframe">#xrframe</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-xrframe">4.1. XRSession</a>
-    <li><a href="#ref-for-xrframe①">4.5. Animation Frames</a> <a href="#ref-for-xrframe②">(2)</a>
+    <li><a href="#ref-for-xrframe①">4.3. Animation Frames</a> <a href="#ref-for-xrframe②">(2)</a>
     <li><a href="#ref-for-xrframe③">5.1. XRFrame</a> <a href="#ref-for-xrframe④">(2)</a> <a href="#ref-for-xrframe⑤">(3)</a> <a href="#ref-for-xrframe⑥">(4)</a> <a href="#ref-for-xrframe⑦">(5)</a> <a href="#ref-for-xrframe⑧">(6)</a> <a href="#ref-for-xrframe⑨">(7)</a> <a href="#ref-for-xrframe①⓪">(8)</a> <a href="#ref-for-xrframe①①">(9)</a> <a href="#ref-for-xrframe①②">(10)</a> <a href="#ref-for-xrframe①③">(11)</a> <a href="#ref-for-xrframe①④">(12)</a>
     <li><a href="#ref-for-xrframe①⑤">6.1. XRSpace</a>
     <li><a href="#ref-for-xrframe①⑥">13.2. XRInputSourceEvent</a> <a href="#ref-for-xrframe①⑦">(2)</a> <a href="#ref-for-xrframe①⑧">(3)</a>
@@ -4854,7 +4809,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="xrframe-active">
    <b><a href="#xrframe-active">#xrframe-active</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xrframe-active">4.5. Animation Frames</a> <a href="#ref-for-xrframe-active①">(2)</a>
+    <li><a href="#ref-for-xrframe-active">4.3. Animation Frames</a> <a href="#ref-for-xrframe-active①">(2)</a>
     <li><a href="#ref-for-xrframe-active②">5.1. XRFrame</a> <a href="#ref-for-xrframe-active③">(2)</a>
     <li><a href="#ref-for-xrframe-active④">13.2. XRInputSourceEvent</a> <a href="#ref-for-xrframe-active⑤">(2)</a>
    </ul>
@@ -4862,7 +4817,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="xrframe-animationframe">
    <b><a href="#xrframe-animationframe">#xrframe-animationframe</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xrframe-animationframe">4.5. Animation Frames</a>
+    <li><a href="#ref-for-xrframe-animationframe">4.3. Animation Frames</a>
     <li><a href="#ref-for-xrframe-animationframe①">5.1. XRFrame</a>
    </ul>
   </aside>
@@ -5074,7 +5029,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="xrview">
    <b><a href="#xrview">#xrview</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xrview">4.4. XRRenderState</a>
+    <li><a href="#ref-for-xrview">4.2. XRRenderState</a>
     <li><a href="#ref-for-xrview①">7.1. XRView</a>
     <li><a href="#ref-for-xrview②">7.2. XRViewport</a>
     <li><a href="#ref-for-xrview③">9.2. XRViewerPose</a> <a href="#ref-for-xrview④">(2)</a> <a href="#ref-for-xrview⑤">(3)</a>
@@ -5090,7 +5045,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="dom-xrview-projectionmatrix">
    <b><a href="#dom-xrview-projectionmatrix">#dom-xrview-projectionmatrix</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrview-projectionmatrix">4.4. XRRenderState</a>
+    <li><a href="#ref-for-dom-xrview-projectionmatrix">4.2. XRRenderState</a>
     <li><a href="#ref-for-dom-xrview-projectionmatrix①">7.1. XRView</a> <a href="#ref-for-dom-xrview-projectionmatrix②">(2)</a>
    </ul>
   </aside>
@@ -5260,9 +5215,9 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="viewer">
    <b><a href="#viewer">#viewer</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-viewer">4.1. XRSession</a>
-    <li><a href="#ref-for-viewer①">4.2. XRSessionMode</a> <a href="#ref-for-viewer②">(2)</a>
-    <li><a href="#ref-for-viewer③">4.5. Animation Frames</a>
+    <li><a href="#ref-for-viewer">3.3. XRSessionMode</a> <a href="#ref-for-viewer①">(2)</a>
+    <li><a href="#ref-for-viewer②">4.1. XRSession</a>
+    <li><a href="#ref-for-viewer③">4.3. Animation Frames</a>
     <li><a href="#ref-for-viewer④">5.1. XRFrame</a> <a href="#ref-for-viewer⑤">(2)</a>
     <li><a href="#ref-for-viewer⑥">6.2. XRReferenceSpace</a>
     <li><a href="#ref-for-viewer⑦">9.2. XRViewerPose</a> <a href="#ref-for-viewer⑧">(2)</a>
@@ -5391,7 +5346,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="xrlayer">
    <b><a href="#xrlayer">#xrlayer</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xrlayer">4.4. XRRenderState</a> <a href="#ref-for-xrlayer①">(2)</a>
+    <li><a href="#ref-for-xrlayer">4.2. XRRenderState</a> <a href="#ref-for-xrlayer①">(2)</a>
     <li><a href="#ref-for-xrlayer②">11.1. XRLayer</a>
     <li><a href="#ref-for-xrlayer③">11.2. XRWebGLLayer</a>
    </ul>
@@ -5441,8 +5396,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="xrwebgllayer">
    <b><a href="#xrwebgllayer">#xrwebgllayer</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xrwebgllayer">4.4. XRRenderState</a>
-    <li><a href="#ref-for-xrwebgllayer①">4.6. The XR Compositor</a>
+    <li><a href="#ref-for-xrwebgllayer">4.2. XRRenderState</a>
+    <li><a href="#ref-for-xrwebgllayer①">4.4. The XR Compositor</a>
     <li><a href="#ref-for-xrwebgllayer②">7.2. XRViewport</a> <a href="#ref-for-xrwebgllayer③">(2)</a>
     <li><a href="#ref-for-xrwebgllayer④">11.1. XRLayer</a>
     <li><a href="#ref-for-xrwebgllayer⑤">11.2. XRWebGLLayer</a> <a href="#ref-for-xrwebgllayer⑥">(2)</a> <a href="#ref-for-xrwebgllayer⑦">(3)</a> <a href="#ref-for-xrwebgllayer⑧">(4)</a> <a href="#ref-for-xrwebgllayer⑨">(5)</a> <a href="#ref-for-xrwebgllayer①⓪">(6)</a> <a href="#ref-for-xrwebgllayer①①">(7)</a>
@@ -5599,14 +5554,14 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="xrpresentationcontext">
    <b><a href="#xrpresentationcontext">#xrpresentationcontext</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xrpresentationcontext">4.4. XRRenderState</a> <a href="#ref-for-xrpresentationcontext①">(2)</a>
+    <li><a href="#ref-for-xrpresentationcontext">4.2. XRRenderState</a> <a href="#ref-for-xrpresentationcontext①">(2)</a>
     <li><a href="#ref-for-xrpresentationcontext②">12.1. XRPresentationContext</a> <a href="#ref-for-xrpresentationcontext③">(2)</a> <a href="#ref-for-xrpresentationcontext④">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrpresentationcontext-canvas">
    <b><a href="#dom-xrpresentationcontext-canvas">#dom-xrpresentationcontext-canvas</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xrpresentationcontext-canvas">4.4. XRRenderState</a>
+    <li><a href="#ref-for-dom-xrpresentationcontext-canvas">4.2. XRRenderState</a>
     <li><a href="#ref-for-dom-xrpresentationcontext-canvas①">11.2. XRWebGLLayer</a>
     <li><a href="#ref-for-dom-xrpresentationcontext-canvas②">12.1. XRPresentationContext</a> <a href="#ref-for-dom-xrpresentationcontext-canvas③">(2)</a>
    </ul>
@@ -5713,7 +5668,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="blurred">
    <b><a href="#blurred">#blurred</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-blurred">4.2. XRSessionMode</a>
+    <li><a href="#ref-for-blurred">3.3. XRSessionMode</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="eventdef-xrsession-focus">
