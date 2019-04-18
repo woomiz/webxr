@@ -1528,7 +1528,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-04-16">16 April 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-04-17">17 April 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1862,7 +1862,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li data-md>
       <p>Let <var>session</var> be a new <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥">XRSession</a></code>.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="#initialize-the-session" id="ref-for-initialize-the-session">Initialize the session</a> <var>session</var> with the <a data-link-type="dfn">session description</a> given by <var>options</var>.</p>
+      <p><a data-link-type="dfn" href="#initialize-the-session" id="ref-for-initialize-the-session">Initialize the session</a> <var>session</var> with <var>mode</var>.</p>
      <li data-md>
       <p>If <var>immersive</var> is <code>true</code> set the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session①">active immersive session</a> to <var>session</var> and set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session③">pending immersive session</a> to <code>false</code>.</p>
      <li data-md>
@@ -1944,9 +1944,9 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>(</c-><c- u>"immersive-vr
      <li data-md>
       <p>Let <var>session</var> be the newly created <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①②">XRSession</a></code> object.</p>
      <li data-md>
-      <p>Let <var>options</var> be the <code class="idl"><a data-link-type="idl">XRSessionCreationOptions</a></code> passed to <code class="idl"><a data-link-type="idl" href="#dom-xr-requestsession" id="ref-for-dom-xr-requestsession③">requestSession()</a></code>.</p>
+      <p>Let <var>mode</var> be the <code class="idl"><a data-link-type="idl" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode⑤">XRSessionMode</a></code> passed to <code class="idl"><a data-link-type="idl" href="#dom-xr-requestsession" id="ref-for-dom-xr-requestsession③">requestSession()</a></code>.</p>
      <li data-md>
-      <p>Initialize <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-mode" id="ref-for-dom-xrsession-mode">mode</a></code> to <var>options</var> <code class="idl"><a data-link-type="idl">mode</a></code> value.</p>
+      <p>Initialize <var>session</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrsession-mode" id="ref-for-dom-xrsession-mode">mode</a></code> to <var>mode</var>.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="#initialize-the-render-state" id="ref-for-initialize-the-render-state">Initialize the render state</a>.</p>
      <li data-md>
@@ -4376,7 +4376,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-enumdef-xrsessionmode">2.1. XR device</a>
     <li><a href="#ref-for-enumdef-xrsessionmode①">3.2. XR</a> <a href="#ref-for-enumdef-xrsessionmode②">(2)</a>
     <li><a href="#ref-for-enumdef-xrsessionmode③">3.3. XRSessionMode</a>
-    <li><a href="#ref-for-enumdef-xrsessionmode④">4.1. XRSession</a>
+    <li><a href="#ref-for-enumdef-xrsessionmode④">4.1. XRSession</a> <a href="#ref-for-enumdef-xrsessionmode⑤">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrsessionmode-inline">
