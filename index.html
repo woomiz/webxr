@@ -1528,7 +1528,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-04-19">19 April 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-04-22">22 April 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1736,7 +1736,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <p>Most applications using the WebXR Device API will follow a similar usage pattern:</p>
     <ul>
      <li data-md>
-      <p>Query <code class="idl"><a data-link-type="idl" href="#dom-xr-supportssessionmode" id="ref-for-dom-xr-supportssessionmode">navigator.xr.supportsSessionMode()</a></code> to determine if the desired type of XR content is supported by the hardware and UA.</p>
+      <p>Query <code class="idl"><a data-link-type="idl" href="#dom-xr-supportssession" id="ref-for-dom-xr-supportssession">navigator.xr.supportsSession()</a></code> to determine if the desired type of XR content is supported by the hardware and UA.</p>
      <li data-md>
       <p>If so, advertise the XR content to the user.</p>
      <li data-md>
@@ -1763,7 +1763,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <h3 class="heading settled" data-level="3.2" id="xr-interface"><span class="secno">3.2. </span><span class="content">XR</span><a class="self-link" href="#xr-interface"></a></h3>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xr"><code><c- g>XR</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget"><c- n>EventTarget</c-></a> {
   // Methods
-  <c- b>Promise</c->&lt;<c- b>void</c->> <a class="idl-code" data-link-type="method" href="#dom-xr-supportssessionmode" id="ref-for-dom-xr-supportssessionmode①"><c- g>supportsSessionMode</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①"><c- n>XRSessionMode</c-></a> <dfn class="idl-code" data-dfn-for="XR/supportsSessionMode(mode)" data-dfn-type="argument" data-export id="dom-xr-supportssessionmode-mode-mode"><code><c- g>mode</c-></code><a class="self-link" href="#dom-xr-supportssessionmode-mode-mode"></a></dfn>);
+  <c- b>Promise</c->&lt;<c- b>void</c->> <a class="idl-code" data-link-type="method" href="#dom-xr-supportssession" id="ref-for-dom-xr-supportssession①"><c- g>supportsSession</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①"><c- n>XRSessionMode</c-></a> <dfn class="idl-code" data-dfn-for="XR/supportsSession(mode)" data-dfn-type="argument" data-export id="dom-xr-supportssession-mode-mode"><code><c- g>mode</c-></code><a class="self-link" href="#dom-xr-supportssession-mode-mode"></a></dfn>);
   <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession②"><c- n>XRSession</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xr-requestsession" id="ref-for-dom-xr-requestsession①"><c- g>requestSession</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode②"><c- n>XRSessionMode</c-></a> <dfn class="idl-code" data-dfn-for="XR/requestSession(mode)" data-dfn-type="argument" data-export id="dom-xr-requestsession-mode-mode"><code><c- g>mode</c-></code><a class="self-link" href="#dom-xr-requestsession-mode-mode"></a></dfn>);
 
   // Events
@@ -1811,8 +1811,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </ol>
    </div>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XR" data-dfn-type="attribute" data-export id="dom-xr-ondevicechange"><code>ondevicechange</code></dfn> attribute is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-idl-attributes" id="ref-for-event-handler-idl-attributes">Event handler IDL attribute</a> for the <code class="idl"><a data-link-type="idl" href="#eventdef-xr-devicechange" id="ref-for-eventdef-xr-devicechange①">devicechange</a></code> event type.</p>
-   <div class="algorithm" data-algorithm="supports-session-mode">
-    <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XR" data-dfn-type="method" data-export id="dom-xr-supportssessionmode"><code>supportsSessionMode(<var>mode</var>)</code></dfn> method is invoked, it MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise">a new Promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>:</p>
+   <div class="algorithm" data-algorithm="supports-session">
+    <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XR" data-dfn-type="method" data-export id="dom-xr-supportssession"><code>supportsSession(<var>mode</var>)</code></dfn> method is invoked, it MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise">a new Promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>:</p>
     <ol>
      <li data-md>
       <p><a data-link-type="dfn" href="#ensures-an-xr-device-is-selected" id="ref-for-ensures-an-xr-device-is-selected">Ensure an XR device is selected</a>.</p>
@@ -1824,10 +1824,10 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <p>Else <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise">resolve</a> <var>promise</var>.</p>
     </ol>
    </div>
-   <p>Calling <code class="idl"><a data-link-type="idl" href="#dom-xr-supportssessionmode" id="ref-for-dom-xr-supportssessionmode②">supportsSessionMode()</a></code> MUST NOT trigger device-selection UI as this would cause many sites to display XR-specific dialogs early in the document lifecycle without user activation.</p>
-   <div class="example" id="example-56d44228">
-    <a class="self-link" href="#example-56d44228"></a> The following code checks to see if <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr">immersive-vr</a></code> sessions are supported. 
-<pre class="highlight">navigator<c- p>.</c->xr<c- p>.</c->supportsSessionMode<c- p>(</c-><c- t>'immersive-vr'</c-><c- p>).</c->then<c- p>(()</c-> <c- p>=></c-> <c- p>{</c->
+   <p>Calling <code class="idl"><a data-link-type="idl" href="#dom-xr-supportssession" id="ref-for-dom-xr-supportssession②">supportsSession()</a></code> MUST NOT trigger device-selection UI as this would cause many sites to display XR-specific dialogs early in the document lifecycle without user activation. Additionally, calling <code class="idl"><a data-link-type="idl" href="#dom-xr-supportssession" id="ref-for-dom-xr-supportssession③">supportsSession()</a></code> MUST NOT interfere with any running XR applications on the system, and MUST NOT cause XR-related applications to launch such as system trays or storefronts.</p>
+   <div class="example" id="example-bb39663c">
+    <a class="self-link" href="#example-bb39663c"></a> The following code checks to see if <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr">immersive-vr</a></code> sessions are supported. 
+<pre class="highlight">navigator<c- p>.</c->xr<c- p>.</c->supportsSession<c- p>(</c-><c- t>'immersive-vr'</c-><c- p>).</c->then<c- p>(()</c-> <c- p>=></c-> <c- p>{</c->
   <c- c1>// 'immersive-vr' sessions are supported.</c->
   <c- c1>// Page should advertise support to the user.</c->
 <c- p>}</c->
@@ -3279,7 +3279,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
      <li><a href="#xrstationaryreferencespace-subtype">dfn for XRStationaryReferenceSpace</a><span>, in §6.3</span>
      <li><a href="#dom-xrreferencespaceoptions-subtype">dict-member for XRReferenceSpaceOptions</a><span>, in §6.2</span>
     </ul>
-   <li><a href="#dom-xr-supportssessionmode">supportsSessionMode(mode)</a><span>, in §3.2</span>
+   <li><a href="#dom-xr-supportssession">supportsSession(mode)</a><span>, in §3.2</span>
    <li><a href="#swap-chain">swap chain</a><span>, in §11.2</span>
    <li><a href="#dom-xrinputsource-targetraymode">targetRayMode</a><span>, in §10.1</span>
    <li><a href="#dom-xrinputsource-targetrayspace">targetRaySpace</a><span>, in §10.1</span>
@@ -3939,7 +3939,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①①⓪"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed②②"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xr"><code><c- g>XR</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget③"><c- n>EventTarget</c-></a> {
   // Methods
-  <c- b>Promise</c->&lt;<c- b>void</c->> <a class="idl-code" data-link-type="method" href="#dom-xr-supportssessionmode" id="ref-for-dom-xr-supportssessionmode①①"><c- g>supportsSessionMode</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①①"><c- n>XRSessionMode</c-></a> <a href="#dom-xr-supportssessionmode-mode-mode"><code><c- g>mode</c-></code></a>);
+  <c- b>Promise</c->&lt;<c- b>void</c->> <a class="idl-code" data-link-type="method" href="#dom-xr-supportssession" id="ref-for-dom-xr-supportssession①①"><c- g>supportsSession</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode①①"><c- n>XRSessionMode</c-></a> <a href="#dom-xr-supportssession-mode-mode"><code><c- g>mode</c-></code></a>);
   <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession②①⓪"><c- n>XRSession</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-xr-requestsession" id="ref-for-dom-xr-requestsession①①"><c- g>requestSession</c-></a>(<a class="n" data-link-type="idl-name" href="#enumdef-xrsessionmode" id="ref-for-enumdef-xrsessionmode②①"><c- n>XRSessionMode</c-></a> <a href="#dom-xr-requestsession-mode-mode"><code><c- g>mode</c-></code></a>);
 
   // Events
@@ -4302,11 +4302,11 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-dom-xr-ondevicechange">3.2. XR</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-xr-supportssessionmode">
-   <b><a href="#dom-xr-supportssessionmode">#dom-xr-supportssessionmode</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-xr-supportssession">
+   <b><a href="#dom-xr-supportssession">#dom-xr-supportssession</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xr-supportssessionmode">1.2. Application flow</a>
-    <li><a href="#ref-for-dom-xr-supportssessionmode①">3.2. XR</a> <a href="#ref-for-dom-xr-supportssessionmode②">(2)</a>
+    <li><a href="#ref-for-dom-xr-supportssession">1.2. Application flow</a>
+    <li><a href="#ref-for-dom-xr-supportssession①">3.2. XR</a> <a href="#ref-for-dom-xr-supportssession②">(2)</a> <a href="#ref-for-dom-xr-supportssession③">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="pending-immersive-session">
