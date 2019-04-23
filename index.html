@@ -2292,7 +2292,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>(</c-><c- u>"immersive-vr
     <p class="note" role="note"><span>Note:</span> Changing the <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespace-originoffset" id="ref-for-dom-xrreferencespace-originoffset②">originOffset</a></code> between pose queries in a single <a data-link-type="dfn" href="#xr-animation-frame" id="ref-for-xr-animation-frame">XR animation frame</a> is not advised, since it will cause inconsistencies in the tracking data and rendered output.</p>
    </section>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRReferenceSpace" data-dfn-type="attribute" data-export id="dom-xrreferencespace-onreset"><code>onreset</code></dfn> attribute is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-idl-attributes" id="ref-for-event-handler-idl-attributes⑧">Event handler IDL attribute</a> for the <code class="idl"><a data-link-type="idl" href="#eventdef-xrreferencespace-reset" id="ref-for-eventdef-xrreferencespace-reset">reset</a></code> event type.</p>
-   <div class="algorithm" data-algorithm="create-frame-of-reference">
+   <div class="algorithm" data-algorithm="create-reference-space">
     <p>When an <code class="idl"><a data-link-type="idl" href="#xrreferencespace" id="ref-for-xrreferencespace①③">XRReferenceSpace</a></code> is requested, the user agent MUST <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="create-a-reference-space">create a reference space</dfn> by running the following steps:</p>
     <ol>
      <li data-md>
