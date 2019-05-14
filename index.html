@@ -1528,7 +1528,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-05-13">13 May 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-05-14">14 May 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2444,10 +2444,11 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>(</c-><c- u>"immersive-vr
     <p>Each <a data-link-type="dfn" href="#view" id="ref-for-view②">view</a> corresponds to a display or portion of a display used by an XR device to present imagery to the user. They are used to retrieve all the information necessary to render content that is well aligned to the <a data-link-type="dfn" href="#view" id="ref-for-view③">view</a>'s physical output properties, including the field of view, eye offset, and other optical properties. <a data-link-type="dfn" href="#view" id="ref-for-view④">Views</a> may cover overlapping regions of the user’s vision. No guarantee is made about the number of <a data-link-type="dfn" href="#view" id="ref-for-view⑤">views</a> any XR device uses or their order, nor is the number of <a data-link-type="dfn" href="#view" id="ref-for-view⑥">views</a> required to be constant for the duration of an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession④⑧">XRSession</a></code>.</p>
     <p>A <a data-link-type="dfn" href="#view" id="ref-for-view⑦">view</a> has an associated internal <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="view-offset">view offset</dfn>, which is an <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform③">XRRigidTransform</a></code> describing the position and orientation of the <a data-link-type="dfn" href="#view" id="ref-for-view⑧">view</a> in the <a data-link-type="dfn" href="#xrsession-viewer-reference-space" id="ref-for-xrsession-viewer-reference-space③">viewer reference space</a>'s <a data-link-type="dfn" href="#xrspace-coordinate-system" id="ref-for-xrspace-coordinate-system②">coordinate system</a>.</p>
     <p>A <a data-link-type="dfn" href="#view" id="ref-for-view⑨">view</a> has an associated <dfn class="dfn-paneled" data-dfn-for="view" data-dfn-type="dfn" data-noexport id="view-projection-matrix">projection matrix</dfn>which is a <a data-link-type="dfn" href="#matrix" id="ref-for-matrix">matrix</a> describing the projection to be used when rendering the <a data-link-type="dfn" href="#view" id="ref-for-view①⓪">view</a>, provided by the underlying XR device. The <a data-link-type="dfn" href="#view-projection-matrix" id="ref-for-view-projection-matrix①">projection matrix</a> MAY include transformations such as shearing that prevent the projection from being accurately described by a simple frustum.</p>
-    <p>A <a data-link-type="dfn" href="#view" id="ref-for-view①①">view</a> has an associated <dfn class="dfn-paneled" data-dfn-for="view" data-dfn-type="dfn" data-noexport id="view-eye">eye</dfn>which is an <code class="idl"><a data-link-type="idl" href="#enumdef-xreye" id="ref-for-enumdef-xreye">XREye</a></code> describing which eye this view is expected to be shown to. If the view does not have an intrinsically associated eye (the display is monoscopic, for example) this value MUST be set to <code class="idl"><a data-link-type="idl" href="#dom-xreye-left" id="ref-for-dom-xreye-left">"left"</a></code>.</p>
+    <p>A <a data-link-type="dfn" href="#view" id="ref-for-view①①">view</a> has an associated <dfn class="dfn-paneled" data-dfn-for="view" data-dfn-type="dfn" data-noexport id="view-eye">eye</dfn>which is an <code class="idl"><a data-link-type="idl" href="#enumdef-xreye" id="ref-for-enumdef-xreye">XREye</a></code> describing which eye this view is expected to be shown to. If the view does not have an intrinsically associated eye (the display is monoscopic, for example) this value MUST be set to <code class="idl"><a data-link-type="idl" href="#dom-xreye-none" id="ref-for-dom-xreye-none">"none"</a></code>.</p>
     <p class="note" role="note"><span>NOTE:</span> Many HMDs will request that content render two <a data-link-type="dfn" href="#view" id="ref-for-view①②">views</a>, one for the left eye and one for the right, while most magic window devices will only request one <a data-link-type="dfn" href="#view" id="ref-for-view①③">view</a>, but applications should never assume a specific view configuration. For example: A magic window device may request two views if it is capable of stereo output, but may revert to requesting a single view for performance reasons if the stereo output mode is turned off. Similarly, HMDs may request more than two views to facilitate a wide field of view or displays of different pixel density.</p>
 <pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-xreye"><code><c- g>XREye</c-></code></dfn> {
-  <dfn class="dfn-paneled idl-code" data-dfn-for="XREye" data-dfn-type="enum-value" data-export id="dom-xreye-left"><code><c- s>"left"</c-></code></dfn>,
+  <dfn class="dfn-paneled idl-code" data-dfn-for="XREye" data-dfn-type="enum-value" data-export id="dom-xreye-none"><code><c- s>"none"</c-></code></dfn>,
+  <dfn class="idl-code" data-dfn-for="XREye" data-dfn-type="enum-value" data-export id="dom-xreye-left"><code><c- s>"left"</c-></code><a class="self-link" href="#dom-xreye-left"></a></dfn>,
   <dfn class="idl-code" data-dfn-for="XREye" data-dfn-type="enum-value" data-export id="dom-xreye-right"><code><c- s>"right"</c-></code><a class="self-link" href="#dom-xreye-right"></a></dfn>
 };
 
@@ -3447,7 +3448,12 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li><a href="#xrboundedreferencespace-native-bounds-geometry">native bounds geometry</a><span>, in §6.3</span>
    <li><a href="#xrspace-native-origin">native origin</a><span>, in §6.1</span>
    <li><a href="#native-webgl-framebuffer-resolution">native WebGL framebuffer resolution</a><span>, in §11.2</span>
-   <li><a href="#dom-xrhandedness-none">"none"</a><span>, in §10.1</span>
+   <li>
+    "none"
+    <ul>
+     <li><a href="#dom-xreye-none">enum-value for XREye</a><span>, in §7.1</span>
+     <li><a href="#dom-xrhandedness-none">enum-value for XRHandedness</a><span>, in §10.1</span>
+    </ul>
    <li><a href="#normalize">normalize</a><span>, in §8.2</span>
    <li><a href="#dom-xrsession-onblur">onblur</a><span>, in §4.1</span>
    <li><a href="#dom-xr-ondevicechange">ondevicechange</a><span>, in §3.2</span>
@@ -4342,6 +4348,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 };    
 
 <c- b>enum</c-> <a href="#enumdef-xreye"><code><c- g>XREye</c-></code></a> {
+  <a href="#dom-xreye-none"><code><c- s>"none"</c-></code></a>,
   <a href="#dom-xreye-left"><code><c- s>"left"</c-></code></a>,
   <a href="#dom-xreye-right"><code><c- s>"right"</c-></code></a>
 };
@@ -5332,10 +5339,10 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-enumdef-xreye">7.1. XRView</a> <a href="#ref-for-enumdef-xreye①">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-xreye-left">
-   <b><a href="#dom-xreye-left">#dom-xreye-left</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-xreye-none">
+   <b><a href="#dom-xreye-none">#dom-xreye-none</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-xreye-left">7.1. XRView</a>
+    <li><a href="#ref-for-dom-xreye-none">7.1. XRView</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrview">
