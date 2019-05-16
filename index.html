@@ -1528,7 +1528,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-05-15">15 May 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-05-16">16 May 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2300,7 +2300,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>(</c-><c- u>"immersive-vr
        <li data-md>
         <p>Let <var>offset</var> be an <code class="idl"><a data-link-type="idl" href="#xrrigidtransform" id="ref-for-xrrigidtransform">XRRigidTransform</a></code> equal to the <a data-link-type="dfn" href="#view-offset" id="ref-for-view-offset">view offset</a> of <var>view</var></p>
        <li data-md>
-        <p>Set <var>xrview</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrview-transform" id="ref-for-dom-xrview-transform">transform</a></code> property to the result of <a data-link-type="dfn" href="#multiply-transforms" id="ref-for-multiply-transforms">multiplying</a> the <var>offset</var> transform by the <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose②">XRViewerPose</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrpose-transform" id="ref-for-dom-xrpose-transform">transform</a></code></p>
+        <p>Set <var>xrview</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrview-transform" id="ref-for-dom-xrview-transform">transform</a></code> property to the result of <a data-link-type="dfn" href="#multiply-transforms" id="ref-for-multiply-transforms">multiplying</a> the <code class="idl"><a data-link-type="idl" href="#xrviewerpose" id="ref-for-xrviewerpose②">XRViewerPose</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrpose-transform" id="ref-for-dom-xrpose-transform">transform</a></code> by the <var>offset</var> transform</p>
        <li data-md>
         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append">Append</a> <var>xrview</var> to <var>xrviews</var></p>
       </ol>
@@ -2423,7 +2423,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>(</c-><c- u>"immersive-vr
      <li data-md>
       <p>Set <var>offsetSpace</var>’s <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin⑧">native origin</a> to <var>base</var>’s <a data-link-type="dfn" href="#xrspace-native-origin" id="ref-for-xrspace-native-origin⑨">native origin</a>.</p>
      <li data-md>
-      <p>Set <var>offsetSpace</var>’s <a data-link-type="dfn" href="#xrspace-origin-offset" id="ref-for-xrspace-origin-offset①">origin offset</a> to the result of <a data-link-type="dfn" href="#multiply-transforms" id="ref-for-multiply-transforms①">multiplying</a> <var>originOffset</var> by <var>base</var>’s <a data-link-type="dfn" href="#xrspace-origin-offset" id="ref-for-xrspace-origin-offset②">origin offset</a>.</p>
+      <p>Set <var>offsetSpace</var>’s <a data-link-type="dfn" href="#xrspace-origin-offset" id="ref-for-xrspace-origin-offset①">origin offset</a> to the result of <a data-link-type="dfn" href="#multiply-transforms" id="ref-for-multiply-transforms①">multiplying</a> <var>base</var>’s <a data-link-type="dfn" href="#xrspace-origin-offset" id="ref-for-xrspace-origin-offset②">origin offset</a> by <var>originOffset</var>.</p>
      <li data-md>
       <p>Return <var>offsetSpace</var>.</p>
     </ol>
@@ -2619,9 +2619,9 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Initialize <var>ray</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrray-direction" id="ref-for-dom-xrray-direction⑤">direction</a></code> to <code>{ x: 0.0, y: 0.0, z: -1.0, w: 0.0 }</code>.</p>
      <li data-md>
-      <p>Multiply <var>ray</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrray-origin" id="ref-for-dom-xrray-origin⑤">origin</a></code> by the <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-matrix" id="ref-for-dom-xrrigidtransform-matrix⑥">matrix</a></code> and set <var>ray</var> to the result.</p>
+      <p>Transform <var>ray</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrray-origin" id="ref-for-dom-xrray-origin⑤">origin</a></code> by premultiplying the <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-matrix" id="ref-for-dom-xrrigidtransform-matrix⑥">matrix</a></code> and set <var>ray</var> to the result.</p>
      <li data-md>
-      <p>Multiply <var>ray</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrray-direction" id="ref-for-dom-xrray-direction⑥">direction</a></code> by the <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-matrix" id="ref-for-dom-xrrigidtransform-matrix⑦">matrix</a></code> and set <var>ray</var> to the result.</p>
+      <p>Transform <var>ray</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrray-direction" id="ref-for-dom-xrray-direction⑥">direction</a></code> by premultiplying the <var>transform</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrrigidtransform-matrix" id="ref-for-dom-xrrigidtransform-matrix⑦">matrix</a></code> and set <var>ray</var> to the result.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="#normalize" id="ref-for-normalize②">Normalize</a> the <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-x" id="ref-for-dom-dompointreadonly-x⑥">x</a></code>, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-y" id="ref-for-dom-dompointreadonly-y⑦">y</a></code>, and <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dompointreadonly-z" id="ref-for-dom-dompointreadonly-z⑥">z</a></code> components of <var>ray</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrray-direction" id="ref-for-dom-xrray-direction⑦">direction</a></code></p>
      <li data-md>
