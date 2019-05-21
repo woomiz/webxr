@@ -2955,7 +2955,8 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
        <td>Secondary Touchpad/Joystick Y
        <td>No
     </table>
-    <p>Additional buttons or axes may be exposed after these reserved indices, and SHOULD appear in order of decreasing importance. Related axes (such both axes of a joystick) SHOULD be grouped and, if applicable, SHOULD appear in X, Y, Z order. Devices that lack one of the inputs listed in the tables above MUST still preserve their place in the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad-buttons" id="ref-for-dom-gamepad-buttons">buttons</a></code> or <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad-axes" id="ref-for-dom-gamepad-axes①">axes</a></code> array. If a device has both a touchpad and a joystick the UA MAY designate whichever it chooses to be the primary axis-based input. Buttons reserved by the UA or platform MUST NOT be exposed.</p>
+    <p>Devices that lack one of the optional inputs listed in the tables above MUST preserve their place in the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad-buttons" id="ref-for-dom-gamepad-buttons">buttons</a></code> or <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad-axes" id="ref-for-dom-gamepad-axes①">axes</a></code> array, reporting a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="placeholder-button">placeholder button</dfn> or <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="placeholder-axis">placeholder axis</dfn>, respectively. A <a data-link-type="dfn" href="#placeholder-button" id="ref-for-placeholder-button">placeholder button</a> MUST report <code>0</code> for <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepadbutton-value" id="ref-for-dom-gamepadbutton-value">value</a></code>, <code>false</code> for <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepadbutton-pressed" id="ref-for-dom-gamepadbutton-pressed">pressed</a></code>, and <code>false</code> for <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepadbutton-touched" id="ref-for-dom-gamepadbutton-touched①">touched</a></code>. A <a data-link-type="dfn" href="#placeholder-axis" id="ref-for-placeholder-axis">placeholder axis</a> MUST report <code>0</code>. <a data-link-type="dfn" href="#placeholder-button" id="ref-for-placeholder-button①">Placeholder buttons</a> and <a data-link-type="dfn" href="#placeholder-axis" id="ref-for-placeholder-axis①">axes</a> MUST be omitted if they are the last element in the array or all following elements are also <a data-link-type="dfn" href="#placeholder-button" id="ref-for-placeholder-button②">placeholder buttons</a> or <a data-link-type="dfn" href="#placeholder-axis" id="ref-for-placeholder-axis②">axes</a>.</p>
+    <p>Additional buttons or axes may be exposed after these reserved indices, and SHOULD appear in order of decreasing importance. Related axes (such both axes of a joystick) SHOULD be grouped and, if applicable, SHOULD appear in X, Y, Z order. If a device has both a touchpad and a joystick the UA MAY designate whichever it chooses to be the primary axis-based input. Buttons reserved by the UA or platform MUST NOT be exposed.</p>
     <p class="note" role="note"><span>NOTE:</span> This diagram demonstrates how two potential controllers would be exposed with the `xr-standard` mapping. <img alt="Simple &apos;xr-standard&apos; controller and Advanced &apos;xr-standard&apos; controller" src="images/xr-standard-mapping.svg"></p>
    </section>
    <h2 class="heading settled" data-level="11" id="layers"><span class="secno">11. </span><span class="content">Layers</span><a class="self-link" href="#layers"></a></h2>
@@ -3564,6 +3565,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
      <li><a href="#dom-xrrenderstateinit-outputcontext">dict-member for XRRenderStateInit</a><span>, in §4.2</span>
     </ul>
    <li><a href="#pending-immersive-session">pending immersive session</a><span>, in §3.2</span>
+   <li><a href="#placeholder-axis">placeholder axis</a><span>, in §10.5</span>
+   <li><a href="#placeholder-button">placeholder button</a><span>, in §10.5</span>
    <li><a href="#poll-the-device-pose">poll the device pose</a><span>, in §4.1</span>
    <li><a href="#populate-the-pose">populate the pose</a><span>, in §6.1</span>
    <li><a href="#dom-xrrigidtransform-position">position</a><span>, in §8.3</span>
@@ -3821,10 +3824,23 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-dom-navigator-getgamepads">10.4. Gamepad API Integration</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gamepadbutton-pressed">
+   <a href="https://w3c.github.io/gamepad/#dom-gamepadbutton-pressed">https://w3c.github.io/gamepad/#dom-gamepadbutton-pressed</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gamepadbutton-pressed">10.5. "xr-standard" Gamepad Mapping</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-dom-gamepadbutton-touched">
    <a href="https://w3c.github.io/gamepad/#dom-gamepadbutton-touched">https://w3c.github.io/gamepad/#dom-gamepadbutton-touched</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-gamepadbutton-touched">10.4. Gamepad API Integration</a>
+    <li><a href="#ref-for-dom-gamepadbutton-touched①">10.5. "xr-standard" Gamepad Mapping</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gamepadbutton-value">
+   <a href="https://w3c.github.io/gamepad/#dom-gamepadbutton-value">https://w3c.github.io/gamepad/#dom-gamepadbutton-value</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gamepadbutton-value">10.5. "xr-standard" Gamepad Mapping</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dommatrix">
@@ -4252,7 +4268,9 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
      <li><span class="dfn-paneled" id="term-for-dom-gamepad-index" style="color:initial">index</span>
      <li><span class="dfn-paneled" id="term-for-dom-gamepad-mapping" style="color:initial">mapping</span>
      <li><span class="dfn-paneled" id="term-for-dom-navigator-getgamepads" style="color:initial">navigator.getGamepads()</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gamepadbutton-pressed" style="color:initial">pressed</span>
      <li><span class="dfn-paneled" id="term-for-dom-gamepadbutton-touched" style="color:initial">touched</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gamepadbutton-value" style="color:initial">value</span>
     </ul>
    <li>
     <a data-link-type="biblio">[geometry-1]</a> defines the following terms:
@@ -5841,6 +5859,18 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#dom-gamepadmappingtype-xr-standard">#dom-gamepadmappingtype-xr-standard</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-gamepadmappingtype-xr-standard">10.5. "xr-standard" Gamepad Mapping</a> <a href="#ref-for-dom-gamepadmappingtype-xr-standard①">(2)</a> <a href="#ref-for-dom-gamepadmappingtype-xr-standard②">(3)</a> <a href="#ref-for-dom-gamepadmappingtype-xr-standard③">(4)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="placeholder-button">
+   <b><a href="#placeholder-button">#placeholder-button</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-placeholder-button">10.5. "xr-standard" Gamepad Mapping</a> <a href="#ref-for-placeholder-button①">(2)</a> <a href="#ref-for-placeholder-button②">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="placeholder-axis">
+   <b><a href="#placeholder-axis">#placeholder-axis</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-placeholder-axis">10.5. "xr-standard" Gamepad Mapping</a> <a href="#ref-for-placeholder-axis①">(2)</a> <a href="#ref-for-placeholder-axis②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrlayer">
