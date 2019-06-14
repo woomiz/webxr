@@ -1528,7 +1528,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-06-13">13 June 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-06-14">14 June 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1813,16 +1813,24 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    </div>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XR" data-dfn-type="attribute" data-export id="dom-xr-ondevicechange"><code>ondevicechange</code></dfn> attribute is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-idl-attributes" id="ref-for-event-handler-idl-attributes">Event handler IDL attribute</a> for the <code class="idl"><a data-link-type="idl" href="#eventdef-xr-devicechange" id="ref-for-eventdef-xr-devicechange①">devicechange</a></code> event type.</p>
    <div class="algorithm" data-algorithm="supports-session">
-    <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XR" data-dfn-type="method" data-export id="dom-xr-supportssession"><code>supportsSession(<var>mode</var>)</code></dfn> method is invoked, it MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise">a new Promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>:</p>
+    <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XR" data-dfn-type="method" data-export id="dom-xr-supportssession"><code>supportsSession(<var>mode</var>)</code></dfn> method is invoked, it MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p><a data-link-type="dfn" href="#ensures-an-xr-device-is-selected" id="ref-for-ensures-an-xr-device-is-selected">Ensure an XR device is selected</a>.</p>
+      <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise">a new Promise</a></p>
      <li data-md>
-      <p>If the <a data-link-type="dfn" href="#xr-xr-device" id="ref-for-xr-xr-device⑧">XR device</a> is null, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror">NotSupportedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code> and abort these steps.</p>
+      <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>:</p>
+      <ol>
+       <li data-md>
+        <p><a data-link-type="dfn" href="#ensures-an-xr-device-is-selected" id="ref-for-ensures-an-xr-device-is-selected">Ensure an XR device is selected</a>.</p>
+       <li data-md>
+        <p>If the <a data-link-type="dfn" href="#xr-xr-device" id="ref-for-xr-xr-device⑧">XR device</a> is null, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror">NotSupportedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code> and abort these steps.</p>
+       <li data-md>
+        <p>If the <a data-link-type="dfn" href="#xr-xr-device" id="ref-for-xr-xr-device⑨">XR device</a>'s <a data-link-type="dfn" href="#list-of-supported-modes" id="ref-for-list-of-supported-modes">list of supported modes</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain②">contain</a> <var>mode</var>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise①">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror①">NotSupportedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code> and abort these steps.</p>
+       <li data-md>
+        <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise">Resolve</a> <var>promise</var>.</p>
+      </ol>
      <li data-md>
-      <p>If the <a data-link-type="dfn" href="#xr-xr-device" id="ref-for-xr-xr-device⑨">XR device</a>'s <a data-link-type="dfn" href="#list-of-supported-modes" id="ref-for-list-of-supported-modes">list of supported modes</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain②">contain</a> <var>mode</var>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise①">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror①">NotSupportedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code> and abort these steps.</p>
-     <li data-md>
-      <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise">Resolve</a> <var>promise</var>.</p>
+      <p>Return <var>promise</var>.</p>
     </ol>
    </div>
    <p>Calling <code class="idl"><a data-link-type="idl" href="#dom-xr-supportssession" id="ref-for-dom-xr-supportssession②">supportsSession()</a></code> MUST NOT trigger device-selection UI as this would cause many sites to display XR-specific dialogs early in the document lifecycle without user activation. Additionally, calling <code class="idl"><a data-link-type="idl" href="#dom-xr-supportssession" id="ref-for-dom-xr-supportssession③">supportsSession()</a></code> MUST NOT interfere with any running XR applications on the system, and MUST NOT cause XR-related applications to launch such as system trays or storefronts.</p>
@@ -1836,54 +1844,58 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    </div>
    <p>The <code class="idl"><a data-link-type="idl" href="#xr" id="ref-for-xr⑥">XR</a></code> object has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="pending-immersive-session">pending immersive session</dfn> boolean, which MUST be initially <code>false</code>, an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="active-immersive-session">active immersive session</dfn>, which MUST be initially <code>null</code>, and a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="list-of-inline-sessions">list of inline sessions</dfn>, which MUST be initially empty.</p>
    <div class="algorithm" data-algorithm="request-session">
-    <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XR" data-dfn-type="method" data-export id="dom-xr-requestsession"><code>requestSession(<var>mode</var>)</code></dfn> method is invoked, the user agent MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise①">a new Promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">in parallel</a>:</p>
+    <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XR" data-dfn-type="method" data-export id="dom-xr-requestsession"><code>requestSession(<var>mode</var>)</code></dfn> method is invoked, the user agent MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p>Let <var>immersive</var> be <code>true</code> if <var>mode</var> is <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr①">"immersive-vr"</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-ar" id="ref-for-dom-xrsessionmode-immersive-ar">"immersive-ar"</a></code>, and <code>false</code> otherwise.</p>
+      <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise①">a new Promise</a>.</p>
      <li data-md>
-      <p>If <var>immersive</var> is <code>true</code>:</p>
+      <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">in parallel</a>:</p>
       <ol>
+       <li data-md>
+        <p>Let <var>immersive</var> be <code>true</code> if <var>mode</var> is <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-vr" id="ref-for-dom-xrsessionmode-immersive-vr①">"immersive-vr"</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-immersive-ar" id="ref-for-dom-xrsessionmode-immersive-ar">"immersive-ar"</a></code>, and <code>false</code> otherwise.</p>
+       <li data-md>
+        <p>If <var>immersive</var> is <code>true</code>:</p>
        <li data-md>
         <p>If the algorithm is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation①">triggered by user activation</a>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise②">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror">SecurityError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException②">DOMException</a></code> and abort these steps.</p>
        <li data-md>
         <p>If <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session">pending immersive session</a> is <code>true</code> or <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session">active immersive session</a> is not <code>null</code>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise③">reject</a> <var>promise</var> with an "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code> and abort these steps.</p>
        <li data-md>
         <p>Set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session①">pending immersive session</a> to be <code>true</code>.</p>
-      </ol>
-     <li data-md>
-      <p><a data-link-type="dfn" href="#ensures-an-xr-device-is-selected" id="ref-for-ensures-an-xr-device-is-selected①">Ensure an XR device is selected</a>.</p>
-     <li data-md>
-      <p>Follow the steps for the first matching conditions:</p>
-      <dl class="switch">
-       <dt> If the <a data-link-type="dfn" href="#xr-xr-device" id="ref-for-xr-xr-device①⓪">XR device</a> is <code>null</code> 
-       <dd> <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise④">Reject</a> <var>promise</var> with <code>null</code>. 
-       <dt> If the <a data-link-type="dfn" href="#xr-xr-device" id="ref-for-xr-xr-device①①">XR device</a>'s <a data-link-type="dfn" href="#list-of-supported-modes" id="ref-for-list-of-supported-modes①">list of supported modes</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain③">contain</a> <var>mode</var> 
-       <dd> <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑤">Reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror②">NotSupportedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException④">DOMException</a></code>. 
-       <dt> Otherwise 
-       <dd> Continue to the next step. 
-      </dl>
-     <li data-md>
-      <p>If <var>promise</var> was <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑥">rejected</a>:</p>
-      <ol>
+       <li data-md>
+        <p><a data-link-type="dfn" href="#ensures-an-xr-device-is-selected" id="ref-for-ensures-an-xr-device-is-selected①">Ensure an XR device is selected</a>.</p>
+       <li data-md>
+        <p>Follow the steps for the first matching conditions:</p>
+        <dl class="switch">
+         <dt> If the <a data-link-type="dfn" href="#xr-xr-device" id="ref-for-xr-xr-device①⓪">XR device</a> is <code>null</code> 
+         <dd> <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise④">Reject</a> <var>promise</var> with <code>null</code>. 
+         <dt> If the <a data-link-type="dfn" href="#xr-xr-device" id="ref-for-xr-xr-device①①">XR device</a>'s <a data-link-type="dfn" href="#list-of-supported-modes" id="ref-for-list-of-supported-modes①">list of supported modes</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain③">contain</a> <var>mode</var> 
+         <dd> <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑤">Reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror②">NotSupportedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException④">DOMException</a></code>. 
+         <dt> Otherwise 
+         <dd> Continue to the next step. 
+        </dl>
+       <li data-md>
+        <p>If <var>promise</var> was <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑥">rejected</a>:</p>
        <li data-md>
         <p>If <var>immersive</var> is <code>true</code>, set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session②">pending immersive session</a> to <code>false</code>.</p>
        <li data-md>
         <p>Abort these steps.</p>
+       <li data-md>
+        <p>Let <var>session</var> be a new <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥">XRSession</a></code> object.</p>
+       <li data-md>
+        <p><a data-link-type="dfn" href="#initialize-the-session" id="ref-for-initialize-the-session">Initialize the session</a> with <var>session</var> and <var>mode</var>.</p>
+       <li data-md>
+        <p>Potentially set the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session①">active immersive session</a> based on the following:</p>
+        <dl class="switch">
+         <dt> If <var>immersive</var> is <code>true</code> 
+         <dd> Set the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session②">active immersive session</a> to <var>session</var>, and set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session③">pending immersive session</a> to <code>false</code>. 
+         <dt> Otherwise 
+         <dd> Append <var>session</var> to the <a data-link-type="dfn" href="#list-of-inline-sessions" id="ref-for-list-of-inline-sessions">list of inline sessions</a>. 
+        </dl>
+       <li data-md>
+        <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise①">Resolve</a> <var>promise</var> with <var>session</var>.</p>
       </ol>
      <li data-md>
-      <p>Let <var>session</var> be a new <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑥">XRSession</a></code> object.</p>
-     <li data-md>
-      <p><a data-link-type="dfn" href="#initialize-the-session" id="ref-for-initialize-the-session">Initialize the session</a> with <var>session</var> and <var>mode</var>.</p>
-     <li data-md>
-      <p>Potentially set the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session①">active immersive session</a> based on the following:</p>
-      <dl class="switch">
-       <dt> If <var>immersive</var> is <code>true</code> 
-       <dd> Set the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session②">active immersive session</a> to <var>session</var>, and set <a data-link-type="dfn" href="#pending-immersive-session" id="ref-for-pending-immersive-session③">pending immersive session</a> to <code>false</code>. 
-       <dt> Otherwise 
-       <dd> Append <var>session</var> to the <a data-link-type="dfn" href="#list-of-inline-sessions" id="ref-for-list-of-inline-sessions">list of inline sessions</a>. 
-      </dl>
-     <li data-md>
-      <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise①">Resolve</a> <var>promise</var> with <var>session</var>.</p>
+      <p>Return <var>promise</var>.</p>
     </ol>
    </div>
    <div class="example" id="example-a17c6da1">
@@ -2063,14 +2075,22 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>(</c-><c- u>"immersive-vr
     </ol>
    </div>
    <div class="algorithm" data-algorithm="request-reference-space">
-    <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="method" data-export id="dom-xrsession-requestreferencespace"><code>requestReferenceSpace(<var>type</var>)</code></dfn> method is invoked, the user agent MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise③">a new Promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel②">in parallel</a>:</p>
+    <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="XRSession" data-dfn-type="method" data-export id="dom-xrsession-requestreferencespace"><code>requestReferenceSpace(<var>type</var>)</code></dfn> method is invoked, the user agent MUST run the following steps:</p>
     <ol>
      <li data-md>
-      <p><a data-link-type="dfn" href="#create-a-reference-space" id="ref-for-create-a-reference-space">Create a reference space</a>, <var>referenceSpace</var>, with the <code class="idl"><a data-link-type="idl" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype①">XRReferenceSpaceType</a></code> <var>type</var>.</p>
+      <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise③">a new Promise</a>.</p>
      <li data-md>
-      <p>If <var>referenceSpace</var> is <code>null</code>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑧">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror③">NotSupportedError</a></code> and abort these steps.</p>
+      <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel②">in parallel</a>:</p>
+      <ol>
+       <li data-md>
+        <p><a data-link-type="dfn" href="#create-a-reference-space" id="ref-for-create-a-reference-space">Create a reference space</a>, <var>referenceSpace</var>, with the <code class="idl"><a data-link-type="idl" href="#enumdef-xrreferencespacetype" id="ref-for-enumdef-xrreferencespacetype①">XRReferenceSpaceType</a></code> <var>type</var>.</p>
+       <li data-md>
+        <p>If <var>referenceSpace</var> is <code>null</code>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑧">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror③">NotSupportedError</a></code> and abort these steps.</p>
+       <li data-md>
+        <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise③">Resolve</a> <var>promise</var> with <var>referenceSpace</var>.</p>
+      </ol>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise③">Resolve</a> <var>promise</var> with <var>referenceSpace</var>.</p>
+      <p>Return <var>promise</var>.</p>
     </ol>
    </div>
    <p>Each <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②③">XRSession</a></code> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="list-of-active-xr-input-sources">list of active XR input sources</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list④">list</a> of <code class="idl"><a data-link-type="idl" href="#xrinputsource" id="ref-for-xrinputsource">XRInputSource</a></code>) which MUST be initially an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑤">list</a>.</p>
@@ -3226,36 +3246,44 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
     </div>
     <p>To set the <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑥">XR compatible</a> boolean after the context has been created, the <code class="idl"><a data-link-type="idl" href="#dom-webglrenderingcontextbase-makexrcompatible" id="ref-for-dom-webglrenderingcontextbase-makexrcompatible①">makeXRCompatible()</a></code> method is used.</p>
     <div class="algorithm" data-algorithm="make-xr-compatible">
-     <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="WebGLRenderingContextBase" data-dfn-type="method" data-export id="dom-webglrenderingcontextbase-makexrcompatible"><code>makeXRCompatible()</code></dfn> method is invoked, the user agent MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise④">a new Promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel③">in parallel</a>:</p>
+     <p>When the <dfn class="dfn-paneled idl-code" data-dfn-for="WebGLRenderingContextBase" data-dfn-type="method" data-export id="dom-webglrenderingcontextbase-makexrcompatible"><code>makeXRCompatible()</code></dfn> method is invoked, the user agent MUST run the following steps:</p>
      <ol>
       <li data-md>
-       <p>Let <var>context</var> be the target <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase" id="ref-for-WebGLRenderingContextBase⑥">WebGLRenderingContextBase</a></code> object.</p>
-      <li data-md>
-       <p>If <var>context</var>’s <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#webgl-context-lost-flag" id="ref-for-webgl-context-lost-flag">WebGL context lost flag</a> is set, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑨">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⑤">InvalidStateError</a></code> and abort these abort these steps.</p>
-      <li data-md>
-       <p>If <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑦">XR compatible</a> boolean is <code>true</code>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise④">resolve</a> <var>promise</var> and abort these steps.</p>
-      <li data-md>
-       <p>If <var>context</var> was created on a <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter⑤">compatible graphics adapter</a> for the <a data-link-type="dfn" href="#xr-xr-device" id="ref-for-xr-xr-device①③">XR device</a>:</p>
+       <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise④">a new Promise</a>.</p>
        <ol>
         <li data-md>
-         <p>Set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑧">XR compatible</a> boolean to <code>true</code>.</p>
+         <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel③">in parallel</a>:</p>
         <li data-md>
-         <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise⑤">Resolve</a> <var>promise</var> and abort these steps.</p>
+         <p>Let <var>context</var> be the target <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase" id="ref-for-WebGLRenderingContextBase⑥">WebGLRenderingContextBase</a></code> object.</p>
+        <li data-md>
+         <p>If <var>context</var>’s <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#webgl-context-lost-flag" id="ref-for-webgl-context-lost-flag">WebGL context lost flag</a> is set, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑨">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①⑤">InvalidStateError</a></code> and abort these abort these steps.</p>
+        <li data-md>
+         <p>If <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑦">XR compatible</a> boolean is <code>true</code>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise④">resolve</a> <var>promise</var> and abort these steps.</p>
+        <li data-md>
+         <p>If <var>context</var> was created on a <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter⑤">compatible graphics adapter</a> for the <a data-link-type="dfn" href="#xr-xr-device" id="ref-for-xr-xr-device①③">XR device</a>:</p>
+         <ol>
+          <li data-md>
+           <p>Set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑧">XR compatible</a> boolean to <code>true</code>.</p>
+          <li data-md>
+           <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise⑤">Resolve</a> <var>promise</var> and abort these steps.</p>
+         </ol>
+        <li data-md>
+         <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①①">Queue a task</a> to perform the following steps:</p>
+         <ol>
+          <li data-md>
+           <p>Force <var>context</var> to be lost and <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#CONTEXT_LOST" id="ref-for-CONTEXT_LOST">handle the context loss</a> as described by the WebGL specification.</p>
+          <li data-md>
+           <p>If the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#canceled-flag" id="ref-for-canceled-flag">canceled flag</a> of the "webglcontextlost" event fired in the previous step was not set, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise①⓪">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#aborterror" id="ref-for-aborterror">AbortError</a></code> and abort these steps.</p>
+          <li data-md>
+           <p><a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#restore-the-drawing-buffer" id="ref-for-restore-the-drawing-buffer">Restore the context</a> on a <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter⑥">compatible graphics adapter</a> for the <a data-link-type="dfn" href="#xr-xr-device" id="ref-for-xr-xr-device①④">XR device</a>.</p>
+          <li data-md>
+           <p>Set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑨">XR compatible</a> boolean to <code>true</code>.</p>
+          <li data-md>
+           <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise⑥">Resolve</a> <var>promise</var>.</p>
+         </ol>
        </ol>
       <li data-md>
-       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①①">Queue a task</a> to perform the following steps:</p>
-       <ol>
-        <li data-md>
-         <p>Force <var>context</var> to be lost and <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#CONTEXT_LOST" id="ref-for-CONTEXT_LOST">handle the context loss</a> as described by the WebGL specification.</p>
-        <li data-md>
-         <p>If the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#canceled-flag" id="ref-for-canceled-flag">canceled flag</a> of the "webglcontextlost" event fired in the previous step was not set, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise①⓪">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#aborterror" id="ref-for-aborterror">AbortError</a></code> and abort these steps.</p>
-        <li data-md>
-         <p><a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#restore-the-drawing-buffer" id="ref-for-restore-the-drawing-buffer">Restore the context</a> on a <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter⑥">compatible graphics adapter</a> for the <a data-link-type="dfn" href="#xr-xr-device" id="ref-for-xr-xr-device①④">XR device</a>.</p>
-        <li data-md>
-         <p>Set <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑨">XR compatible</a> boolean to <code>true</code>.</p>
-        <li data-md>
-         <p><a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise⑥">Resolve</a> <var>promise</var>.</p>
-       </ol>
+       <p>Return <var>promise</var>.</p>
      </ol>
     </div>
     <div class="algorithm" data-algorithm="webgl-context-lost">
