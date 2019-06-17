@@ -3124,9 +3124,9 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
          <li data-md>
           <p>Initialize <var>layer</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrwebgllayer-framebuffer" id="ref-for-dom-xrwebgllayer-framebuffer①">framebuffer</a></code> to a new <a data-link-type="dfn" href="#opaque-framebuffer" id="ref-for-opaque-framebuffer">opaque framebuffer</a> created with <var>context</var>.</p>
          <li data-md>
-          <p>Initialize a <a data-link-type="dfn" href="#swap-chain" id="ref-for-swap-chain">swap chain</a> for <var>layer</var> that is compatible with <var>session</var>’s <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device③④">XR device</a>.</p>
+          <p>Allocate and initialize resources compatible with <var>session</var>’s <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device③④">XR device</a>, including GPU accessible memory buffers, as required to support the compositing of <var>layer</var>.</p>
          <li data-md>
-          <p>If <var>layer</var>’s <a data-link-type="dfn" href="#swap-chain" id="ref-for-swap-chain①">swap chain</a> was unable to be created for any reason, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#operationerror" id="ref-for-operationerror">OperationError</a></code> and abort these steps.</p>
+          <p>If <var>layer</var>’s resources were unable to be created for any reason, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#operationerror" id="ref-for-operationerror">OperationError</a></code> and abort these steps.</p>
         </ol>
        <dt> Otherwise 
        <dd>
@@ -3208,7 +3208,6 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
       <p>Return the value that the <var>session</var>’s <a data-link-type="dfn" href="#recommended-webgl-framebuffer-resolution" id="ref-for-recommended-webgl-framebuffer-resolution②">recommended WebGL framebuffer resolution</a> must be multiplied by to yield the <var>session</var>’s <a data-link-type="dfn" href="#native-webgl-framebuffer-resolution" id="ref-for-native-webgl-framebuffer-resolution④">native WebGL framebuffer resolution</a>.</p>
     </ol>
    </div>
-   <p>We either need to define the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="swap-chain">swap chain</dfn> or remove references to it.  (This is <a href="https://github.com/immersive-web/webxr/issues/484">filed</a>.)</p>
    <section class="unstable">
     <h3 class="heading settled" data-level="11.2" id="contextcompatibility"><span class="secno">11.2. </span><span class="content">WebGL Context Compatibility</span><a class="self-link" href="#contextcompatibility"></a></h3>
     <p>In order for a WebGL context to be used as a source for XR imagery it must be created on a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="compatible-graphics-adapter">compatible graphics adapter</dfn> for the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device③⑥">XR device</a>. What is considered a <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter">compatible graphics adapter</a> is platform dependent, but is understood to mean that the graphics adapter can supply imagery to the <a data-link-type="dfn" href="#xr-device" id="ref-for-xr-device③⑦">XR device</a> without undue latency. If a WebGL context was not already created on the <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter①">compatible graphics adapter</a>, it typically must be re-created on the adapter in question before it can be used with an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②①">XRWebGLLayer</a></code>.</p>
@@ -3716,7 +3715,6 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <li><a href="#dom-gamepadmappingtype-standard">"standard"</a><span>, in §10.5</span>
    <li><a href="#dom-xrwebgllayerinit-stencil">stencil</a><span>, in §11.1</span>
    <li><a href="#dom-xr-supportssession">supportsSession(mode)</a><span>, in §3.2</span>
-   <li><a href="#swap-chain">swap chain</a><span>, in §11.1</span>
    <li><a href="#xrwebgllayer-target-framebuffer">target framebuffer</a><span>, in §11.1</span>
    <li><a href="#dom-xrinputsource-targetraymode">targetRayMode</a><span>, in §10.1</span>
    <li><a href="#dom-xrinputsource-targetrayspace">targetRaySpace</a><span>, in §10.1</span>
@@ -6169,12 +6167,6 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#dom-xrwebgllayer-getnativeframebufferscalefactor">#dom-xrwebgllayer-getnativeframebufferscalefactor</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrwebgllayer-getnativeframebufferscalefactor">11.1. XRWebGLLayer</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="swap-chain">
-   <b><a href="#swap-chain">#swap-chain</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-swap-chain">11.1. XRWebGLLayer</a> <a href="#ref-for-swap-chain①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="compatible-graphics-adapter">
