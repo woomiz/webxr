@@ -3097,7 +3097,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>If <var>context</var> is lost, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①①">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
-      <p>If <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible①">XR compatible</a> boolean is false, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①②">InvalidStateError</a></code> and abort these steps.</p>
+      <p>If <var>session</var> is an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session①②">immersive session</a> and <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible①">XR compatible</a> boolean is <code>false</code>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①②">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
       <p>Initialize <var>layer</var>’s <a data-link-type="dfn" href="#xrwebgllayer-context" id="ref-for-xrwebgllayer-context①">context</a> to <var>context</var>.</p>
      <li data-md>
@@ -3111,7 +3111,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Initialize <var>layer</var>’s <a data-link-type="dfn" href="#xrwebgllayer-composition-disabled" id="ref-for-xrwebgllayer-composition-disabled①">composition disabled</a> boolean as follows:</p>
       <dl class="switch">
-       <dt> If <var>session</var> is an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session①②">immersive session</a> 
+       <dt> If <var>session</var> is an <a data-link-type="dfn" href="#immersive-session" id="ref-for-immersive-session①③">immersive session</a> 
        <dd> Initialize <var>layer</var>’s <a data-link-type="dfn" href="#xrwebgllayer-composition-disabled" id="ref-for-xrwebgllayer-composition-disabled②">composition disabled</a> boolean to <code>false</code> 
        <dt> Otherwise 
        <dd> Initialize <var>layer</var>’s <a data-link-type="dfn" href="#xrwebgllayer-composition-disabled" id="ref-for-xrwebgllayer-composition-disabled③">composition disabled</a> to <code>true</code> 
@@ -4932,7 +4932,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-immersive-session④">4.1. XRSession</a> <a href="#ref-for-immersive-session⑤">(2)</a> <a href="#ref-for-immersive-session⑥">(3)</a>
     <li><a href="#ref-for-immersive-session⑦">4.2. XRRenderState</a> <a href="#ref-for-immersive-session⑧">(2)</a>
     <li><a href="#ref-for-immersive-session⑨">6.2. XRReferenceSpace</a> <a href="#ref-for-immersive-session①⓪">(2)</a> <a href="#ref-for-immersive-session①①">(3)</a>
-    <li><a href="#ref-for-immersive-session①②">11.1. XRWebGLLayer</a>
+    <li><a href="#ref-for-immersive-session①②">11.1. XRWebGLLayer</a> <a href="#ref-for-immersive-session①③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="exclusive-access">
