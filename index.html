@@ -1528,7 +1528,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-06-17">17 June 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-06-19">19 June 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2776,10 +2776,10 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <p>To <dfn class="dfn-paneled" data-dfn-for="XRRay" data-dfn-type="dfn" data-noexport id="xrray-obtain-the-matrix">obtain the matrix</dfn> for a given <code class="idl"><a data-link-type="idl" href="#xrray" id="ref-for-xrray⑧">XRRay</a></code> <var>ray</var></p>
      <ol>
       <li data-md>
-       <p>If <var>transform</var>’s <a data-link-type="dfn" href="#xrrigidtransform-internal-matrix" id="ref-for-xrrigidtransform-internal-matrix⑥">internal matrix</a> is not <code>null</code>, perform the following steps:</p>
+       <p>If <var>ray</var>’s <a data-link-type="dfn" href="#xrray-internal-matrix" id="ref-for-xrray-internal-matrix①">internal matrix</a> is not <code>null</code>, perform the following steps:</p>
        <ol>
         <li data-md>
-         <p>If the operation <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-isdetachedbuffer" id="ref-for-sec-isdetachedbuffer①">IsDetachedBuffer</a></code> on <a data-link-type="dfn" href="#xrrigidtransform-internal-matrix" id="ref-for-xrrigidtransform-internal-matrix⑦">internal matrix</a> is <code>false</code>, return <var>transform</var>’s <a data-link-type="dfn" href="#xrrigidtransform-internal-matrix" id="ref-for-xrrigidtransform-internal-matrix⑧">internal matrix</a>.</p>
+         <p>If the operation <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-isdetachedbuffer" id="ref-for-sec-isdetachedbuffer①">IsDetachedBuffer</a></code> on <a data-link-type="dfn" href="#xrray-internal-matrix" id="ref-for-xrray-internal-matrix②">internal matrix</a> is <code>false</code>, return <var>ray</var>’s <a data-link-type="dfn" href="#xrrigidtransform-internal-matrix" id="ref-for-xrrigidtransform-internal-matrix⑥">internal matrix</a>.</p>
        </ol>
       <li data-md>
        <p>Let <var>z</var> be the vector <code>[0, 0, -1]</code></p>
@@ -2800,7 +2800,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
       <li data-md>
        <p>Let <var>matrix</var> be the result of premultiplying <var>rotation</var> from the left onto <var>translation</var> (i.e. <code>translation * rotation</code>) in column-vector notation.</p>
       <li data-md>
-       <p>Set <var>transform</var>’s <a data-link-type="dfn" href="#xrrigidtransform-internal-matrix" id="ref-for-xrrigidtransform-internal-matrix⑨">internal matrix</a> to <var>matrix</var></p>
+       <p>Set <var>ray</var>’s <a data-link-type="dfn" href="#xrray-internal-matrix" id="ref-for-xrray-internal-matrix③">internal matrix</a> to <var>matrix</var></p>
       <li data-md>
        <p>Return <var>matrix</var></p>
      </ol>
@@ -5717,7 +5717,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#xrrigidtransform-internal-matrix">#xrrigidtransform-internal-matrix</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-xrrigidtransform-internal-matrix">8.3. XRRigidTransform</a> <a href="#ref-for-xrrigidtransform-internal-matrix①">(2)</a> <a href="#ref-for-xrrigidtransform-internal-matrix②">(3)</a> <a href="#ref-for-xrrigidtransform-internal-matrix③">(4)</a> <a href="#ref-for-xrrigidtransform-internal-matrix④">(5)</a> <a href="#ref-for-xrrigidtransform-internal-matrix⑤">(6)</a>
-    <li><a href="#ref-for-xrrigidtransform-internal-matrix⑥">8.4. XRRay</a> <a href="#ref-for-xrrigidtransform-internal-matrix⑦">(2)</a> <a href="#ref-for-xrrigidtransform-internal-matrix⑧">(3)</a> <a href="#ref-for-xrrigidtransform-internal-matrix⑨">(4)</a>
+    <li><a href="#ref-for-xrrigidtransform-internal-matrix⑥">8.4. XRRay</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrrigidtransform">
@@ -5792,7 +5792,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <aside class="dfn-panel" data-for="xrray-internal-matrix">
    <b><a href="#xrray-internal-matrix">#xrray-internal-matrix</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-xrray-internal-matrix">8.4. XRRay</a>
+    <li><a href="#ref-for-xrray-internal-matrix">8.4. XRRay</a> <a href="#ref-for-xrray-internal-matrix①">(2)</a> <a href="#ref-for-xrray-internal-matrix②">(3)</a> <a href="#ref-for-xrray-internal-matrix③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrray">
