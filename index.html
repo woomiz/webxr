@@ -1528,7 +1528,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-06-19">19 June 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-06-21">21 June 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2393,7 +2393,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>(</c-><c- u>"immersive-vr
    <h3 class="heading settled" data-level="6.1" id="xrspace-interface"><span class="secno">6.1. </span><span class="content">XRSpace</span><a class="self-link" href="#xrspace-interface"></a></h3>
    <p>An <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace②">XRSpace</a></code> represents a virtual coordinate system with an origin that corresponds to a physical location. Spatial data that is requested from the API or given to the API is always expressed in relation to a specific <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace③">XRSpace</a></code> at the time of a specific <code class="idl"><a data-link-type="idl" href="#xrframe" id="ref-for-xrframe①⓪">XRFrame</a></code>. Numeric values such as pose positions are coordinates in that space relative to its origin. The interface is intentionally opaque.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑤"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed④"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrspace"><code><c- g>XRSpace</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget②"><c- n>EventTarget</c-></a> {
-  
+
 };
 </pre>
    <p>Each <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace④">XRSpace</a></code> has a <dfn class="dfn-paneled" data-dfn-for="XRSpace" data-dfn-type="dfn" data-noexport id="xrspace-session">session</dfn> which is set to the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑤⑦">XRSession</a></code> that created the <code class="idl"><a data-link-type="idl" href="#xrspace" id="ref-for-xrspace⑤">XRSpace</a></code>.</p>
@@ -2530,7 +2530,7 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>(</c-><c- u>"immersive-vr
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑦"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑥"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="xrboundedreferencespace"><code><c- g>XRBoundedReferenceSpace</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace②①"><c- n>XRReferenceSpace</c-></a> {
   <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly"><c- n>DOMPointReadOnly</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<DOMPointReadOnly>" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry⑤"><c- g>boundsGeometry</c-></a>;
-};    
+};
 </pre>
    <p>The origin of a <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace⑤">XRBoundedReferenceSpace</a></code> MUST be positioned at the floor, such that the `y` axis equals `0` at floor level. The `x` and `z` position and orientation are initialized based on the conventions of the underlying platform, typically expected to be near the center of the room facing in a logical forward direction.</p>
    <p class="note" role="note"><span>Note:</span> Other XR platforms sometimes refer to the type of tracking offered by a <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-bounded-floor" id="ref-for-dom-xrreferencespacetype-bounded-floor④">bounded-floor</a></code> reference space as "room scale" tracking. An <code class="idl"><a data-link-type="idl" href="#xrboundedreferencespace" id="ref-for-xrboundedreferencespace⑥">XRBoundedReferenceSpace</a></code> is not intended to describe multi-room spaces, areas with uneven floor levels, or very large open areas. Content that needs to handle those scenarios should use an <code class="idl"><a data-link-type="idl" href="#dom-xrreferencespacetype-unbounded" id="ref-for-dom-xrreferencespacetype-unbounded③">unbounded</a></code> reference space.</p>
@@ -2786,15 +2786,17 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
       <li data-md>
        <p>Let <var>axis</var> be the vector cross product of <var>z</var> and <var>ray</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrray-direction" id="ref-for-dom-xrray-direction①②">direction</a></code>, <code>z × direction</code></p>
       <li data-md>
-       <p>Let <var>angle</var> be the scalar dot product of <var>z</var> and <var>ray</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrray-direction" id="ref-for-dom-xrray-direction①③">direction</a></code>, <code>z · direction</code></p>
+       <p>Let <var>cos_angle</var> be the scalar dot product of <var>z</var> and <var>ray</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrray-direction" id="ref-for-dom-xrray-direction①③">direction</a></code>, <code>z · direction</code></p>
       <li data-md>
-       <p>Let <var>rotation</var> be an identity matrix</p>
-      <li data-md>
-       <p>If <var>axis</var> and <var>angle</var> are both nonzero:</p>
-       <ol>
-        <li data-md>
-         <p>Set <var>rotation</var> to the rotation matrix representing a right handed planar rotation around <var>axis</var> by <var>angle</var></p>
-       </ol>
+       <p>Set <var>rotation</var> based on the following:</p>
+       <dl class="switch">
+        <dt> If <var>cos_angle</var> is greater than -1 and less than 1 
+        <dd> Set <var>rotation</var> to the rotation matrix representing a right handed planar rotation around <var>axis</var> by <code>arccos(cos_angle)</code>. 
+        <dt> Else, if <var>cos_angle</var> is -1 
+        <dd> Set <var>rotation</var> to the rotation matrix representing a right handed planar rotation around vector <code>[1, 0, 0]</code> by <code>arccos(cos_angle)</code>. 
+        <dt> Else 
+        <dd> Set <var>rotation</var> to an identity matrix. 
+       </dl>
       <li data-md>
        <p>Let <var>translation</var> be the translation matrix with components corresponding to <var>ray</var>’s <code class="idl"><a data-link-type="idl" href="#dom-xrray-origin" id="ref-for-dom-xrray-origin⑨">origin</a></code></p>
       <li data-md>
@@ -3384,7 +3386,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession⑨①"><c- n>XRSession</c-></a> <dfn class="idl-code" data-dfn-for="XRInputSourcesChangeEventInit" data-dfn-type="dict-member" data-export data-type="XRSession " id="dom-xrinputsourceschangeeventinit-session"><code><c- g>session</c-></code><a class="self-link" href="#dom-xrinputsourceschangeeventinit-session"></a></dfn>;
   <c- b>required</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource②⑨"><c- n>XRInputSource</c-></a>> <dfn class="idl-code" data-dfn-for="XRInputSourcesChangeEventInit" data-dfn-type="dict-member" data-export data-type="FrozenArray<XRInputSource> " id="dom-xrinputsourceschangeeventinit-added"><code><c- g>added</c-></code><a class="self-link" href="#dom-xrinputsourceschangeeventinit-added"></a></dfn>;
   <c- b>required</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource③⓪"><c- n>XRInputSource</c-></a>> <dfn class="idl-code" data-dfn-for="XRInputSourcesChangeEventInit" data-dfn-type="dict-member" data-export data-type="FrozenArray<XRInputSource> " id="dom-xrinputsourceschangeeventinit-removed"><code><c- g>removed</c-></code><a class="self-link" href="#dom-xrinputsourceschangeeventinit-removed"></a></dfn>;
-  
+
 };
 </pre>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSourcesChangeEvent" data-dfn-type="attribute" data-export id="dom-xrinputsourceschangeevent-session"><code>session</code></dfn> attribute indicates the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑨②">XRSession</a></code> that generated the event.</p>
@@ -4566,7 +4568,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑤①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed④①"><c- g>Exposed</c-></a>=<c- n>Window</c->] <c- b>interface</c-> <a href="#xrspace"><code><c- g>XRSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget②①"><c- n>EventTarget</c-></a> {
-  
+
 };
 
 <c- b>enum</c-> <a href="#enumdef-xrreferencespacetype"><code><c- g>XRReferenceSpaceType</c-></code></a> {
@@ -4587,7 +4589,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext⑦①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑥①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#xrboundedreferencespace"><code><c- g>XRBoundedReferenceSpace</c-></code></a> : <a class="n" data-link-type="idl-name" href="#xrreferencespace" id="ref-for-xrreferencespace②①①"><c- n>XRReferenceSpace</c-></a> {
   <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#dompointreadonly" id="ref-for-dompointreadonly⑧"><c- n>DOMPointReadOnly</c-></a>> <a class="idl-code" data-link-type="attribute" data-readonly data-type="FrozenArray<DOMPointReadOnly>" href="#dom-xrboundedreferencespace-boundsgeometry" id="ref-for-dom-xrboundedreferencespace-boundsgeometry⑤①"><c- g>boundsGeometry</c-></a>;
-};    
+};
 
 <c- b>enum</c-> <a href="#enumdef-xreye"><code><c- g>XREye</c-></code></a> {
   <a href="#dom-xreye-none"><code><c- s>"none"</c-></code></a>,
@@ -4741,7 +4743,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#xrsession" id="ref-for-xrsession⑨①①"><c- n>XRSession</c-></a> <a data-type="XRSession " href="#dom-xrinputsourceschangeeventinit-session"><code><c- g>session</c-></code></a>;
   <c- b>required</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource②⑨①"><c- n>XRInputSource</c-></a>> <a data-type="FrozenArray<XRInputSource> " href="#dom-xrinputsourceschangeeventinit-added"><code><c- g>added</c-></code></a>;
   <c- b>required</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#xrinputsource" id="ref-for-xrinputsource③⓪①"><c- n>XRInputSource</c-></a>> <a data-type="FrozenArray<XRInputSource> " href="#dom-xrinputsourceschangeeventinit-removed"><code><c- g>removed</c-></code></a>;
-  
+
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext②⓪①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⑨①"><c- g>Exposed</c-></a>=<c- n>Window</c->, <a href="#dom-xrreferencespaceevent-xrreferencespaceevent"><code><c- g>Constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString③①"><c- b>DOMString</c-></a> <a href="#dom-xrreferencespaceevent-xrreferencespaceevent-type-eventinitdict-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-xrreferencespaceeventinit" id="ref-for-dictdef-xrreferencespaceeventinit①"><c- n>XRReferenceSpaceEventInit</c-></a> <a href="#dom-xrreferencespaceevent-xrreferencespaceevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code></a>)]
