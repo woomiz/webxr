@@ -1,6 +1,6 @@
 # Privacy and security
 
-The WebXR Device API enables developers to build content for AR and VR hardware that uses one or more sensors to infer information about the real world, and may then present information about the real world either to developers or directly to the end user. In such systems there are a wide range of input sensor types used (cameras, accelerometers, etc), and a range of real-world data generated. This data is what allows web developers to author WebXR-based experiences. It also enables developers to infer information about people using their sites such as profiling, fingerprinting, and input sniffing. Due to the nature of the Web, WebXR has a higher responsibility to protect users from malicious data usage than XR experiences delivered through closed ecosystem app stores.
+The WebXR Device API enables developers to build content for AR and VR hardware that uses one or more sensors to infer information about the real world, and may then present information about the real world either to developers or directly to the end user. In such systems there are a wide range of input sensor types used (cameras, accelerometers, etc), and a range of real-world data generated. This data is what allows web developers to author WebXR-based experiences. It also enables developers to infer information about users such as profiling them, fingerprinting their device, and input sniffing. Due to the nature of the Web, WebXR has a higher responsibility to protect users from malicious data usage than XR experiences delivered through closed ecosystem app stores.
 
 ### Sensitive information
 In the context of XR, sensitive information includes, but is not limited to, user configurable data such as interpupillary distance (IPD) and sensor-based data such as poses. All `immersive` sessions will expose some amount of sensitive data, due to the user's pose being necessary to render anything. However, in some cases, the same sensitive information also be exposed via `inline` sessions. 
@@ -30,7 +30,7 @@ When sensitive information can be exposed, the requesting document must be:
 It is often necessary to be sure of user intent before exposing sensitive information or allowing actions with a significant effect on the user's experience. This intent may be communicated or observed in a number of ways.
 
 ### User activation
-[User activation](https://html.spec.whatwg.org/multipage/interaction.html#activation) is defined within the HTML spec as an action the user can take which can result in certain types of HTML elements becoming activated. For example, a button becomes activated when a user clicks it with a mouse. The concept of user activation, differentiates user-caused events from injected events to prevent pages from spoofing user actions. User activation can be checked by the UA prior to session creation as well as during a session in response to appropriate `XRInputSource` events.
+[User activation](https://html.spec.whatwg.org/multipage/interaction.html#activation) is defined within the HTML spec as an action the user can take which can result in certain types of HTML elements becoming activated. For example, a button becomes activated when a user clicks it with a mouse. The concept of user activation differentiates user-caused events from injected events to prevent pages from spoofing user actions. Within a WebXR session, `XRInputSource.select`is also considered to be triggered by user activation.  For more information, see [Input events](input-explainer.md#input-events).
 
 ### Implied consent
 A User Agent may use implied consent based, for example, on the install status of a web application or frequency and recency of visits. Given the sensitivity of XR data, caution is strongly advised when relying on implicit signals. 
@@ -64,5 +64,5 @@ Limiting is when data is reported only when it is within a specific range. For e
 
 # Appendix A: Proposed IDL
 ```webidl
-
+// TODO: Add any necessary IDL
 ```
