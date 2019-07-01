@@ -80,7 +80,7 @@ function onARClick() {
 ```
 
 In response, the UA must ensure that:
-* The function was invoked in response to a [user activation](#user-activation)
+* The function was invoked in response to a [user activation](#user-activation) event
 * The request originates from a [trustworthy document and origin](#trustworthy-documents-and-origins)
 * The request originates from a document that is [visible and has focus](#visibility-and-focus)
 * The request originates from a document allowed to use the WebXR [feature policy](#feature-policy) as well as the [underlying sensors' feature policies](#underlying-sensors-feature-policies)
@@ -100,14 +100,15 @@ function onSessionRafCallback(XRFrame frame) {
 }
 ```
 
-Before returning poses based on sensor data, the UA must ensure that:
-* User intention is well understood, either via [explicit consent](#explicit-consent) or [implicit consent](#implict-consent); alternatively, in cases where the user experience is not negatively affected, quantization may be applied* The request originates from the document which owns the `XRFrame`'s `XRSession`
+For every call to `XRFrame.getPose()`, the UA must ensure that:
+* User intention is well understood, either via [explicit consent](#explicit-consent) or [implicit consent](#implict-consent); alternatively, in cases where the user experience is not negatively affected, [data adjustments](#data-adjustments) may be applied
+* The request originates from the document which owns the `XRFrame`'s `XRSession`
 * The document is [visible and has focus](#visibility-and-focus)
 * The `XRSession.visibility` is set to `visible` 
 * **TODO** address issues [#696](https://github.com/immersive-web/webxr/issues/696) and [#724](https://github.com/immersive-web/webxr/issues/724)
 
 ### XRViewerPose
-The primary difference between `XRViewerPose` and `XRPose` is the inclusion of `XRView` information. More than one view may be present for a number of reasons. One example is a headset which will generally have two views, but may have more to accommodate greater than 180 degree field of views. Another example is a CAVE system. In all cases, when more than one view is present and the physical relationship between these views is configurable by the user, the relationship between these views is considered sensitive information as it can be used to fingerprint or profile the user.
+The primary difference between `XRViewerPose` and `XRPose` is the inclusion of `XRView` information. More than one view may be present for a number of reasons. One example is a headset, which will generally have two views, but may have more to accommodate greater than 180 degree field of views. Another example is a CAVE system. In all cases, when more than one view is present and the physical relationship between these views is configurable by the user, the relationship between these views is considered sensitive information as it can be used to fingerprint or profile the user.
 
 Developers indicate the desire for `XRViewerPose` data by calling `XRFrame.getViewerPose()`.
 
@@ -117,10 +118,10 @@ function onSessionRafCallback(XRFrame frame) {
 }
 ```
 
-As a result, when more than one view is present, the UA must additionally ensure that:
+In addition to meeting the [`XRPose`](#xrpose) requirements, every call to `XRFrame.getViewerPose()` which will return more than one `XRView` must additionally ensure that:
 * User intention is well understood, either via [explicit consent](#explicit-consent) or [implicit consent](#implict-consent)
-* If the device supports configurable or factory-calibrated interpupillary distance that may vary from device to device, then the XRView transform data must be rounded to prevent fingerprinting. Specific precision for rounding is at the discretion of the user agent.
-* If the XRViewerPose will include multiple XRViews for displays whose positions and orientations have been configured by the user (e.g. in a CAVE) then the XRView transform data must be rounded to prevent fingerprinting.
+* If `XRView` data is affected by settings that may vary from device to device, such as static interpupillary distance or variations in screen geometry, then the XRView data must be anonymized to prevent fingerprinting. Specific approaches to this are at the discretion of the user agent.
+* If `XRView` data is affected by a user-configured interpupillary distance, then the XRView data must be anonymized to prevent profiling as well as fingerprinting. Specific approaches to this are at the discretion of the user agent.
 
 ## Reference spaces
 ### Unbounded reference spaces
@@ -154,7 +155,7 @@ function onSessionCreated(session) {
 ```
 
 ### Bounded reference spaces
-Bounded reference spaces, by themselves, do not enable developers to determine geographic location. However, because the floor level is established and users are able to walk around, it may be possible for a site to infer the user’s height or perform gait analysis, allowing user profiling and fingerprinting. In addition, it may be possible perform fingerprinting using the bounds reported by a bounded reference space.
+Bounded reference spaces, when sufficiently constrained in size, do not enable developers to determine geographic location. However, because the floor level is established and users are able to walk around, it may be possible for a site to infer the user’s height or perform gait analysis, allowing user profiling and fingerprinting. In addition, it may be possible perform fingerprinting using the bounds reported by a bounded reference space.
 
 Developers indicate the desire for bounded viewer tracking at the time of session creation by adding `bounded-floor` to either `XRSessionInit.requiredFeatures` or `XRSessionInit.optionalFeatures`. 
 
@@ -191,37 +192,32 @@ In response, the UA must ensure that:
 * Bounded reference spaces are allowed to be created based on the restrictions above
 * Any group of `local`, `local-floor`, and `bounded-floor` reference spaces that are capable of being related to one another must share a common native origin; this restriction does not apply when `unbounded` reference spaces are also able to be created
 * `XRBoundedReferenceSpace.boundsGeometry` must be [limited](#limiting) to a reasonable distance from the reference space's native origin; the suggested default distance is 15 meters in each direction
-* Each point in the `XRBoundedReferenceSpace.boundsGeometry` must be [rounded](#rounding) sufficiently to prevent fingerprinting; rounding to the nearest 5cm is suggested
-* The region represented by the rounded bounds geometry must be a subset of the original bounds
-* If the floor level is based on sensor data or is set to a non-default emulated value, the `y` value of the native origin must be [rounded](#rounding) sufficiently to prevent fingerprinting; rounding to the nearest 1cm is suggested
+* Each point in the `XRBoundedReferenceSpace.boundsGeometry` must be [rounded](#rounding) sufficiently to prevent fingerprinting while still ensuring the rounded bounds geometry fits inside the original shape. Rounding to the nearest 5cm is suggested.
+* If the floor level is based on sensor data or is set to a non-default emulated value, the `y` value of the native origin must be [rounded](#rounding) sufficiently to prevent fingerprinting and profiling; rounding to the nearest 1cm is suggested
 * All `XRPose` and `XRViewerPose` 6DOF pose data computed using a `bounded-floor` reference space must be [limited](#limiting) to a reasonable distance beyond the `boundsGeometry` in all directions; the suggested distance is 1 meter beyond the bounds in all directions
 
 If these requirements are not met, the promise returned from `XRSession.requestReferenceSpace()` must be rejected.
 
-### Local and local-floor reference spaces
-On devices which support 6-DOF tracking, `local` and `local-floor` reference spaces may be used to perform gait analysis, allowing user profiling and fingerprinting. In addition, because the `local-floor` reference spaces provide an established floor level, it may be possible for a site to infer the user’s height, allowing user profiling and fingerprinting.  
+### Local-floor spaces
+On devices which support 6-DOF tracking, `local-floor` reference spaces may be used to perform gait analysis, allowing user profiling and fingerprinting. In addition, because the `local-floor` reference spaces provide an established floor level, it may be possible for a site to infer the user’s height, allowing user profiling and fingerprinting.  
 
-When creating an `inline` session, developers indicate the desire for local viewer tracking at the time of session creation by adding `local` and/or `local-floor` to either `XRSessionInit.requiredFeatures` or `XRSessionInit.optionalFeatures`. Creating an `immersive-vr` or `immersive-ar` session adds `local` and `local-floor` to `XRSessionInit.requiredFeatures` implicitly.
+Developers indicate the desire for `local-floor` viewer tracking at the time of session creation by adding `local-floor` to either `XRSessionInit.requiredFeatures` or `XRSessionInit.optionalFeatures`.
 
 ```js
 function onVRClick() {
   xr.requestSession('immersive-vr', { requiredFeatures: ['local-floor'] } )
   .then(onVRSessionCreated);
 }
-
-xr.requestSession('inline', { optionalFeatures: ['local'] } )
-  .then(onInlineSessionCreated);
-}
 ```
 
 In response, the UA must ensure that:
-* The document is allowed to use all the policy-controlled features associated with the sensor types used to track the native origin of a local or local-floor reference space
+* The document is allowed to use all the policy-controlled features associated with the sensor types used to track the native origin of a `local-floor` reference space
 * User intention is well understood, either via [explicit consent](#explicit-consent) or [implicit consent](#implict-consent)
-* The device is capable of local tracking
+* The device is capable of `local-floor` tracking
 
-If these requirements are not met for either an `immersive-vr` or an `immersive-ar` session, the promise returned from `requestSession()` must be rejected.  If these requirements are not met for an `inline` session in which `local` or `local-floor` is listed in `XRSessionInit.requiredFeatures` then the promise returned from `requestSession()` must be rejected. Otherwise, the promise may be fulfilled but future calls to `XRSession.requestReferenceSpace()` must fail when passed `local` or `local-floor`.
+If these requirements are not met and `local-floor` is listed in `XRSessionInit.requiredFeatures` then the promise returned from `requestSession()` must be rejected. Otherwise, the promise may be fulfilled but future calls to `XRSession.requestReferenceSpace()` must fail when passed `local-floor`.
 
-Once a session is created, developers may attempt to create local reference spaces by passing either `local` or `local-floor` into `XRSession.requestReferenceSpace()`.
+Once a session is created, developers may attempt to create `local-floor` reference spaces by passing `local-floor` into `XRSession.requestReferenceSpace()`.
 
 ```js
 let xrReferenceSpace;
@@ -233,9 +229,53 @@ function onSessionCreated(session) {
 ```
 
 In response, the UA must ensure that: 
-* `local` or `local-floor` reference spaces are allowed to be created based on the restrictions above
+* `local-floor` reference spaces are allowed to be created based on the restrictions above
 * Any group of `local`, `local-floor`, and `bounded-floor` reference spaces that are capable of being related to one another must share a common native origin; this restriction does not apply when `unbounded` reference spaces are also permitted to be created
-* If the floor level is based on sensor data or is set to a non-default emulated value, the `y` value of the native origin must be [rounded](#rounding) sufficiently to prevent fingerprinting; rounding to the nearest 1cm is suggested
-* All `XRPose` and `XRViewerPose` 6DOF pose data computed using a `local` or `local-floor` reference space is [limited](#limiting) to a reasonable distance from the reference space's native origin; the suggested default distance is 15 meters in each direction
+* If the floor level is based on sensor data or is set to a non-default emulated value, the `y` value of the native origin must be [rounded](#rounding) sufficiently to prevent fingerprinting and profiling; rounding to the nearest 1cm is suggested
+* All `XRPose` and `XRViewerPose` 6DOF pose data computed using a `local-floor` reference space is [limited](#limiting) to a reasonable distance from the reference space's native origin; the suggested default distance is 15 meters in each direction
 
 If these requirements are not met, the promise returned from `XRSession.requestReferenceSpace()` must be rejected.
+
+### Local reference spaces
+On devices which support 6-DOF tracking, `local` reference spaces may be used to perform gait analysis, allowing user profiling and fingerprinting.
+
+When creating an `immersive-vr` or `immersive-ar` session, developers do not need to explicitly request the desire for `local` viewer tracking. However, this desire must be indicated when creating an `inline` session by adding `local` to either `XRSessionInit.requiredFeatures` or `XRSessionInit.optionalFeatures`. 
+
+```js
+xr.requestSession('inline', { optionalFeatures: ['local'] } )
+  .then(onInlineSessionCreated);
+}
+
+function onVRClick() {
+  xr.requestSession('immersive-vr')
+  .then(onVRSessionCreated);
+}
+```
+
+In response, the UA must ensure that:
+* The document is allowed to use all the policy-controlled features associated with the sensor types used to track the native origin of a `local` reference space
+* If the session mode is `inline`, user intention is well understood, either via [explicit consent](#explicit-consent) or [implicit consent](#implict-consent)
+* The device is capable of `local` tracking
+
+If the session is `immersive-ar` or `immersive-vr` and these requirements are not met then the promise returned from `requestSession()` must be rejected.  If the session is `inline` and has `local` listed in `XRSessionInit.requiredFeatures` then the promise returned from `requestSession()` must also be rejected. Otherwise, the promise may be fulfilled but future calls to `XRSession.requestReferenceSpace()` must fail when passed `local`.
+
+Once a session is created, developers may attempt to create local reference spaces by passing either `local` into `XRSession.requestReferenceSpace()`.
+
+```js
+let xrReferenceSpace;
+function onSessionCreated(session) {
+  session.requestReferenceSpace('local')
+  .then((referenceSpace) => { xrReferenceSpace = referenceSpace; })
+  .catch( (e) => { /* handle gracefully */ } );
+}
+```
+
+In response, the UA must ensure that: 
+* `local` reference spaces are allowed to be created based on the restrictions above
+* Any group of `local`, `local-floor`, and `bounded-floor` reference spaces that are capable of being related to one another must share a common native origin; this restriction does not apply when `unbounded` reference spaces are also permitted to be created
+* All `XRPose` and `XRViewerPose` 6DOF pose data computed using a `local` reference space is [limited](#limiting) to a reasonable distance from the reference space's native origin; the suggested default distance is 15 meters in each direction
+
+If these requirements are not met, the promise returned from `XRSession.requestReferenceSpace()` must be rejected.
+
+## Other XRSpaces
+### XRInputSource
