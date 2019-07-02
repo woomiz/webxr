@@ -120,8 +120,8 @@ function onSessionRafCallback(XRFrame frame) {
 
 In addition to meeting the [`XRPose`](#xrpose) requirements, every call to `XRFrame.getViewerPose()` which will return more than one `XRView` must additionally ensure that:
 * User intention is well understood, either via [explicit consent](#explicit-consent) or [implied consent](#implied-consent)
-* If `XRView` data is affected by settings that may vary from device to device, such as static interpupillary distance or variations in screen geometry, then the XRView data must be anonymized to prevent fingerprinting. Specific approaches to this are at the discretion of the user agent.
-* If `XRView` data is affected by a user-configured interpupillary distance, then the XRView data must be anonymized to prevent profiling as well as fingerprinting. Specific approaches to this are at the discretion of the user agent.
+* If `XRView` data is affected by settings that may vary from device to device, such as static interpupillary distance, variations in screen geometry, or user-configured interpupillary distance, then the XRView data must be anonymized to prevent fingerprinting. Specific approaches to this are at the discretion of the user agent.
+* If `XRView` data is affected by a user-configured interpupillary distance, then it is strongly recommended that the UA required explicit consent during the creation of the `XRReferenceSpace` passed into `XRFrame.getViewerPose()`.
 
 ## Reference spaces
 ### Unbounded reference spaces
