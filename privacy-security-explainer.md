@@ -84,7 +84,7 @@ In response, the UA must ensure that:
 * The request originates from a [trustworthy document and origin](#trustworthy-documents-and-origins)
 * The request originates from a document that is [visible and has focus](#visibility-and-focus)
 * The request originates from a document allowed to use the WebXR [feature policy](#feature-policy) as well as the [underlying sensors' feature policies](#underlying-sensors-feature-policies)
-* User intention is well understood, either via [explicit consent](#explicit-consent) or [implicit consent](#implict-consent)
+* User intention is well understood, either via [explicit consent](#explicit-consent) or [implied consent](#implied-consent)
 
 If these requirements are not met, the promise returned from `requestSession()` must reject.
 
@@ -101,7 +101,7 @@ function onSessionRafCallback(XRFrame frame) {
 ```
 
 For every call to `XRFrame.getPose()`, the UA must ensure that:
-* User intention is well understood, either via [explicit consent](#explicit-consent) or [implicit consent](#implict-consent); alternatively, in cases where the user experience is not negatively affected, [data adjustments](#data-adjustments) may be applied
+* User intention is well understood, either via [explicit consent](#explicit-consent) or [implied consent](#implied-consent); alternatively, in cases where the user experience is not negatively affected, [data adjustments](#data-adjustments) may be applied to prevent the fingerprinting of underlying sensor data
 * The request originates from the document which owns the `XRFrame`'s `XRSession`
 * The document is [visible and has focus](#visibility-and-focus)
 * The `XRSession.visibility` is set to `visible` 
@@ -119,7 +119,7 @@ function onSessionRafCallback(XRFrame frame) {
 ```
 
 In addition to meeting the [`XRPose`](#xrpose) requirements, every call to `XRFrame.getViewerPose()` which will return more than one `XRView` must additionally ensure that:
-* User intention is well understood, either via [explicit consent](#explicit-consent) or [implicit consent](#implict-consent)
+* User intention is well understood, either via [explicit consent](#explicit-consent) or [implied consent](#implied-consent)
 * If `XRView` data is affected by settings that may vary from device to device, such as static interpupillary distance or variations in screen geometry, then the XRView data must be anonymized to prevent fingerprinting. Specific approaches to this are at the discretion of the user agent.
 * If `XRView` data is affected by a user-configured interpupillary distance, then the XRView data must be anonymized to prevent profiling as well as fingerprinting. Specific approaches to this are at the discretion of the user agent.
 
@@ -138,7 +138,7 @@ function onARClick() {
 
 In response the UA must ensure that:
 * The document is allowed to use all the policy-controlled features associated with the sensor types used to track the native origin of an unbounded reference space
-* User intention is well understood, either via [explicit consent](#explicit-consent) or [implicit consent](#implict-consent)
+* User intention is well understood, either via [explicit consent](#explicit-consent) or [implied consent](#implied-consent)
 * The XR device is capable of unbounded tracking
 
 If these requirements are not met and `unbounded` is listed in `XRSessionInit.requiredFeatures` then the promise returned from `requestSession()` must be rejected. Otherwise, the promise may be fulfilled but future calls to `XRSession.requestReferenceSpace()` must fail when passed `unbounded`.
@@ -172,7 +172,7 @@ xr.requestSession('inline', { optionalFeatures: ['bounded-floor'] } )
 
 In response, the UA must ensure that:
 * The document is allowed to use all the policy-controlled features associated with the sensor types used to track the native origin of a bounded reference space
-* User intention is well understood, either via [explicit consent](#explicit-consent) or [implicit consent](#implict-consent)
+* User intention is well understood, either via [explicit consent](#explicit-consent) or [implied consent](#implied-consent)
 * The device is capable of bounded tracking
 
 If these requirements are not met and `bounded-floor` is listed in `XRSessionInit.requiredFeatures` then the promise returned from `requestSession()` must be rejected. Otherwise, the promise may be fulfilled but future calls to `XRSession.requestReferenceSpace()` must fail when passed `bounded-floor`.
@@ -193,7 +193,7 @@ In response, the UA must ensure that:
 * Any group of `local`, `local-floor`, and `bounded-floor` reference spaces that are capable of being related to one another must share a common native origin; this restriction does not apply when `unbounded` reference spaces are also able to be created
 * `XRBoundedReferenceSpace.boundsGeometry` must be [limited](#limiting) to a reasonable distance from the reference space's native origin; the suggested default distance is 15 meters in each direction
 * Each point in the `XRBoundedReferenceSpace.boundsGeometry` must be [rounded](#rounding) sufficiently to prevent fingerprinting while still ensuring the rounded bounds geometry fits inside the original shape. Rounding to the nearest 5cm is suggested.
-* If the floor level is based on sensor data or is set to a non-default emulated value, the `y` value of the native origin must be [rounded](#rounding) sufficiently to prevent fingerprinting and profiling; rounding to the nearest 1cm is suggested
+* If the floor level is based on sensor data or is set to a non-default emulated value, the `y` value of the native origin must be [rounded](#rounding) sufficiently to prevent fingerprinting of lower-order bits; rounding to the nearest 1cm is suggested
 * All `XRPose` and `XRViewerPose` 6DOF pose data computed using a `bounded-floor` reference space must be [limited](#limiting) to a reasonable distance beyond the `boundsGeometry` in all directions; the suggested distance is 1 meter beyond the bounds in all directions
 
 If these requirements are not met, the promise returned from `XRSession.requestReferenceSpace()` must be rejected.
@@ -212,7 +212,7 @@ function onVRClick() {
 
 In response, the UA must ensure that:
 * The document is allowed to use all the policy-controlled features associated with the sensor types used to track the native origin of a `local-floor` reference space
-* User intention is well understood, either via [explicit consent](#explicit-consent) or [implicit consent](#implict-consent)
+* User intention is well understood, either via [explicit consent](#explicit-consent) or [implied consent](#implied-consent)
 * The device is capable of `local-floor` tracking
 
 If these requirements are not met and `local-floor` is listed in `XRSessionInit.requiredFeatures` then the promise returned from `requestSession()` must be rejected. Otherwise, the promise may be fulfilled but future calls to `XRSession.requestReferenceSpace()` must fail when passed `local-floor`.
@@ -231,7 +231,7 @@ function onSessionCreated(session) {
 In response, the UA must ensure that: 
 * `local-floor` reference spaces are allowed to be created based on the restrictions above
 * Any group of `local`, `local-floor`, and `bounded-floor` reference spaces that are capable of being related to one another must share a common native origin; this restriction does not apply when `unbounded` reference spaces are also permitted to be created
-* If the floor level is based on sensor data or is set to a non-default emulated value, the `y` value of the native origin must be [rounded](#rounding) sufficiently to prevent fingerprinting and profiling; rounding to the nearest 1cm is suggested
+* If the floor level is based on sensor data or is set to a non-default emulated value, the `y` value of the native origin must be [rounded](#rounding) sufficiently to prevent fingerprinting of lower-order bits; rounding to the nearest 1cm is suggested
 * All `XRPose` and `XRViewerPose` 6DOF pose data computed using a `local-floor` reference space is [limited](#limiting) to a reasonable distance from the reference space's native origin; the suggested default distance is 15 meters in each direction
 
 If these requirements are not met, the promise returned from `XRSession.requestReferenceSpace()` must be rejected.
@@ -254,7 +254,7 @@ function onVRClick() {
 
 In response, the UA must ensure that:
 * The document is allowed to use all the policy-controlled features associated with the sensor types used to track the native origin of a `local` reference space
-* If the session mode is `inline`, user intention is well understood, either via [explicit consent](#explicit-consent) or [implicit consent](#implict-consent)
+* If the session mode is `inline`, user intention is well understood, either via [explicit consent](#explicit-consent) or [implied consent](#implied-consent)
 * The device is capable of `local` tracking
 
 If the session is `immersive-ar` or `immersive-vr` and these requirements are not met then the promise returned from `requestSession()` must be rejected.  If the session is `inline` and has `local` listed in `XRSessionInit.requiredFeatures` then the promise returned from `requestSession()` must also be rejected. Otherwise, the promise may be fulfilled but future calls to `XRSession.requestReferenceSpace()` must fail when passed `local`.
