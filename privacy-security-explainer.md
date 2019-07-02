@@ -276,6 +276,3 @@ In response, the UA must ensure that:
 * All `XRPose` and `XRViewerPose` 6DOF pose data computed using a `local` reference space is [limited](#limiting) to a reasonable distance from the reference space's native origin; the suggested default distance is 15 meters in each direction
 
 If these requirements are not met, the promise returned from `XRSession.requestReferenceSpace()` must be rejected.
-
-## Other XRSpaces
-### XRInputSource
