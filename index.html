@@ -1695,7 +1695,6 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
      <ol class="toc">
       <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
-      <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
      </ol>
     <li><a href="#idl-index"><span class="secno"></span> <span class="content">IDL Index</span></a>
    </ol>
@@ -3236,6 +3235,8 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
     <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRWebGLLayer" data-dfn-type="method" data-export id="dom-xrwebgllayer-getviewport"><code>getViewport(<var>view</var>)</code></dfn> method, when invoked, MUST run the following steps:</p>
     <ol>
      <li data-md>
+      <p>Let <var>layer</var> be the target <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②①">XRWebGLLayer</a></code>.</p>
+     <li data-md>
       <p>If <var>layer</var> was created with a different <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑧①">XRSession</a></code> than the one that produced <var>view</var> return <code>null</code>.</p>
      <li data-md>
       <p>Let <var>glViewport</var> be the <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.4" id="ref-for-5.14.4④">WebGL viewport</a> from the <a data-link-type="dfn" href="#list-of-viewports" id="ref-for-list-of-viewports①">list of viewports</a> associated with <var>view</var>.</p>
@@ -3279,7 +3280,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
     </ol>
    </div>
    <h3 class="heading settled" data-level="11.2" id="contextcompatibility"><span class="secno">11.2. </span><span class="content">WebGL Context Compatibility</span><a class="self-link" href="#contextcompatibility"></a></h3>
-   <p>In order for a WebGL context to be used as a source for immersive XR imagery it must be created on a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="compatible-graphics-adapter">compatible graphics adapter</dfn> for the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device①⑥">immersive XR device</a>. What is considered a <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter">compatible graphics adapter</a> is platform dependent, but is understood to mean that the graphics adapter can supply imagery to the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device①⑦">immersive XR device</a> without undue latency. If a WebGL context was not already created on the <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter①">compatible graphics adapter</a>, it typically must be re-created on the adapter in question before it can be used with an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②①">XRWebGLLayer</a></code>.</p>
+   <p>In order for a WebGL context to be used as a source for immersive XR imagery it must be created on a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="compatible-graphics-adapter">compatible graphics adapter</dfn> for the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device①⑥">immersive XR device</a>. What is considered a <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter">compatible graphics adapter</a> is platform dependent, but is understood to mean that the graphics adapter can supply imagery to the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device①⑦">immersive XR device</a> without undue latency. If a WebGL context was not already created on the <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter①">compatible graphics adapter</a>, it typically must be re-created on the adapter in question before it can be used with an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②②">XRWebGLLayer</a></code>.</p>
    <p class="note" role="note"><span>Note:</span> On an XR platform with a single GPU, it can safely be assumed that the GPU is compatible with the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device①⑧">immersive XR device</a>s advertised by the platform, and thus any hardware accelerated WebGL contexts are compatible as well. On PCs with both an integrated and discrete GPU the discrete GPU is often considered the <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter②">compatible graphics adapter</a> since it generally a higher performance chip. On desktop PCs with multiple graphics adapters installed, the one with the <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device①⑨">immersive XR device</a> physically connected to it is likely to be considered the <a data-link-type="dfn" href="#compatible-graphics-adapter" id="ref-for-compatible-graphics-adapter③">compatible graphics adapter</a>.</p>
    <p class="note" role="note"><span>Note:</span> <code class="idl"><a data-link-type="idl" href="#dom-xrsessionmode-inline" id="ref-for-dom-xrsessionmode-inline①④">"inline"</a></code> sessions render using the same graphics adapter as canvases, and thus do not need <code class="idl"><a data-link-type="idl" href="#dom-webglcontextattributes-xrcompatible" id="ref-for-dom-webglcontextattributes-xrcompatible">xrCompatible</a></code> contexts.</p>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>dictionary</c-> <a class="idl-code" data-link-type="dictionary" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLContextAttributes" id="ref-for-WebGLContextAttributes①"><c- g>WebGLContextAttributes</c-></a> {
@@ -3306,7 +3307,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
     </ol>
    </div>
    <div class="example" id="example-81ea8b88">
-    <a class="self-link" href="#example-81ea8b88"></a> The following code creates a WebGL context that is compatible with an <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device②②">immersive XR device</a> and then uses it to create an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②②">XRWebGLLayer</a></code>. 
+    <a class="self-link" href="#example-81ea8b88"></a> The following code creates a WebGL context that is compatible with an <a data-link-type="dfn" href="#xr-immersive-xr-device" id="ref-for-xr-immersive-xr-device②②">immersive XR device</a> and then uses it to create an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②③">XRWebGLLayer</a></code>. 
 <pre class="highlight"><c- a>function</c-> onXRSessionStarted<c- p>(</c->xrSession<c- p>)</c-> <c- p>{</c->
   <c- a>let</c-> glCanvas <c- o>=</c-> document<c- p>.</c->createElement<c- p>(</c-><c- u>"canvas"</c-><c- p>);</c->
   <c- a>let</c-> gl <c- o>=</c-> glCanvas<c- p>.</c->getContext<c- p>(</c-><c- u>"webgl"</c-><c- p>,</c-> <c- p>{</c-> xrCompatible<c- o>:</c-> <c- kc>true</c-> <c- p>});</c->
@@ -3367,7 +3368,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
     </ol>
    </div>
    <div class="example" id="example-d1414183">
-    <a class="self-link" href="#example-d1414183"></a> The following code creates an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②③">XRWebGLLayer</a></code> from a pre-existing WebGL context. 
+    <a class="self-link" href="#example-d1414183"></a> The following code creates an <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②④">XRWebGLLayer</a></code> from a pre-existing WebGL context. 
 <pre class="highlight"><c- a>let</c-> glCanvas <c- o>=</c-> document<c- p>.</c->createElement<c- p>(</c-><c- u>"canvas"</c-><c- p>);</c->
 <c- a>let</c-> gl <c- o>=</c-> glCanvas<c- p>.</c->getContext<c- p>(</c-><c- u>"webgl"</c-><c- p>);</c->
 
@@ -4068,6 +4069,12 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-dom-dompointreadonly-z③">8.4. XRRay</a> <a href="#ref-for-dom-dompointreadonly-z④">(2)</a> <a href="#ref-for-dom-dompointreadonly-z⑤">(3)</a> <a href="#ref-for-dom-dompointreadonly-z⑥">(4)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-domhighrestimestamp">
+   <a href="https://www.w3.org/TR/hr-time/#dom-domhighrestimestamp">https://www.w3.org/TR/hr-time/#dom-domhighrestimestamp</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-domhighrestimestamp">4.3. Animation Frames</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-eventhandler">
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler</a><b>Referenced in:</b>
    <ul>
@@ -4238,6 +4245,137 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-resolve-promise">3.2. XR</a> <a href="#ref-for-resolve-promise①">(2)</a> <a href="#ref-for-resolve-promise②">(3)</a>
     <li><a href="#ref-for-resolve-promise③">4.1. XRSession</a> <a href="#ref-for-resolve-promise④">(2)</a>
     <li><a href="#ref-for-resolve-promise⑤">11.2. WebGL Context Compatibility</a> <a href="#ref-for-resolve-promise⑥">(2)</a> <a href="#ref-for-resolve-promise⑦">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-WebGL2RenderingContext">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/2.0/#WebGL2RenderingContext">https://www.khronos.org/registry/webgl/specs/latest/2.0/#WebGL2RenderingContext</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-WebGL2RenderingContext">11.1. XRWebGLLayer</a> <a href="#ref-for-WebGL2RenderingContext①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-WebGLRenderingContextBase">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase">https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-WebGLRenderingContextBase">3.2. XR</a>
+    <li><a href="#ref-for-WebGLRenderingContextBase①">11.1. XRWebGLLayer</a> <a href="#ref-for-WebGLRenderingContextBase②">(2)</a> <a href="#ref-for-WebGLRenderingContextBase③">(3)</a>
+    <li><a href="#ref-for-WebGLRenderingContextBase④">11.2. WebGL Context Compatibility</a> <a href="#ref-for-WebGLRenderingContextBase⑤">(2)</a> <a href="#ref-for-WebGLRenderingContextBase⑥">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-WebGLRenderingContextBase">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase">https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-WebGLRenderingContextBase">3.2. XR</a>
+    <li><a href="#ref-for-WebGLRenderingContextBase①">11.1. XRWebGLLayer</a> <a href="#ref-for-WebGLRenderingContextBase②">(2)</a> <a href="#ref-for-WebGLRenderingContextBase③">(3)</a>
+    <li><a href="#ref-for-WebGLRenderingContextBase④">11.2. WebGL Context Compatibility</a> <a href="#ref-for-WebGLRenderingContextBase⑤">(2)</a> <a href="#ref-for-WebGLRenderingContextBase⑥">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-WebGLRenderingContextBase">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase">https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-WebGLRenderingContextBase">3.2. XR</a>
+    <li><a href="#ref-for-WebGLRenderingContextBase①">11.1. XRWebGLLayer</a> <a href="#ref-for-WebGLRenderingContextBase②">(2)</a> <a href="#ref-for-WebGLRenderingContextBase③">(3)</a>
+    <li><a href="#ref-for-WebGLRenderingContextBase④">11.2. WebGL Context Compatibility</a> <a href="#ref-for-WebGLRenderingContextBase⑤">(2)</a> <a href="#ref-for-WebGLRenderingContextBase⑥">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-WebGLContextAttributes">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLContextAttributes">https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLContextAttributes</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-WebGLContextAttributes">11.1. XRWebGLLayer</a>
+    <li><a href="#ref-for-WebGLContextAttributes①">11.2. WebGL Context Compatibility</a> <a href="#ref-for-WebGLContextAttributes②">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-WebGLFramebuffer">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLFramebuffer">https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLFramebuffer</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-WebGLFramebuffer">11.1. XRWebGLLayer</a> <a href="#ref-for-WebGLFramebuffer①">(2)</a> <a href="#ref-for-WebGLFramebuffer②">(3)</a> <a href="#ref-for-WebGLFramebuffer③">(4)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-WebGLRenderingContext">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContext">https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContext</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-WebGLRenderingContext">4.1. XRSession</a>
+    <li><a href="#ref-for-WebGLRenderingContext①">11.1. XRWebGLLayer</a> <a href="#ref-for-WebGLRenderingContext②">(2)</a> <a href="#ref-for-WebGLRenderingContext③">(3)</a> <a href="#ref-for-WebGLRenderingContext④">(4)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-WebGLRenderingContextBase">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase">https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-WebGLRenderingContextBase">3.2. XR</a>
+    <li><a href="#ref-for-WebGLRenderingContextBase①">11.1. XRWebGLLayer</a> <a href="#ref-for-WebGLRenderingContextBase②">(2)</a> <a href="#ref-for-WebGLRenderingContextBase③">(3)</a>
+    <li><a href="#ref-for-WebGLRenderingContextBase④">11.2. WebGL Context Compatibility</a> <a href="#ref-for-WebGLRenderingContextBase⑤">(2)</a> <a href="#ref-for-WebGLRenderingContextBase⑥">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-actual-context-parameters">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#actual-context-parameters">https://www.khronos.org/registry/webgl/specs/latest/1.0/#actual-context-parameters</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-actual-context-parameters">11.1. XRWebGLLayer</a> <a href="#ref-for-actual-context-parameters①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-5.14.6">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.6">https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.6</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-5.14.6">11.1. XRWebGLLayer</a> <a href="#ref-for-5.14.6①">(2)</a> <a href="#ref-for-5.14.6②">(3)</a> <a href="#ref-for-5.14.6③">(4)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-2.1">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#2.1">https://www.khronos.org/registry/webgl/specs/latest/1.0/#2.1</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-2.1">11.2. WebGL Context Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-5.14.6">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.6">https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.6</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-5.14.6">11.1. XRWebGLLayer</a> <a href="#ref-for-5.14.6①">(2)</a> <a href="#ref-for-5.14.6②">(3)</a> <a href="#ref-for-5.14.6③">(4)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-5.14.6">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.6">https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.6</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-5.14.6">11.1. XRWebGLLayer</a> <a href="#ref-for-5.14.6①">(2)</a> <a href="#ref-for-5.14.6②">(3)</a> <a href="#ref-for-5.14.6③">(4)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-5.14.6">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.6">https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.6</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-5.14.6">11.1. XRWebGLLayer</a> <a href="#ref-for-5.14.6①">(2)</a> <a href="#ref-for-5.14.6②">(3)</a> <a href="#ref-for-5.14.6③">(4)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-5.14.7">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.7">https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.7</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-5.14.7">11.1. XRWebGLLayer</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-CONTEXT_LOST">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#CONTEXT_LOST">https://www.khronos.org/registry/webgl/specs/latest/1.0/#CONTEXT_LOST</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-CONTEXT_LOST">11.2. WebGL Context Compatibility</a> <a href="#ref-for-CONTEXT_LOST①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-restore-the-drawing-buffer">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#restore-the-drawing-buffer">https://www.khronos.org/registry/webgl/specs/latest/1.0/#restore-the-drawing-buffer</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-restore-the-drawing-buffer">11.2. WebGL Context Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-5.14.10">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.10">https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.10</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-5.14.10">8.1. Matrices</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-webgl-context-lost-flag">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#webgl-context-lost-flag">https://www.khronos.org/registry/webgl/specs/latest/1.0/#webgl-context-lost-flag</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-webgl-context-lost-flag">11.2. WebGL Context Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-5.14.4">
+   <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.4">https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.4</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-5.14.4">7.2. XRViewport</a> <a href="#ref-for-5.14.4①">(2)</a>
+    <li><a href="#ref-for-5.14.4②">11.1. XRWebGLLayer</a> <a href="#ref-for-5.14.4③">(2)</a> <a href="#ref-for-5.14.4④">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-aborterror">
@@ -4477,6 +4615,11 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
      <li><span class="dfn-paneled" id="term-for-dom-dompointreadonly-z" style="color:initial">z</span>
     </ul>
    <li>
+    <a data-link-type="biblio">[high resolution time]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-dom-domhighrestimestamp" style="color:initial">DOMHighResTimeStamp</span>
+    </ul>
+   <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-eventhandler" style="color:initial">EventHandler</span>
@@ -4504,7 +4647,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
      <li><span class="dfn-paneled" id="term-for-string" style="color:initial">string</span>
     </ul>
    <li>
-    <a data-link-type="biblio">[orientation-sensor]</a> defines the following terms:
+    <a data-link-type="biblio">[orientation sensor]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-absoluteorientationsensor" style="color:initial">AbsoluteOrientationSensor</span>
      <li><span class="dfn-paneled" id="term-for-relativeorientationsensor" style="color:initial">RelativeOrientationSensor</span>
@@ -4515,6 +4658,34 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
      <li><span class="dfn-paneled" id="term-for-a-new-promise" style="color:initial">a new promise</span>
      <li><span class="dfn-paneled" id="term-for-reject-promise" style="color:initial">reject</span>
      <li><span class="dfn-paneled" id="term-for-resolve-promise" style="color:initial">resolve</span>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[webgl 2.0]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-WebGL2RenderingContext" style="color:initial">WebGL2RenderingContext</span>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[WEBGL-2]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-WebGLRenderingContextBase" style="color:initial">FRAMEBUFFER_UNSUPPORTED</span>
+     <li><span class="dfn-paneled" id="term-for-WebGLRenderingContextBase①" style="color:initial">INVALID_FRAMEBUFFER_OPERATION</span>
+     <li><span class="dfn-paneled" id="term-for-WebGLRenderingContextBase②" style="color:initial">INVALID_OPERATION</span>
+     <li><span class="dfn-paneled" id="term-for-WebGLContextAttributes" style="color:initial">WebGLContextAttributes</span>
+     <li><span class="dfn-paneled" id="term-for-WebGLFramebuffer" style="color:initial">WebGLFramebuffer</span>
+     <li><span class="dfn-paneled" id="term-for-WebGLRenderingContext" style="color:initial">WebGLRenderingContext</span>
+     <li><span class="dfn-paneled" id="term-for-WebGLRenderingContextBase③" style="color:initial">WebGLRenderingContextBase</span>
+     <li><span class="dfn-paneled" id="term-for-actual-context-parameters" style="color:initial">actual context parameters</span>
+     <li><span class="dfn-paneled" id="term-for-5.14.6" style="color:initial">checkFramebufferStatus</span>
+     <li><span class="dfn-paneled" id="term-for-2.1" style="color:initial">create the webgl context</span>
+     <li><span class="dfn-paneled" id="term-for-5.14.6①" style="color:initial">framebufferRenderbuffer</span>
+     <li><span class="dfn-paneled" id="term-for-5.14.6②" style="color:initial">framebufferTexture2D</span>
+     <li><span class="dfn-paneled" id="term-for-5.14.6③" style="color:initial">getFramebufferAttachmentParameter</span>
+     <li><span class="dfn-paneled" id="term-for-5.14.7" style="color:initial">getRenderbufferParameter</span>
+     <li><span class="dfn-paneled" id="term-for-CONTEXT_LOST" style="color:initial">handle the context loss</span>
+     <li><span class="dfn-paneled" id="term-for-restore-the-drawing-buffer" style="color:initial">restore the context</span>
+     <li><span class="dfn-paneled" id="term-for-5.14.10" style="color:initial">uniformMatrix4fv</span>
+     <li><span class="dfn-paneled" id="term-for-webgl-context-lost-flag" style="color:initial">webgl context lost flag</span>
+     <li><span class="dfn-paneled" id="term-for-5.14.4" style="color:initial">webgl viewport</span>
     </ul>
    <li>
     <a data-link-type="biblio">[WebIDL]</a> defines the following terms:
@@ -4559,13 +4730,10 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <dd>Anne van Kesteren; Domenic Denicola. <a href="https://infra.spec.whatwg.org/">Infra Standard</a>. Living Standard. URL: <a href="https://infra.spec.whatwg.org/">https://infra.spec.whatwg.org/</a>
    <dt id="biblio-promises-guide">[PROMISES-GUIDE]
    <dd>Domenic Denicola. <a href="https://www.w3.org/2001/tag/doc/promises-guide">Writing Promise-Using Specifications</a>. 9 November 2018. TAG Finding. URL: <a href="https://www.w3.org/2001/tag/doc/promises-guide">https://www.w3.org/2001/tag/doc/promises-guide</a>
+   <dt id="biblio-webgl-2">[WEBGL-2]
+   <dd>Dean Jackson; Jeff Gilbert. <a href="https://www.khronos.org/registry/webgl/specs/latest/2.0/">WebGL 2.0 Specification</a>. 12 August 2017. URL: <a href="https://www.khronos.org/registry/webgl/specs/latest/2.0/">https://www.khronos.org/registry/webgl/specs/latest/2.0/</a>
    <dt id="biblio-webidl">[WebIDL]
    <dd>Boris Zbarsky. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
-  </dl>
-  <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
-  <dl>
-   <dt id="biblio-orientation-sensor">[ORIENTATION-SENSOR]
-   <dd>Kenneth Christiansen; Anssi Kostiainen. <a href="https://www.w3.org/TR/orientation-sensor/">Orientation Sensor</a>. 7 March 2019. WD. URL: <a href="https://www.w3.org/TR/orientation-sensor/">https://www.w3.org/TR/orientation-sensor/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/system-state.html#navigator" id="ref-for-navigator③"><c- g>Navigator</c-></a> {
@@ -4635,7 +4803,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③①"><c- b>double</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="double" href="#dom-xrrenderstate-depthnear" id="ref-for-dom-xrrenderstate-depthnear①①"><c- g>depthNear</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double④①"><c- b>double</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="double" href="#dom-xrrenderstate-depthfar" id="ref-for-dom-xrrenderstate-depthfar①①"><c- g>depthFar</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑤①"><c- b>double</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="double?" href="#dom-xrrenderstate-inlineverticalfieldofview" id="ref-for-dom-xrrenderstate-inlineverticalfieldofview⑤①"><c- g>inlineVerticalFieldOfView</c-></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrwebgllayer" id="ref-for-xrwebgllayer②④"><c- n>XRWebGLLayer</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRWebGLLayer?" href="#dom-xrrenderstate-baselayer" id="ref-for-dom-xrrenderstate-baselayer⑥①"><c- g>baseLayer</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#xrwebgllayer" id="ref-for-xrwebgllayer②⑤"><c- n>XRWebGLLayer</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="XRWebGLLayer?" href="#dom-xrrenderstate-baselayer" id="ref-for-dom-xrrenderstate-baselayer⑥①"><c- g>baseLayer</c-></a>;
 };
 
 <c- b>callback</c-> <a href="#callbackdef-xrframerequestcallback"><code><c- g>XRFrameRequestCallback</c-></code></a> = <c- b>void</c-> (<a class="n" data-link-type="idl-name" href="https://www.w3.org/TR/hr-time/#dom-domhighrestimestamp" id="ref-for-dom-domhighrestimestamp①"><c- n>DOMHighResTimeStamp</c-></a> <a href="#dom-xrframerequestcallback-time"><code><c- g>time</c-></code></a>, <a class="n" data-link-type="idl-name" href="#xrframe" id="ref-for-xrframe①⑦"><c- n>XRFrame</c-></a> <a href="#dom-xrframerequestcallback-frame"><code><c- g>frame</c-></code></a>);
@@ -6187,8 +6355,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-xrwebgllayer⑤">4.4. The XR Compositor</a>
     <li><a href="#ref-for-xrwebgllayer⑥">7.2. XRViewport</a> <a href="#ref-for-xrwebgllayer⑦">(2)</a>
     <li><a href="#ref-for-xrwebgllayer⑧">11. Layers</a>
-    <li><a href="#ref-for-xrwebgllayer⑨">11.1. XRWebGLLayer</a> <a href="#ref-for-xrwebgllayer①⓪">(2)</a> <a href="#ref-for-xrwebgllayer①①">(3)</a> <a href="#ref-for-xrwebgllayer①②">(4)</a> <a href="#ref-for-xrwebgllayer①③">(5)</a> <a href="#ref-for-xrwebgllayer①④">(6)</a> <a href="#ref-for-xrwebgllayer①⑤">(7)</a> <a href="#ref-for-xrwebgllayer①⑥">(8)</a> <a href="#ref-for-xrwebgllayer①⑦">(9)</a> <a href="#ref-for-xrwebgllayer①⑧">(10)</a> <a href="#ref-for-xrwebgllayer①⑨">(11)</a> <a href="#ref-for-xrwebgllayer②⓪">(12)</a>
-    <li><a href="#ref-for-xrwebgllayer②①">11.2. WebGL Context Compatibility</a> <a href="#ref-for-xrwebgllayer②②">(2)</a> <a href="#ref-for-xrwebgllayer②③">(3)</a>
+    <li><a href="#ref-for-xrwebgllayer⑨">11.1. XRWebGLLayer</a> <a href="#ref-for-xrwebgllayer①⓪">(2)</a> <a href="#ref-for-xrwebgllayer①①">(3)</a> <a href="#ref-for-xrwebgllayer①②">(4)</a> <a href="#ref-for-xrwebgllayer①③">(5)</a> <a href="#ref-for-xrwebgllayer①④">(6)</a> <a href="#ref-for-xrwebgllayer①⑤">(7)</a> <a href="#ref-for-xrwebgllayer①⑥">(8)</a> <a href="#ref-for-xrwebgllayer①⑦">(9)</a> <a href="#ref-for-xrwebgllayer①⑧">(10)</a> <a href="#ref-for-xrwebgllayer①⑨">(11)</a> <a href="#ref-for-xrwebgllayer②⓪">(12)</a> <a href="#ref-for-xrwebgllayer②①">(13)</a>
+    <li><a href="#ref-for-xrwebgllayer②②">11.2. WebGL Context Compatibility</a> <a href="#ref-for-xrwebgllayer②③">(2)</a> <a href="#ref-for-xrwebgllayer②④">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrwebgllayer-context">
