@@ -143,7 +143,7 @@ In response the UA must ensure that:
 
 If these requirements are not met and `unbounded` is listed in `XRSessionInit.requiredFeatures` then the promise returned from `requestSession()` must be rejected. Otherwise, the promise may be fulfilled but future calls to `XRSession.requestReferenceSpace()` must fail when passed `unbounded`.
 
-Once a session is created, developers may attempt to create a bounded reference space by passing `unbounded` into `XRSession.requestReferenceSpace()`.
+Once a session is created, developers may attempt to create an unbounded reference space by passing `unbounded` into `XRSession.requestReferenceSpace()`.
 
 ```js
 let xrReferenceSpace;
@@ -194,12 +194,12 @@ In response, the UA must ensure that:
 * `XRBoundedReferenceSpace.boundsGeometry` must be [limited](#limiting) to a reasonable distance from the reference space's native origin; the suggested default distance is 15 meters in each direction
 * Each point in the `XRBoundedReferenceSpace.boundsGeometry` must be [rounded](#rounding) sufficiently to prevent fingerprinting while still ensuring the rounded bounds geometry fits inside the original shape. Rounding to the nearest 5cm is suggested.
 * If the floor level is based on sensor data or is set to a non-default emulated value, the `y` value of the native origin must be [rounded](#rounding) sufficiently to prevent fingerprinting of lower-order bits; rounding to the nearest 1cm is suggested
-* All `XRPose` and `XRViewerPose` 6DOF pose data computed using a `bounded-floor` reference space must be [limited](#limiting) to a reasonable distance beyond the `boundsGeometry` in all directions; the suggested distance is 1 meter beyond the bounds in all directions
+* All `XRPose` and `XRViewerPose` 6DoF pose data computed using a `bounded-floor` reference space must be [limited](#limiting) to a reasonable distance beyond the `boundsGeometry` in all directions; the suggested distance is 1 meter beyond the bounds in all directions
 
 If these requirements are not met, the promise returned from `XRSession.requestReferenceSpace()` must be rejected.
 
 ### Local-floor spaces
-On devices which support 6-DOF tracking, `local-floor` reference spaces may be used to perform gait analysis, allowing user profiling and fingerprinting. In addition, because the `local-floor` reference spaces provide an established floor level, it may be possible for a site to infer the user’s height, allowing user profiling and fingerprinting.  
+On devices which support 6DoF tracking, `local-floor` reference spaces may be used to perform gait analysis, allowing user profiling and fingerprinting. In addition, because the `local-floor` reference spaces provide an established floor level, it may be possible for a site to infer the user’s height, allowing user profiling and fingerprinting.  
 
 Developers indicate the desire for `local-floor` viewer tracking at the time of session creation by adding `local-floor` to either `XRSessionInit.requiredFeatures` or `XRSessionInit.optionalFeatures`.
 
@@ -232,12 +232,12 @@ In response, the UA must ensure that:
 * `local-floor` reference spaces are allowed to be created based on the restrictions above
 * Any group of `local`, `local-floor`, and `bounded-floor` reference spaces that are capable of being related to one another must share a common native origin; this restriction does not apply when `unbounded` reference spaces are also permitted to be created
 * If the floor level is based on sensor data or is set to a non-default emulated value, the `y` value of the native origin must be [rounded](#rounding) sufficiently to prevent fingerprinting of lower-order bits; rounding to the nearest 1cm is suggested
-* All `XRPose` and `XRViewerPose` 6DOF pose data computed using a `local-floor` reference space is [limited](#limiting) to a reasonable distance from the reference space's native origin; the suggested default distance is 15 meters in each direction
+* All `XRPose` and `XRViewerPose` 6DoF pose data computed using a `local-floor` reference space is [limited](#limiting) to a reasonable distance from the reference space's native origin; the suggested default distance is 15 meters in each direction
 
 If these requirements are not met, the promise returned from `XRSession.requestReferenceSpace()` must be rejected.
 
 ### Local reference spaces
-On devices which support 6-DOF tracking, `local` reference spaces may be used to perform gait analysis, allowing user profiling and fingerprinting.
+On devices which support 6DoF tracking, `local` reference spaces may be used to perform gait analysis, allowing user profiling and fingerprinting.
 
 When creating an `immersive-vr` or `immersive-ar` session, developers do not need to explicitly request the desire for `local` viewer tracking. However, this desire must be indicated when creating an `inline` session by adding `local` to either `XRSessionInit.requiredFeatures` or `XRSessionInit.optionalFeatures`. 
 
@@ -273,6 +273,6 @@ function onSessionCreated(session) {
 In response, the UA must ensure that: 
 * `local` reference spaces are allowed to be created based on the restrictions above
 * Any group of `local`, `local-floor`, and `bounded-floor` reference spaces that are capable of being related to one another must share a common native origin; this restriction does not apply when `unbounded` reference spaces are also permitted to be created
-* All `XRPose` and `XRViewerPose` 6DOF pose data computed using a `local` reference space is [limited](#limiting) to a reasonable distance from the reference space's native origin; the suggested default distance is 15 meters in each direction
+* All `XRPose` and `XRViewerPose` 6DoF pose data computed using a `local` reference space is [limited](#limiting) to a reasonable distance from the reference space's native origin; the suggested default distance is 15 meters in each direction
 
 If these requirements are not met, the promise returned from `XRSession.requestReferenceSpace()` must be rejected.
