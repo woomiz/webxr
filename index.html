@@ -1213,7 +1213,7 @@ Possible extra rowspan handling
 	}
 </style>
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet" type="text/css">
-  <meta content="Bikeshed version 9c51ae462b4b8b2f14dbddcd7d4b5224375eccc0" name="generator">
+  <meta content="Bikeshed version 39652c9ea7fd5d09639da5e1182cd481b0c5ae70" name="generator">
   <link href="https://www.w3.org/TR/webxr/" rel="canonical">
   <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
   <link href="favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
@@ -3360,7 +3360,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
      <li data-md>
       <p>Let <var>layer</var> be the target <code class="idl"><a data-link-type="idl" href="#xrwebgllayer" id="ref-for-xrwebgllayer②①">XRWebGLLayer</a></code>.</p>
      <li data-md>
-      <p>If <var>layer</var> was created with a different <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑧⑨">XRSession</a></code> than the one that produced <var>view</var> return <code>null</code>.</p>
+      <p>If <var>layer</var> was created with a different <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession⑧⑨">XRSession</a></code> than the one that produced <var>view</var>, throw an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①③">InvalidStateError</a></code> and abort these steps.</p>
      <li data-md>
       <p>Let <var>glViewport</var> be the <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.4" id="ref-for-5.14.4④">WebGL viewport</a> from the <a data-link-type="dfn" href="#list-of-viewports" id="ref-for-list-of-viewports①">list of viewports</a> associated with <var>view</var>.</p>
      <li data-md>
@@ -3453,7 +3453,7 @@ a3 a7 a11 a15     1     a3 * X + a7 * Y + a11 * Z + a15
        <li data-md>
         <p>Let <var>context</var> be the target <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WebGLRenderingContextBase" id="ref-for-WebGLRenderingContextBase⑥">WebGLRenderingContextBase</a></code> object.</p>
        <li data-md>
-        <p>If <var>context</var>’s <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#webgl-context-lost-flag" id="ref-for-webgl-context-lost-flag">WebGL context lost flag</a> is set, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑧">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①③">InvalidStateError</a></code> and abort these abort these steps.</p>
+        <p>If <var>context</var>’s <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#webgl-context-lost-flag" id="ref-for-webgl-context-lost-flag">WebGL context lost flag</a> is set, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#reject-promise" id="ref-for-reject-promise⑧">reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①④">InvalidStateError</a></code> and abort these abort these steps.</p>
        <li data-md>
         <p>If <var>context</var>’s <a data-link-type="dfn" href="#xr-compatible" id="ref-for-xr-compatible⑦">XR compatible</a> boolean is <code>true</code>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#resolve-promise" id="ref-for-resolve-promise⑤">resolve</a> <var>promise</var> and abort these steps.</p>
        <li data-md>
@@ -4673,8 +4673,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-invalidstateerror⑤">5.1. XRFrame</a>
     <li><a href="#ref-for-invalidstateerror⑥">6.1. XRSpace</a> <a href="#ref-for-invalidstateerror⑦">(2)</a> <a href="#ref-for-invalidstateerror⑧">(3)</a>
     <li><a href="#ref-for-invalidstateerror⑨">8.2. Normalization</a>
-    <li><a href="#ref-for-invalidstateerror①⓪">11.1. XRWebGLLayer</a> <a href="#ref-for-invalidstateerror①①">(2)</a> <a href="#ref-for-invalidstateerror①②">(3)</a>
-    <li><a href="#ref-for-invalidstateerror①③">11.2. WebGL Context Compatibility</a>
+    <li><a href="#ref-for-invalidstateerror①⓪">11.1. XRWebGLLayer</a> <a href="#ref-for-invalidstateerror①①">(2)</a> <a href="#ref-for-invalidstateerror①②">(3)</a> <a href="#ref-for-invalidstateerror①③">(4)</a>
+    <li><a href="#ref-for-invalidstateerror①④">11.2. WebGL Context Compatibility</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-notsupportederror">
