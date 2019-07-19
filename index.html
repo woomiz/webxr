@@ -1213,7 +1213,7 @@ Possible extra rowspan handling
 	}
 </style>
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet" type="text/css">
-  <meta content="Bikeshed version a3b64e58e069c2e8a9ffcadffb76601231663a47" name="generator">
+  <meta content="Bikeshed version 9c51ae462b4b8b2f14dbddcd7d4b5224375eccc0" name="generator">
   <link href="https://www.w3.org/TR/webxr/" rel="canonical">
   <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
   <link href="favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
@@ -1528,7 +1528,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-07-10">10 July 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-07-19">19 July 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1688,10 +1688,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
         <li><a href="#user-consent"><span class="secno">13.2.2</span> <span class="content">Implicit and Explicit consent</span></a>
         <li><a href="#consent-duration"><span class="secno">13.2.3</span> <span class="content">Duration of consent</span></a>
        </ol>
-      <li><a href="#gazetracking-security"><span class="secno">13.3</span> <span class="content">Gaze Tracking</span></a>
-      <li><a href="#trustedenvironment-security"><span class="secno">13.4</span> <span class="content">Trusted Environment</span></a>
-      <li><a href="#contextisolation-security"><span class="secno">13.5</span> <span class="content">Context Isolation</span></a>
-      <li><a href="#fingerprinting-security"><span class="secno">13.6</span> <span class="content">Fingerprinting</span></a>
+      <li><a href="#mid-session-consent"><span class="secno">13.3</span> <span class="content">Mid-session consent</span></a>
+      <li><a href="#gazetracking-security"><span class="secno">13.4</span> <span class="content">Gaze Tracking</span></a>
+      <li><a href="#trustedenvironment-security"><span class="secno">13.5</span> <span class="content">Trusted Environment</span></a>
+      <li><a href="#contextisolation-security"><span class="secno">13.6</span> <span class="content">Context Isolation</span></a>
+      <li><a href="#fingerprinting-security"><span class="secno">13.7</span> <span class="content">Fingerprinting</span></a>
      </ol>
     <li>
      <a href="#integrations"><span class="secno">14</span> <span class="content">Integrations</span></a>
@@ -3645,24 +3646,27 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <h4 class="heading settled" data-level="13.2.3" id="consent-duration"><span class="secno">13.2.3. </span><span class="content">Duration of consent</span><a class="self-link" href="#consent-duration"></a></h4>
     It is recommended that once <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent③">explicit consent</a> is granted for a specific <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a> that this consent persist until the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context">browsing context</a> has ended. User agents may choose to lengthen or shorten this consent duration based upon implicit or explicit signals of <a data-link-type="dfn" href="#user-intent" id="ref-for-user-intent⑨">user intent</a>, but implementations are advised to exercise caution when deviating from this recommendation, particularly when relying on implicit signals. For example, it may be appropriate for a web application installed with the express intent of running immersive content to persist the user’s consent, but not for an installed web application where immersive content is a secondary feature. 
    <p>Regardless of how long the user agent chooses to persist the user’s consent, <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑤">sensitive information</a> MUST only be exposed by an <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①②">XRSession</a></code> which has not <a data-link-type="dfn" href="#ended" id="ref-for-ended④">ended</a>.</p>
+   <h3 class="heading settled" data-level="13.3" id="mid-session-consent"><span class="secno">13.3. </span><span class="content">Mid-session consent</span><a class="self-link" href="#mid-session-consent"></a></h3>
+   <p>There are multiple non-XR APIs which cause user agents to request <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent④">explicit consent</a> to use a feature. If the user agent will request the user’s consent while there is an <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session⑤">active immersive session</a>, the user agent MUST <a data-link-type="dfn" href="#shut-down-the-session" id="ref-for-shut-down-the-session③">shut down the session</a> prior to displaying the consent request to the user. If the user’s consent for the feature had been granted prior to the <a data-link-type="dfn" href="#active-immersive-session" id="ref-for-active-immersive-session⑥">active immersive session</a> being created the session does not need to be terminated.</p>
+   <p class="note" role="note"><span>Note:</span> This limitation is to ensure that there is behavioral parity between all user agents until consensus is reached about how user agents should manage mid-session <a data-link-type="dfn" href="#explicit-consent" id="ref-for-explicit-consent⑤">explicit consent</a>. It is not expected to be a long term requirement.</p>
    <section class="unstable">
-    <h3 class="heading settled" data-level="13.3" id="gazetracking-security"><span class="secno">13.3. </span><span class="content">Gaze Tracking</span><a class="self-link" href="#gazetracking-security"></a></h3>
+    <h3 class="heading settled" data-level="13.4" id="gazetracking-security"><span class="secno">13.4. </span><span class="content">Gaze Tracking</span><a class="self-link" href="#gazetracking-security"></a></h3>
     <p>While the API does not yet expose eye tracking capabilities a lot can be inferred about where the user is looking by tracking the orientation of their head. This is especially true of XR devices that have limited input capabilities, such as Google Cardboard, which frequently require users to control a "gaze cursor" with their head orientation. This means that it may be possible for a malicious page to infer what a user is typing on a virtual keyboard or how they are interacting with a virtual UI based solely on monitoring their head movements. For example: if not prevented from doing so a page could estimate what URL a user is entering into the user agent’s URL bar.</p>
     <p>To prevent this risk the user agent MUST set the <a data-link-type="dfn" href="#xrsession-visibility-state" id="ref-for-xrsession-visibility-state⑥">visibility state</a> of all <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①③">XRSession</a></code>s to <code class="idl"><a data-link-type="idl" href="#dom-xrvisibilitystate-hidden" id="ref-for-dom-xrvisibilitystate-hidden①">"hidden"</a></code> when the user is interacting with sensitive, trusted UI such as URL bars or system dialogs. Additionally, to prevent a malicious page from being able to monitor input on other pages the user agent MUST set the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①④">XRSession</a></code>'s <a data-link-type="dfn" href="#xrsession-visibility-state" id="ref-for-xrsession-visibility-state⑦">visibility state</a> to <code class="idl"><a data-link-type="idl" href="#dom-xrvisibilitystate-hidden" id="ref-for-dom-xrvisibilitystate-hidden②">"hidden"</a></code> if the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#currently-focused-area-of-a-top-level-browsing-context" id="ref-for-currently-focused-area-of-a-top-level-browsing-context①">currently focused area</a> does belong to the document which created the <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①⑤">XRSession</a></code>.</p>
-    <h3 class="heading settled" data-level="13.4" id="trustedenvironment-security"><span class="secno">13.4. </span><span class="content">Trusted Environment</span><a class="self-link" href="#trustedenvironment-security"></a></h3>
+    <h3 class="heading settled" data-level="13.5" id="trustedenvironment-security"><span class="secno">13.5. </span><span class="content">Trusted Environment</span><a class="self-link" href="#trustedenvironment-security"></a></h3>
     <p>If the virtual environment does not consistently track the user’s head motion with low latency and at a high frame rate the user may become disoriented or physically ill. Since it is impossible to force pages to produce consistently performant and correct content the user agent MUST provide a tracked, trusted environment and an <a data-link-type="dfn" href="#xr-compositor" id="ref-for-xr-compositor⑤">XR Compositor</a> which runs asynchronously from page content. The compositor is responsible for compositing the trusted and untrusted content. If content is not performant, does not submit frames, or terminates unexpectedly the user agent should be able to continue presenting a responsive, trusted UI.</p>
     <p>Additionally, page content has the ability to make users uncomfortable in ways not related to performance. Badly applied tracking, strobing colors, and content intended to offend, frighten, or intimidate are examples of content which may cause the user to want to quickly exit the XR experience. Removing the XR device in these cases may not always be a fast or practical option. To accommodate this the user agent SHOULD provide users with an action, such as pressing a reserved hardware button or performing a gesture, that escapes out of WebXR content and displays the user agent’s trusted UI.</p>
     <p>When navigating between pages in XR the user agent should display trusted UI elements informing the user of the security information of the site they are navigating to which is normally presented by the 2D UI, such as the URL and encryption status.</p>
     <p><code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①⑥">XRSession</a></code>s MUST have their <a data-link-type="dfn" href="#xrsession-visibility-state" id="ref-for-xrsession-visibility-state⑧">visibility state</a> set to <code class="idl"><a data-link-type="idl" href="#dom-xrvisibilitystate-hidden" id="ref-for-dom-xrvisibilitystate-hidden③">"hidden"</a></code> when the user is interacting with potentially sensitive UI from the user agent (such as entering a URL) in the trusted environment.</p>
-    <h3 class="heading settled" data-level="13.5" id="contextisolation-security"><span class="secno">13.5. </span><span class="content">Context Isolation</span><a class="self-link" href="#contextisolation-security"></a></h3>
+    <h3 class="heading settled" data-level="13.6" id="contextisolation-security"><span class="secno">13.6. </span><span class="content">Context Isolation</span><a class="self-link" href="#contextisolation-security"></a></h3>
     <p>The trusted UI must be drawn by an independent rendering context whose state is isolated from any rendering contexts used by the page. (For example, any WebGL rendering contexts.) This is to prevent the page from corrupting the state of the trusted UI’s context, which may prevent it from properly rendering a tracked environment. It also prevents the possibility of the page being able to capture imagery from the trusted UI, which could lead to private information being leaked.</p>
     <p>Also, to prevent CORS-related vulnerabilities each page will see a new instance of objects returned by the API, such as <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession①①⑦">XRSession</a></code>. Attributes such as the <a data-link-type="dfn" href="#xrwebgllayer-context" id="ref-for-xrwebgllayer-context⑤">context</a> set by one page must not be able to be read by another. Similarly, methods invoked on the API MUST NOT cause an observable state change on other pages. For example: No method will be exposed that enables a system-level orientation reset, as this could be called repeatedly by a malicious page to prevent other pages from tracking properly. The user agent MUST, however, respect system-level orientation resets triggered by a user gesture or system menu.</p>
-    <h3 class="heading settled" data-level="13.6" id="fingerprinting-security"><span class="secno">13.6. </span><span class="content">Fingerprinting</span><a class="self-link" href="#fingerprinting-security"></a></h3>
+    <h3 class="heading settled" data-level="13.7" id="fingerprinting-security"><span class="secno">13.7. </span><span class="content">Fingerprinting</span><a class="self-link" href="#fingerprinting-security"></a></h3>
     <p>Given that the API describes hardware available to the user and its capabilities it will inevitably provide additional surface area for fingerprinting. While it’s impossible to completely avoid this, user agents should take steps to mitigate the issue. This spec limits reporting of available hardware to only a single device at a time, which prevents using the rare cases of multiple headsets being connected as a fingerprinting signal. Also, the devices that are reported have no string identifiers and expose very little information about the devices capabilities until an XRSession is created, which requires additional protections when <a data-link-type="dfn" href="#sensitive-information" id="ref-for-sensitive-information⑥">sensitive information</a> will be exposed.</p>
    </section>
    <h2 class="heading settled" data-level="14" id="integrations"><span class="secno">14. </span><span class="content">Integrations</span><a class="self-link" href="#integrations"></a></h2>
    <h3 class="heading settled" data-level="14.1" id="feature-policy"><span class="secno">14.1. </span><span class="content">Feature Policy</span><a class="self-link" href="#feature-policy"></a></h3>
-    This specification defines a <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled feature</a> that controls whether the <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr①">xr</a></code> attribute is exposed on the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#navigator" id="ref-for-navigator②">Navigator</a></code> object. 
+   <p>This specification defines a <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled feature</a> that controls whether the <code class="idl"><a data-link-type="idl" href="#dom-navigator-xr" id="ref-for-dom-navigator-xr①">xr</a></code> attribute is exposed on the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#navigator" id="ref-for-navigator②">Navigator</a></code> object.</p>
    <p>The feature identifier for this feature is <code>"xr"</code>.</p>
    <p>The <a data-link-type="dfn" href="https://wicg.github.io/feature-policy/#default-allowlist" id="ref-for-default-allowlist">default allowlist</a> for this feature is <code>["self"]</code>.</p>
    <p>In addition to the <code>"xr"</code> feature policy, feature policies for underlying sensors must also be respected if a site could isolate and extract sensor data that would otherwise be blocked by those feature policies.</p>
@@ -4306,7 +4310,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <a href="https://html.spec.whatwg.org/multipage/interaction.html#currently-focused-area-of-a-top-level-browsing-context">https://html.spec.whatwg.org/multipage/interaction.html#currently-focused-area-of-a-top-level-browsing-context</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-currently-focused-area-of-a-top-level-browsing-context">13.1.2. Active and focused document</a>
-    <li><a href="#ref-for-currently-focused-area-of-a-top-level-browsing-context①">13.3. Gaze Tracking</a>
+    <li><a href="#ref-for-currently-focused-area-of-a-top-level-browsing-context①">13.4. Gaze Tracking</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-event-handler-idl-attributes">
@@ -5365,6 +5369,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-active-immersive-session">3.2. XR</a> <a href="#ref-for-active-immersive-session①">(2)</a> <a href="#ref-for-active-immersive-session②">(3)</a>
     <li><a href="#ref-for-active-immersive-session③">4.1. XRSession</a> <a href="#ref-for-active-immersive-session④">(2)</a>
+    <li><a href="#ref-for-active-immersive-session⑤">13.3. Mid-session consent</a> <a href="#ref-for-active-immersive-session⑥">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="list-of-inline-sessions">
@@ -5539,9 +5544,9 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-xrsession⑨⑨">12.3. XRInputSourcesChangeEvent</a> <a href="#ref-for-xrsession①⓪⓪">(2)</a> <a href="#ref-for-xrsession①⓪①">(3)</a> <a href="#ref-for-xrsession①⓪②">(4)</a> <a href="#ref-for-xrsession①⓪③">(5)</a> <a href="#ref-for-xrsession①⓪④">(6)</a>
     <li><a href="#ref-for-xrsession①⓪⑤">12.5. Event Types</a> <a href="#ref-for-xrsession①⓪⑥">(2)</a> <a href="#ref-for-xrsession①⓪⑦">(3)</a> <a href="#ref-for-xrsession①⓪⑧">(4)</a> <a href="#ref-for-xrsession①⓪⑨">(5)</a> <a href="#ref-for-xrsession①①⓪">(6)</a> <a href="#ref-for-xrsession①①①">(7)</a>
     <li><a href="#ref-for-xrsession①①②">13.2.3. Duration of consent</a>
-    <li><a href="#ref-for-xrsession①①③">13.3. Gaze Tracking</a> <a href="#ref-for-xrsession①①④">(2)</a> <a href="#ref-for-xrsession①①⑤">(3)</a>
-    <li><a href="#ref-for-xrsession①①⑥">13.4. Trusted Environment</a>
-    <li><a href="#ref-for-xrsession①①⑦">13.5. Context Isolation</a>
+    <li><a href="#ref-for-xrsession①①③">13.4. Gaze Tracking</a> <a href="#ref-for-xrsession①①④">(2)</a> <a href="#ref-for-xrsession①①⑤">(3)</a>
+    <li><a href="#ref-for-xrsession①①⑥">13.5. Trusted Environment</a>
+    <li><a href="#ref-for-xrsession①①⑦">13.6. Context Isolation</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrsession-mode">
@@ -5566,6 +5571,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-shut-down-the-session">1.2. Application flow</a>
     <li><a href="#ref-for-shut-down-the-session①">3.2. XR</a>
     <li><a href="#ref-for-shut-down-the-session②">4.1. XRSession</a>
+    <li><a href="#ref-for-shut-down-the-session③">13.3. Mid-session consent</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="ended">
@@ -5726,8 +5732,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-xrsession-visibility-state">4.1. XRSession</a> <a href="#ref-for-xrsession-visibility-state①">(2)</a> <a href="#ref-for-xrsession-visibility-state②">(3)</a> <a href="#ref-for-xrsession-visibility-state③">(4)</a> <a href="#ref-for-xrsession-visibility-state④">(5)</a>
     <li><a href="#ref-for-xrsession-visibility-state⑤">12.5. Event Types</a>
-    <li><a href="#ref-for-xrsession-visibility-state⑥">13.3. Gaze Tracking</a> <a href="#ref-for-xrsession-visibility-state⑦">(2)</a>
-    <li><a href="#ref-for-xrsession-visibility-state⑧">13.4. Trusted Environment</a>
+    <li><a href="#ref-for-xrsession-visibility-state⑥">13.4. Gaze Tracking</a> <a href="#ref-for-xrsession-visibility-state⑦">(2)</a>
+    <li><a href="#ref-for-xrsession-visibility-state⑧">13.5. Trusted Environment</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrvisibilitystate-visible">
@@ -5747,8 +5753,8 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <b><a href="#dom-xrvisibilitystate-hidden">#dom-xrvisibilitystate-hidden</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-xrvisibilitystate-hidden">4.1. XRSession</a>
-    <li><a href="#ref-for-dom-xrvisibilitystate-hidden①">13.3. Gaze Tracking</a> <a href="#ref-for-dom-xrvisibilitystate-hidden②">(2)</a>
-    <li><a href="#ref-for-dom-xrvisibilitystate-hidden③">13.4. Trusted Environment</a>
+    <li><a href="#ref-for-dom-xrvisibilitystate-hidden①">13.4. Gaze Tracking</a> <a href="#ref-for-dom-xrvisibilitystate-hidden②">(2)</a>
+    <li><a href="#ref-for-dom-xrvisibilitystate-hidden③">13.5. Trusted Environment</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrsession-visibilitystate">
@@ -5951,7 +5957,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-xr-compositor">4.2. XRRenderState</a> <a href="#ref-for-xr-compositor①">(2)</a>
     <li><a href="#ref-for-xr-compositor②">11.1. XRWebGLLayer</a> <a href="#ref-for-xr-compositor③">(2)</a> <a href="#ref-for-xr-compositor④">(3)</a>
-    <li><a href="#ref-for-xr-compositor⑤">13.4. Trusted Environment</a>
+    <li><a href="#ref-for-xr-compositor⑤">13.5. Trusted Environment</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="xrframe">
@@ -6683,7 +6689,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-xrwebgllayer-context">4.1. XRSession</a>
     <li><a href="#ref-for-xrwebgllayer-context①">11.1. XRWebGLLayer</a> <a href="#ref-for-xrwebgllayer-context②">(2)</a> <a href="#ref-for-xrwebgllayer-context③">(3)</a> <a href="#ref-for-xrwebgllayer-context④">(4)</a>
-    <li><a href="#ref-for-xrwebgllayer-context⑤">13.5. Context Isolation</a>
+    <li><a href="#ref-for-xrwebgllayer-context⑤">13.6. Context Isolation</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-xrwebgllayer-xrwebgllayer">
@@ -6973,7 +6979,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
     <li><a href="#ref-for-sensitive-information③">13.1.2. Active and focused document</a>
     <li><a href="#ref-for-sensitive-information④">13.2.2. Implicit and Explicit consent</a>
     <li><a href="#ref-for-sensitive-information⑤">13.2.3. Duration of consent</a>
-    <li><a href="#ref-for-sensitive-information⑥">13.6. Fingerprinting</a>
+    <li><a href="#ref-for-sensitive-information⑥">13.7. Fingerprinting</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="trustworthy">
@@ -7002,6 +7008,7 @@ glCanvas<c- p>.</c->addEventListener<c- p>(</c-><c- u>"webglcontextrestored"</c-
    <ul>
     <li><a href="#ref-for-explicit-consent">3.4. Feature Dependencies</a> <a href="#ref-for-explicit-consent①">(2)</a> <a href="#ref-for-explicit-consent②">(3)</a>
     <li><a href="#ref-for-explicit-consent③">13.2.3. Duration of consent</a>
+    <li><a href="#ref-for-explicit-consent④">13.3. Mid-session consent</a> <a href="#ref-for-explicit-consent⑤">(2)</a>
    </ul>
   </aside>
 <script>/* script-var-click-highlighting */
