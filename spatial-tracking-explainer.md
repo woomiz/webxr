@@ -194,11 +194,8 @@ The `viewer` reference space is also useful when the developer wants to compare 
 ## Spatial relationships
 One of the core features of any XR platform is its ability to track spatial relationships. Tracking the position and orientation, referred to together as a "pose", of the viewer is perhaps the simplest example, but many other XR platform features, such as hit testing or anchors, are rooted in understanding the space the XR system is operating in. In WebXR any feature that tracks spatial relationships is built on top of the `XRSpace` interface. Each `XRSpace` represents something being tracked by the XR system, such as an `XRReferenceSpace`, and each has a "native origin" that represents it's position and orientation in the XR tracking system. It is only possible to know the location of one `XRSpace` relative to another `XRSpace` on a frame-by-frame basis.
 
-### Spatial coordinate types
-Coordinates accepted as input or provided as output from WebXR are always expressed within a specific `XRSpace` chosen by the developer. There are two key types used to express these spatial coordinates, `XRRigidTransform` and `XRRay`.
-
-#### Rigid transforms
-When working with real-world spaces, it is important to be able to express transforms exclusively in terms of position and orientation. In WebXR this is done through the `XRRigidTransform` which contains a `position` vector and an `orientation` quaternion. When interpreting an `XRRigidTransform` the `orientation` is applied prior to the `position`. This means that, for example, a transform that indicates a quarter rotation to the right and a 1-meter translation along -Z would place a transformed object at `[0, 0, -1]` facing to the right. `XRRigidTransform`s also have a `matrix` attribute that reports the same transform as a 4×4 matrix when needed. By definition, the matrix of a rigid transform cannot contain scale or skew.
+### Rigid Transforms
+Coordinates accepted as input or provided as output from WebXR are always expressed within a specific `XRSpace` chosen by the developer. When working with real-world spaces, it is important to be able to express transforms exclusively in terms of position and orientation. In WebXR this is done through the `XRRigidTransform` which contains a `position` vector and an `orientation` quaternion. When interpreting an `XRRigidTransform` the `orientation` is applied prior to the `position`. This means that, for example, a transform that indicates a quarter rotation to the right and a 1-meter translation along -Z would place a transformed object at `[0, 0, -1]` facing to the right. `XRRigidTransform`s also have a `matrix` attribute that reports the same transform as a 4×4 matrix when needed. By definition, the matrix of a rigid transform cannot contain scale or skew.
 
 ### Poses
 On a frame-by-frame basis, developers can query the location of any `XRSpace` within another `XRSpace` via the `XRFrame.getPose()` function. This function takes the `space` parameter which is the `XRSpace` to locate and the `baseSpace` parameter which defines the coordinate system in which the resulting `XRPose` should be returned. The `transform` attribute of `XRPose` is an `XRRigidTransform` representing the location of `space` within `baseSpace`. 
@@ -451,15 +448,6 @@ interface XRRigidTransform {
   readonly attribute DOMPointReadOnly orientation;
   readonly attribute Float32Array matrix;
   [SameObject] readonly attribute XRRigidTransform inverse;
-};
-
-[SecureContext, Exposed=Window,
- Constructor(optional DOMPointInit origin, optional DOMPointInit direction),
- Constructor(XRRigidTransform transform)]
-interface XRRay {
-  readonly attribute DOMPointReadOnly origin;
-  readonly attribute DOMPointReadOnly direction;
-  readonly attribute Float32Array matrix;
 };
 
 //

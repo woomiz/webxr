@@ -159,7 +159,7 @@ function updateScene(timestamp, xrFrame) {
   let inputSourcePose = xrFrame.getPose(preferredInputSource.targetRaySpace, xrReferenceSpace);
   if (inputSourcePose) {
     // Invoke the example 3D engine to compute a virtual hit test
-    var virtualHitTestResult = scene.virtualHitTest(new XRRay(inputSourcePose.transform));
+    var virtualHitTestResult = scene.virtualHitTest(inputSourcePose.transform);
   }
 
   updateCursor(virtualHitTestResult);
