@@ -96,7 +96,7 @@ There are two XR modes that can be requested:
 
 It should be noted that an immersive VR session may still display the users environment on see-through displays such as a HoloLens. See [Handling non-opaque displays](#handling-non-opaque-displays) for more details.
 
-This document will use the term "immersive session" to refer to immersive VR session throughout.
+This document will use the term "immersive session" to refer to immersive VR sessions throughout.
 
 In the following examples we will explain the core API concepts using immersive VR sessions first, and cover the differences introduced by [inline sessions](#inline-sessions) afterwards. With that in mind, this code checks for support of immersive VR sessions, since we want the ability to display imagery on a device like a headset.
 
