@@ -55,20 +55,6 @@ spec: Orientation Sensor; urlPrefix: https://w3c.github.io/orientation-sensor/
     type: interface; text: RelativeOrientationSensor
 spec: WebIDL; urlPrefix: https://www.w3.org/TR/WebIDL-1/#
     type: dfn; text: invoke the Web IDL callback function; url:es-invoking-callback-functions
-spec: Gamepad; urlPrefix: https://w3c.github.io/gamepad/#
-    type: interface; text: Gamepad; url: dom-gamepad
-    type: interface; text: GamepadButton; url: dom-gamepadbutton
-    type: enum; text: GamepadMappingType; url: dom-gamepadmappingtype
-    type: method; text: navigator.getGamepads(); url: dom-navigator-getgamepads
-    type: attribute; text: id; for: Gamepad; url: dom-gamepad-id
-    type: attribute; text: index; for: Gamepad; url: dom-gamepad-index
-    type: attribute; text: mapping; for: Gamepad; url: dom-gamepad-mapping
-    type: attribute; text: connected; for: Gamepad; url: dom-gamepad-connected
-    type: attribute; text: buttons; for: Gamepad; url: dom-gamepad-buttons
-    type: attribute; text: axes; for: Gamepad; url: dom-gamepad-axes
-    type: attribute; text: touched; for: GamepadButton; url: dom-gamepadbutton-touched
-    type: attribute; text: pressed; for: GamepadButton; url: dom-gamepadbutton-pressed
-    type: attribute; text: value; for: GamepadButton; url: dom-gamepadbutton-value
 spec:html; urlPrefix: https://html.spec.whatwg.org/multipage/
     type:method; for:HTMLCanvasElement; text:getContext(contextId); url: canvas.html#dom-canvas-getcontext
     type:method; for:Window; text:requestAnimationFrame(callback); url: imagebitmap-and-animations.html#dom-animationframeprovider-requestanimationframe
@@ -694,7 +680,7 @@ When any previously added <dfn for="XRSession" lt="remove input source">[=XR inp
 
 <div class="algorithm" data-algorithm="on-input-source-change">
 
-When the {{XRInputSource/handedness}}, {{XRInputSource/targetRayMode}}, or presence of a {{XRInputSource/gripSpace}} or {{XRInputSource/gamepad}} for any [=XR input source=]s change for {{XRSession}} |session|, the user agent MUST run the following steps:
+When the {{XRInputSource/handedness}}, {{XRInputSource/targetRayMode}}, or presence of a {{XRInputSource/gripSpace}} for any [=XR input source=]s change for {{XRSession}} |session|, the user agent MUST run the following steps:
 
   1. Let |added| be a new [=/list=].
   1. Let |removed| be a new [=/list=].
@@ -1507,12 +1493,11 @@ interface XRInputSource {
   readonly attribute XRTargetRayMode targetRayMode;
   [SameObject] readonly attribute XRSpace targetRaySpace;
   [SameObject] readonly attribute XRSpace? gripSpace;
-  [SameObject] readonly attribute Gamepad? gamepad;
   [SameObject] readonly attribute FrozenArray&lt;DOMString&gt; profiles;
 };
 </pre>
 
-The <dfn attribute for="XRInputSource">handedness</dfn> attribute describes which hand the [=XR input source=] is associated with, if any. Input sources with no natural handedness (such as headset-mounted controls or standard gamepads) or for which the handedness is not currently known MUST set this attribute {{XRHandedness/"none"}}.
+The <dfn attribute for="XRInputSource">handedness</dfn> attribute describes which hand the [=XR input source=] is associated with, if any. Input sources with no natural handedness (such as headset-mounted controls) or for which the handedness is not currently known MUST set this attribute {{XRHandedness/"none"}}.
 
 The <dfn attribute for="XRInputSource">targetRayMode</dfn> attribute describes the method used to produce the target ray, and indicates how the application should present the target ray to the user if desired.
 
@@ -1526,31 +1511,25 @@ The <dfn attribute for="XRInputSource">gripSpace</dfn> attribute is an {{XRSpace
 
 The {{gripSpace}} MUST be <code>null</code> if the input source isn't inherently trackable such as for input sources with a {{targetRayMode}} of {{XRTargetRayMode/"gaze"}} or {{XRTargetRayMode/"screen"}}.
 
-The <dfn attribute for="XRInputSource">profiles</dfn> attribute is a [=/list=] of [=input profile name=]s indicating both the prefered visual representation and behavior of the input source. For example, if the {{XRInputSource/gamepad}} attribute is not <code>null</code> the profile identifies the mapping of the buttons and axes of the attribute of the {{XRInputSource}}.
+The <dfn attribute for="XRInputSource">profiles</dfn> attribute is a [=/list=] of [=input profile name=]s indicating both the prefered visual representation and behavior of the input source.
 
 An <dfn for="XRInputSource">input profile name</dfn> is a lowercase {{DOMString}} containing no spaces, with separate words concatenated with a hyphen (<code>-</code>) character. A descriptive name should be chosen, using the prefered verbiage of the device vendor when possible. If the platform provides an appropriate identifier, such as a USB vendor and product ID, it MAY be used. Values that uniquely identify a single device, such as serial numbers, MUST NOT be used. The [=input profile name=] MUST NOT contain an indication of device handedness. If multiple user agents expose the same device, they SHOULD make an effort to report the same [=input profile name=].
 
-Profiles are given in descending order of specificity. Any [=input profile name=]s given after the first entry in the list should provide fallback values that represent alternative representations of the device. This may include a more generic or prior version of the device, a more widely recognized device that is sufficently similar, or a broad description of the device type (such as "touchpad-wand"). If multiple profiles are given, the {{XRInputSource/gamepad}} layouts they describe must all represent a superset or subset of every other profile in the list.
+Profiles are given in descending order of specificity. Any [=input profile name=]s given after the first entry in the list should provide fallback values that represent alternative representations of the device. This may include a more generic or prior version of the device, a more widely recognized device that is sufficently similar, or a broad description of the device type (such as "touchpad-wand"). If multiple profiles are given, the layouts they describe must all represent a superset or subset of every other profile in the list.
 
 If the {{XRSession}}'s [=mode=] is {{XRSessionMode/"inline"}}, {{XRInputSource/profiles}} MUST be an empty list.
 
 If the input device cannot be reliably identified, or the user agent wishes to mask the input device being used, it MAY choose to only report generic [=input profile name=]s or an empty list.
 
 <p class="note">
-For example, the Samsung Odyssey controller is a design variant of the standard Windows Mixed Reality controller. Both controllers share the same input layout. As a result, the {{XRInputSource/profiles}} for a Samsung Odyssey controller could be: <code>["samsung-odyssey", "windows-mixed-reality", "touchpad-thumbstick-controller"]</code>. Here the first two profiles would indicate the same input layout for the {{XRInputSource/gamepad}} attribute, but the appearance of the controller is more precisely communicated by the first profile in the list, with the second profile describing an acceptable substitute. The last profile is a generic fallback that describes the device in the roughest sense. (It's a wand with a touchpad and thumbstick.)
+For example, the Samsung Odyssey controller is a design variant of the standard Windows Mixed Reality controller. Both controllers share the same input layout. As a result, the {{XRInputSource/profiles}} for a Samsung Odyssey controller could be: <code>["samsung-odyssey", "windows-mixed-reality", "touchpad-thumbstick-controller"]</code>. The appearance of the controller is most precisely communicated by the first profile in the list, with the second profile describing an acceptable substitute, and the last profile a generic fallback that describes the device in the roughest sense. (It's a wand with a touchpad and thumbstick.)
 
-Similarly, the Valve Index controller is backwards compatible with the HTC Vive controller, but the Index controller has additional buttons and axes. As a result, the {{XRInputSource/profiles}} for the Valve Index controller could be: <code>["valve-index", "htc-vive", "touchpad-thumbstick-controller"]</code>. In this case the gamepad layout described by the <code>"valve-index"</code> profile must be a superset of the layout described by the <code>"htc-vive"</code> profile. Also, the <code>"valve-index"</code> profile indicates the precise appearance of the controller, while the <code>"htc-vive"</code> controller has a significantly different appearance. In this case the UA would have deemed that difference acceptable. And as in the first example, the last profile is a generic fallback.
+Similarly, the Valve Index controller is backwards compatible with the HTC Vive controller, but the Index controller has additional buttons and axes. As a result, the {{XRInputSource/profiles}} for the Valve Index controller could be: <code>["valve-index", "htc-vive", "touchpad-thumbstick-controller"]</code>. In this case the input layout described by the <code>"valve-index"</code> profile is a superset of the layout described by the <code>"htc-vive"</code> profile. Also, the <code>"valve-index"</code> profile indicates the precise appearance of the controller, while the <code>"htc-vive"</code> controller has a significantly different appearance. In this case the UA would have deemed that difference acceptable. And as in the first example, the last profile is a generic fallback.
 
 (Exact strings are examples only. This specification does not make any recommendation for profile strings.)
 </p>
 
-The <dfn attribute for="XRInputSource">gamepad</dfn> attribute is a {{Gamepad}} that describes the state of any buttons and axes on the [=XR input source=]. If the  [=XR input source=] does not have at least one of the following properties, the {{gamepad}} attribute MUST be <code>null</code>:
-
- - Multiple buttons
- - A button which reports analog values
- - An axis
-
-Note: {{XRInputSource}}s in an {{XRSession}}'s {{XRSession/inputSources}} array are "live". As such values within them, such as the {{gamepad}} button and axis state, are updated in-place. This means that it doesn't work to save a reference to an {{XRInputSource}}'s {{gamepad}} on one frame and compare it to the same {{XRInputSource}}'s {{gamepad}} from a subsequent frame to test for state changes, because they will be the same object. Therefore developers that wish to compare input state from frame to frame should copy the state in question.
+Note: {{XRInputSource}}s in an {{XRSession}}'s {{XRSession/inputSources}} array are "live". As such values within them are updated in-place. This means that it doesn't work to save a reference to an {{XRInputSource}}'s attribute on one frame and compare it to the same attribute in a subsequent frame to test for state changes, because they will be the same object. Therefore developers that wish to compare input state from frame to frame should copy the content of the state in question.
 
 Each [=XR input source=] SHOULD define a <dfn>primary action</dfn>. The [=primary action=] is a platform-specific action that, when engaged, produces {{XRSession/selectstart}}, {{XRSession/selectend}}, and {{XRSession/select}} events. Examples of possible [=primary action=]s are pressing a trigger, touchpad, or button, speaking a command, or making a hand gesture. If the platform guidelines define a recommended primary input then it should be used as the [=primary action=], otherwise the user agent is free to select one.
 
@@ -1641,106 +1620,6 @@ interface XRInputSourceArray {
 The <dfn attribute for="XRInputSourceArray">length</dfn> attribute of {{XRInputSourceArray}} indicates how many {{XRInputSource}}s are contained within the {{XRInputSourceArray}}.
 
 The <dfn export for="XRInputSourceArray">[=/indexed property getter=]</dfn> of {{XRInputSourceArray}} retrieves the {{XRInputSource}} at the provided index.
-
-Gamepad API Integration {#gamepad-api-integration}
------------------------
-
-{{Gamepad}} instances returned by an {{XRInputSource}}'s {{XRInputSource/gamepad}} attribute behave as described by the <a href="https://w3c.github.io/gamepad/">Gamepad API</a>, with several additional behavioral restrictions:
-
-  - {{XRInputSource/gamepad}} MUST NOT be included in the array returned by {{navigator.getGamepads()}}.
-  - {{XRInputSource/gamepad}}'s {{Gamepad/id}} attribute MUST be an empty string (<code>""</code>).
-  - {{XRInputSource/gamepad}}'s {{Gamepad/index}} attribute MUST be <code>-1</code>.
-  - {{XRInputSource/gamepad}}'s {{Gamepad/connected}} attribute MUST be <code>true</code> until the {{XRInputSource}} is removed from the [=list of active XR input sources=] or the {{XRSession}} is ended.
-  - If an axis reported by the {{XRInputSource/gamepad}}'s {{Gamepad/axes}} array represents an axis of a touchpad, the value MUST be <code>0</code> when the associated {{GamepadButton}}'s {{GamepadButton/touched}} is <code>false</code>.
-
-"xr-standard" Gamepad Mapping {#xr-standard-gamepad-mapping}
------------------------------
-
-The WebXR Device API extends the {{GamepadMappingType}} to describe the mapping of common XR controller devices.
-
-<pre class="idl">
-  enum GamepadMappingType {
-    "",            // Defined in the Gamepad API
-    "standard",    // Defined in the Gamepad API
-    "xr-standard",
-  };
-</pre>
-
-The <dfn enum-value for="GamepadMappingType">xr-standard</dfn> mapping indicates that the layout of the buttons and axes of the {{XRInputSource/gamepad}} corresponds as closely as possible to the tables below.
-
-In order to report a {{Gamepad/mapping}} of {{GamepadMappingType/"xr-standard"}} the device MUST report a {{XRInputSource/targetRayMode}} of {{XRTargetRayMode/"tracked-pointer"}} and MUST have a non-<code>null</code> {{XRInputSource/gripSpace}}. It MUST have at least one primary button, often a trigger, separate from any touchpads or thumbsticks. If a device does not meet the requirements for the {{GamepadMappingType/"xr-standard"}} mapping it may still expose a {{XRInputSource/gamepad}} with a {{Gamepad/mapping}} of <code>""</code> (empty string). The {{GamepadMappingType/"xr-standard"}} mapping MUST only be used by {{Gamepad}} instances reported by an {{XRInputSource}}.
-
-<table class="tg">
-  <thead>
-    <tr>
-      <th>Buttons</th>
-      <th><code>xr-standard</code> Mapping</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>buttons[0]</td>
-      <td>Primary Button/Trigger</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>buttons[1]</td>
-      <td>Secondary Button/Grip Trigger</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <td>buttons[2]</td>
-      <td>Touchpad Press</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <td>buttons[3]</td>
-      <td>Thumbstick Press</td>
-      <td>No</td>
-    </tr>
-  </tbody>
-</table>
-<br/>
-<table class="tg">
-  <thead>
-    <tr>
-      <th>Axes</th>
-      <th><code>xr-standard</code> Mapping</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>axes[0]</td>
-      <td>Touchpad X</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <td>axes[1]</td>
-      <td>Touchpad Y</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <td>axes[2]</td>
-      <td>Thumbstick X</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <td>axes[3]</td>
-      <td>Thumbstick Y</td>
-      <td>No</td>
-    </tr>
-  </tbody>
-</table>
-
-Devices that lack one of the optional inputs listed in the tables above MUST preserve their place in the {{Gamepad/buttons}} or {{Gamepad/axes}} array, reporting a <dfn>placeholder button</dfn> or <dfn>placeholder axis</dfn>, respectively. A [=placeholder button=] MUST report <code>0</code> for {{GamepadButton/value}}, <code>false</code> for {{GamepadButton/pressed}}, and <code>false</code> for {{GamepadButton/touched}}. A [=placeholder axis=] MUST report <code>0</code>. [=Placeholder buttons=] and [=placeholder axis|axes=] MUST be omitted if they are the last element in the array or all following elements are also [=placeholder buttons=] or [=placeholder axis|axes=].
-
-Additional buttons or axes may be exposed after these reserved indices, and SHOULD appear in order of decreasing importance. Related axes (such as both axes of a thumbstick) MUST be grouped and, if applicable, MUST appear in X, Y, Z order. Buttons reserved by the UA or platform MUST NOT be exposed.
-
-<section class="note">
-This diagram demonstrates how two example controllers would be exposed with the {{GamepadMappingType/"xr-standard"}} mapping. Images are not intended to represent any particular device and are used for reference purposes only. <img src="images/xr-standard-mapping.svg" alt="Simple 'xr-standard' controller and Advanced 'xr-standard' controller">
-</section>
 
 Layers {#layers}
 ======
