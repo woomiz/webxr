@@ -65,17 +65,12 @@ The sensitive information exposed via WebXR can be divided into categories that 
 ## Immersiveness
 Users must be in control of when immersive sessions are created because the creation causes invasive changes on a user's machine. For example, starting an immersive session will engage the XR device sensors, take over access to the device's display, and begin presentation which may terminate another application's access to the XR hardware. It may also incur significant power or performance overhead on some systems or trigger the launching of a status tray or storefront.
 
-Developers indicate the desire to create an immersive session by passing `immersive-vr` or `immersive-ar` into `xr.requestSession()`. 
+Developers indicate the desire to create an immersive session by passing `immersive-vr` into `xr.requestSession()`. 
 
 ```js
 // VR button click handler
 function onVRClick() {
   xr.requestSession('immersive-vr').then(onVRSessionCreated);
-}
-
-//AR button click handler
-function onARClick() {
-  xr.requestSession('immersive-ar').then(onARSessionCreated);
 }
 ```
 
@@ -130,8 +125,8 @@ Unbounded reference spaces reveal the largest amount of spatial data and may res
 Developers indicate the desire for unbounded viewer tracking at the time of session creation by adding `unbounded` to either `XRSessionInit.requiredFeatures` or `XRSessionInit.optionalFeatures`. 
 
 ```js
-function onARClick() {
-  xr.requestSession('immersive-ar', { requiredFeatures: ['unbounded'] } )
+function onXRClick() {
+  xr.requestSession('immersive-vr', { requiredFeatures: ['unbounded'] } )
   .then(onARSessionCreated);
 }
 ```
@@ -239,7 +234,7 @@ If these requirements are not met, the promise returned from `XRSession.requestR
 ### Local reference spaces
 On devices which support 6DoF tracking, `local` reference spaces may be used to perform gait analysis, allowing user profiling and fingerprinting.
 
-When creating an `immersive-vr` or `immersive-ar` session, developers do not need to explicitly request the desire for `local` viewer tracking. However, this desire must be indicated when creating an `inline` session by adding `local` to either `XRSessionInit.requiredFeatures` or `XRSessionInit.optionalFeatures`. 
+When creating an immersive session, developers do not need to explicitly request the desire for `local` viewer tracking. However, this desire must be indicated when creating an `inline` session by adding `local` to either `XRSessionInit.requiredFeatures` or `XRSessionInit.optionalFeatures`. 
 
 ```js
 xr.requestSession('inline', { optionalFeatures: ['local'] } )
@@ -257,7 +252,7 @@ In response, the UA must ensure that:
 * If the session mode is `inline`, user intention is well understood, either via [explicit consent](#explicit-consent) or [implied consent](#implied-consent)
 * The device is capable of `local` tracking
 
-If the session is `immersive-ar` or `immersive-vr` and these requirements are not met then the promise returned from `requestSession()` must be rejected.  If the session is `inline` and has `local` listed in `XRSessionInit.requiredFeatures` then the promise returned from `requestSession()` must also be rejected. Otherwise, the promise may be fulfilled but future calls to `XRSession.requestReferenceSpace()` must fail when passed `local`.
+If the session is immersive and these requirements are not met then the promise returned from `requestSession()` must be rejected.  If the session is `inline` and has `local` listed in `XRSessionInit.requiredFeatures` then the promise returned from `requestSession()` must also be rejected. Otherwise, the promise may be fulfilled but future calls to `XRSession.requestReferenceSpace()` must fail when passed `local`.
 
 Once a session is created, developers may attempt to create local reference spaces by passing either `local` into `XRSession.requestReferenceSpace()`.
 

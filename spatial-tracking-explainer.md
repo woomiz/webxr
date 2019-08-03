@@ -1,5 +1,5 @@
 # WebXR Device API - Spatial Tracking
-This document explains the technology and portion of the WebXR APIs used to track users' movement for a stable, comfortable, and predictable experience that works on the widest range of XR hardware. For context, it may be helpful to have first read about [WebXR Session Establishment](explainer.md), and [Input Mechanisms](input-explainer.md). Further information can also be found in the [Hit Testing explainer](hit-testing-explainer.md).
+This document explains the technology and portion of the WebXR APIs used to track users' movement for a stable, comfortable, and predictable experience that works on the widest range of XR hardware. For context, it may be helpful to have first read about [WebXR Session Establishment](explainer.md), and [Input Mechanisms](input-explainer.md).
 
 ## Introduction
 A big differentiating aspect of XR, as opposed to standard 3D rendering, is that users control the view of the experience via their body motion.  To make this possible, XR hardware needs to be capable of tracking the user's motion in 3D space.  Within the XR ecosystem there is a wide range of hardware form factors and capabilities which have historically only been available to developers through device-specific SDKs and app platforms. To ship software in a specific app store, developers optimize their experiences for specific VR hardware (HTC Vive, GearVR, Mirage Solo, etc) or AR hardware (HoloLens, ARKit, ARCore, etc).  WebXR  development is fundamentally different in that regard; the Web gives developers broader reach, with the consequence that they no longer have predictability about the capability of the hardware their experiences will be running on.
@@ -194,14 +194,8 @@ The `viewer` reference space is also useful when the developer wants to compare 
 ## Spatial relationships
 One of the core features of any XR platform is its ability to track spatial relationships. Tracking the position and orientation, referred to together as a "pose", of the viewer is perhaps the simplest example, but many other XR platform features, such as hit testing or anchors, are rooted in understanding the space the XR system is operating in. In WebXR any feature that tracks spatial relationships is built on top of the `XRSpace` interface. Each `XRSpace` represents something being tracked by the XR system, such as an `XRReferenceSpace`, and each has a "native origin" that represents it's position and orientation in the XR tracking system. It is only possible to know the location of one `XRSpace` relative to another `XRSpace` on a frame-by-frame basis.
 
-### Spatial coordinate types
-Coordinates accepted as input or provided as output from WebXR are always expressed within a specific `XRSpace` chosen by the developer. There are two key types used to express these spatial coordinates, `XRRigidTransform` and `XRRay`.
-
-#### Rigid transforms
-When working with real-world spaces, it is important to be able to express transforms exclusively in terms of position and orientation. In WebXR this is done through the `XRRigidTransform` which contains a `position` vector and an `orientation` quaternion. When interpreting an `XRRigidTransform` the `orientation` is applied prior to the `position`. This means that, for example, a transform that indicates a quarter rotation to the right and a 1-meter translation along -Z would place a transformed object at `[0, 0, -1]` facing to the right. `XRRigidTransform`s also have a `matrix` attribute that reports the same transform as a 4×4 matrix when needed. By definition, the matrix of a rigid transform cannot contain scale or skew.
-
-#### Rays
-An `XRRay` object includes both an `origin` and `direction`, both given as `DOMPointReadOnly`s. The `origin` represents a 3D coordinate in space with a `w` component that must be 1, and the `direction` represents a normalized 3D directional vector with a `w` component that must be 0. The `XRRay` also defines a `matrix` which represents the transform from a ray originating at `[0, 0, 0]` and extending down the negative Z axis to the ray described by the `XRRay`'s `origin` and `direction`. This is useful for positioning graphical representations of the ray.
+### Rigid Transforms
+Coordinates accepted as input or provided as output from WebXR are always expressed within a specific `XRSpace` chosen by the developer. When working with real-world spaces, it is important to be able to express transforms exclusively in terms of position and orientation. In WebXR this is done through the `XRRigidTransform` which contains a `position` vector and an `orientation` quaternion. When interpreting an `XRRigidTransform` the `orientation` is applied prior to the `position`. This means that, for example, a transform that indicates a quarter rotation to the right and a 1-meter translation along -Z would place a transformed object at `[0, 0, -1]` facing to the right. `XRRigidTransform`s also have a `matrix` attribute that reports the same transform as a 4×4 matrix when needed. By definition, the matrix of a rigid transform cannot contain scale or skew.
 
 ### Poses
 On a frame-by-frame basis, developers can query the location of any `XRSpace` within another `XRSpace` via the `XRFrame.getPose()` function. This function takes the `space` parameter which is the `XRSpace` to locate and the `baseSpace` parameter which defines the coordinate system in which the resulting `XRPose` should be returned. The `transform` attribute of `XRPose` is an `XRRigidTransform` representing the location of `space` within `baseSpace`. 
@@ -226,7 +220,7 @@ However, once a pose is initially established for a space (e.g. a `viewer` refer
 
 This base tracking loss behavior enables developers to then build whatever tracking loss behavior their scenario requires.
 
-For example, it is common in VR experiences to let the world drag along with the user during positional tracking loss, as this can be preferable to halting the experience. By continuing to render the experience when `XRViewerPose.emulatedPosition` is reporting true, this behavior can be obtained easily. In contrast, when building an AR experience where anchoring of rendered objects to the real world is more critical, developers can detect that `XRViewerPose.emulatedPosition` is reporting false and stop rendering the main scene, falling back to an orientation-only warning.
+For example, it is common in VR experiences to let the world drag along with the user during positional tracking loss, as this can be preferable to halting the experience. By continuing to render the experience when `XRViewerPose.emulatedPosition` is reporting true, this behavior can be obtained easily. In contrast, when building an experience where anchoring of rendered objects to the real world is more critical, developers can detect that `XRViewerPose.emulatedPosition` is reporting false and stop rendering the main scene, falling back to an orientation-only warning.
 
 In contrast, many motion controllers have their own inertial tracking that can continue updating orientation while positional tracking is lost. If using a controller primarily to target distant objects, developers may choose to simply ignore `XRPose.emulatedPosition` and continue to point using each frame's updated target ray as the user rotates the controller. If using a controller to do fine operations, such as painting at the controller's tip, developers may instead choose to stop painting when `XRPose.emulatedPosition` becomes false, ensuring that only high-quality paint strokes are drawn.
 
@@ -344,7 +338,7 @@ let xrSession = null;
 let xrReferenceSpace = null;
 
 function beginXRSession() {
-  navigator.xr.requestSession('immersive-ar', { requiredFeatures: ['unbounded'] })
+  navigator.xr.requestSession('immersive-vr', { requiredFeatures: ['unbounded'] })
     .then(onSessionStarted)
     .catch(err => {
       // Display message to the user explaining that the experience could not
@@ -454,15 +448,6 @@ interface XRRigidTransform {
   readonly attribute DOMPointReadOnly orientation;
   readonly attribute Float32Array matrix;
   [SameObject] readonly attribute XRRigidTransform inverse;
-};
-
-[SecureContext, Exposed=Window,
- Constructor(optional DOMPointInit origin, optional DOMPointInit direction),
- Constructor(XRRigidTransform transform)]
-interface XRRay {
-  readonly attribute DOMPointReadOnly origin;
-  readonly attribute DOMPointReadOnly direction;
-  readonly attribute Float32Array matrix;
 };
 
 //
