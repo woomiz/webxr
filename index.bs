@@ -374,7 +374,7 @@ In this document, the term <dfn>inline session</dfn> is synonymous with an {{inl
 
 Note: Future specifications or modules may expand the definition of [=immersive session=] include additional session modes.
 
-Note: Examples of ways [=exclusive access=] may be presented include stereo content displayed on a virtual reality or augmented reality headset, or augmented reality content displayed fullscreen on a mobile device.
+Note: Examples of ways [=exclusive access=] may be presented include stereo content displayed on a virtual reality headset.
 
 Note: As an example of overlaid UI, the user-agent or operating system in an [=immersive session=] may show notifications over the rendered content.
 
