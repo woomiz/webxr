@@ -1528,7 +1528,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Device API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-08-14">14 August 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-08-15">15 August 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2144,8 +2144,9 @@ navigator<c- p>.</c->xr<c- p>.</c->requestSession<c- p>(</c-><c- u>"immersive-vr
      <li data-md>
       <p><a data-link-type="dfn" href="#initialize-the-render-state" id="ref-for-initialize-the-render-state">Initialize the render state</a>.</p>
      <li data-md>
-      <p>If no other features of the user agent have done so already, perform the necessary platform-specific steps to initialize the device’s tracking and rendering capabilities.</p>
+      <p>If no other features of the user agent have done so already, perform the necessary platform-specific steps to initialize the device’s tracking and rendering capabilities, including showing any necessary instructions to the user.</p>
     </ol>
+    <p class="note" role="note"><span>Note:</span> Some devices require additional user instructions for activation, for example going into immersive mode on a phone-based headset device requires inserting the phone into the headset, and doing so on a desktop browser connected to an external headset requires wearing the headset. It is the responsibility of the user agent — not the author — to ensure any such instructions are shown.</p>
    </div>
    <p>A number of different circumstances may <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="shut-down-the-session">shut down the session</dfn>, which is permanent and irreversible. Once a session has been shut down the only way to access the <a data-link-type="dfn" href="#xrsession-xr-device" id="ref-for-xrsession-xr-device⑦">XR device</a>'s tracking or rendering capabilities again is to request a new session. Each <code class="idl"><a data-link-type="idl" href="#xrsession" id="ref-for-xrsession②⓪">XRSession</a></code> has an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="ended">ended</dfn> boolean, initially set to <code>false</code>, that indicates if it has been shut down.</p>
    <div class="algorithm" data-algorithm="shut-down-session">
